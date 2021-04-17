@@ -1,0 +1,73 @@
+﻿@model Hr.Models.ACourcesCertImagehr
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+<h4>ACourcesCertImagehr</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CourcesIdImagehr" />
+            <div class="form-group">
+                <label asp-for="CourcesIdmaster" class="control-label"></label>
+                <input asp-for="CourcesIdmaster" class="form-control" />
+                <span asp-validation-for="CourcesIdmaster" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageName" class="control-label"></label>
+                <input asp-for="ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagePath" class="control-label"></label>
+                <input asp-for="ImagePath" class="form-control" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageType" class="control-label"></label>
+                <input asp-for="ImageType" class="form-control" />
+                <span asp-validation-for="ImageType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageCreatedDate" class="control-label"></label>
+                <input asp-for="ImageCreatedDate" class="form-control" />
+                <span asp-validation-for="ImageCreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileName1" class="control-label"></label>
+                <input asp-for="FileName1" class="form-control" />
+                <span asp-validation-for="FileName1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>

@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Hr.Models.ACourcesMaster>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdDeptin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdTraining)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdDeptout)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdEstimate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdImagecert)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdImagehr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesNumberofdays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesPassRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cemp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cources)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdDeptin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdTraining)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdDeptout)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdEstimate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdImagecert)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdImagehr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesNumberofdays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesPassRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cemp.Cempid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cources.CourcesId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CourcesIdmaster">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CourcesIdmaster">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CourcesIdmaster">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
