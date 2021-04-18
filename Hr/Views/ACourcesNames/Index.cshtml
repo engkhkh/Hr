@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<Hr.Models.ACourcesName>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @*
+        Layout = "~/Views/Shared/_Layout - Copy.cshtml";
+    *@
 }
 
 <!DOCTYPE html>
@@ -12,32 +15,33 @@
     <title>Index</title>
 </head>
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CourcesName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourcesName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CourcesId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CourcesId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CourcesId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CourcesName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourcesName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CourcesId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CourcesId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CourcesId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </body>
 </html>

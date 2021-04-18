@@ -1,48 +1,776 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html style="" class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    @*
+        <meta http-equiv="refresh" content="2000;url=/Hadir/Account/LogOn">*@
+    <meta http-equiv="X-UA-Compatible" content="IE=7,8,9,10,11">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>@ViewData["Title"] - Hr</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hr</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />*@
+    <link href="~/Style/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Style/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Style/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <link href="~/StyleSheet/font-awesome.css" rel="stylesheet" type="text/css" />
+    <!-- Foo Table Styles -->
+    <link href="~/StyleSheet/FooTable.css" rel="stylesheet" type="text/css">
+    @*
+        <link href="~/StyleSheet/FooTable.FontAwesome.css" rel="stylesheet" type="text/css">*@
+    <link href="~/StyleSheet/FooTable.Glyphicons.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/FooTable.Sorting.css" rel="stylesheet" type="text/css">
+    <!-- end Foo Table Styles -->
+    <link href="~/StyleSheet/pace-theme-flash.css" rel="stylesheet">
+    <link href="~/StyleSheet/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/menu_cornerbox.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/waves.min.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/switchery.min.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/style.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/component.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/weather-icons.min.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/morris.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/MetroJs.min.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/toastr.min.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/style.min.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/jqx.base.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/toastr.min.css" rel="stylesheet" type="text/css">
+    <!-- Theme Styles -->
+    <link href="~/StyleSheet/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/uniform.default.min.css" rel="stylesheet">
+    <link href="~/StyleSheet/modern.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/set2.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/custom.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/white.css" class="theme-color" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/brown.css" class="theme-color" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/sol.css" rel="stylesheet" type="text/css">
+    <script src="~/StyleSheet/modernizr.js" type="text/javascript"></script>
+    @*<%--
+    <script src="~/StyleSheet/snap.svg-min.js" type="text/javascript"></script>--%>*@
+    <link href="~/StyleSheet/jqx.base.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/jqx.office.css" rel="stylesheet" type="text/css">
+    <link href="~/StyleSheet/tabs-menu-home.css" rel="stylesheet" type="text/css">
+    <script src="~/StyleSheet/jquery-2.1.3.min.js"></script>
+    <script src="~/StyleSheet/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/jquery.meio.mask.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/jquery.cookie.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/jquery.mask.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/gettheme.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/jqxcore.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/jqxbuttons.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/jqxscrollbar.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/jqxpanel.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/jqxtree.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/jqxcheckbox.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/footable.js" type="text/javascript"></script>
+    <style>
+        .footable th:empty:not(.fooCell) {
+            display: none !important;
+        }
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - Hr - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        .footable td:empty:not(.fooCell) {
+            display: none !important;
+        }
+
+        .alert-warning {
+            margin: 5px;
+        }
+        /*.fooCell > td:empty {
+            display: block !important;
+        }
+
+        .fooCell > th:empty {
+            display: block !important;
+        }*/
+    </style>
+    <script type="text/javascript">
+        function changeLang(lang) {
+            $.cookie('Lang', lang, { expires: 7, path: '/' });
+            window.location.reload();
+            return false;
+        }
+        $(window).load(function () {
+            $('#slider').nivoSlider({ effect: 'fade' });
+        });
+
+        $(document).ready(function () {
+
+
+            var container = $('DateInput').parent();
+            var yearInput = container.children('.year');
+            var monthInput = container.children('.month');
+            var dayInput = container.children('.day');
+
+            yearInput.blur(function () { $('.DateInput').change(); });
+            monthInput.blur(function () { $('.DateInput').change(); });
+            dayInput.blur(function () { $('.DateInput').change(); });
+
+            $("#slide").fadeIn(3000).delay(7000).slideUp(1000);
+
+            $('#TotalDays').change(function () {
+                var total = $(this).val();
+                if (total > 0) {
+                    var container = $('#StartDateDatePicker');
+                    var year = container.children('.year').val();
+                    var month = container.children('.month').val();
+                    var day = container.children('.day').val();
+
+                    if (year.length < 1) year = 0;
+                    if (month.length < 1) month = 0;
+                    if (day.length < 1) day = 0;
+
+                    $.post('/Hadir/Base/AjaxDateCalc', { year: year, month: month, day: day, total: total, calendar: 'g' }, function (data) {
+                        $('#calculatedDate').text(data.date);
+                    });
+
+                }
+            });
+
+            $('.DateInput').change(function () {
+                var container = $(this).parent();
+                var year = container.children('.year').val();
+                var month = container.children('.month').val();
+                var day = container.children('.day').val();
+
+                if (year.length < 1) year = 0;
+                if (month.length < 1) month = 0;
+                if (day.length < 1) day = 0;
+
+                $.post('/Hadir/Base/AjaxDateParser', { year: year, month: month, day: day, calendar: 'g' }, function (data) {
+                    container.children('.hidden').val(data.date);
+                });
+            });
+
+            $('#TotalDays, #StartDateDatePicker').on('keyup change', function () {
+                $.getJSON('/Hadir/Json/calcEndDate', {
+                    sy: $('.year  option:selected').val(),
+                    sm: $('.month option:selected').val(),
+                    sd: $('.day   option:selected').val(),
+                    days: $('#TotalDays').val()
+                },
+                    function (endDateIntArray) {
+                        $('#EndDateDatePicker .year').val(endDateIntArray[0]).trigger('change');
+                        $('#EndDateDatePicker .month').val(endDateIntArray[1]).trigger('change');
+                        $('#EndDateDatePicker .day').val(endDateIntArray[2]).trigger('change');
+                        var ey = endDateIntArray[3];
+                        var em = endDateIntArray[4];
+                        var ed = endDateIntArray[5];
+                        var endDateString = ed + '-' + em + '-' + ey;
+                        var endDate = new Date(endDateString);
+                        $('#EndDateDatePicker .hidden').val(endDateString);
+
+                        $.getJSON('/Hadir/Json/showDayName', {
+                            sy: $('#EndDateDatePicker .year  option:selected').val(),
+                            sm: $('#EndDateDatePicker .month option:selected').val(),
+                            sd: $('#EndDateDatePicker .day   option:selected').val()
+                        },
+                            function (dayName) {
+                                $('#EndDateDayName').text(dayName)
+                            });
+                    });
+            });
+
+
+            //display day name beside datepicker
+            $('#StartDateDatePicker').on('change', function () {
+                $.getJSON('/Hadir/Json/showDayName', {
+                    sy: $('#StartDateDatePicker .year  option:selected').val(),
+                    sm: $('#StartDateDatePicker .month option:selected').val(),
+                    sd: $('#StartDateDatePicker .day   option:selected').val() // very important for IE7, DON'T put a comma after last element
+                },
+                    function (dayName) {
+                        $('#StartDateDayName').text(dayName)
+                    });
+            }).trigger('change');
+
+            $('#EndDateDatePicker').on('change', function () {
+                $.getJSON('/Hadir/Json/showDayName', {
+                    sy: $('#EndDateDatePicker .year  option:selected').val(),
+                    sm: $('#EndDateDatePicker .month option:selected').val(),
+                    sd: $('#EndDateDatePicker .day   option:selected').val()
+                },
+                    function (dayName) {
+                        $('#EndDateDayName').text(dayName);
+                    });
+            }).trigger('change');
+
+            $('.chosenlist').select2();
+            $('.dropselect').searchableOptionList({
+                maxHeight: '250px'
+            });
+            $("#message-Done").fadeIn(3000).delay(2000).fadeOut(1000);
+
+            $('#main-wrapper').css({ 'min-height': (($(document).height())) + 'px' });
+            $('#main-wrapper').css({ 'min-height': (($(window).height())) + 'px' });
+
+            $('.time').mask('00:00');
+
+            $("#panelContentpaneljqxTree").css("left", "0px");
+            $('.footable').footable();
+        });
+
+
+        function LinkClick() {
+
+            alert('LinkClick'); document.getElementById('btnOk').click();
+        }
+    </script>
+    <style>
+        #panelContentpaneljqxTree {
+            left: 0px;
+        }
+
+        .txt-small {
+            /*display: block;*/
+            font-size: 11px;
+            margin-top: 10px;
+            color: #B0B0B0;
+        }
+
+        .page-footer {
+            margin-top: 100px;
+        }
+    </style>
+
+</head>
+<body class="page-header-fixed">
+    @*<header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hr</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>*@
+
+    <form id="form1" runat="server">
+        <div class="overlay">
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <!-- Search Form -->
+        <main class="page-content content-wrap">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="sidebar-pusher">
+                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic push-sidebar">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                    <div class="logo-box">
+
+
+
+                    </div><!-- Logo Box -->
+
+                    <div class="topmenu-outer">
+                        <div class="top-menu">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li>
+                                    <a href="javascript:void(0);" class="waves-effect waves-button waves-classic sidebar-toggle"><i class="fa fa-bars"></i></a>
+                                </li>
+
+
+                            </ul>
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown" style="display: none">
+                                    <a href="#/#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown"><i class="fa fa-support"></i></a>
+                                    <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
+                                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+                                            <li class="dropdown-menu-list slimscroll tasks" style="overflow: hidden; width: auto; height: 100%;">
+                                                <ul class="list-unstyled">
+
+
+                                                    <li>
+                                                        <a href="#/Home/UserManaul" target="_blank">
+                                                            <div class="task-icon badge badge-success">
+                                                                <span class="fa fa-user"></span>
+                                                            </div>
+                                                            <p class="task-details"> دليل الموظف</p>
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </li><div class="slimScrollBar" style="background: rgb(204, 204, 204); width: 7px; position: absolute; top: 0px; opacity: 0.3; display: none; border-radius: 0px; z-index: 99; right: 0px; height: 46px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 0px;"></div>
+                                        </div>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <i class=""></i>
+                                    @*<asp:LinkButton ID="LoginOut" runat="server">تسجيل خروج</asp:LinkButton>*@
+                                    <a class="log-out waves-effect waves-button waves-classic icontoplink" href="#/Account/LogOff">تسجيل خروج</a>
+
+
+
+                                </li>
+                            </ul>
+
+
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown" style="display: none">
+                                    <a href="#/#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-success pull-right">0</span></a>
+                                    <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
+                                    </ul>
+                                </li>
+
+
+                            </ul>
+
+
+
+                            <!-- Nav -->
+                        </div><!-- Top Menu -->
+                    </div>
+                </div>
+            </div><!-- Navbar -->
+            <div class="page-sidebar sidebar">
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+                    <div class="page-sidebar-injhner slimscroll" style="overflow: hidden; width: auto; height: 100%;">
+                        <div class="sidebar-header">
+                            <div class="sidebar-profile">
+
+                                <div class="sidebar-profile-image">
+                                    <img src="~/StyleSheet/img-icon.jpg" class="img-circle img-responsive" alt="">
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <ul id="menu" class="menu accordion-menu">
+                            <li class="droplink">
+
+                                <a href="Default.aspx" class="waves-effect waves-button">
+                                    <span class="  menu-icon   menu-icon glyphicon glyphicon-user"></span>
+                                    <p><asp:Label ID="LoginLink" runat="server" CssClass="LoginLink" Height="30px"></asp:Label></p>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu" style="display: none;">
+
+                                    <li class="">
+                                        <a href="#" class="waves-effect waves-button">
+                                            <p>معلومات المستخدم</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+
+                                        <a href="HR_EVALUATION.aspx" class="waves-effect waves-button">
+                                            <p>ميثاق الاداء</p> <span class=""></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="">
+
+                                        <a href="HR_EVALUATION.aspx" class="waves-effect waves-button">
+                                            <p>ميثاق الاداء</p> <span class=""></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="">
+
+                                        <a href="HR_EVALUATION_Deatils.aspx" class="waves-effect waves-button">
+                                            <p>اعتماد ميثاق الاداء</p> <span class=""></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="">
+
+
+                                    </li>
+
+
+
+                                    <li class="">
+                                        <a href="#/Request/ExcuseIndex" class="waves-effect waves-button">
+                                            <p>الاستئذانات</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#/Request/JustificationIndex" class="waves-effect waves-button">
+                                            <p>التبريرات</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#/Request/DutyIndex" class="waves-effect waves-button">
+                                            <p>التكليف</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#/Request/VacationIndex" class="waves-effect waves-button">
+                                            <p>الإجازات</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#/Request/JobVacationIndex" class="waves-effect waves-button">
+                                            <p>المهام</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#/DailyEmployeeShift/EmployeeDailyShifts" class="waves-effect waves-button">
+                                            <p>الورديات المجدولة </p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#/Enquiry/EmployeeEnquiryIndex" class="waves-effect waves-button">
+                                            <p>المسائلات</p> <span class=""></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="">
+                                        <a href="logins.aspx" class="waves-effect waves-button">
+                                            <p>تسجيل خروج</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul id="menu" class="menu accordion-menu">
+                            <li class="droplink">
+
+                                <a href="Default.aspx" class="waves-effect waves-button">
+                                    <span class="  menu-icon   menu-icon glyphicon glyphicon-user"></span>
+                                    <p><asp:Label ID="LoginLink" runat="server" CssClass="LoginLink" Height="30px"></asp:Label></p>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu" style="display: none;">
+
+                                    <li class="">
+                                        <a href="/ACourcesMasters/Create" class="waves-effect waves-button">
+                                            <p>تسجيل الدورات والكورسات </p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+
+                                        <a href="/ACourcesMasters" class="waves-effect waves-button">
+                                            <p>عرض الدورات والكورسات </p> <span class=""></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="">
+
+                                        <a href="/ACourcesNames/Create" class="waves-effect waves-button">
+                                            <p>تسجيل اسماء الكورسات </p> <span class=""></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="">
+
+                                        <a href="/ACourcesNames" class="waves-effect waves-button">
+                                            <p>عرض اسماء الكورسات </p> <span class=""></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="">
+
+
+                                    </li>
+
+
+
+                                    <li class="">
+                                        <a href="/ACourcesEstimates/Create" class="waves-effect waves-button">
+                                            <p>تسجيل التقدير والنتائج  </p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="/ACourcesEstimates" class="waves-effect waves-button">
+                                            <p>عرض التقدير والنتائج</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="/ACourcesTrainingMethods/Create" class="waves-effect waves-button">
+                                            <p>تسجيل طريقة التدريب   </p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="/ACourcesTrainingMethods" class="waves-effect waves-button">
+                                            <p>عرض طريقة التدريب </p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#/Request/DutyIndex" class="waves-effect waves-button">
+                                            <p>التكليف</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#/Request/VacationIndex" class="waves-effect waves-button">
+                                            <p>الإجازات</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#/Request/JobVacationIndex" class="waves-effect waves-button">
+                                            <p>المهام</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#/DailyEmployeeShift/EmployeeDailyShifts" class="waves-effect waves-button">
+                                            <p>الورديات المجدولة </p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#/Enquiry/EmployeeEnquiryIndex" class="waves-effect waves-button">
+                                            <p>المسائلات</p> <span class=""></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="">
+                                        <a href="logins.aspx" class="waves-effect waves-button">
+                                            <p>تسجيل خروج</p> <span class=""></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div><div class="slimScrollBar" style="background: rgb(204, 204, 204); width: 7px; position: absolute; top: 0px; opacity: 0.3; display: none; border-radius: 0px; z-index: 99; right: 0px; height: 182px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 0px;"></div>
+                </div><!-- Page Sidebar Inner -->
+            </div>
+
+            <div class="page-inner" style="min-height:145px !important">
+                <div id="main-wrapper" style="min-height: 880px;">
+
+
+
+
+                    <div class="panel panel-white over-f minH">
+                        <div class="panel-body">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="panel panel-white" style="height: 100%;">
+                                    <div class="panel-body">
+
+                                        @*<ul class="ca-menu ca-menu-3">
+
+                                                <li>
+                                                    <asp:LinkButton ID="Hyper_Methak" runat="server">
+                                                        <span class="ca-icon">
+                                                            <img class="icon" style="width: 75px; margin-left: -15px;" src="~/StyleSheet/icon-s-gray.png">
+                                                        </span>
+                                                        <div class="ca-content">
+                                                            <h2 class="ca-main">
+                                                                ميثاق الاداء
+                                                            </h2>
+                                                        </div>
+                                                    </asp:LinkButton>
+                                                    <%--     <a href="HR_EVALUATION.aspx">
+                                                        <span class="ca-icon">
+                                                            <img class="icon" style="width: 75px; margin-left: -15px;" src="~/StyleSheet/icon-s-gray.png">
+                                                        </span>
+                                                        <div class="ca-content">
+                                                            <h2 class="ca-main">
+                                                                ميثاق الاداء
+                                                            </h2>
+
+                                                        </div>
+                                                    </a>--%>
+                                                </li>
+
+                                                <li>
+                                                    <asp:HyperLink ID="Hyper_Methak_Ok" runat="server"
+                                                                   NavigateUrl="~/HR_EVALUATION_Deatils.aspx">
+                                                        <span class="ca-icon">
+                                                            <img class="icon" style="width: 75px; margin-left: -15px;" src="~/StyleSheet/icon-s-gray.png">
+                                                        </span>
+                                                        <div class="ca-content">
+                                                            <h2 class="ca-main">
+                                                                اعتماد ميثاق الاداء
+                                                            </h2>
+                                                        </div>
+                                                    </asp:HyperLink>
+                                                    <%--<a href="HR_EVALUATION_Deatils.aspx">
+                                                        <span class="ca-icon">
+                                                            <img class="icon" style="width: 75px; margin-left: -15px;" src="~/StyleSheet/icon-s-gray.png">
+                                                        </span>
+                                                        <div class="ca-content">
+                                                            <h2 class="ca-main">
+                                                                اعتماد ميثاق الاداء
+                                                            </h2>
+
+                                                        </div>
+                                                    </a>--%>
+                                                </li>
+
+                                                <li>
+                                                    <%--<asp:LinkButton ID="lnkCallHyperlink" Text="Open" runat="server" onclick="lnkCallHyperlink_Click" />--%>
+
+                                                    <%--<asp:LinkButton ID="LinkButton1" runat="server">LinkButton</asp:LinkButton>--%>
+
+                                                    <asp:LinkButton ID="Hyper_Add_All" runat="server" Visible="False">
+                                                        <span class="ca-icon">
+                                                            <img class="icon" style="width: 75px; margin-left: -15px;" src="~/StyleSheet/icon-s-gray.png">
+                                                        </span>
+                                                        <div class="ca-content">
+                                                            <h2 class="ca-main">
+                                                                اضافة ميثاق الاداء للموظفين
+                                                            </h2>
+                                                        </div>
+
+                                                    </asp:LinkButton>
+
+
+                                                    <asp:LinkButton ID="LinkButton1" runat="server" NavigateUrl="~/HR_Change_Manger.aspx">
+                                                        <span class="ca-icon">
+                                                            <img class="icon" style="width: 75px; margin-left: -15px;" src="~/StyleSheet/icon-s-gray.png">
+                                                        </span>
+                                                        <div class="ca-content">
+                                                            <h2 class="ca-main">
+                                                                تحديث بيانات المدير
+                                                            </h2>
+                                                        </div>
+                                                    </asp:LinkButton>
+
+                                                    <%--           <asp:HyperLink ID="Hyper_Add_All" runat="server" Visible="False" onclick="lnkHyper_Add_All_Click"
+                                                                                  NavigateUrl="~/HR_EVALUATION.aspx" Click="lnkHyper_Add_All_Click">
+                                                        <span class="ca-icon">
+                                                            <img class="icon" style="width: 75px; margin-left: -15px;" src="~/StyleSheet/icon-s-gray.png">
+                                                        </span>
+                                                        <div class="ca-content">
+                                                            <h2 class="ca-main">
+                                                                اضافة ميثاق الاداء للموظفين
+                                                            </h2>
+                                                        </div>
+                                                    </asp:HyperLink>--%>
+                                                    <%--           <a href="#/Request/DutyCreate">
+                                                        <span class="ca-icon">
+                                                            <img class="icon" style="width: 75px; margin-left: -15px;" src="~/StyleSheet/icon-t-gray.png">
+                                                        </span>
+                                                        <div class="ca-content">
+                                                            <h2 class="ca-main">
+                                                                الدورات التدريبية
+                                                            </h2>
+
+                                                        </div>
+                                                    </a>--%>
+                                                </li>
+
+
+
+
+
+                                            </ul>
+                                            <ul class="ca-menu ca-menu-3">
+
+
+
+                                                <li>
+
+
+
+                                                    <asp:LinkButton ID="LinkButton4" runat="server"
+                                                                    PostBackUrl="~/HR_Change_Manger.aspx">
+                                                        <span class="ca-icon">
+                                                            <img class="icon" style="width: 75px; margin-left: -15px;" src="~/StyleSheet/icon-s-gray.png">
+                                                        </span>
+                                                        <div class="ca-content">
+                                                            <h2 class="ca-main">
+                                                                تحديث بيانات المدير
+                                                            </h2>
+                                                        </div>
+                                                    </asp:LinkButton>
+
+                                                </li>
+
+
+
+
+
+                                            </ul>*@
+                                        <div class="container">
+                                            
+                                                @RenderBody()
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+        </main>
+    </form>
+    <div id="morris1" style="display: none">
+    </div>
+    <div id="morris2" style="display: none">
+    </div>
+    <div id="morris3" style="display: none">
+    </div>
+    <!-- Row -->
+    <div class="cd-overlay">
+    </div>
+    <!-- Javascripts -->
+    <script src="~/StyleSheet/jquery-ui.min.js"></script>
+    <script src="~/StyleSheet/jquery.blockui.js"></script>
+    <script src="~/StyleSheet/bootstrap.min.js"></script>
+    <script src="~/StyleSheet/jquery.slimscroll.min.js"></script>
+    <script src="~/StyleSheet/switchery.min.js"></script>
+    <script src="~/StyleSheet/jquery.uniform.min.js"></script>
+    <script src="~/StyleSheet/classie.js"></script>
+    <script src="~/StyleSheet/main.js"></script>
+    <script src="~/StyleSheet/waves.min.js"></script>
+    <script src="~/StyleSheet/main.js(1)"></script>
+    <script src="~/StyleSheet/jquery.waypoints.min.js"></script>
+    <script src="~/StyleSheet/jquery.counterup.min.js"></script>
+    <script src="~/StyleSheet/toastr.min.js"></script>
+    <script src="~/StyleSheet/jquery.flot.min.js"></script>
+    <script src="~/StyleSheet/jquery.flot.time.min.js"></script>
+    <script src="~/StyleSheet/jquery.flot.symbol.min.js"></script>
+    <script src="~/StyleSheet/jquery.flot.resize.min.js"></script>
+    <script src="~/StyleSheet/jquery.flot.tooltip.min.js"></script>
+    <script src="~/StyleSheet/curvedLines.js"></script>
+    <script src="~/StyleSheet/MetroJs.min.js"></script>
+    <script src="~/StyleSheet/modern.js"></script>
+    <script src="~/StyleSheet/jstree.js"></script>
+    <!-- timeline-->
+    <script src="~/StyleSheet/main.js(2)"></script>
+    <!-- timeline-->
+    <!-- mneu icon-->
+    <script src="~/StyleSheet/morris.min.js"></script>
+    <script src="~/StyleSheet/raphael.min.js"></script>
+    <script src="~/StyleSheet/charts-morris.js"></script>
+    <!-- mneu icon-->
+    <!-- timeline-->
+    <script src="~/StyleSheet/main.js(2)"></script>
+    <!-- timeline-->
+    <!-- mneu icon-->
+    <script src="~/StyleSheet/morris.min.js"></script>
+    <script src="~/StyleSheet/raphael.min.js"></script>
+    <script src="~/StyleSheet/charts-morris.js"></script>
+    <script src="~/StyleSheet/select2.full.min.js"></script>
+    <script src="~/StyleSheet/select2.min.js"></script>
+    <script src="~/StyleSheet/select2.js"></script>
+    <script src="~/StyleSheet/sol.js" type="text/javascript"></script>
+    <script src="~/StyleSheet/dashboard.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+@*<%--
+<Sc:ScriptReferenceProfiler runat="server" />--%>*@
+@*<footer class="border-top footer text-muted">
+                            <div class="container">
+                                &copy; 2021 - Hr - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </div>
+                        </footer>
+                        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+                        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                        <script src="~/js/site.js" asp-append-version="true"></script>
+                        @RenderSection("Scripts", required: false)
+    </body>
+    </html>*@

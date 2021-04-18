@@ -1,0 +1,94 @@
+﻿
+    
+
+
+.classname
+{
+    padding: 0px;
+}
+.classname input
+{
+ /*  width: 51px;
+    height: 20px;*/
+    padding: 0px 0px;
+   
+}
+
+.header-status
+{
+   text-align: center;
+    color: #217d78;
+    background-color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 5px 5px 9px 5px;
+ }
+.ctrl-details
+{
+ /*  width: 51px;
+    height: 20px;*/
+    padding: 5px 0px 6px 0 ;
+   
+}
+
+
+input[type='text'], input[type='password'] {
+    color: black;
+    background-color: #ffffff;
+}
+
+button[disabled], html input[disabled] {
+    color: black;
+    cursor: default;
+}
+
+.modal-header 
+{
+        direction: rtl;
+}
+.modal-body
+{
+        direction: rtl;
+}
+
+caption 
+{
+    text-align:center;
+}
+
+/*
+.fieldset {
+    display: block;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
+    padding-block-start: 0.35em;
+    padding-inline-start: 0.75em;
+    padding-inline-end: 0.75em;
+    padding-block-end: 0.625em;
+    min-width: -webkit-min-content;
+    border-width: 2px;
+    border-style: groove;
+    border-color: threedface;
+    border-image: initial;
+}
+
+
+.legend_ {
+    color: #CC0000;
+    font-weight: 700;
+    background-color: #EFF5FF;
+    text-align: right;
+    direction: ltr;
+}
+
+
+.classname .legend {
+    display: block;
+    padding-inline-start: 2px;
+    padding-inline-end: 2px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+}
+*/
