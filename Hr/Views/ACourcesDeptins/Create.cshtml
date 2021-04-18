@@ -1,4 +1,4 @@
-﻿@model Hr.Models.ACourcesEstimate
+﻿@model Hr.Models.ACourcesDeptin
 
 @{
     ViewData["Title"] = "Create";
@@ -7,16 +7,16 @@
 
 <h1>Create</h1>
 
-<h4>ACourcesEstimate</h4>
+<h4>ACourcesDeptin</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CourcesNameEstimate" class="control-label"></label>
-                <input asp-for="CourcesNameEstimate" class="form-control" />
-                <span asp-validation-for="CourcesNameEstimate" class="text-danger"></span>
+                <label asp-for="CourcesNameDeptin" class="control-label"></label>
+                <input asp-for="CourcesNameDeptin" class="form-control" />
+                <span asp-validation-for="CourcesNameDeptin" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

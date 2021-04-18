@@ -26,6 +26,7 @@ namespace Hr
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSession();
             services.AddDbContext<hrContext>(Options =>
             {
                 Options.UseSqlServer(Configuration.GetConnectionString("hr"));
@@ -50,7 +51,7 @@ namespace Hr
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -59,7 +60,7 @@ namespace Hr
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Index}/{id?}");
             });
         }
     }
