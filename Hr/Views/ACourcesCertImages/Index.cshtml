@@ -9,15 +9,16 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>اضافة </title>
 </head>
 <body>
 <p>
-    <a asp-action="Create">Create New</a>
+    
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.CourcesIdmaster)
             </th>
@@ -39,12 +40,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.Note)
             </th>
-            <th></th>
+
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                <a asp-action="Create">اضافة </a>|
+                <a asp-action="Edit" asp-route-id="@item.CourcesIdImagecert">تعديل </a> |
+                <a asp-action="Details" asp-route-id="@item.CourcesIdImagecert">تفاصيل </a> |
+                @*<a asp-action="Delete" asp-route-id="@item.CourcesIdImagecert">Delete</a>*@
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CourcesIdmaster)
             </td>
@@ -66,11 +73,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Note)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CourcesIdImagecert">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CourcesIdImagecert">Details</a> |
-                @*<a asp-action="Delete" asp-route-id="@item.CourcesIdImagecert">Delete</a>*@
-            </td>
+
         </tr>
 }
     </tbody>

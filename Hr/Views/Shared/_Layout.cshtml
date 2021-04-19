@@ -87,7 +87,7 @@
             display: block !important;
         }*/
     </style>
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         function changeLang(lang) {
             $.cookie('Lang', lang, { expires: 7, path: '/' });
             window.location.reload();
@@ -218,7 +218,7 @@
 
             alert('LinkClick'); document.getElementById('btnOk').click();
         }
-    </script>
+    </script>*@
     <style>
         #panelContentpaneljqxTree {
             left: 0px;
@@ -260,7 +260,7 @@
             </nav>
         </header>*@
 
-    <form id="form1" runat="server">
+
         <div class="overlay">
         </div>
         <!-- Search Form -->
@@ -315,7 +315,7 @@
                                 <li>
                                     <i class=""></i>
                                     @*<asp:LinkButton ID="LoginOut" runat="server">تسجيل خروج</asp:LinkButton>*@
-                                    <a class="log-out waves-effect waves-button waves-classic icontoplink" href="#/Account/LogOff">تسجيل خروج</a>
+                                    <a class="log-out waves-effect waves-button waves-classic icontoplink" href="/Account/Logout">تسجيل خروج</a>
 
 
 
@@ -463,12 +463,12 @@
                                         </a>
                                     </li>
 
-                                    <li class="">
+                                    @*<li class="">
 
                                         <a href="/ACourcesNames/Create" class="waves-effect waves-button">
                                             <p>تسجيل اسماء الكورسات </p> <span class=""></span>
                                         </a>
-                                    </li>
+                                    </li>*@
 
                                     <li class="">
 
@@ -484,60 +484,60 @@
 
 
 
-                                    <li class="">
+                                    @*<li class="">
                                         <a href="/ACourcesEstimates/Create" class="waves-effect waves-button">
                                             <p>تسجيل التقدير والنتائج  </p> <span class=""></span>
                                         </a>
-                                    </li>
+                                    </li>*@
                                     <li class="">
                                         <a href="/ACourcesEstimates" class="waves-effect waves-button">
                                             <p>عرض التقدير والنتائج</p> <span class=""></span>
                                         </a>
                                     </li>
-                                    <li class="">
+                                    @*<li class="">
                                         <a href="/ACourcesTrainingMethods/Create" class="waves-effect waves-button">
                                             <p>تسجيل طريقة التدريب   </p> <span class=""></span>
                                         </a>
-                                    </li>
+                                    </li>*@
                                     <li class="">
                                         <a href="/ACourcesTrainingMethods" class="waves-effect waves-button">
                                             <p>عرض طريقة التدريب </p> <span class=""></span>
                                         </a>
                                     </li>
-                                    <li class="">
+                                    @*<li class="">
                                         <a href="/ACourcesTypes/Create" class="waves-effect waves-button">
                                             <p>تسجيل نوع التدريب </p> <span class=""></span>
                                         </a>
-                                    </li>
+                                    </li>*@
                                     <li class="">
                                         <a href="/ACourcesTypes" class="waves-effect waves-button">
                                             <p>عرض نوع التدريب </p> <span class=""></span>
                                         </a>
                                     </li>
-                                    <li class="">
+                                    @*<li class="">
                                         <a href="/ACourcesDeptins/Create" class="waves-effect waves-button">
                                             <p>تسجيل جهة الدورات</p> <span class=""></span>
                                         </a>
-                                    </li>
+                                    </li>*@
                                     <li class="">
                                         <a href="/ACourcesDeptins" class="waves-effect waves-button">
                                             <p>عرض جهات الدورات  </p> <span class=""></span>
                                         </a>
                                     </li>
-                                    <li class="">
+                                    @*<li class="">
                                         <a href="/ACourcesDeptouts/Create" class="waves-effect waves-button">
                                             <p>تسجيل الادارات والاقسام </p> <span class=""></span>
                                         </a>
-                                    </li>
+                                    </li>*@
                                     <li class="">
-                                        <a href="/ACourcesDeptouts/Create" class="waves-effect waves-button">
+                                        <a href="/ACourcesDeptouts" class="waves-effect waves-button">
                                             <p>عرض الادارات والاقسام  </p> <span class=""></span>
                                         </a>
                                     </li>
 
 
                                     <li class="">
-                                        <a href="logins.aspx" class="waves-effect waves-button">
+                                        <a href="/Account/Logout" class="waves-effect waves-button">
                                             <p>تسجيل خروج</p> <span class=""></span>
                                         </a>
                                     </li>
@@ -711,7 +711,7 @@
 
 
         </main>
-    </form>
+    
     <div id="morris1" style="display: none">
     </div>
     <div id="morris2" style="display: none">
@@ -764,6 +764,7 @@
     <script src="~/StyleSheet/select2.js"></script>
     <script src="~/StyleSheet/sol.js" type="text/javascript"></script>
     <script src="~/StyleSheet/dashboard.js"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

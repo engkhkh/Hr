@@ -9,32 +9,33 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>عرض</title>
 </head>
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.CourcesNameTraining)
             </th>
-            <th></th>
+
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CourcesNameTraining)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CourcesIdTraining">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CourcesIdTraining">Details</a> |
+                <a asp-action="Create">اضافة </a>|
+                <a asp-action="Edit" asp-route-id="@item.CourcesIdTraining">تعديل</a> |
+                <a asp-action="Details" asp-route-id="@item.CourcesIdTraining">تفاصيل</a> |
                 @*<a asp-action="Delete" asp-route-id="@item.CourcesIdTraining">Delete</a>*@
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesNameTraining)
+            </td>
+
         </tr>
 }
     </tbody>

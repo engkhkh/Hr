@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=7,8,9,10,11">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <title>@ViewData["Title"] - Hr</title>
+    <title>@ViewData["Title"] تسجيل الدخول - Hr</title>
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />*@
     <meta name="description" content="Admin Dashboard Template">
@@ -132,50 +132,50 @@
                                 </script>
 
 
-
+                                @*<asp:ScriptManager ID="ScriptManager2" runat="server" ScriptMode="Release">
+                                    <CompositeScript>
+                                        <Scripts>
+                                            <asp:ScriptReference Name="MicrosoftAjax.js" />
+                                            <asp:ScriptReference Name="MicrosoftAjaxWebForms.js" />
+                                            <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
+                                                                 Name="Telerik.Web.UI.Common.Core.js" />
+                                            <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
+                                                                 Name="Telerik.Web.UI.Common.jQuery.js" />
+                                            <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
+                                                                 Name="Telerik.Web.UI.Common.jQueryPlugins.js" />
+                                            <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
+                                                                 Name="Telerik.Web.UI.Common.Scrolling.ScrollingScripts.js" />
+                                            <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
+                                                                 Name="Telerik.Web.UI.Common.Navigation.NavigationScripts.js" />
+                                            <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
+                                                                 Name="Telerik.Web.UI.TabStrip.RadTabStripScripts.js" />
+                                            <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
+                                                                 Name="Telerik.Web.UI.TabStrip.MultiPage.RadMultiPageScripts.js" />
+                                            <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
+                                                                 Name="Telerik.Web.UI.Button.RadButton.js" />
+                                            <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
+                                                                 Name="Telerik.Web.UI.Common.TouchScrollExtender.js" />
+                                            <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
+                                                                 Name="Telerik.Web.UI.ComboBox.RadComboBoxScripts.js" />
+                                            <asp:ScriptReference Assembly="System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+                                                                 Name="MicrosoftAjaxTimer.js" />
+                                            <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
+                                                                 Name="Telerik.Web.UI.FormDecorator.RadFormDecorator.js" />
+                                            <asp:ScriptReference Assembly="AjaxControlToolkit, Version=4.1.50401.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"
+                                                                 Name="Common.Common.js" />
+                                            <asp:ScriptReference Assembly="AjaxControlToolkit, Version=4.1.50401.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"
+                                                                 Name="ExtenderBase.BaseScripts.js" />
+                                            <asp:ScriptReference Assembly="AjaxControlToolkit, Version=4.1.50401.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"
+                                                                 Name="TextboxWatermark.TextboxWatermark.js" />
+                                            <asp:ScriptReference Assembly="AjaxControlToolkit, Version=4.1.50401.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"
+                                                                 Name="FilteredTextBox.FilteredTextBoxBehavior.js" />
+                                        </Scripts>
+                                    </CompositeScript>
+                                </asp:ScriptManager>*@
 
                                 <form method="post" asp-controller="account" asp-action="login">
 
-                                    <asp:ScriptManager ID="ScriptManager2" runat="server" ScriptMode="Release">
-                                        <CompositeScript>
-                                            <Scripts>
-                                                <asp:ScriptReference Name="MicrosoftAjax.js" />
-                                                <asp:ScriptReference Name="MicrosoftAjaxWebForms.js" />
-                                                <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
-                                                                     Name="Telerik.Web.UI.Common.Core.js" />
-                                                <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
-                                                                     Name="Telerik.Web.UI.Common.jQuery.js" />
-                                                <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
-                                                                     Name="Telerik.Web.UI.Common.jQueryPlugins.js" />
-                                                <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
-                                                                     Name="Telerik.Web.UI.Common.Scrolling.ScrollingScripts.js" />
-                                                <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
-                                                                     Name="Telerik.Web.UI.Common.Navigation.NavigationScripts.js" />
-                                                <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
-                                                                     Name="Telerik.Web.UI.TabStrip.RadTabStripScripts.js" />
-                                                <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
-                                                                     Name="Telerik.Web.UI.TabStrip.MultiPage.RadMultiPageScripts.js" />
-                                                <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
-                                                                     Name="Telerik.Web.UI.Button.RadButton.js" />
-                                                <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
-                                                                     Name="Telerik.Web.UI.Common.TouchScrollExtender.js" />
-                                                <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
-                                                                     Name="Telerik.Web.UI.ComboBox.RadComboBoxScripts.js" />
-                                                <asp:ScriptReference Assembly="System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
-                                                                     Name="MicrosoftAjaxTimer.js" />
-                                                <asp:ScriptReference Assembly="Telerik.Web.UI, Version=2011.1.519.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4"
-                                                                     Name="Telerik.Web.UI.FormDecorator.RadFormDecorator.js" />
-                                                <asp:ScriptReference Assembly="AjaxControlToolkit, Version=4.1.50401.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"
-                                                                     Name="Common.Common.js" />
-                                                <asp:ScriptReference Assembly="AjaxControlToolkit, Version=4.1.50401.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"
-                                                                     Name="ExtenderBase.BaseScripts.js" />
-                                                <asp:ScriptReference Assembly="AjaxControlToolkit, Version=4.1.50401.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"
-                                                                     Name="TextboxWatermark.TextboxWatermark.js" />
-                                                <asp:ScriptReference Assembly="AjaxControlToolkit, Version=4.1.50401.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"
-                                                                     Name="FilteredTextBox.FilteredTextBoxBehavior.js" />
-                                            </Scripts>
-                                        </CompositeScript>
-                                    </asp:ScriptManager>
+
                                     <asp:Label ID="Label2" runat="server" CssClass="lblStauts"></asp:Label>
 
                                     <div class="form-group">

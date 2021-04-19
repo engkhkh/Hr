@@ -1,15 +1,18 @@
 ﻿@model IEnumerable<Hr.Models.ACourcesEstimate>
 
 @{
-    ViewData["Title"] = "عرض ";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<h1>عرض </h1>
+<!DOCTYPE html>
 
-<p>
-    
-</p>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
 <table class="table">
     <thead>
         <tr>
@@ -24,10 +27,11 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+
                 <a asp-action="Create">اضافة </a>|
-                <a asp-action="Edit" asp-route-id="@item.CourcesIdEstimate">تعديل </a> |
-                <a asp-action="Details" asp-route-id="@item.CourcesIdEstimate">تفاصيل</a> |
-                @*<a asp-action="Delete" asp-route-id="@item.CourcesIdEstimate">حذف</a>*@
+                <a asp-action="Edit" asp-route-id="@item.CourcesIdEstimate">تعديل</a> |
+                <a asp-action="Details" asp-route-id="@item.CourcesIdEstimate">تفاصيل </a> |
+                @*<a asp-action="Delete" asp-route-id="@item.CourcesIdEstimate">Delete</a>*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CourcesNameEstimate)
@@ -37,3 +41,5 @@
 }
     </tbody>
 </table>
+</body>
+</html>

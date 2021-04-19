@@ -11,11 +11,12 @@ namespace Hr.Controllers
     public class AccountController : Controller
     {
         [Route("")]
-        [Route("index")]
+        [Route("Show")]
         [Route("~/")]
-        public IActionResult Index()
+        public IActionResult Show()
         {
             return View();
+            //return RedirectToAction("Index", "Account", new { area = "" });
         }
 
         [Route("login")]
@@ -31,7 +32,8 @@ namespace Hr.Controllers
             else
             {
                 ViewBag.error = "Invalid Account";
-                return View("Index");
+                return View("Show");
+                //return RedirectToAction("Index", "Account", new { area = "" });
             }
         }
 
@@ -40,7 +42,8 @@ namespace Hr.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("username");
-            return RedirectToAction("Index");
+            return RedirectToAction("Show");
+            //return RedirectToAction("Index", "Account", new { area = "" });
         }
     }
 }
