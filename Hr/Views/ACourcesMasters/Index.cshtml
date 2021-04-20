@@ -12,117 +12,124 @@
     <title>عرض</title>
 </head>
 <body>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-            <th>
-               اسم الدورة التدريبة 
-            </th>
-            <th>
-              نوع الدورة التدريبة 
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.CourcesIdDeptin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CourcesIdTraining)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CourcesIdDeptout)
-            </th>*@
-            <th>
-               التقدير بالدورة 
-            </th>
-            <th>
-                مرفق الشهادة 
-                @*@Html.DisplayNameFor(model => model.CourcesIdImagecert)*@
-            </th>
-            <th>
-                 اعتماد الموارد البشرية 
-                @*@Html.DisplayNameFor(model => model.CourcesIdImagehr)*@
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.CourcesStartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CourcesEndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CourcesNumberofdays)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CourcesPassRate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cemp)
-            </th>*@
-
-
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-
-                <a asp-action="Create">اضافة </a>|
-                <a asp-action="Edit" asp-route-id="@item.CourcesIdmaster">تعديل</a> |
-                <a asp-action="Details" asp-route-id="@item.CourcesIdmaster">تفاصيل </a> |
-                @*<a asp-action="Delete" asp-route-id="@item.CourcesIdmaster">Delete</a>*@
-            </td>
-            <td>
-                @Html.DropDownList("CourcesId", (IEnumerable<SelectListItem>)ViewBag.CourcesId, htmlAttributes: new { @class = "form-control" })
-                @*<select asp-for="@(modelItem => item.CourcesId)" class="form-control" asp-items="ViewBag.CourcesId"></select>*@
-            </td>
-            <td>
-                @Html.DropDownList("ACourcesType", (IEnumerable<SelectListItem>)ViewBag.ACourcesType, htmlAttributes: new { @class = "form-control" })
-                @*<select asp-for="@(modelItem => item.CourcesIdType)" class="form-control" asp-items="ViewBag.ACourcesType"></select>*@
-                @*@Html.DisplayFor(modelItem => item.CourcesIdType)*@
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.CourcesIdDeptin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourcesIdTraining)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourcesIdDeptout)
-            </td>*@
-        <td>
-            @Html.DropDownList("ACourcesEstimate", (IEnumerable<SelectListItem>)ViewBag.ACourcesEstimate, htmlAttributes: new { @class = "form-control" })
-            @*<select asp-for="@(modelItem => item.CourcesIdEstimate)" class="form-control" asp-items="ViewBag.ACourcesEstimate"></select>*@
-            @*@Html.DisplayFor(modelItem => item.CourcesIdEstimate)*@
-        </td>
-        <td>
-            <img src="~/img/portfolio/@item.CourcesIdImagecert" class="img-thumbnail" width="50" height="70" />
-            @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
-        </td>
-        <td>
-            <img src="~/img/portfolio/@item.CourcesIdImagehr" class="img-thumbnail" width="50" height="70" />
-            @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
-        </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.CourcesStartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourcesEndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourcesNumberofdays)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourcesPassRate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cemp.Cempid)
-            </td>*@
+    @*@using (Html.BeginForm())
+    {
+        <p>
+            Name  : @Html.TextBox("SearchName")<br />
+            <input type="submit" value="Search" />
+        </p>
+    }*@
+    <table class="table table-bordered table-condensed table-striped table-hover sortable">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    اسم الدورة التدريبة
+                </th>
+                <th>
+                    نوع الدورة التدريبة
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.CourcesIdDeptin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourcesIdTraining)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourcesIdDeptout)
+                    </th>*@
+                <th>
+                    التقدير بالدورة
+                </th>
+                <th>
+                    مرفق الشهادة
+                    @*@Html.DisplayNameFor(model => model.CourcesIdImagecert)*@
+                </th>
+                <th>
+                    اعتماد الموارد البشرية
+                    @*@Html.DisplayNameFor(model => model.CourcesIdImagehr)*@
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.CourcesStartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourcesEndDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourcesNumberofdays)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CourcesPassRate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cemp)
+                    </th>*@
 
 
-        </tr>
-}
-    </tbody>
-</table>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+
+                        <a asp-action="Create">اضافة </a>|
+                        <a asp-action="Edit" asp-route-id="@item.CourcesIdmaster">تعديل</a> |
+                        <a asp-action="Details" asp-route-id="@item.CourcesIdmaster">تفاصيل </a> |
+                        @*<a asp-action="Delete" asp-route-id="@item.CourcesIdmaster">Delete</a>*@
+                    </td>
+                    <td>
+                        @Html.DropDownList("CourcesId", (IEnumerable<SelectListItem>)ViewBag.CourcesId, htmlAttributes: new { @class = "form-control" })
+                        @*<select asp-for="@(modelItem => item.CourcesId)" class="form-control" asp-items="ViewBag.CourcesId"></select>*@
+                    </td>
+                    <td>
+                        @Html.DropDownList("ACourcesType", (IEnumerable<SelectListItem>)ViewBag.ACourcesType, htmlAttributes: new { @class = "form-control" })
+                        @*<select asp-for="@(modelItem => item.CourcesIdType)" class="form-control" asp-items="ViewBag.ACourcesType"></select>*@
+                        @*@Html.DisplayFor(modelItem => item.CourcesIdType)*@
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.CourcesIdDeptin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourcesIdTraining)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourcesIdDeptout)
+                        </td>*@
+                    <td>
+                        @Html.DropDownList("ACourcesEstimate", (IEnumerable<SelectListItem>)ViewBag.ACourcesEstimate, htmlAttributes: new { @class = "form-control" })
+                        @*<select asp-for="@(modelItem => item.CourcesIdEstimate)" class="form-control" asp-items="ViewBag.ACourcesEstimate"></select>*@
+                        @*@Html.DisplayFor(modelItem => item.CourcesIdEstimate)*@
+                    </td>
+                    <td>
+                        <img src="~/img/portfolio/@item.CourcesIdImagecert" class="img-thumbnail" width="50" height="70" />
+                        @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
+                    </td>
+                    <td>
+                        <img src="~/img/portfolio/@item.CourcesIdImagehr" class="img-thumbnail" width="50" height="70" />
+                        @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.CourcesStartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourcesEndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourcesNumberofdays)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourcesPassRate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cemp.Cempid)
+                        </td>*@
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
 </body>
 </html>

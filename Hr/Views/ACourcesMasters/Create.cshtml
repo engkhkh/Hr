@@ -23,32 +23,42 @@
                 <div class="form-group">
                     <label class="control-label"> تحديد اسم الكورس </label>
                     <select asp-for="CourcesId" class="form-control" asp-items="ViewBag.CourcesId">
-                        @*<option value="">--</option>*@
+                        <option value="">Select--</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="control-label">تحديد نوع الكورس </label>
-                    <select asp-for="CourcesIdType" class="form-control" asp-items="ViewBag.ACourcesType"></select>
+                    <select asp-for="CourcesIdType" class="form-control" asp-items="ViewBag.ACourcesType">
+                        <option value="">Select--</option>
+                    </select>
                     <span asp-validation-for="CourcesIdType" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">الادارة  </label>
-                    <select asp-for="CourcesIdDeptin" class="form-control" asp-items="ViewBag.ACourcesDeptin"></select>
+                    <select asp-for="CourcesIdDeptin" class="form-control" asp-items="ViewBag.ACourcesDeptin">
+                        <option value="">Select--</option>
+                    </select>
                     <span asp-validation-for="CourcesIdDeptin" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">حدد نوع التدريب </label>
-                    <select asp-for="CourcesIdTraining" class="form-control" asp-items="ViewBag.ACourcesTrainingMethod"></select>
+                    <select asp-for="CourcesIdTraining" class="form-control" asp-items="ViewBag.ACourcesTrainingMethod">
+                        <option value="">Select--</option>
+                    </select>
                     <span asp-validation-for="CourcesIdTraining" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">جهة مقدم الدورة </label>
-                    <select asp-for="CourcesIdDeptout" class="form-control" asp-items="ViewBag.ACourcesDeptout"></select>
+                    <select asp-for="CourcesIdDeptout" class="form-control" asp-items="ViewBag.ACourcesDeptout">
+                        <option value="">Select--</option>
+                    </select>
                     <span asp-validation-for="CourcesIdDeptout" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">تقدير الدورة </label>
-                    <select asp-for="CourcesIdEstimate" class="form-control" asp-items="ViewBag.ACourcesEstimate"></select>
+                    <select asp-for="CourcesIdEstimate" class="form-control" asp-items="ViewBag.ACourcesEstimate">
+                        <option value="">Select--</option>
+                    </select>
                     <span asp-validation-for="CourcesIdEstimate" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -83,7 +93,9 @@
         </div>
         <div class="form-group">
             <label class="control-label">اسم الموظف </label>
-            <select asp-for="Cempid" class="form-control" asp-items="ViewBag.Cempid"></select>
+            <select asp-for="Cempid" class="form-control" asp-items="ViewBag.Cempid">
+                <option value="">Select--</option>
+            </select>
         </div>
         <div class="form-group">
             <input type="submit" value="حفظ" class="btn btn-info" />

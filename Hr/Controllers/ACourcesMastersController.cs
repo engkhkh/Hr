@@ -38,6 +38,28 @@ namespace Hr.Controllers
             ViewData["ACourcesEstimate"] = new SelectList(_context.ACourcesEstimates, "CourcesIdEstimate", "CourcesNameEstimate");
             return View(await hrContext.ToListAsync());
         }
+        //public ActionResult Search(string searchName)
+        //{
+        //    // Current aCourcesMasters
+        //    var aCourcesMasters = _context.ACourcesMasters.Include(a => a.Cemp).Include(a => a.Cources);
+        //    // Filter down if necessary
+        //    if (!String.IsNullOrEmpty(searchName))
+        //    {
+        //        // Normal search term
+        //        var term = searchName;
+        //        // Attempt to parse it as an integer
+        //        var integerTerm = -1;
+        //        Int32.TryParse(searchName, out integerTerm);
+        //        // Now search for a contains with the term and an equals on the ID
+        //        aCourcesMasters = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<ACourcesMaster, ACourcesName>)aCourcesMasters.Where(p => p.CourcesIdImagehr.Contains(term) || p.CourcesId == integerTerm);
+        //    }
+        //    if (!String.IsNullOrEmpty(searchName))
+        //    {
+        //        aCourcesMasters = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<ACourcesMaster, ACourcesName>)aCourcesMasters.Where(p => p.CourcesIdImagecert.Contains(searchName) || p.CourcesIdImagehr.Contains(searchName));
+        //    }
+        //    // Pass your list out to your view
+        //    return View(aCourcesMasters.ToList());
+        //}
 
         // GET: ACourcesMasters/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -195,7 +217,24 @@ namespace Hr.Controllers
 
 
                 };
+                MasterRequestTypeId MasterRequestTypeIds = new MasterRequestTypeId
+                {
+                    COURCES_IDMASTER = _context.ACourcesMasters.Max(u => u.CourcesIdmaster) + 1,
+                    MasterRequestType = 0
+
+                };
+                MasterDetails MasterDetailss = new MasterDetails
+                {
+                    COURCES_IDMASTER= _context.ACourcesMasters.Max(u => u.CourcesIdmaster) + 1,
+                    MasterRequestFrom="0",
+                    MasterRequestTo="0",
+                    MasterRequestTypeSatus=0,
+                    MasterRequestNotes=""
+
+                };
                 _context.Add(aCourcesMasteritems);
+                _context.Add(MasterRequestTypeIds);
+                _context.Add(MasterDetailss);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

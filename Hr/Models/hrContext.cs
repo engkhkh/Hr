@@ -18,7 +18,9 @@ namespace Hr.Models
             : base(options)
         {
         }
-
+        public virtual DbSet<MasterRequestTypeId> MasterRequestTypeIds { get; set; }
+        public virtual DbSet<MasterDetails> MasterDetailss { get; set; }
+       
         public virtual DbSet<ACourcesCertImage> ACourcesCertImages { get; set; }
         public virtual DbSet<ACourcesCertImagehr> ACourcesCertImagehrs { get; set; }
         public virtual DbSet<ACourcesDeptin> ACourcesDeptins { get; set; }
@@ -140,7 +142,37 @@ namespace Hr.Models
                     .HasMaxLength(250)
                     .HasColumnName("COURCES_NAME_DEPTOUT");
             });
+            modelBuilder.Entity<MasterRequestTypeId>(entity =>
+            {
+                entity.HasKey(e => e.MasterRequestTypeIdsMasterRequestTypeIdserial);
 
+                entity.ToTable("MasterRequestTypeId");
+
+                entity.Property(e => e.COURCES_IDMASTER).HasColumnName("COURCES_IDMASTER");
+
+                entity.Property(e => e.MasterRequestType)
+                    
+                    .HasColumnName("MasterRequestType");
+            });
+
+            modelBuilder.Entity<MasterDetails>(entity =>
+            {
+                entity.HasKey(e => e.MasterDetailsSerial);
+
+                entity.ToTable("MasterDetails");
+
+                entity.Property(e => e.COURCES_IDMASTER).HasColumnName("COURCES_IDMASTER");
+
+                entity.Property(e => e.MasterRequestFrom) .HasColumnName("MasterRequestFrom");
+                entity.Property(e => e.MasterRequestTo).HasColumnName("MasterRequestTo");
+                entity.Property(e => e.MasterRequestTypeSatus).HasColumnName("MasterRequestTypeSatus");
+                entity.Property(e => e.MasterRequestNotes).HasColumnName("MasterRequestNotes");
+
+            });
+
+
+
+            //
             modelBuilder.Entity<ACourcesEstimate>(entity =>
             {
                 entity.HasKey(e => e.CourcesIdEstimate);

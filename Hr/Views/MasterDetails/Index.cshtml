@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Hr.Models.MasterDetails>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-bordered table-condensed table-striped table-hover sortable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.COURCES_IDMASTER)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MasterRequestFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MasterRequestTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MasterRequestTypeSatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MasterRequestNotes)
+            </th>
+          
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+             <td>
+                <a asp-action="Edit" asp-route-id="@item.MasterDetailsSerial">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MasterDetailsSerial">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MasterDetailsSerial">Delete</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.COURCES_IDMASTER)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MasterRequestFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MasterRequestTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MasterRequestTypeSatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MasterRequestNotes)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
