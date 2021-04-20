@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Hr.Models.ViewModelMasterwithother>
+
+@{
+    ViewData["Title"] = "الموافقة علي المعاملات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <table  class="table table-bordered table-condensed table-striped table-hover sortable">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    رقم الطلب
+                </th>
+                <th>
+                    اسم الدورة
+                </th>
+                <th>
+                    نوع الدورة
+                </th>
+                <th>
+                    طريقة الدورة
+                </th>
+                <th>
+                    التقدير بالدورة
+                </th>
+                <th>
+                    شهادة الدورة
+                </th>
+                <th>
+                    اعتماد الموارد
+                </th>
+                <th>
+                    بداية الدورة
+                </th>
+                <th>
+                    نهاية الدورة
+                </th>
+                <th>
+                    مدة  الدورة
+                </th>
+                <th>
+                    نسبة الانجاز بالدورة
+                </th>
+                <th>
+                    قسم الموظف
+                </th>
+                <th>
+                    جهة الدورة
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ACourcesMasters.CourcesIdmaster">موافق</a> |
+                        <a asp-action="Details" asp-route-id="@item.ACourcesMasters.CourcesIdmaster">رفض</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ACourcesMasters.CourcesIdmaster">انتظار </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesIdmaster)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACourcesTypes.CourcesTypeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACourcesEstimates.CourcesNameEstimate)
+                    </td>
+                    <td>
+                        <img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="50" height="50" />
+                        @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
+                    </td>
+                    <td>
+                        <img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="50" height="50" />
+                        @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+   
+

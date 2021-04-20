@@ -20,7 +20,8 @@ namespace Hr.Models
         }
         public virtual DbSet<MasterRequestTypeId> MasterRequestTypeIds { get; set; }
         public virtual DbSet<MasterDetails> MasterDetailss { get; set; }
-       
+        public virtual DbSet<ViewModelMasterwithother> ViewModelMasterwithothers { get; set; }
+        
         public virtual DbSet<ACourcesCertImage> ACourcesCertImages { get; set; }
         public virtual DbSet<ACourcesCertImagehr> ACourcesCertImagehrs { get; set; }
         public virtual DbSet<ACourcesDeptin> ACourcesDeptins { get; set; }
