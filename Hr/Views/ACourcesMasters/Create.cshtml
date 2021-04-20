@@ -18,11 +18,13 @@
     <hr />
     <div class="row" @*style="float:right; width:40%"*@>
         <div class="col-md-4">
-            <form asp-action="Create">
+            <form asp-action="Create" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label class="control-label"> تحديد اسم الكورس </label>
-                    <select asp-for="CourcesId" class="form-control" asp-items="ViewBag.CourcesId"></select>
+                    <select asp-for="CourcesId" class="form-control" asp-items="ViewBag.CourcesId">
+                        @*<option value="">--</option>*@
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="control-label">تحديد نوع الكورس </label>
@@ -51,33 +53,43 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">ارفاق ملف صورة لشهادة الدورة  </label>
-                    <input type="file" asp-for="CourcesIdImagecert" class="form-control" asp-items="ViewBag.CourcesIdImagecert" /><label class="control-label">رفع ملف </label>
+                    <input type="file" asp-for="Filecer" class="form-control" asp-items="ViewBag.CourcesIdImagecert" />
                     <span asp-validation-for="CourcesIdImagecert" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">ارفاق ملف اعتماد الموارد البشرية </label>
-                    <input type="file" asp-for="CourcesIdImagehr" class="form-control" asp-items="ViewBag.ACourcesCertImagehr" />
+                    <input type="file" asp-for="Filehr" class="form-control" asp-items="ViewBag.ACourcesCertImagehr" />
                     <span asp-validation-for="CourcesIdImagehr" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label class="control-label">عدد ايام التدريب  </label>
-                    <input asp-for="CourcesNumberofdays" class="form-control" />
-                    <span asp-validation-for="CourcesNumberofdays" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">نسبة الانجاز او الدرجة  </label>
-                    <input asp-for="CourcesPassRate" class="form-control" />
-                    <span asp-validation-for="CourcesPassRate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">اسم الموظف </label>
-                    <select asp-for="Cempid" class="form-control" asp-items="ViewBag.Cempid"></select>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="حفظ" class="btn btn-info" />
-                </div>
-            </form>
+               <div class="form-group">
+                <label class="control-label">بداية الدورة   </label>
+                <input type="date" asp-for="CourcesStartDate" class="form-control" />
+                <span asp-validation-for="CourcesStartDate" class="text-danger"></span>
         </div>
+        <div class="form-group">
+            <label class="control-label">نهاية الدورة   </label>
+            <input type="date" asp-for="CourcesEndDate" class="form-control" />
+            <span asp-validation-for="CourcesEndDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">عدد ايام التدريب  </label>
+            <input asp-for="CourcesNumberofdays" class="form-control" />
+            <span asp-validation-for="CourcesNumberofdays" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">نسبة الانجاز او الدرجة  </label>
+            <input asp-for="CourcesPassRate" class="form-control" />
+            <span asp-validation-for="CourcesPassRate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label">اسم الموظف </label>
+            <select asp-for="Cempid" class="form-control" asp-items="ViewBag.Cempid"></select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="حفظ" class="btn btn-info" />
+        </div>
+        </form>
+    </div>
     </div>
 
     @*<div style="float:right; width:40%">

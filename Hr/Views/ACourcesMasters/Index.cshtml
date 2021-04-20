@@ -18,9 +18,12 @@
         <tr>
             <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.CourcesIdType)
+               اسم الدورة التدريبة 
             </th>
             <th>
+              نوع الدورة التدريبة 
+            </th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.CourcesIdDeptin)
             </th>
             <th>
@@ -28,17 +31,19 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CourcesIdDeptout)
+            </th>*@
+            <th>
+               التقدير بالدورة 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CourcesIdEstimate)
+                مرفق الشهادة 
+                @*@Html.DisplayNameFor(model => model.CourcesIdImagecert)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CourcesIdImagecert)
+                 اعتماد الموارد البشرية 
+                @*@Html.DisplayNameFor(model => model.CourcesIdImagehr)*@
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CourcesIdImagehr)
-            </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.CourcesStartDate)
             </th>
             <th>
@@ -52,10 +57,8 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Cemp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cources)
-            </th>
+            </th>*@
+
 
         </tr>
     </thead>
@@ -70,9 +73,15 @@
                 @*<a asp-action="Delete" asp-route-id="@item.CourcesIdmaster">Delete</a>*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CourcesIdType)
+                @Html.DropDownList("CourcesId", (IEnumerable<SelectListItem>)ViewBag.CourcesId, htmlAttributes: new { @class = "form-control" })
+                @*<select asp-for="@(modelItem => item.CourcesId)" class="form-control" asp-items="ViewBag.CourcesId"></select>*@
             </td>
             <td>
+                @Html.DropDownList("ACourcesType", (IEnumerable<SelectListItem>)ViewBag.ACourcesType, htmlAttributes: new { @class = "form-control" })
+                @*<select asp-for="@(modelItem => item.CourcesIdType)" class="form-control" asp-items="ViewBag.ACourcesType"></select>*@
+                @*@Html.DisplayFor(modelItem => item.CourcesIdType)*@
+            </td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CourcesIdDeptin)
             </td>
             <td>
@@ -80,17 +89,21 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CourcesIdDeptout)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourcesIdEstimate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourcesIdImagecert)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourcesIdImagehr)
-            </td>
-            <td>
+            </td>*@
+        <td>
+            @Html.DropDownList("ACourcesEstimate", (IEnumerable<SelectListItem>)ViewBag.ACourcesEstimate, htmlAttributes: new { @class = "form-control" })
+            @*<select asp-for="@(modelItem => item.CourcesIdEstimate)" class="form-control" asp-items="ViewBag.ACourcesEstimate"></select>*@
+            @*@Html.DisplayFor(modelItem => item.CourcesIdEstimate)*@
+        </td>
+        <td>
+            <img src="~/img/portfolio/@item.CourcesIdImagecert" class="img-thumbnail" width="50" height="70" />
+            @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
+        </td>
+        <td>
+            <img src="~/img/portfolio/@item.CourcesIdImagehr" class="img-thumbnail" width="50" height="70" />
+            @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
+        </td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CourcesStartDate)
             </td>
             <td>
@@ -104,10 +117,8 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cemp.Cempid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cources.CourcesId)
-            </td>
+            </td>*@
+
 
         </tr>
 }

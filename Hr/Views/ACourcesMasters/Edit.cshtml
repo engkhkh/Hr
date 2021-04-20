@@ -17,71 +17,71 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CourcesIdmaster" />
             <div class="form-group">
-                <label asp-for="CourcesId" class="control-label"></label>
+                <label class="control-label"> تحديد اسم الكورس </label>
                 <select asp-for="CourcesId" class="form-control" asp-items="ViewBag.CourcesId"></select>
                 <span asp-validation-for="CourcesId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourcesIdType" class="control-label"></label>
-                <input asp-for="CourcesIdType" class="form-control" />
+                <label class="control-label">تحديد نوع الكورس </label>
+                <select asp-for="CourcesIdType" class="form-control" asp-items="ViewBag.ACourcesType"></select>
                 <span asp-validation-for="CourcesIdType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourcesIdDeptin" class="control-label"></label>
-                <input asp-for="CourcesIdDeptin" class="form-control" />
+                <label class="control-label">الادارة  </label>
+                <select asp-for="CourcesIdDeptin" class="form-control" asp-items="ViewBag.ACourcesDeptin"></select>
                 <span asp-validation-for="CourcesIdDeptin" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourcesIdTraining" class="control-label"></label>
-                <input asp-for="CourcesIdTraining" class="form-control" />
+                <label class="control-label">حدد نوع التدريب </label>
+                <select asp-for="CourcesIdTraining" class="form-control" asp-items="ViewBag.ACourcesTrainingMethod"></select>
                 <span asp-validation-for="CourcesIdTraining" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourcesIdDeptout" class="control-label"></label>
-                <input asp-for="CourcesIdDeptout" class="form-control" />
+                <label class="control-label">جهة مقدم الدورة </label>
+                <select asp-for="CourcesIdDeptout" class="form-control" asp-items="ViewBag.ACourcesDeptout"></select>
                 <span asp-validation-for="CourcesIdDeptout" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourcesIdEstimate" class="control-label"></label>
-                <input asp-for="CourcesIdEstimate" class="form-control" />
+                <label class="control-label">تقدير الدورة </label>
+                <select asp-for="CourcesIdEstimate" class="form-control" asp-items="ViewBag.ACourcesEstimate"></select>
                 <span asp-validation-for="CourcesIdEstimate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourcesIdImagecert" class="control-label"></label>
-                <input asp-for="CourcesIdImagecert" class="form-control" />
+                <label class="control-label">ارفاق ملف صورة لشهادة الدورة  </label>
+                <input type="file" asp-for="Filecer" class="form-control" asp-items="ViewBag.CourcesIdImagecert" />
                 <span asp-validation-for="CourcesIdImagecert" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourcesIdImagehr" class="control-label"></label>
-                <input asp-for="CourcesIdImagehr" class="form-control" />
+                <label class="control-label">ارفاق ملف اعتماد الموارد البشرية </label>
+                <input type="file" asp-for="Filehr" class="form-control" asp-items="ViewBag.ACourcesCertImagehr" />
                 <span asp-validation-for="CourcesIdImagehr" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourcesStartDate" class="control-label"></label>
-                <input asp-for="CourcesStartDate" class="form-control" />
+                <label class="control-label">بداية الدورة   </label>
+                <input type="date" asp-for="CourcesStartDate" class="form-control" />
                 <span asp-validation-for="CourcesStartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourcesEndDate" class="control-label"></label>
-                <input asp-for="CourcesEndDate" class="form-control" />
+                <label class="control-label">نهاية الدورة   </label>
+                <input type="date" asp-for="CourcesEndDate" class="form-control" />
                 <span asp-validation-for="CourcesEndDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourcesNumberofdays" class="control-label"></label>
+                <label class="control-label">عدد ايام التدريب  </label>
                 <input asp-for="CourcesNumberofdays" class="form-control" />
                 <span asp-validation-for="CourcesNumberofdays" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourcesPassRate" class="control-label"></label>
+                <label class="control-label">نسبة الانجاز او الدرجة  </label>
                 <input asp-for="CourcesPassRate" class="form-control" />
                 <span asp-validation-for="CourcesPassRate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Cempid" class="control-label"></label>
+                <label class="control-label">اسم الموظف </label>
                 <select asp-for="Cempid" class="form-control" asp-items="ViewBag.Cempid"></select>
                 <span asp-validation-for="Cempid" class="text-danger"></span>
             </div>

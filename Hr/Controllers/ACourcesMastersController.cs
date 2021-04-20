@@ -6,16 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hr.Models;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace Hr.Controllers
 {
     public class ACourcesMastersController : Controller
     {
         private readonly hrContext _context;
+        private readonly IHostingEnvironment _hosting;
 
-        public ACourcesMastersController(hrContext context)
+        public ACourcesMastersController(hrContext context, IHostingEnvironment hosting)
         {
             _context = context;
+            _hosting = hosting;
         }
 
         // GET: ACourcesMasters
@@ -23,6 +27,15 @@ namespace Hr.Controllers
         {
            
             var hrContext = _context.ACourcesMasters.Include(a => a.Cemp).Include(a => a.Cources);
+            ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname");
+            ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
+            ViewData["CourcesIdImagecert"] = new SelectList(_context.ACourcesCertImages, "CourcesIdImagecert", "CourcesIdmaster");
+            ViewData["ACourcesCertImagehr"] = new SelectList(_context.ACourcesCertImagehrs, "CourcesIdImagehr", "CourcesIdmaster");
+            ViewData["ACourcesDeptin"] = new SelectList(_context.ACourcesDeptins, "CourcesIdDeptin", "CourcesNameDeptin");
+            ViewData["ACourcesDeptout"] = new SelectList(_context.ACourcesDeptouts, "CourcesIdDeptout", "CourcesNameDeptout");
+            ViewData["ACourcesType"] = new SelectList(_context.ACourcesTypes, "CourcesIdType", "CourcesTypeName");
+            ViewData["ACourcesTrainingMethod"] = new SelectList(_context.ACourcesTrainingMethods, "CourcesIdTraining", "CourcesNameTraining");
+            ViewData["ACourcesEstimate"] = new SelectList(_context.ACourcesEstimates, "CourcesIdEstimate", "CourcesNameEstimate");
             return View(await hrContext.ToListAsync());
         }
 
@@ -152,11 +165,37 @@ namespace Hr.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CourcesIdmaster,CourcesId,CourcesIdType,CourcesIdDeptin,CourcesIdTraining,CourcesIdDeptout,CourcesIdEstimate,CourcesIdImagecert,CourcesIdImagehr,CourcesStartDate,CourcesEndDate,CourcesNumberofdays,CourcesPassRate,Cempid")] ACourcesMaster aCourcesMaster)
+        public async Task<IActionResult> Create([Bind("CourcesIdmaster,CourcesId,CourcesIdType,CourcesIdDeptin,CourcesIdTraining,CourcesIdDeptout,CourcesIdEstimate,CourcesIdImagecert,CourcesIdImagehr,CourcesStartDate,CourcesEndDate,CourcesNumberofdays,CourcesPassRate,Cempid,Filecer,Filehr")] ACourcesMaster aCourcesMaster)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(aCourcesMaster);
+                string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+                string fullPath = Path.Combine(uploads, aCourcesMaster.Filecer.FileName);
+                aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
+                //
+                string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+                string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
+                aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
+                //
+                ACourcesMaster aCourcesMasteritems = new ACourcesMaster
+                {
+                    CourcesId= aCourcesMaster.CourcesId,
+                    CourcesIdType= aCourcesMaster.CourcesIdType,
+                    CourcesIdDeptin= aCourcesMaster.CourcesIdDeptin,
+                    CourcesIdTraining= aCourcesMaster.CourcesIdTraining,
+                    CourcesIdDeptout= aCourcesMaster.CourcesIdDeptout,
+                    CourcesIdEstimate= aCourcesMaster.CourcesIdEstimate,
+                    CourcesIdImagecert= aCourcesMaster.Filecer.FileName,
+                    CourcesIdImagehr= aCourcesMaster.Filehr.FileName,
+                    CourcesStartDate= aCourcesMaster.CourcesStartDate,
+                    CourcesEndDate= aCourcesMaster.CourcesEndDate,
+                    CourcesNumberofdays=Convert.ToInt32((aCourcesMaster.CourcesEndDate- aCourcesMaster.CourcesStartDate).TotalDays),
+                    CourcesPassRate= aCourcesMaster.CourcesPassRate,
+                    Cempid="0"
+
+
+                };
+                _context.Add(aCourcesMasteritems);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -186,8 +225,19 @@ namespace Hr.Controllers
             {
                 return NotFound();
             }
-            ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempid", aCourcesMaster.Cempid);
-            ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesId", aCourcesMaster.CourcesId);
+
+
+            //ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempid", aCourcesMaster.Cempid);
+            //ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesId", aCourcesMaster.CourcesId);
+            ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname", aCourcesMaster.Cempid);
+            ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName", aCourcesMaster.CourcesId);
+            ViewData["CourcesIdImagecert"] = new SelectList(_context.ACourcesCertImages, "CourcesIdImagecert", "CourcesIdImagecert", aCourcesMaster.CourcesIdImagecert);
+            ViewData["ACourcesCertImagehr"] = new SelectList(_context.ACourcesCertImagehrs, "CourcesIdImagehr", "CourcesIdmaster");
+            ViewData["ACourcesDeptin"] = new SelectList(_context.ACourcesDeptins, "CourcesIdDeptin", "CourcesNameDeptin");
+            ViewData["ACourcesDeptout"] = new SelectList(_context.ACourcesDeptouts, "CourcesIdDeptout", "CourcesNameDeptout");
+            ViewData["ACourcesType"] = new SelectList(_context.ACourcesTypes, "CourcesIdType", "CourcesTypeName");
+            ViewData["ACourcesTrainingMethod"] = new SelectList(_context.ACourcesTrainingMethods, "CourcesIdTraining", "CourcesNameTraining");
+            ViewData["ACourcesEstimate"] = new SelectList(_context.ACourcesEstimates, "CourcesIdEstimate", "CourcesNameEstimate");
             return View(aCourcesMaster);
         }
 
@@ -196,7 +246,7 @@ namespace Hr.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CourcesIdmaster,CourcesId,CourcesIdType,CourcesIdDeptin,CourcesIdTraining,CourcesIdDeptout,CourcesIdEstimate,CourcesIdImagecert,CourcesIdImagehr,CourcesStartDate,CourcesEndDate,CourcesNumberofdays,CourcesPassRate,Cempid")] ACourcesMaster aCourcesMaster)
+        public async Task<IActionResult> Edit(int id, [Bind("CourcesIdmaster,CourcesId,CourcesIdType,CourcesIdDeptin,CourcesIdTraining,CourcesIdDeptout,CourcesIdEstimate,CourcesIdImagecert,CourcesIdImagehr,CourcesStartDate,CourcesEndDate,CourcesNumberofdays,CourcesPassRate,Cempid,Filecer,Filehr")] ACourcesMaster aCourcesMaster)
         {
             if (id != aCourcesMaster.CourcesIdmaster)
             {
@@ -207,6 +257,16 @@ namespace Hr.Controllers
             {
                 try
                 {
+                    string uploads1 = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+                    string fullPath1 = Path.Combine(uploads1, aCourcesMaster.Filecer.FileName);
+                    aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath1, FileMode.Create));
+                    //
+                    string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+                    string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
+                    aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
+                    aCourcesMaster.CourcesIdImagecert = aCourcesMaster.Filecer.FileName;
+                    aCourcesMaster.CourcesIdImagehr = aCourcesMaster.Filehr.FileName;
+                    //
                     _context.Update(aCourcesMaster);
                     await _context.SaveChangesAsync();
                 }
@@ -223,8 +283,16 @@ namespace Hr.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempid", aCourcesMaster.Cempid);
-            ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesId", aCourcesMaster.CourcesId);
+            ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname", aCourcesMaster.Cempid);
+            ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName", aCourcesMaster.CourcesId);
+            ViewData["CourcesIdImagecert"] = new SelectList(_context.ACourcesCertImages, "CourcesIdImagecert", "CourcesIdImagecert", aCourcesMaster.CourcesIdImagecert);
+            ViewData["ACourcesCertImagehr"] = new SelectList(_context.ACourcesCertImagehrs, "CourcesIdImagehr", "CourcesIdmaster");
+            ViewData["ACourcesDeptin"] = new SelectList(_context.ACourcesDeptins, "CourcesIdDeptin", "CourcesNameDeptin");
+            ViewData["ACourcesDeptout"] = new SelectList(_context.ACourcesDeptouts, "CourcesIdDeptout", "CourcesNameDeptout");
+            ViewData["ACourcesType"] = new SelectList(_context.ACourcesTypes, "CourcesIdType", "CourcesTypeName");
+            ViewData["ACourcesTrainingMethod"] = new SelectList(_context.ACourcesTrainingMethods, "CourcesIdTraining", "CourcesNameTraining");
+            ViewData["ACourcesEstimate"] = new SelectList(_context.ACourcesEstimates, "CourcesIdEstimate", "CourcesNameEstimate");
+
             return View(aCourcesMaster);
         }
 
