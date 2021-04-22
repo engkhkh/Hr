@@ -10,6 +10,7 @@ namespace Hr.Controllers
     [Route("account")]
     public class AccountController : Controller
     {
+        const string SessionName = "_Name";
         [Route("")]
         [Route("Show")]
         [Route("~/")]
@@ -28,6 +29,7 @@ namespace Hr.Controllers
                 HttpContext.Session.SetString("username", username);
                 //return View("ACourcesEstimates/Index");
                 return RedirectToAction("Index", "ACourcesEstimates", new { area = "" });
+                //    ViewBag.Name = HttpContext.Session.GetString(SessionName);
             }
             else
             {

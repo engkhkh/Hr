@@ -13,16 +13,21 @@ namespace Hr.Models
         }
 
         public string Cempid { get; set; }
-        public string Cempname { get; set; }
-        public string Cempuser { get; set; }
-        public string Cempidentityid { get; set; }
-        public string Cempdepartment { get; set; }
-        public string Cempgrade { get; set; }
-        public string Cemptitle { get; set; }
-        public DateTime Cemphiringdate { get; set; }
-        public DateTime Cemplastupgrade { get; set; }
-        public string Cempother1 { get; set; }
-        public string Cempother2 { get; set; }
+        public string CEMPUSERNO { get; set; }
+        public string CEMPPASSWRD { get; set; }
+        public string CEMPNO { get; set; }
+        public string CEMPNAME { get; set; }
+        public string CEMPJOBNAME { get; set; }
+        public string CEMPADPRTNO { get; set; }
+        public string DEP_NAME { get; set; }
+        public string CLSSNO { get; set; }
+        public string MANAGERID { get; set; }
+        public string MANAGERNAME { get; set; }
+        public string PARENTID { get; set; }
+        public DateTime? Cemphiringdate { get; set; }
+        public DateTime? Cemplastupgrade { get; set; }
+        public string PARENTNAME { get; set; }
+      
 
         public virtual ICollection<ACourcesMaster> ACourcesMasters { get; set; }
     }

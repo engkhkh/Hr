@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
@@ -18,7 +19,9 @@ namespace Hr.Models
         public int? CourcesIdEstimate { get; set; }
         public string? CourcesIdImagecert { get; set; }
         public string? CourcesIdImagehr { get; set; }
+        //[DisplayFormat(DataFormatString = "{dd-MMM-yyyy}")]
         public DateTime CourcesStartDate { get; set; }
+        //[DisplayFormat(DataFormatString = "{dd-MMM-yyyy}")]
         public DateTime CourcesEndDate { get; set; }
         public int? CourcesNumberofdays { get; set; }
         public string CourcesPassRate { get; set; }

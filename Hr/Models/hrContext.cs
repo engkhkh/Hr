@@ -286,57 +286,82 @@ namespace Hr.Models
 
             modelBuilder.Entity<Cemp>(entity =>
             {
+                entity.HasKey(e => e.Cempid);
                 entity.ToTable("CEMPS");
-
+               
                 entity.Property(e => e.Cempid)
+                .IsRequired()
                     .HasMaxLength(250)
                     .HasColumnName("CEMPID");
 
-                entity.Property(e => e.Cempdepartment)
+                entity.Property(e => e.CEMPUSERNO)
                     .IsRequired()
                     .HasMaxLength(250)
-                    .HasColumnName("CEMPDEPARTMENT");
+                    .HasColumnName("CEMPUSERNO");
 
-                entity.Property(e => e.Cempgrade)
+                entity.Property(e => e.CEMPPASSWRD)
                     .IsRequired()
                     .HasMaxLength(250)
-                    .HasColumnName("CEMPGRADE");
+                    .HasColumnName("CEMPPASSWRD");
 
                 entity.Property(e => e.Cemphiringdate)
                     .HasColumnType("date")
                     .HasColumnName("CEMPHIRINGDATE");
 
-                entity.Property(e => e.Cempidentityid)
+                entity.Property(e => e.CEMPNO)
                     .IsRequired()
                     .HasMaxLength(250)
-                    .HasColumnName("CEMPIDENTITYID");
+                    .HasColumnName("CEMPNO");
 
                 entity.Property(e => e.Cemplastupgrade)
                     .HasColumnType("date")
                     .HasColumnName("CEMPLASTUPGRADE");
 
-                entity.Property(e => e.Cempname)
+                entity.Property(e => e.CEMPNAME)
                     .IsRequired()
                     .HasMaxLength(250)
                     .HasColumnName("CEMPNAME");
 
-                entity.Property(e => e.Cempother1)
+                entity.Property(e => e.CEMPJOBNAME)
+                .IsRequired()
                     .HasMaxLength(250)
-                    .HasColumnName("CEMPOTHER1");
+                    .HasColumnName("CEMPJOBNAME");
 
-                entity.Property(e => e.Cempother2)
+                entity.Property(e => e.CEMPADPRTNO)
+                .IsRequired()
                     .HasMaxLength(250)
-                    .HasColumnName("CEMPOTHER2");
+                    .HasColumnName("CEMPADPRTNO");
 
-                entity.Property(e => e.Cemptitle)
+                entity.Property(e => e.DEP_NAME)
                     .IsRequired()
                     .HasMaxLength(250)
-                    .HasColumnName("CEMPTITLE");
+                    .HasColumnName("DEP_NAME");
 
-                entity.Property(e => e.Cempuser)
+                entity.Property(e => e.CLSSNO)
                     .IsRequired()
                     .HasMaxLength(250)
-                    .HasColumnName("CEMPUSER");
+                    .HasColumnName("CLSSNO");
+                entity.Property(e => e.MANAGERID)
+                   .IsRequired()
+                   .HasMaxLength(250)
+                   .HasColumnName("MANAGERID");
+                entity.Property(e => e.MANAGERNAME)
+                 .IsRequired()
+                 .HasMaxLength(250)
+                 .HasColumnName("MANAGERNAME");
+                entity.Property(e => e.PARENTID)
+                .IsRequired()
+                .HasMaxLength(250)
+                .HasColumnName("PARENTID");
+                entity.Property(e => e.PARENTID)
+               .IsRequired()
+               .HasMaxLength(250)
+               .HasColumnName("PARENTID");
+                entity.Property(e => e.PARENTNAME)
+            .IsRequired()
+            .HasMaxLength(250)
+            .HasColumnName("PARENTNAME");
+
             });
 
             OnModelCreatingPartial(modelBuilder);

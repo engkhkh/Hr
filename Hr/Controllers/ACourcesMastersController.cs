@@ -108,7 +108,7 @@ namespace Hr.Controllers
                               from d in table1.ToList()
                               join i in Cemps on e.Cempid equals i.Cempid into table2
                               from i in table2.ToList()
-                              where i.Cempname.Contains(search)
+                              where i.CEMPNAME.Contains(search)
                               join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                               from j in table3.ToList()
                               join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
