@@ -5,18 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>عرض حالة الطلب </h1>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 <table class="table table-bordered table-condensed table-striped table-hover sortable">
     <thead>
         <tr>
+            @*<th></th>*@
             <th>
-                @Html.DisplayNameFor(model => model.COURCES_IDMASTER)
+               رقم الطلب 
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.MasterRequestFrom)
             </th>
             <th>
@@ -24,9 +25,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.MasterRequestTypeSatus)
-            </th>
+            </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.MasterRequestNotes)
+             حالة الطلب 
             </th>
           
         </tr>
@@ -34,23 +35,23 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-             <td>
+             @*<td>
                 <a asp-action="Edit" asp-route-id="@item.MasterDetailsSerial">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.MasterDetailsSerial">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.MasterDetailsSerial">Delete</a>
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.COURCES_IDMASTER)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MasterRequestFrom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MasterRequestTo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MasterRequestTypeSatus)
-            </td>
+            <!--<td>-->
+                @*@Html.DisplayFor(modelItem => item.MasterRequestFrom)*@
+            <!--</td>
+            <td>-->
+                @*@Html.DisplayFor(modelItem => item.MasterRequestTo)*@
+            <!--</td>
+            <td>-->
+                @*@Html.DisplayFor(modelItem => item.MasterRequestTypeSatus)*@
+            <!--</td>-->
             <td>
                 @Html.DisplayFor(modelItem => item.MasterRequestNotes)
             </td>

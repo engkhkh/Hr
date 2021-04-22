@@ -1,18 +1,20 @@
-﻿@model IEnumerable<Hr.Models.ViewModelMasterwithother>
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Hr.Models.ViewModelMasterwithother>
 
 @{
-    ViewData["Title"] = "الموافقة علي المعاملات";
+    ViewData["Title"] = "الاستعلام عن  كل الطلبات";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <p>
     @using (@Html.BeginForm())
     {
-        <input type="submit" value="بحث باسم الدورة" />
+        <input type="submit" value="بحث باالموظف" />
         @Html.TextBox("search")
-        @*<b>رقم الطلب </b>
-            @Html.RadioButton("option", "id")
-            <b>اسم الدورة  </b>
-            @Html.RadioButton("option", "name")*@
+     
 
     }
 </p>
@@ -20,9 +22,9 @@
     <table style="width: 100%;" class="table table-bordered table-condensed table-striped table-hover  sortable">
         <thead>
             <tr>
-                <th>
+                @*<th>
 
-                </th>
+                </th>*@
                 <th>
                     الموظف
                 </th>
@@ -72,12 +74,12 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        <a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
-                        <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>
+                    <!--<td>-->
+                        @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
+                        <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
                         @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
-                    </td>
+                    <!--</td>-->
                     <td>
                         @Html.DisplayFor(modelItem => item.Cemps.Cempname)
                     </td>
@@ -128,4 +130,4 @@
         </tbody>
     </table>
 
-    </div>
+</div>

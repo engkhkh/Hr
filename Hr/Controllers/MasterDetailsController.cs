@@ -43,9 +43,22 @@ namespace Hr.Controllers
         }
 
         // GET: MasterDetails/Create
-        public IActionResult Create()
+        public IActionResult Create(int ?id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            //var masterDetails = await _context.MasterDetailss.FindAsync(id);
+            var MasterDetailssss = _context.MasterDetailss
+               .Where(e => e.COURCES_IDMASTER == id)
+               .SingleOrDefault();
+            if (MasterDetailssss == null)
+            {
+                return NotFound();
+            }
+            return View(MasterDetailssss);
         }
 
         // POST: MasterDetails/Create
@@ -57,13 +70,79 @@ namespace Hr.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(masterDetails);
+                var mas = new MasterDetails
+                {
+                    MasterRequestFrom = "",
+                    MasterRequestTo = "",
+                    MasterRequestTypeSatus = 1,
+                    COURCES_IDMASTER = masterDetails.COURCES_IDMASTER,
+                    MasterRequestNotes = masterDetails.MasterRequestNotes
+                };
+                var mt = new MasterRequestTypeId
+                {
+                    MasterRequestTypeIdsMasterRequestTypeIdserial= _context.MasterRequestTypeIds.Max(u => u.MasterRequestTypeIdsMasterRequestTypeIdserial) ,
+                    MasterRequestType = 1,
+                    COURCES_IDMASTER = masterDetails.COURCES_IDMASTER
+                };
+                _context.Add(mas);
+                _context.Update(mt);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "ViewModelMasterwithother", new { area = "" });
             }
             return View(masterDetails);
         }
+        //
+        // GET: MasterDetails/Create
+        public IActionResult Create2(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            //var masterDetails = await _context.MasterDetailss.FindAsync(id);
+            var MasterDetailssss = _context.MasterDetailss
+               .Where(e => e.COURCES_IDMASTER == id)
+               .SingleOrDefault();
+            if (MasterDetailssss == null)
+            {
+                return NotFound();
+            }
+            return View(MasterDetailssss);
+        }
+
+        // POST: MasterDetails/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create2([Bind("MasterDetailsSerial,COURCES_IDMASTER,MasterRequestFrom,MasterRequestTo,MasterRequestTypeSatus,MasterRequestNotes")] MasterDetails masterDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                var mas = new MasterDetails
+                {
+                    MasterRequestFrom = "",
+                    MasterRequestTo = "",
+                    MasterRequestTypeSatus = 2,
+                    COURCES_IDMASTER = masterDetails.COURCES_IDMASTER,
+                    MasterRequestNotes = masterDetails.MasterRequestNotes
+                };
+                var mt = new MasterRequestTypeId
+                {
+                    MasterRequestTypeIdsMasterRequestTypeIdserial = _context.MasterRequestTypeIds.Max(u => u.MasterRequestTypeIdsMasterRequestTypeIdserial),
+                    MasterRequestType = 2,
+                    COURCES_IDMASTER = masterDetails.COURCES_IDMASTER
+                };
+                _context.Add(mas);
+                _context.Update(mt);
+                await _context.SaveChangesAsync();
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "ViewModelMasterwithother", new { area = "" });
+            }
+            return View(masterDetails);
+        }
         // GET: MasterDetails/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -72,12 +151,15 @@ namespace Hr.Controllers
                 return NotFound();
             }
 
-            var masterDetails = await _context.MasterDetailss.FindAsync(id);
-            if (masterDetails == null)
+            //var masterDetails = await _context.MasterDetailss.FindAsync(id);
+            var MasterDetailssss = _context.MasterDetailss
+               .Where(e => e.COURCES_IDMASTER == id)
+               .SingleOrDefault();
+            if (MasterDetailssss == null)
             {
                 return NotFound();
             }
-            return View(masterDetails);
+            return View(MasterDetailssss);
         }
 
         // POST: MasterDetails/Edit/5
@@ -96,7 +178,22 @@ namespace Hr.Controllers
             {
                 try
                 {
-                    _context.Update(masterDetails);
+                    var mas = new MasterDetails
+                    {
+                        MasterRequestFrom = "",
+                        MasterRequestTo = "",
+                        MasterRequestTypeSatus = 1,
+                        COURCES_IDMASTER = masterDetails.COURCES_IDMASTER,
+                        MasterRequestNotes = masterDetails.MasterRequestNotes
+                    };
+                    var mt = new MasterRequestTypeId
+                    {
+                        MasterRequestTypeIdsMasterRequestTypeIdserial = _context.MasterRequestTypeIds.Max(u => u.MasterRequestTypeIdsMasterRequestTypeIdserial),
+                        MasterRequestType = 2,
+                        COURCES_IDMASTER = masterDetails.COURCES_IDMASTER
+                    };
+                    _context.Add(mas);
+                    _context.Update(mt);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

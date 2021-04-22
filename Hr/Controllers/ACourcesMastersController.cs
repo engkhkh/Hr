@@ -38,28 +38,137 @@ namespace Hr.Controllers
             ViewData["ACourcesEstimate"] = new SelectList(_context.ACourcesEstimates, "CourcesIdEstimate", "CourcesNameEstimate");
             return View(await hrContext.ToListAsync());
         }
-        //public ActionResult Search(string searchName)
-        //{
-        //    // Current aCourcesMasters
-        //    var aCourcesMasters = _context.ACourcesMasters.Include(a => a.Cemp).Include(a => a.Cources);
-        //    // Filter down if necessary
-        //    if (!String.IsNullOrEmpty(searchName))
-        //    {
-        //        // Normal search term
-        //        var term = searchName;
-        //        // Attempt to parse it as an integer
-        //        var integerTerm = -1;
-        //        Int32.TryParse(searchName, out integerTerm);
-        //        // Now search for a contains with the term and an equals on the ID
-        //        aCourcesMasters = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<ACourcesMaster, ACourcesName>)aCourcesMasters.Where(p => p.CourcesIdImagehr.Contains(term) || p.CourcesId == integerTerm);
-        //    }
-        //    if (!String.IsNullOrEmpty(searchName))
-        //    {
-        //        aCourcesMasters = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<ACourcesMaster, ACourcesName>)aCourcesMasters.Where(p => p.CourcesIdImagecert.Contains(searchName) || p.CourcesIdImagehr.Contains(searchName));
-        //    }
-        //    // Pass your list out to your view
-        //    return View(aCourcesMasters.ToList());
-        //}
+        public ActionResult Search(string search)
+        {
+            if(search == null)
+            {
+                List<ACourcesType> ACourcesTypes = _context.ACourcesTypes.ToList();
+                List<Cemp> Cemps = _context.Cemps.ToList();
+                List<ACourcesEstimate> ACourcesEstimates = _context.ACourcesEstimates.ToList();
+                List<ACourcesMaster> ACourcesMasters = _context.ACourcesMasters.ToList();
+                List<ACourcesDeptin> ACourcesDeptins = _context.ACourcesDeptins.ToList();
+                List<MasterRequestTypeId> MasterRequestTypeIds = _context.MasterRequestTypeIds.ToList();
+                List<MasterDetails> MasterDetailss = _context.MasterDetailss.ToList();
+                List<ACourcesDeptout> ACourcesDeptouts = _context.ACourcesDeptouts.ToList();
+                List<ACourcesTrainingMethod> ACourcesTrainingMethods = _context.ACourcesTrainingMethods.ToList();
+                List<ACourcesName> ACourcesNames = _context.ACourcesNames.ToList();
+                var Records = from e in ACourcesMasters
+                              join d in ACourcesTypes on e.CourcesIdType equals d.CourcesIdType into table1
+                              from d in table1.ToList()
+                              join i in Cemps on e.Cempid equals i.Cempid into table2
+                              from i in table2.ToList()
+                              join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
+                              from j in table3.ToList()
+                              join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
+                              from f in table4.ToList()
+                              join h in ACourcesDeptouts on e.CourcesIdDeptout equals h.CourcesIdDeptout into table5
+                              from h in table5.ToList()
+                              join n in ACourcesTrainingMethods on e.CourcesIdTraining equals n.CourcesIdTraining into table6
+                              from n in table6.ToList()
+                              join x in MasterRequestTypeIds on e.CourcesIdmaster equals x.COURCES_IDMASTER into table7
+                              from x in table7.ToList()
+                              //where x.MasterRequestType == 0
+                              join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
+                              from y in table8.ToList()
+                              join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
+                              from z in table9.ToList()
+
+
+                              select new ViewModelMasterwithother
+                              {
+                                  ACourcesMasters = e,
+                                  ACourcesTypes = d,
+                                  Cemps = i,
+                                  ACourcesEstimates = j,
+                                  ACourcesDeptins = f,
+                                  ACourcesDeptouts = h,
+                                  ACourcesTrainingMethods = n,
+                                  MasterRequestTypeIds = x,
+                                  MasterDetails = y,
+                                  ACourcesNames = z
+                              };
+                return View(Records);
+            }
+           
+           
+            else 
+            {
+                List<ACourcesType> ACourcesTypes = _context.ACourcesTypes.ToList();
+                List<Cemp> Cemps = _context.Cemps.ToList();
+                List<ACourcesEstimate> ACourcesEstimates = _context.ACourcesEstimates.ToList();
+                List<ACourcesMaster> ACourcesMasters = _context.ACourcesMasters.ToList();
+                List<ACourcesDeptin> ACourcesDeptins = _context.ACourcesDeptins.ToList();
+                List<MasterRequestTypeId> MasterRequestTypeIds = _context.MasterRequestTypeIds.ToList();
+                List<MasterDetails> MasterDetailss = _context.MasterDetailss.ToList();
+                List<ACourcesDeptout> ACourcesDeptouts = _context.ACourcesDeptouts.ToList();
+                List<ACourcesTrainingMethod> ACourcesTrainingMethods = _context.ACourcesTrainingMethods.ToList();
+                List<ACourcesName> ACourcesNames = _context.ACourcesNames.ToList();
+                var Records = from e in ACourcesMasters
+                              join d in ACourcesTypes on e.CourcesIdType equals d.CourcesIdType into table1
+                              from d in table1.ToList()
+                              join i in Cemps on e.Cempid equals i.Cempid into table2
+                              from i in table2.ToList()
+                              where i.Cempname.Contains(search)
+                              join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
+                              from j in table3.ToList()
+                              join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
+                              from f in table4.ToList()
+                              join h in ACourcesDeptouts on e.CourcesIdDeptout equals h.CourcesIdDeptout into table5
+                              from h in table5.ToList()
+                              join n in ACourcesTrainingMethods on e.CourcesIdTraining equals n.CourcesIdTraining into table6
+                              from n in table6.ToList()
+                              join x in MasterRequestTypeIds on e.CourcesIdmaster equals x.COURCES_IDMASTER into table7
+                              from x in table7.ToList()
+                              //where x.MasterRequestType == 0
+                              join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
+                              from y in table8.ToList()
+                              join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
+                              from z in table9.ToList()
+                              //where z.CourcesName.Contains(search)
+
+
+                              select new ViewModelMasterwithother
+                              {
+                                  ACourcesMasters = e,
+                                  ACourcesTypes = d,
+                                  Cemps = i,
+                                  ACourcesEstimates = j,
+                                  ACourcesDeptins = f,
+                                  ACourcesDeptouts = h,
+                                  ACourcesTrainingMethods = n,
+                                  MasterRequestTypeIds = x,
+                                  MasterDetails = y,
+                                  ACourcesNames = z
+                              };
+                return View(Records);
+
+            }
+
+           
+
+
+
+
+            //// Current aCourcesMasters
+            //var aCourcesMasters = _context.ACourcesMasters.Include(a => a.Cemp).Include(a => a.Cources);
+            //// Filter down if necessary
+            //if (!String.IsNullOrEmpty(searchName))
+            //{
+            //    // Normal search term
+            //    var term = searchName;
+            //    // Attempt to parse it as an integer
+            //    var integerTerm = -1;
+            //    Int32.TryParse(searchName, out integerTerm);
+            //    // Now search for a contains with the term and an equals on the ID
+            //    aCourcesMasters = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<ACourcesMaster, ACourcesName>)aCourcesMasters.Where(p => p.CourcesIdImagehr.Contains(term) || p.CourcesId == integerTerm);
+            //}
+            //if (!String.IsNullOrEmpty(searchName))
+            //{
+            //    aCourcesMasters = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<ACourcesMaster, ACourcesName>)aCourcesMasters.Where(p => p.CourcesIdImagecert.Contains(searchName) || p.CourcesIdImagehr.Contains(searchName));
+            //}
+            //// Pass your list out to your view
+            //return View(aCourcesMasters.ToList());
+        }
 
         // GET: ACourcesMasters/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -236,7 +345,8 @@ namespace Hr.Controllers
                 _context.Add(MasterRequestTypeIds);
                 _context.Add(MasterDetailss);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Search", "ACourcesMasters", new { area = "" });
             }
             ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname", aCourcesMaster.Cempid);
             ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName", aCourcesMaster.CourcesId);

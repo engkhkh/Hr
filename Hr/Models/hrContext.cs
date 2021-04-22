@@ -159,6 +159,7 @@ namespace Hr.Models
             modelBuilder.Entity<MasterDetails>(entity =>
             {
                 entity.HasKey(e => e.MasterDetailsSerial);
+                //entity.HasKey(e => e.COURCES_IDMASTER);
 
                 entity.ToTable("MasterDetails");
 
