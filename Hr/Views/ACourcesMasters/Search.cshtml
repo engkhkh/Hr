@@ -9,132 +9,153 @@
     ViewData["Title"] = "الاستعلام عن  كل الطلبات";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<p>
-    @using (@Html.BeginForm())
-    {
-        <input type="submit" value="بحث باالموظف" />
-        @Html.TextBox("search")
+<table>
+    <thead>
+        <tr>
+            <th>
+               
+            </th>
+            <th>
+              
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    @using (@Html.BeginForm())
+                    {
+                        <button type="submit" class="=btn btn-primary mb-lg-4">بحث</button>
+                        @Html.TextBox("search", "", new { placeholder = "بحث بأسم الموظف", @class = "" })
 
+                    }
+                </p>
+            </td>
+            <td>
+               
+            </td>
+        </tr>
 
-    }
-</p>
+    </tbody>
+</table>
+
 <div id="sortMsg" style="text-align: center; color: Red;">
 </div>
-<div class="row" style="float:right; width:100%">
-    <table style="width: 100%;" id="empTable" class="table table-bordered table-condensed table-striped table-hover  sortable">
-        <thead>
-            <tr>
-                @*<th>
+@*<div class="row" style="float:right; width:100%">*@
+<table @*style="width: 100%;"*@ id="empTable" class="table table-bordered table-condensed table-striped table-hover  sortable">
+    <thead>
+        <tr>
+            @*<th>
 
-                    </th>*@
-                <th>
-                    الموظف
-                </th>
-                <th>
-                    رقم الطلب
-                </th>
-                <th>
-                    اسم الدورة
-                </th>
-                <th>
-                    نوع الدورة
-                </th>
-                <th>
-                    طريقة الدورة
-                </th>
-                <th>
-                    التقدير بالدورة
-                </th>
-                <th>
-                    شهادة الدورة
-                </th>
-                <th>
-                    اعتماد الموارد
-                </th>
-                <th>
-                    بداية الدورة
-                </th>
-                <th>
-                    نهاية الدورة
-                </th>
-                <th>
-                    مدة  الدورة
-                </th>
-                <th>
-                    نسبة الانجاز بالدورة
-                </th>
-                <th>
-                    جهة الدورة
-                </th>
-                <th>
-                    قسم الموظف
-                </th>
+                </th>*@
+            <th>
+                الموظف
+            </th>
+            <th>
+                رقم الطلب
+            </th>
+            <th>
+                اسم الدورة
+            </th>
+            <th>
+                نوع الدورة
+            </th>
+            <th>
+                طريقة الدورة
+            </th>
+            <th>
+                التقدير بالدورة
+            </th>
+            <th>
+                شهادة الدورة
+            </th>
+            <th>
+                اعتماد الموارد
+            </th>
+            <th>
+                بداية الدورة
+            </th>
+            <th>
+                نهاية الدورة
+            </th>
+            <th>
+                مدة  الدورة
+            </th>
+            <th>
+                نسبة الانجاز بالدورة
+            </th>
+            <th>
+                جهة الدورة
+            </th>
+            <th>
+                قسم الموظف
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <!--<td>-->
+                @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
+                    <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
+                @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
+
+                <!--</td>-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesIdmaster)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesTypes.CourcesTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesEstimates.CourcesNameEstimate)
+                </td>
+                <td>
+                    <img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="50" height="50" />
+                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
+                </td>
+                <td>
+                    <img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="50" height="50" />
+                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
+                </td>
 
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <!--<td>-->
-                    @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
-                        <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
-                    @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
+        }
+    </tbody>
+</table>
 
-                    <!--</td>-->
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesIdmaster)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesTypes.CourcesTypeName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesEstimates.CourcesNameEstimate)
-                    </td>
-                    <td>
-                        <img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="50" height="50" />
-                        @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
-                    </td>
-                    <td>
-                        <img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="50" height="50" />
-                        @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
-                    </td>
+@*</div>*@
 
-                </tr>
-            }
-        </tbody>
-    </table>
-
-</div>
-
-<br />
 <div id="pager" class="pager">
     <br />
     <img src="~/Content/first.png" />
@@ -150,6 +171,7 @@
         <option value="40">40</option>
     </select>
 </div>
+
 <script type="text/javascript">
     $(function () {
         $("#empTable")
@@ -164,6 +186,17 @@
         //Hide/delete row on click.
         $("#empTable img").click(function () { $(this).parent().parent().hide(); });
     });
+</script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+        }
+        catch (e) { }
+    });
+
 </script>
 <script src="~/js/jquery-1.4.1.min.js"></script>
 <script src="~/js/jquery.tablesorter.min.js"></script>
