@@ -77,7 +77,7 @@
                 بداية الدورة
             </th>
             <th>
-                نهاية الدورة
+                حالة الطلب 
             </th>
             <th>
                 مدة  الدورة
@@ -134,7 +134,23 @@
                     @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
+                    @if (item.MasterDetails.MasterRequestTypeSatus == 1)
+                    {
+                        <label style="background-color:limegreen">موافقة :</label>
+                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
+                    }
+                    else if (item.MasterDetails.MasterRequestTypeSatus == 2)
+                    {
+                        <label style="background-color:red">رفض  :</label>
+                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
+
+                    }
+                    else
+                    {
+                        <label style="background-color:yellow">انتظار :</label>
+                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
+
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)

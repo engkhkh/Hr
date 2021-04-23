@@ -78,14 +78,14 @@ namespace Hr.Controllers
                     COURCES_IDMASTER = masterDetails.COURCES_IDMASTER,
                     MasterRequestNotes = masterDetails.MasterRequestNotes
                 };
-                var mt = new MasterRequestTypeId
-                {
-                    MasterRequestTypeIdsMasterRequestTypeIdserial= _context.MasterRequestTypeIds.Max(u => u.MasterRequestTypeIdsMasterRequestTypeIdserial) ,
-                    MasterRequestType = 1,
-                    COURCES_IDMASTER = masterDetails.COURCES_IDMASTER
-                };
+                var MasterRequestTypeIdsMasterRequestTypeIdserial2 = _context.MasterRequestTypeIds.Where(b => b.COURCES_IDMASTER == masterDetails.COURCES_IDMASTER).FirstOrDefault();
+
+                //MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
+
+                MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestType = 1;
+                MasterRequestTypeIdsMasterRequestTypeIdserial2.COURCES_IDMASTER = masterDetails.COURCES_IDMASTER;
                 _context.Add(mas);
-                _context.Update(mt);
+                _context.Update(MasterRequestTypeIdsMasterRequestTypeIdserial2);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Index", "ViewModelMasterwithother", new { area = "" });
@@ -129,14 +129,15 @@ namespace Hr.Controllers
                     COURCES_IDMASTER = masterDetails.COURCES_IDMASTER,
                     MasterRequestNotes = masterDetails.MasterRequestNotes
                 };
-                var mt = new MasterRequestTypeId
-                {
-                    MasterRequestTypeIdsMasterRequestTypeIdserial = _context.MasterRequestTypeIds.Max(u => u.MasterRequestTypeIdsMasterRequestTypeIdserial),
-                    MasterRequestType = 2,
-                    COURCES_IDMASTER = masterDetails.COURCES_IDMASTER
-                };
+                var MasterRequestTypeIdsMasterRequestTypeIdserial2 = _context.MasterRequestTypeIds.Where(b => b.COURCES_IDMASTER == masterDetails.COURCES_IDMASTER).FirstOrDefault();
+
+                //MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
+
+                MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestType = 2;
+                MasterRequestTypeIdsMasterRequestTypeIdserial2.COURCES_IDMASTER = masterDetails.COURCES_IDMASTER;
+               
                 _context.Add(mas);
-                _context.Update(mt);
+                _context.Update(MasterRequestTypeIdsMasterRequestTypeIdserial2);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Index", "ViewModelMasterwithother", new { area = "" });

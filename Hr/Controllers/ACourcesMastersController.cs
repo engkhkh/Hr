@@ -67,7 +67,7 @@ namespace Hr.Controllers
                               from n in table6.ToList()
                               join x in MasterRequestTypeIds on e.CourcesIdmaster equals x.COURCES_IDMASTER into table7
                               from x in table7.ToList()
-                              //where x.MasterRequestType == 0
+                              //where x.MasterRequestType != 0
                               join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
                               from y in table8.ToList()
                               join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
@@ -119,7 +119,7 @@ namespace Hr.Controllers
                               from n in table6.ToList()
                               join x in MasterRequestTypeIds on e.CourcesIdmaster equals x.COURCES_IDMASTER into table7
                               from x in table7.ToList()
-                              //where x.MasterRequestType == 0
+                              //where x.MasterRequestType != 0
                               join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
                               from y in table8.ToList()
                               join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9

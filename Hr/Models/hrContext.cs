@@ -146,8 +146,10 @@ namespace Hr.Models
             modelBuilder.Entity<MasterRequestTypeId>(entity =>
             {
                 entity.HasKey(e => e.MasterRequestTypeIdsMasterRequestTypeIdserial);
+                //entity.HasKey(e => e.COURCES_IDMASTER);
 
                 entity.ToTable("MasterRequestTypeId");
+                entity.Property(e => e.MasterRequestTypeIdsMasterRequestTypeIdserial).HasColumnName("MasterRequestTypeIdsMasterRequestTypeIdserial");
 
                 entity.Property(e => e.COURCES_IDMASTER).HasColumnName("COURCES_IDMASTER");
 
