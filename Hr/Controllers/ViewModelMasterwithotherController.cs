@@ -172,6 +172,7 @@ namespace Hr.Controllers
             }
         }
 
+
         // GET: ViewModelMasterwithotherController/Edit/5
         public ActionResult Edit(int ?id)
         {

@@ -40,7 +40,7 @@
 <div id="sortMsg" style="text-align: center; color: Red;">
 </div>
 @*<div class="row" style="float:right; width:100%">*@
-    <table id="empTable" @*style="width: 100%;"*@ class="table table-bordered table-condensed table-striped table-hover  sortable">
+    <table id="empTable" @*style="width: 100%;"*@ class="table table-bordered table-condensed table-striped table-hover table-responsive-lg sortable">
         <thead>
             <tr>
                 <th>
@@ -73,11 +73,11 @@
                 <th>
                     بداية الدورة
                 </th>
-                <th>
+                @*<th>
                     نهاية الدورة
-                </th>
+                </th>*@
                 <th>
-                    مدة  الدورة
+                    عدد ايام  الدورة
                 </th>
                 <th>
                     نسبة الانجاز بالدورة
@@ -96,8 +96,8 @@
             {
                 <tr>
                     <td>
-                        <a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
-                        <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>
+                        <a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER"  >موافق</a> |
+                        <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER"  >رفض</a>
                         @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
                     </td>
@@ -130,9 +130,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
                     </td>
@@ -154,7 +154,7 @@
 @*</div>*@
 
 <br />
-<div id="pager" class="pager">
+@*<div id="pager" class="pager">
     <br />
     <img src="~/Content/first.png" />
     <img src="~/Content/first.png" class="first" />
@@ -168,8 +168,8 @@
         <option value="30">30</option>
         <option value="40">40</option>
     </select>
-</div>
-<script type="text/javascript">
+</div>*@
+@*<script type="text/javascript">
     $(function () {
         $("#empTable")
             .tablesorter({ widthFixed: true })
@@ -183,7 +183,7 @@
         //Hide/delete row on click.
         $("#empTable img").click(function () { $(this).parent().parent().hide(); });
     });
-</script>
+</script>*@
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
         try {
@@ -195,6 +195,7 @@
     });
 
 </script>
-<script src="~/js/jquery-1.4.1.min.js"></script>
+
+@*<script src="~/js/jquery-1.4.1.min.js"></script>
 <script src="~/js/jquery.tablesorter.min.js"></script>
-<script src="~/js/jquery.tablesorter.pager.js"></script>
+<script src="~/js/jquery.tablesorter.pager.js"></script>*@

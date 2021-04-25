@@ -12,6 +12,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>اضافة</title>
+
     <style>
 
     </style>
@@ -26,41 +27,41 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label class="control-label"> تحديد اسم الكورس </label>
-                    <select asp-for="CourcesId" class="form-control form-control-lg" asp-items="ViewBag.CourcesId">
+                    <select asp-for="CourcesId" id="chosen-select" class="chosen-select form-control" asp-items="ViewBag.CourcesId">
                         <option value="">Select--</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="control-label">تحديد نوع الكورس </label>
-                    <select asp-for="CourcesIdType" class="form-control form-control-lg" asp-items="ViewBag.ACourcesType">
+                    <select asp-for="CourcesIdType" id="chosen-select1" class="chosen-select form-control" asp-items="ViewBag.ACourcesType">
                         <option value="">Select--</option>
                     </select>
                     <span asp-validation-for="CourcesIdType" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">الادارة  </label>
-                    <select asp-for="CourcesIdDeptin" class="form-control form-control-lg" asp-items="ViewBag.ACourcesDeptin">
+                    <select asp-for="CourcesIdDeptin" id="chosen-select2" class="form-control chosen-select" asp-items="ViewBag.ACourcesDeptin">
                         <option value="">Select--</option>
                     </select>
                     <span asp-validation-for="CourcesIdDeptin" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">حدد نوع التدريب </label>
-                    <select asp-for="CourcesIdTraining" class="form-control form-control-lg" asp-items="ViewBag.ACourcesTrainingMethod">
+                    <select asp-for="CourcesIdTraining" id="chosen-select3" class="form-control chosen-select" asp-items="ViewBag.ACourcesTrainingMethod">
                         <option value="">Select--</option>
                     </select>
                     <span asp-validation-for="CourcesIdTraining" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">جهة مقدم الدورة </label>
-                    <select asp-for="CourcesIdDeptout" class="form-control form-control-lg" asp-items="ViewBag.ACourcesDeptout">
+                    <select asp-for="CourcesIdDeptout" id="chosen-select4" class="form-control chosen-select" asp-items="ViewBag.ACourcesDeptout">
                         <option value="">Select--</option>
                     </select>
                     <span asp-validation-for="CourcesIdDeptout" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">تقدير الدورة </label>
-                    <select asp-for="CourcesIdEstimate" class="form-control" asp-items="ViewBag.ACourcesEstimate">
+                    <select asp-for="CourcesIdEstimate" id="chosen-select5" class="form-control chosen-select" asp-items="ViewBag.ACourcesEstimate">
                         <option value="">Select--</option>
                     </select>
                     <span asp-validation-for="CourcesIdEstimate" class="text-danger"></span>
@@ -75,58 +76,82 @@
                     <input type="file" asp-for="Filehr" class="form-control" asp-items="ViewBag.ACourcesCertImagehr" />
                     <span asp-validation-for="CourcesIdImagehr" class="text-danger"></span>
                 </div>
-               <div class="form-group">
-                <label class="control-label">بداية الدورة   </label>
-                <input type="date" asp-for="CourcesStartDate" class="form-control" />
-                <span asp-validation-for="CourcesStartDate" class="text-danger"></span>
+                <div class="form-group">
+                    <label class="control-label">بداية الدورة   </label>
+                    <input type="date" asp-for="CourcesStartDate" class="form-control" />
+                    <span asp-validation-for="CourcesStartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">نهاية الدورة   </label>
+                    <input type="date" asp-for="CourcesEndDate" class="form-control" />
+                    <span asp-validation-for="CourcesEndDate" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label class="control-label">عدد ايام التدريب  </label>
+                        <input asp-for="CourcesNumberofdays" readonly class="form-control" />
+                        <span asp-validation-for="CourcesNumberofdays" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <label class="control-label">نسبة الانجاز او الدرجة  </label>
+                    <input asp-for="CourcesPassRate" class="form-control" />
+                    <span asp-validation-for="CourcesPassRate" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label class="control-label">اسم الموظف </label>
+                        <select asp-for="Cempid" class="form-control" asp-items="ViewBag.Cempid">
+                            <option value="">Select--</option>
+                        </select>
+                    </div>*@
+                <div class="form-group">
+                    <input type="submit" value="حفظ" class="btn btn-primary" />
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <label class="control-label">نهاية الدورة   </label>
-            <input type="date" asp-for="CourcesEndDate" class="form-control" />
-            <span asp-validation-for="CourcesEndDate" class="text-danger"></span>
-        </div>
-        @*<div class="form-group">
-            <label class="control-label">عدد ايام التدريب  </label>
-            <input asp-for="CourcesNumberofdays" readonly class="form-control" />
-            <span asp-validation-for="CourcesNumberofdays" class="text-danger"></span>
-        </div>*@
-        <div class="form-group">
-            <label class="control-label">نسبة الانجاز او الدرجة  </label>
-            <input asp-for="CourcesPassRate" class="form-control" />
-            <span asp-validation-for="CourcesPassRate" class="text-danger"></span>
-        </div>
-        @*<div class="form-group">
-            <label class="control-label">اسم الموظف </label>
-            <select asp-for="Cempid" class="form-control" asp-items="ViewBag.Cempid">
-                <option value="">Select--</option>
-            </select>
-        </div>*@
-        <div class="form-group">
-            <input type="submit" value="حفظ" class="btn btn-info" />
-        </div>
-        </form>
-    </div>
     </div>
 
     @*<div style="float:right; width:40%">
-        <a asp-action="Index">Back to List</a>
-    </div>*@
+            <a asp-action="Index">Back to List</a>
+        </div>*@
 
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
-<script language="javascript" type="text/javascript">
+    <link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+    <link href="~/js/chosen.css" rel="stylesheet" />
+    <link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+    <link href="~/js/prism.css" rel="stylesheet" />
+    <script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+    <script src="~/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+    <script src="~/js/prism.js"></script>
+
+    <script type="text/javascript">
+
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" }//,
+            //'.chosen-search': {disable_search: false}
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+
+    </script>
+    <script language="javascript" type="text/javascript">
         $(document).ready(function () {
             try {
-                $("input[type='text']").each(function(){
-                               $(this).attr("autocomplete","off");
-                            });
+                $("input[type='text']").each(function () {
+                    $(this).attr("autocomplete", "off");
+                });
             }
-            catch (e)
-            { }
+            catch (e) { }
         });
 
-</script>
+    </script>
+
 </body>
 </html>
 @*style="float:right; width:40%"*@

@@ -43,7 +43,7 @@
 <div id="sortMsg" style="text-align: center; color: Red;">
 </div>
 @*<div class="row" style="float:right; width:100%">*@
-<table @*style="width: 100%;"*@ id="empTable" class="table table-bordered table-condensed table-striped table-hover  sortable">
+<table @*style="width: 100%;"*@ id="empTable" class="table table-responsive-lg table-bordered table-condensed table-striped table-hover  sortable">
     <thead>
         <tr>
             @*<th>
@@ -80,7 +80,7 @@
                 حالة الطلب 
             </th>
             <th>
-                مدة  الدورة
+                عدد ايام  الدورة
             </th>
             <th>
                 نسبة الانجاز بالدورة
@@ -172,7 +172,7 @@
 
 @*</div>*@
 
-<div id="pager" class="pager">
+@*<div id="pager" class="pager">
     <br />
     <img src="~/Content/first.png" />
     <img src="~/Content/first.png" class="first" />
@@ -186,9 +186,9 @@
         <option value="30">30</option>
         <option value="40">40</option>
     </select>
-</div>
+</div>*@
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(function () {
         $("#empTable")
             .tablesorter({ widthFixed: true })
@@ -202,7 +202,7 @@
         //Hide/delete row on click.
         $("#empTable img").click(function () { $(this).parent().parent().hide(); });
     });
-</script>
+</script>*@
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
         try {
@@ -214,6 +214,6 @@
     });
 
 </script>
-<script src="~/js/jquery-1.4.1.min.js"></script>
+@*<script src="~/js/jquery-1.4.1.min.js"></script>
 <script src="~/js/jquery.tablesorter.min.js"></script>
-<script src="~/js/jquery.tablesorter.pager.js"></script>
+<script src="~/js/jquery.tablesorter.pager.js"></script>*@
