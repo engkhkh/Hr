@@ -7,7 +7,7 @@
 
 <h1>تعديل</h1>
 
-<h4>ACourcesType</h4>
+@*<h4>ACourcesType</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,12 +15,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CourcesIdType" />
             <div class="form-group">
-                <label asp-for="CourcesTypeName" class="control-label"></label>
+                @*<label asp-for="CourcesTypeName" class="control-label"></label>*@
                 <input asp-for="CourcesTypeName" class="form-control" />
                 <span asp-validation-for="CourcesTypeName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="حفظ" class="btn btn-primary" />
             </div>
         </form>
     </div>

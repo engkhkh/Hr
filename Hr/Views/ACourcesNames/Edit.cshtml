@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<h4>ACourcesName</h4>
+@*<h4>ACourcesName</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -21,7 +21,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CourcesId" />
             <div class="form-group">
-                <label asp-for="CourcesName" class="control-label"></label>
+                @*<label asp-for="CourcesName" class="control-label"></label>*@
                 <input asp-for="CourcesName" class="form-control" />
                 <span asp-validation-for="CourcesName" class="text-danger"></span>
             </div>

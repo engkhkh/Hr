@@ -13,19 +13,19 @@
 </head>
 <body>
 
-<h4>ACourcesTrainingMethod</h4>
+@*<h4>ACourcesTrainingMethod</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CourcesNameTraining" class="control-label"></label>
+                @*<label asp-for="CourcesNameTraining" class="control-label"></label>*@
                 <input asp-for="CourcesNameTraining" class="form-control" />
                 <span asp-validation-for="CourcesNameTraining" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="حفظ" class="btn btn-primary" />
             </div>
         </form>
     </div>

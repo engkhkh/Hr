@@ -7,7 +7,7 @@
 
 <h1>تعديل</h1>
 
-<h4>ACourcesDeptout</h4>
+@*<h4>ACourcesDeptout</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,19 +15,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CourcesIdDeptout" />
             <div class="form-group">
-                <label asp-for="CourcesNameDeptout" class="control-label"></label>
+                @*<label asp-for="CourcesNameDeptout" class="control-label"></label>*@
                 <input asp-for="CourcesNameDeptout" class="form-control" />
                 <span asp-validation-for="CourcesNameDeptout" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="حفظ" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">عودة الي الرئيسية</a>
 </div>
 
 @section Scripts {
