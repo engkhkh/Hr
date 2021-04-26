@@ -48,6 +48,7 @@ namespace Hr
             services.AddDbContext<hrContext>(Options =>
             {
                 Options.UseSqlServer(Configuration.GetConnectionString("hr"));
+                //Options.UseOracle(Configuration.GetConnectionString("ora"));
 
 
             }

@@ -1,7 +1,31 @@
 ﻿@{
     Layout = "_Layout";
 }
-@{ 
+@{
     Layout = "_Layout - Copy";
 }
+@{
+    Layout = "_Layout - Copy - Copy";
+}
+@*@section OverrideStyles
+    {
+        @if (ViewBag.ContentCssClass != "disabled") //Some expression or some value from controller....
+        {
+            <style>
+                .disabled {
+                    pointer-events: none;
+                    cursor: default;
+                }
 
+                a.disabled {
+                    pointer-events: none;
+                    cursor: default;
+                }
+            </style>
+        }
+        else
+        {
+
+        }
+
+    }*@
