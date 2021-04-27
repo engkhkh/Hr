@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace Hr.Controllers
 {
@@ -56,7 +57,7 @@ namespace Hr.Controllers
                               join d in ACourcesTypes on e.CourcesIdType equals d.CourcesIdType into table1
                               from d in table1.ToList()
                               join i in Cemps on e.Cempid equals i.Cempid into table2
-                              from i in table2.ToList()
+                              from i in table2.ToList() where i.Cempid == HttpContext.Session.GetString("empid")
                               join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                               from j in table3.ToList()
                               join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
@@ -107,8 +108,8 @@ namespace Hr.Controllers
                               join d in ACourcesTypes on e.CourcesIdType equals d.CourcesIdType into table1
                               from d in table1.ToList()
                               join i in Cemps on e.Cempid equals i.Cempid into table2
-                              from i in table2.ToList()
-                              where i.CEMPNAME.Contains(search)
+                              from i in table2.ToList()  where i.Cempid == HttpContext.Session.GetString("empid")
+                              //where i.CEMPNAME.Contains(search)
                               join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                               from j in table3.ToList()
                               join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
@@ -124,7 +125,7 @@ namespace Hr.Controllers
                               from y in table8.ToList()
                               join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
                               from z in table9.ToList()
-                              //where z.CourcesName.Contains(search)
+                              where z.CourcesName.Contains(search)
 
 
                               select new ViewModelMasterwithother
@@ -187,7 +188,7 @@ namespace Hr.Controllers
                               join d in ACourcesTypes on e.CourcesIdType equals d.CourcesIdType into table1
                               from d in table1.ToList()
                               join i in Cemps on e.Cempid equals i.Cempid into table2
-                              from i in table2.ToList()
+                              from i in table2.ToList() where i.Cempid == HttpContext.Session.GetString("empid")
                               join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                               from j in table3.ToList()
                               join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
@@ -238,8 +239,8 @@ namespace Hr.Controllers
                               join d in ACourcesTypes on e.CourcesIdType equals d.CourcesIdType into table1
                               from d in table1.ToList()
                               join i in Cemps on e.Cempid equals i.Cempid into table2
-                              from i in table2.ToList()
-                              where i.CEMPNAME.Contains(search)
+                              from i in table2.ToList() where i.Cempid == HttpContext.Session.GetString("empid")
+                              //where i.CEMPNAME.Contains(search)
                               join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                               from j in table3.ToList()
                               join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
@@ -255,7 +256,7 @@ namespace Hr.Controllers
                               from y in table8.ToList()
                               join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
                               from z in table9.ToList()
-                                  //where z.CourcesName.Contains(search)
+                              where z.CourcesName.Contains(search)
 
 
                               select new ViewModelMasterwithother

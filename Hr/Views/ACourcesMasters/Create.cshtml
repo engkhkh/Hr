@@ -22,7 +22,7 @@
     <h4>تسجيل الدورات  التدريبية </h4>
     <hr />
     <div class="row" @*style="float:right; width:40%"*@>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <form asp-action="Create" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">جهة مقدم الدورة </label>
-                    <select asp-for="CourcesIdDeptout" id="chosen-select4" class="form-control chosen-select" asp-items="ViewBag.ACourcesDeptout">
+                    <select asp-for="CourcesIdDeptout" id="chosen-select4" class="chosen-select form-control" asp-items="ViewBag.ACourcesDeptout">
                         <option value="">Select--</option>
                     </select>
                     <span asp-validation-for="CourcesIdDeptout" class="text-danger"></span>

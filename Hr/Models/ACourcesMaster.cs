@@ -11,6 +11,7 @@ namespace Hr.Models
     public partial class ACourcesMaster
     {
         public int CourcesIdmaster { get; set; }
+       
         public int? CourcesId { get; set; }
         public int? CourcesIdType { get; set; }
         public int? CourcesIdDeptin { get; set; }

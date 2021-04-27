@@ -36,7 +36,7 @@ namespace Hr.Controllers
                               join d in ACourcesTypes on e.CourcesIdType equals d.CourcesIdType into table1
                               from d in table1.ToList()
                               join i in Cemps on e.Cempid equals i.Cempid into table2
-                              from i in table2.ToList()
+                              from i in table2.ToList() where i.Cempid== HttpContext.Session.GetString("empid")
                               join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                               from j in table3.ToList()
                               join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
@@ -85,7 +85,7 @@ namespace Hr.Controllers
                               join d in ACourcesTypes on e.CourcesIdType equals d.CourcesIdType into table1
                               from d in table1.ToList() 
                               join i in Cemps on e.Cempid equals i.Cempid into table2
-                              from i in table2.ToList()
+                              from i in table2.ToList() where i.Cempid== HttpContext.Session.GetString("empid")
                               join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                               from j in table3.ToList()
                               join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4

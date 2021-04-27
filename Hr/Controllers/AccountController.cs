@@ -39,7 +39,7 @@ namespace Hr.Controllers
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
-            var objuser = _context.Cemps.Where(b => b.CEMPUSERNO == username).FirstOrDefault();
+            var objuser = _context.Cemps.Where(b => b.Cempid == "0").FirstOrDefault();
             // saved sesssions here 
             HttpContext.Session.SetString("empid", objuser.Cempid);
             HttpContext.Session.SetString("empname", objuser.CEMPNAME);
