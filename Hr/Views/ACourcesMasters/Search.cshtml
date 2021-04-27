@@ -156,7 +156,7 @@
                     @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
+                    @Html.DisplayFor(modelItem =>item.ACourcesMasters.CourcesPassRate)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
@@ -172,7 +172,7 @@
 
 @*</div>*@
 
-@*<div id="pager" class="pager">
+<div id="pager" class="pager">
     <br />
     <img src="~/Content/first.png" />
     <img src="~/Content/first.png" class="first" />
@@ -186,9 +186,9 @@
         <option value="30">30</option>
         <option value="40">40</option>
     </select>
-</div>*@
+</div>
 
-@*<script type="text/javascript">
+<script type="text/javascript">
     $(function () {
         $("#empTable")
             .tablesorter({ widthFixed: true })
@@ -202,7 +202,7 @@
         //Hide/delete row on click.
         $("#empTable img").click(function () { $(this).parent().parent().hide(); });
     });
-</script>*@
+</script>
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
         try {
@@ -214,6 +214,6 @@
     });
 
 </script>
-@*<script src="~/js/jquery-1.4.1.min.js"></script>
+<script src="~/js/jquery-1.4.1.min.js"></script>
 <script src="~/js/jquery.tablesorter.min.js"></script>
-<script src="~/js/jquery.tablesorter.pager.js"></script>*@
+<script src="~/js/jquery.tablesorter.pager.js"></script>

@@ -226,9 +226,7 @@ namespace Hr.Models
 
                 entity.Property(e => e.CourcesNumberofdays).HasColumnName("COURCES_NUMBEROFDAYS");
 
-                entity.Property(e => e.CourcesPassRate)
-                    .HasMaxLength(255)
-                    .HasColumnName("COURCES_PASS_RATE");
+                entity.Property(e => e.CourcesPassRate).HasColumnName("COURCES_PASS_RATE");
 
                 entity.Property(e => e.CourcesStartDate)
                     .HasColumnType("date")
