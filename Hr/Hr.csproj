@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\portfolio\" />
+    <Folder Include="wwwroot\xjstabls\" />
   </ItemGroup>
 
 </Project>

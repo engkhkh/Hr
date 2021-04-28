@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Hr.Models.ACourcesTrainingMethod>
 
 @{
+    ViewData["Title"] = "طريقة التدريب  ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,36 +10,58 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>عرض</title>
+    <title>طريقة التدريب </title>
 </head>
 <body>
 
-<table class="table table-bordered table-condensed table-striped table-hover sortable">
-    <thead>
-        <tr>
-            <th></th>
-            <th>
-                @*@Html.DisplayNameFor(model => model.CourcesNameTraining)*@
-            </th>
+    <table id="table" class="table table-bordered table-condensed table-striped table-hover sortable">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.CourcesNameTraining)*@
+                </th>
 
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="Create">اضافة </a>|
-                <a asp-action="Edit" asp-route-id="@item.CourcesIdTraining">تعديل</a> |
-                <a asp-action="Details" asp-route-id="@item.CourcesIdTraining">تفاصيل</a> |
-                @*<a asp-action="Delete" asp-route-id="@item.CourcesIdTraining">Delete</a>*@
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourcesNameTraining)
-            </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Create" class="btn btn-success">اضافة </a>|
+                        <a asp-action="Edit" asp-route-id="@item.CourcesIdTraining" class="btn btn-warning">تعديل</a> |
+                        <a asp-action="Details" asp-route-id="@item.CourcesIdTraining" class="btn btn-info">تفاصيل</a> |
+                        @*<a asp-action="Delete" asp-route-id="@item.CourcesIdTraining">Delete</a>*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourcesNameTraining)
+                    </td>
 
-        </tr>
-}
-    </tbody>
-</table>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script>
+
+    $(document).ready(function () {
+        $('#table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print'
+            ]
+        });
+    });
+
+    </script>
+
+    <link href="~/DataTables (1)/datatables.css" rel="stylesheet" />
+
+    <script src="~/DataTables (1)/datatables.js"></script>
+
+    <script src="~/DataTables (1)/pdfmake-0.1.36/pdfmake.js"></script>
+
+    <script src="~/DataTables (1)/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="~/DataTables (1)/JSZip-2.5.0/jszip.js"></script>
 </body>
 </html>

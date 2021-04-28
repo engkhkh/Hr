@@ -1,39 +1,61 @@
 ﻿@model IEnumerable<Hr.Models.ACourcesEstimate>
 
 @{
-    ViewData["Title"] = "عرض ";
+    ViewData["Title"] = "التقدير  ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>عرض </h1>
+<h1> </h1>
 
 <p>
-    
+
 </p>
-<table class="table table-bordered table-condensed table-striped table-hover sortable">
+<table id="table" class="table table-bordered table-condensed table-striped table-hover sortable">
     <thead>
         <tr>
             <th></th>
             <th>
-               التقدير
+                التقدير
             </th>
 
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="Create">اضافة </a>|
-                <a asp-action="Edit" asp-route-id="@item.CourcesIdEstimate">تعديل </a> |
-                <a asp-action="Details" asp-route-id="@item.CourcesIdEstimate">تفاصيل</a> |
-                @*<a asp-action="Delete" asp-route-id="@item.CourcesIdEstimate">حذف</a>*@
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourcesNameEstimate)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Create" class="btn btn-success">اضافة </a>|
+                    <a asp-action="Edit" asp-route-id="@item.CourcesIdEstimate" class="btn btn-warning" >تعديل </a> |
+                    <a asp-action="Details" asp-route-id="@item.CourcesIdEstimate" class="btn btn-info">تفاصيل</a> |
+                    @*<a asp-action="Delete" asp-route-id="@item.CourcesIdEstimate">حذف</a>*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourcesNameEstimate)
+                </td>
 
-        </tr>
-}
+            </tr>
+        }
     </tbody>
 </table>
+<script>
+
+    $(document).ready(function () {
+        $('#table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print'
+            ]
+        });
+    });
+
+</script>
+
+<link href="~/DataTables (1)/datatables.css" rel="stylesheet" />
+
+<script src="~/DataTables (1)/datatables.js"></script>
+
+<script src="~/DataTables (1)/pdfmake-0.1.36/pdfmake.js"></script>
+
+<script src="~/DataTables (1)/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="~/DataTables (1)/JSZip-2.5.0/jszip.js"></script>

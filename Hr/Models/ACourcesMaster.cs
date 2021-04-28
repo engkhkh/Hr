@@ -10,6 +10,7 @@ namespace Hr.Models
 {
     public partial class ACourcesMaster
     {
+        [Required]
         public int CourcesIdmaster { get; set; }
        [Required]
         public int CourcesId { get; set; }
@@ -35,7 +36,7 @@ namespace Hr.Models
         public DateTime CourcesEndDate { get; set; }
         [Required]
         public int CourcesNumberofdays { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:P2}")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:P2}")]
         [Required]
         public decimal CourcesPassRate { get; set; }
         public string Cempid { get; set; }

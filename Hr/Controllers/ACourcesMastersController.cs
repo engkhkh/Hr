@@ -436,7 +436,7 @@ namespace Hr.Controllers
                 string fullPath = Path.Combine(uploads, aCourcesMaster.Filecer.FileName);
                 aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
                 //
-                string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+                string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
                 string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
                 aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
                 //
@@ -607,7 +607,7 @@ namespace Hr.Controllers
                 string fullPath = Path.Combine(uploads, aCourcesMaster.Filecer.FileName);
                 aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
                 //
-                string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+                string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
                 string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
                 aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
                 //
@@ -713,7 +713,7 @@ namespace Hr.Controllers
                     string fullPath1 = Path.Combine(uploads1, aCourcesMaster.Filecer.FileName);
                     aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath1, FileMode.Create));
                     //
-                    string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+                    string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
                     string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
                     aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
                     aCourcesMaster.CourcesIdImagecert = aCourcesMaster.Filecer.FileName;
