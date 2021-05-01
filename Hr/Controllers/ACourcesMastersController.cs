@@ -26,7 +26,7 @@ namespace Hr.Controllers
         // GET: ACourcesMasters
         public async Task<IActionResult> Index()
         {
-           
+         
             var hrContext = _context.ACourcesMasters.Include(a => a.Cemp).Include(a => a.Cources);
             ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname");
             ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
@@ -41,7 +41,11 @@ namespace Hr.Controllers
         }
         public ActionResult Search(string search)
         {
-            if(search == null)
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            if (search == null)
             {
                 List<ACourcesType> ACourcesTypes = _context.ACourcesTypes.ToList();
                 List<Cemp> Cemps = _context.Cemps.ToList();
@@ -172,6 +176,11 @@ namespace Hr.Controllers
         }
         public ActionResult Search11(string search)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+
             if (search == null)
             {
                 List<ACourcesType> ACourcesTypes = _context.ACourcesTypes.ToList();
@@ -325,6 +334,10 @@ namespace Hr.Controllers
         // GET: ACourcesMasters/Create
         public IActionResult Create()
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             /*
              List<ACourcesName> ACourcesName1 = new List<ACourcesName>();
             List<ACourcesTrainingMethod> ACourcesTrainingMethod1 = new List<ACourcesTrainingMethod>();
@@ -496,6 +509,10 @@ namespace Hr.Controllers
         // GET: ACourcesMasters/Create
         public IActionResult Create11()
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             /*
              List<ACourcesName> ACourcesName1 = new List<ACourcesName>();
             List<ACourcesTrainingMethod> ACourcesTrainingMethod1 = new List<ACourcesTrainingMethod>();
@@ -667,6 +684,10 @@ namespace Hr.Controllers
         // GET: ACourcesMasters/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (id == null)
             {
                 return NotFound();
@@ -751,6 +772,10 @@ namespace Hr.Controllers
         // GET: ACourcesMasters/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (id == null)
             {
                 return NotFound();

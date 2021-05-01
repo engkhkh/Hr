@@ -20,6 +20,10 @@ namespace Hr.Controllers
             // GET: ViewModelMasterwithotherController
             public ActionResult Index(string search)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (search == null)
             {
                 List<ACourcesType> ACourcesTypes = _context.ACourcesTypes.ToList();
@@ -124,6 +128,10 @@ namespace Hr.Controllers
         // GET: ViewModelMasterwithotherController/Details/5
         public ActionResult Details(int ?id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (id == null)
             {
                 return NotFound();
@@ -154,6 +162,10 @@ namespace Hr.Controllers
         // GET: ViewModelMasterwithotherController/Create
         public ActionResult Create()
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             return View();
         }
 
@@ -176,6 +188,10 @@ namespace Hr.Controllers
         // GET: ViewModelMasterwithotherController/Edit/5
         public ActionResult Edit(int ?id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
 
             if (id == null)
             {
@@ -198,6 +214,7 @@ namespace Hr.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, [Bind("MasterRequestTypeSatus", "MasterRequestTo", "MasterRequestFrom", "COURCES_IDMASTER", "MasterRequestNotes")] MasterDetails MasterDetailsss)
         {
+          
             if (id != MasterDetailsss.COURCES_IDMASTER)
             {
                 return NotFound();
@@ -232,6 +249,10 @@ namespace Hr.Controllers
         // GET: ViewModelMasterwithotherController/Delete/5
         public ActionResult Delete(int id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             return View();
         }
 

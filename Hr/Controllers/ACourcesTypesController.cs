@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hr.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Hr.Controllers
 {
@@ -21,12 +22,20 @@ namespace Hr.Controllers
         // GET: ACourcesTypes
         public async Task<IActionResult> Index()
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             return View(await _context.ACourcesTypes.ToListAsync());
         }
 
         // GET: ACourcesTypes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (id == null)
             {
                 return NotFound();
@@ -45,6 +54,10 @@ namespace Hr.Controllers
         // GET: ACourcesTypes/Create
         public IActionResult Create()
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             return View();
         }
 
@@ -67,6 +80,10 @@ namespace Hr.Controllers
         // GET: ACourcesTypes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (id == null)
             {
                 return NotFound();
@@ -118,6 +135,10 @@ namespace Hr.Controllers
         // GET: ACourcesTypes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (id == null)
             {
                 return NotFound();

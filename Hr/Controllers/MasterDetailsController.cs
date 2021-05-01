@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hr.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Hr.Controllers
 {
@@ -21,12 +22,20 @@ namespace Hr.Controllers
         // GET: MasterDetails
         public async Task<IActionResult> Index()
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             return View(await _context.MasterDetailss.ToListAsync());
         }
 
         // GET: MasterDetails/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (id == null)
             {
                 return NotFound();
@@ -45,6 +54,10 @@ namespace Hr.Controllers
         // GET: MasterDetails/Create
         public IActionResult Create(int ?id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (id == null)
             {
                 return NotFound();
@@ -96,6 +109,10 @@ namespace Hr.Controllers
         // GET: MasterDetails/Create
         public IActionResult Create2(int? id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (id == null)
             {
                 return NotFound();
@@ -147,6 +164,10 @@ namespace Hr.Controllers
         // GET: MasterDetails/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (id == null)
             {
                 return NotFound();
@@ -216,6 +237,10 @@ namespace Hr.Controllers
         // GET: MasterDetails/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
             if (id == null)
             {
                 return NotFound();
