@@ -17,8 +17,8 @@
     <table id="table" class="table table-bordered table-condensed table-striped table-hover sortable">
         <thead>
             <tr>
-                <th></th>
-                <th>
+                <th style="width:40%;"></th>
+                <th style="width:60%;">
                     @*@Html.DisplayNameFor(model => model.CourcesNameTraining)*@
                 </th>
 
@@ -28,13 +28,13 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td style="width:40%;">
                         <a asp-action="Create" class="btn btn-success">اضافة </a>
-                        <a asp-action="Edit" asp-route-id="@item.CourcesIdTraining" class="btn btn-warning">تعديل</a> 
-                        <a asp-action="Details" asp-route-id="@item.CourcesIdTraining" class="btn btn-info">تفاصيل</a> 
+                        <a asp-action="Edit" asp-route-id="@item.CourcesIdTraining" class="btn btn-success">تعديل</a> 
+                        <a asp-action="Details" asp-route-id="@item.CourcesIdTraining" class="btn btn-success">تفاصيل</a> 
                         @*<a asp-action="Delete" asp-route-id="@item.CourcesIdTraining">Delete</a>*@
                     </td>
-                    <td>
+                    <td style="width:60%;"> 
                         @Html.DisplayFor(modelItem => item.CourcesNameTraining)
                     </td>
 
