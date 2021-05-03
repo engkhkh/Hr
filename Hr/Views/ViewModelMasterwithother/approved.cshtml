@@ -1,53 +1,55 @@
 ﻿@model IEnumerable<Hr.Models.ViewModelMasterwithother>
 
 @{
-    ViewData["Title"] = "الموافقة علي المعاملات";
+    ViewData["Title"] = "تم الموافقة ";
     Layout = "~/Views/Shared/_Layout - Copy.cshtml";
 }
 <table>
-<thead>
-    <tr>
-        <th>
-
-        </th>
-        <th>
-
-        </th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>
-            <p>
-                @using (@Html.BeginForm())
-                {
-                    <button type="submit" name="1" value="1" class="=btn btn-success" asp-action="approved" asp-controller="ViewModelMasterwithother" formmethod="post" >تم الموافقة عليها </button>
-                    <button type="submit" name="2" value="2" class="=btn btn-success" asp-action="cancel" formmethod="post" >تم رفضها  </button>
-                    
-                    @*@Html.TextBox("search", "", new { placeholder = "بحث بالدورة", @class = "" })*@
-
-
-
-                }
-            </p>
-        </td>
-        <td>
-
-        </td>
-    </tr>
-
-</tbody>
-</table>
-
-@*<div id="sortMsg" style="text-align: center; color: Red;">
-</div>*@
-@*<div class="row" style="float:right; width:100%">*@
-<table id="table" @*style="width: 100%;"*@ class="table table-bordered table-condensed table-striped table-hover table-responsive-lg sortable">
     <thead>
         <tr>
             <th>
 
             </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    @using (@Html.BeginForm())
+                    {
+                        <div>
+                            <a asp-action="Index" class="btn btn-success">عودة الي معاملات الانتظار</a>
+                        </div>
+                        @*<button type="submit" name="1" value="1" class="=btn btn-success" formaction="approved" formmethod="post">تم الموافقة عليها </button>
+            <button type="submit" name="2" value="2" class="=btn btn-success" formaction="cancel" formmethod="post">تم رفضها  </button>*@
+
+                        @*@Html.TextBox("search", "", new { placeholder = "بحث بالدورة", @class = "" })*@
+
+
+
+                    }
+                </p>
+            </td>
+            <td>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+@*<div id="sortMsg" style="text-align: center; color: Red;">
+    </div>*@
+@*<div class="row" style="float:right; width:100%">*@
+<table id="table" @*style="width: 100%;"*@ class="table table-bordered table-condensed table-striped table-hover table-responsive-lg sortable">
+    <thead>
+        <tr>
+            @*<th>
+
+            </th>*@
             <th>
                 الموظف
             </th>
@@ -97,12 +99,12 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <!--<td>
                     <a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-success">موافق</a>
-                    <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-danger">رفض</a>
+                    <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-danger">رفض</a>-->
                     @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
-                </td>
+                <!--</td>-->
                 <td>
                     @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
                 </td>
