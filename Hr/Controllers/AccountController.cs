@@ -57,9 +57,10 @@ namespace Hr.Controllers
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
-            var objuser = _context.Cemps.Where(b => b.Cempid == "0").FirstOrDefault();
+            var objuser = _context.Cemps.Where(b => b.Cempid == username).FirstOrDefault();
             // saved sesssions here 
             HttpContext.Session.SetString("empid", objuser.Cempid);
+            HttpContext.Session.SetString("empidpass", objuser.CEMPPASSWRD);
             HttpContext.Session.SetString("empname", objuser.CEMPNAME);
             HttpContext.Session.SetString("empjobname", objuser.CEMPJOBNAME);
             HttpContext.Session.SetString("empdepid", objuser.CEMPADPRTNO);
@@ -92,7 +93,7 @@ namespace Hr.Controllers
             //var obj2 = JsonConvert.DeserializeObject<MenuModels>(str2);
 
             // admin
-            if (username != null && password != null && username.Equals("123") && password.Equals("123"))
+            if (username != null && password != null && username.Equals(objuser.Cempid) && password.Equals(objuser.CEMPPASSWRD))
             {
                 HttpContext.Session.SetString("username", username);
                 ViewData["MenuItemActive"] = "disabled";
@@ -103,7 +104,7 @@ namespace Hr.Controllers
 
 
                 //return View("ACourcesEstimates/Index");
-                return RedirectToAction("Create11","ACourcesMasters", new { area = "" });
+                return RedirectToAction("Create","ACourcesMasters", new { area = "" });
                 //    ViewBag.Name = HttpContext.Session.GetString(SessionName);
             }
             // will approve only

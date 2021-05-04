@@ -521,19 +521,19 @@ namespace Hr.Controllers
                 //
                 ACourcesMaster aCourcesMasteritems = new ACourcesMaster
                 {
-                    CourcesId= aCourcesMaster.CourcesId,
-                    CourcesIdType= aCourcesMaster.CourcesIdType,
-                    CourcesIdDeptin= aCourcesMaster.CourcesIdDeptin,
-                    CourcesIdTraining= aCourcesMaster.CourcesIdTraining,
-                    CourcesIdDeptout= aCourcesMaster.CourcesIdDeptout,
-                    CourcesIdEstimate= aCourcesMaster.CourcesIdEstimate,
-                    CourcesIdImagecert= aCourcesMaster.Filecer.FileName,
-                    CourcesIdImagehr= aCourcesMaster.Filehr.FileName,
-                    CourcesStartDate= aCourcesMaster.CourcesStartDate,
-                    CourcesEndDate= aCourcesMaster.CourcesEndDate,
-                    CourcesNumberofdays=Convert.ToInt32((aCourcesMaster.CourcesEndDate- aCourcesMaster.CourcesStartDate).TotalDays),
-                    CourcesPassRate= aCourcesMaster.CourcesPassRate,
-                    Cempid="0"
+                    CourcesId = aCourcesMaster.CourcesId,
+                    CourcesIdType = aCourcesMaster.CourcesIdType,
+                    CourcesIdDeptin = aCourcesMaster.CourcesIdDeptin,
+                    CourcesIdTraining = aCourcesMaster.CourcesIdTraining,
+                    CourcesIdDeptout = aCourcesMaster.CourcesIdDeptout,
+                    CourcesIdEstimate = aCourcesMaster.CourcesIdEstimate,
+                    CourcesIdImagecert = aCourcesMaster.Filecer.FileName,
+                    CourcesIdImagehr = aCourcesMaster.Filehr.FileName,
+                    CourcesStartDate = aCourcesMaster.CourcesStartDate,
+                    CourcesEndDate = aCourcesMaster.CourcesEndDate,
+                    CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays),
+                    CourcesPassRate = aCourcesMaster.CourcesPassRate,
+                    Cempid = HttpContext.Session.GetString("empid")
 
 
                 };
@@ -546,8 +546,8 @@ namespace Hr.Controllers
                 MasterDetails MasterDetailss = new MasterDetails
                 {
                     COURCES_IDMASTER= _context.ACourcesMasters.Max(u => u.CourcesIdmaster) + 1,
-                    MasterRequestFrom="0",
-                    MasterRequestTo="0",
+                    MasterRequestFrom= HttpContext.Session.GetString("empid"),
+                    MasterRequestTo="123",
                     MasterRequestTypeSatus=0,
                     MasterRequestNotes=""
 

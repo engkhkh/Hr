@@ -1,95 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model IEnumerable<Hr.Models.ViewModelMasterwithother>
+﻿@model IEnumerable<Hr.Models.MenuModels>
 
 @{
-    ViewData["Title"] = "الاستعلام عن الطلبات";
-    //Layout = "~/Views/Shared/_Layout - Copy - Copy.cshtml";
+    ViewData["Title"] = "الصلاحية علي الشاشات ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*<table>
-        <thead>
-            <tr>
-                <th>
 
-                </th>
-                <th>
+<h1></h1>
 
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <p>
-                        @using (@Html.BeginForm())
-                        {
-                            <button type="submit" class="=btn btn-primary mb-lg-4">بحث</button>
-                            @Html.TextBox("search", "", new { placeholder = "بحث بالدورة ", @class = "" })
-
-                        }
-                    </p>
-                </td>
-                <td>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>*@
-
-@*<div id="sortMsg" style="text-align: center; color: Red;">
-    </div>*@
-@*<div class="row" style="float:right; width:100%">*@
-<table @*style="width: 100%;"*@ id="table" class="table table-responsive-lg table-bordered table-condensed table-striped table-hover  sortable">
+<p>
+        @*<a asp-action="Create">Create New</a>*@
+    @*<a asp-action="Create" class="btn btn-success">اضافة</a>*@
+    </p>
+<table id="table" class="table table-bordered table-condensed table-striped table-hover sortable">
     <thead>
         <tr>
             @*<th>
 
                 </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.MainMenuId)
+                </th>*@
             <th>
-                الموظف
+                @*@Html.DisplayNameFor(model => model.SubMenuNamear)*@
+                اسم الشاشة عربي
             </th>
             <th>
-                رقم الطلب
+                @*@Html.DisplayNameFor(model => model.SubMenuNameen)*@
+                اسم الشاشة انجليزي
             </th>
             <th>
-                الدورة
+                القائمة
+                @*@Html.DisplayNameFor(model => model.ControllerName)*@
             </th>
             <th>
-                نوع الدورة
+                عنوان الصفحة داخل القائمة
             </th>
             <th>
-                طريقة الدورة
-            </th>
-            <th>
-                التقدير
-            </th>
-            <th>
-                شهادة الدورة
-            </th>
-            <th>
-                اعتماد الموارد
-            </th>
-            <th>
-                بداية الدورة
-            </th>
-            <th>
-                الحالة
-            </th>
-            <th>
-                عدد ايام  الدورة
-            </th>
-            <th>
-                نسبة الانجاز %
-            </th>
-            <th>
-                جهة الدورة
-            </th>
-            <th>
-                قسم الموظف
+                @*@Html.DisplayNameFor(model => model.RoleId)*@
+                الصلاحية
             </th>
 
         </tr>
@@ -99,128 +47,53 @@
         {
             <tr>
                 <!--<td>-->
-                @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
-                    <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
-                @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
-
+                @*<a asp-action="Edit" asp-route-id="@item.id" class="btn btn-success">تعديل</a>
+                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-success">تفاصيل</a>*@
+                @*<a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
                 <!--</td>-->
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.MainMenuId)
+                    </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
+                    @Html.DisplayFor(modelItem => item.SubMenuNamear)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesIdmaster)
+                    @Html.DisplayFor(modelItem => item.SubMenuNameen)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
+                    @Html.DisplayFor(modelItem => item.ControllerName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesTypes.CourcesTypeName)
+                    @Html.DisplayFor(modelItem => item.ActionName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesEstimates.CourcesNameEstimate)
-                </td>
-                <td>
-                    <a href="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="btn btn-link">@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="20" height="20" />*@تحميل</a>
-                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
-                </td>
-                <td>
-                    <a href="~/img/portfoliohr/@item.ACourcesMasters.CourcesIdImagehr" class="btn btn-link">@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="20" height="20" />*@تحميل</a>
-                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
-                </td>
-                <td>
-                    @if (item.MasterDetails.MasterRequestTypeSatus == 1)
+                    @if (item.RoleId == 1)
                     {
-                        <label style="background-color:limegreen">موافقة :</label>
-                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
-                    }
-                    else if (item.MasterDetails.MasterRequestTypeSatus == 2)
-                    {
-                        <label style="background-color:red">رفض  :</label>
-                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
+                        <p>Admin</p>
 
+                    }
+                   else if (item.id == 2)
+                    {
+                        <p>Manager </p>
                     }
                     else
                     {
-                        <label style="background-color:yellow">انتظار :</label>
-                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
-
+                        <p>User</p>
                     }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
+                    @*@Html.DisplayFor(modelItem => item.RoleId)*@
                 </td>
 
             </tr>
         }
     </tbody>
 </table>
-
-@*</div>*@
-
-@*<div id="pager" class="pager">
-        <br />
-        <img src="~/Content/first.png" />
-        <img src="~/Content/first.png" class="first" />
-        <img src="~/Content/prev.png" class="prev" />
-        <input type="text" class="pagedisplay" />
-        <img src="~/Content/next.png" class="next" />
-        <img src="~/Content/last.png" class="last" />
-        <select class="pagesize">
-            <option selected="selected" value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-        </select>
-    </div>
-
-    <script type="text/javascript">
-        $(function () {
-            $("#empTable")
-                .tablesorter({ widthFixed: true })
-                .tablesorterPager({ container: $("#pager") });
-            $("#empTable").bind("sortStart", function () {
-                $("#sortMsg").html('Sorting');
-            }).bind("sortEnd", function () {
-                $("#sortMsg").html('');
-            });
-
-            //Hide/delete row on click.
-            $("#empTable img").click(function () { $(this).parent().parent().hide(); });
-        });
-    </script>*@
-<script language="javascript" type="text/javascript">
-    $(document).ready(function () {
-        try {
-            $("input[type='text']").each(function () {
-                $(this).attr("autocomplete", "off");
-            });
-        }
-        catch (e) { }
-    });
-
-</script>
 <script>
 
     $(document).ready(function () {
         $('#table').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                /*'copy', 'csv', 'excel', 'pdf',*/ 'print'
+                    /*'copy', 'csv', 'excel', 'pdf',*/ 'print'
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",
@@ -362,10 +235,3 @@
 
 <script src="~/DataTables (1)/pdfmake-0.1.36/vfs_fonts.js"></script>
 <script src="~/DataTables (1)/JSZip-2.5.0/jszip.js"></script>
-@*<script src="~/js/jquery-1.4.1.min.js"></script>
-    <script src="~/js/jquery.tablesorter.min.js"></script>
-    <script src="~/js/jquery.tablesorter.pager.js"></script>*@
-@*<link href="~/DataTables/datatables.css" rel="stylesheet" />
-    <script src="~/DataTables/datatables.js"></script>*@
-
-

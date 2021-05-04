@@ -54,7 +54,7 @@ namespace Hr.Controllers
                               join d in ACourcesTypes on e.CourcesIdType equals d.CourcesIdType into table1
                               from d in table1.ToList()
                               join i in Cemps on e.Cempid equals i.Cempid into table2
-                              from i in table2.ToList() where i.Cempid== HttpContext.Session.GetString("empid")
+                              from i in table2.ToList() /*where i.Cempid== HttpContext.Session.GetString("empid")*/
                               join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                               from j in table3.ToList()
                               join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
@@ -67,7 +67,7 @@ namespace Hr.Controllers
                               from x in table7.ToList()
                               where x.MasterRequestType == 0
                               join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
-                              from y in table8.ToList()
+                              from y in table8.ToList() where y.MasterRequestTo== HttpContext.Session.GetString("empid")
                               join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
                               from z in table9.ToList()
 
@@ -103,7 +103,7 @@ namespace Hr.Controllers
                               join d in ACourcesTypes on e.CourcesIdType equals d.CourcesIdType into table1
                               from d in table1.ToList() 
                               join i in Cemps on e.Cempid equals i.Cempid into table2
-                              from i in table2.ToList() where i.Cempid== HttpContext.Session.GetString("empid")
+                              from i in table2.ToList() /*where i.Cempid== HttpContext.Session.GetString("empid")*/
                               join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                               from j in table3.ToList()
                               join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
@@ -116,7 +116,7 @@ namespace Hr.Controllers
                               from x in table7.ToList()
                               where x.MasterRequestType == 0
                               join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
-                              from y in table8.ToList()
+                              from y in table8.ToList() where y.MasterRequestTo== HttpContext.Session.GetString("empid")
                               join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
                               from z in table9.ToList() where z.CourcesName.Contains(search)
 
@@ -175,7 +175,7 @@ namespace Hr.Controllers
                           from d in table1.ToList()
                           join i in Cemps on e.Cempid equals i.Cempid into table2
                           from i in table2.ToList()
-                          where i.Cempid == HttpContext.Session.GetString("empid")
+                          //where i.Cempid == HttpContext.Session.GetString("empid")
                           join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                           from j in table3.ToList()
                           join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
@@ -189,6 +189,7 @@ namespace Hr.Controllers
                           where x.MasterRequestType == 1
                           join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
                           from y in table8.ToList()
+                          where y.MasterRequestTo == HttpContext.Session.GetString("empid")
                           join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
                           from z in table9.ToList()
 
@@ -245,7 +246,7 @@ namespace Hr.Controllers
                           from d in table1.ToList()
                           join i in Cemps on e.Cempid equals i.Cempid into table2
                           from i in table2.ToList()
-                          where i.Cempid == HttpContext.Session.GetString("empid")
+                          //where i.Cempid == HttpContext.Session.GetString("empid")
                           join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                           from j in table3.ToList()
                           join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
@@ -259,6 +260,7 @@ namespace Hr.Controllers
                           where x.MasterRequestType == 2
                           join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
                           from y in table8.ToList()
+                          where y.MasterRequestTo == HttpContext.Session.GetString("empid")
                           join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
                           from z in table9.ToList()
 
