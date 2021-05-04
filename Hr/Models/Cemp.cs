@@ -27,7 +27,7 @@ namespace Hr.Models
         public DateTime? Cemphiringdate { get; set; }
         public DateTime? Cemplastupgrade { get; set; }
         public string PARENTNAME { get; set; }
-      
+        public int CROLEID { get; set; }
 
         public virtual ICollection<ACourcesMaster> ACourcesMasters { get; set; }
     }

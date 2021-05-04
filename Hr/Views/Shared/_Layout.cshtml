@@ -388,6 +388,7 @@
                                 <p><asp:Label ID="LoginLink" runat="server" CssClass="LoginLink" Height="30px"></asp:Label></p>
                                 <span class="arrow"></span>
                             </a>
+
                             <ul class="sub-menu" style="display: none;">
 
                                 <li class="">
@@ -467,6 +468,7 @@
                             </ul>
                         </li>
                     </ul>
+                   
                     <ul id="menu" class="menu accordion-menu">
                         <li class="droplink">
 
@@ -475,7 +477,8 @@
                                 <p><asp:Label ID="LoginLink" runat="server" CssClass="LoginLink" Height="30px"></asp:Label></p>
                                 <span class="arrow"></span><p style="font:status-bar; font-family:'Times New Roman', Times, serif; font-size:larger; color:white;" class="waves-effect waves-button">تسجيل الدورات</p>
                             </a>
-                            <ul class="sub-menu" style="display: none;">
+                            @Html.Partial("_MenuPartial")
+                            <!--<ul class="sub-menu" style="display: none;">
                                 <li class="">
 
                                     <a href="/ACourcesMasters/Search11" class="waves-effect waves-button">
@@ -486,22 +489,22 @@
                                     <a href="/ACourcesMasters/Create11" class="waves-effect waves-button">
                                         <p>تسجيل طلب دورة جديد </p> <span class=""></span>
                                     </a>
-                                </li>
+                                </li>-->
                                 @*<li class="">
 
-                                        <a href="/ACourcesMasters" class="waves-effect waves-button">
-                                            <p>  الدورات والكورسات </p> <span class=""></span>
-                                        </a>
-                                    </li>*@
+                <a href="/ACourcesMasters" class="waves-effect waves-button">
+                    <p>  الدورات والكورسات </p> <span class=""></span>
+                </a>
+            </li>*@
 
                                 @*<li class="">
 
-                                        <a href="/ACourcesNames/Create" class="waves-effect waves-button">
-                                            <p>تسجيل   الكورسات </p> <span class=""></span>
-                                        </a>
-                                    </li>*@
-                              
-                                <li class="">
+                <a href="/ACourcesNames/Create" class="waves-effect waves-button">
+                    <p>تسجيل   الكورسات </p> <span class=""></span>
+                </a>
+            </li>*@
+
+                                <!--<li class="">
 
                                     <a href="/ACourcesNames" class="waves-effect waves-button">
                                         <p class="">    الكورسات </p> <span class=""></span>
@@ -511,57 +514,57 @@
                                 <li class="">
 
 
-                                </li>
+                                </li>-->
 
 
 
                                 @*<li class="">
-                                        <a href="/ACourcesEstimates/Create" class="waves-effect waves-button">
-                                            <p>تسجيل التقدير والنتائج  </p> <span class=""></span>
-                                        </a>
-                                    </li>*@
-                                <li class="">
+                <a href="/ACourcesEstimates/Create" class="waves-effect waves-button">
+                    <p>تسجيل التقدير والنتائج  </p> <span class=""></span>
+                </a>
+            </li>*@
+                                <!--<li class="">
                                     <a href="/ACourcesEstimates" class="waves-effect waves-button">
                                         <p>  التقدير والنتائج</p> <span class=""></span>
                                     </a>
-                                </li>
-                               
+                                </li>-->
+
                                 @*<li class="">
-                                        <a href="/ACourcesTrainingMethods/Create" class="waves-effect waves-button">
-                                            <p>تسجيل طريقة التدريب   </p> <span class=""></span>
-                                        </a>
-                                    </li>*@
-                                <li class="">
+                <a href="/ACourcesTrainingMethods/Create" class="waves-effect waves-button">
+                    <p>تسجيل طريقة التدريب   </p> <span class=""></span>
+                </a>
+            </li>*@
+                                <!--<li class="">
                                     <a href="/ACourcesTrainingMethods" class="waves-effect waves-button">
                                         <p>  طريقة التدريب </p> <span class=""></span>
                                     </a>
-                                </li>
+                                </li>-->
                                 @*<li class="">
-                                        <a href="/ACourcesTypes/Create" class="waves-effect waves-button">
-                                            <p>تسجيل نوع التدريب </p> <span class=""></span>
-                                        </a>
-                                    </li>*@
-                                <li class="">
+                <a href="/ACourcesTypes/Create" class="waves-effect waves-button">
+                    <p>تسجيل نوع التدريب </p> <span class=""></span>
+                </a>
+            </li>*@
+                                <!--<li class="">
                                     <a href="/ACourcesTypes" class="waves-effect waves-button">
                                         <p>  نوع التدريب </p> <span class=""></span>
                                     </a>
-                                </li>
+                                </li>-->
                                 @*<li class="">
-                                        <a href="/ACourcesDeptins/Create" class="waves-effect waves-button">
-                                            <p>تسجيل جهة الدورات</p> <span class=""></span>
-                                        </a>
-                                    </li>*@
-                                <li class="">
+                <a href="/ACourcesDeptins/Create" class="waves-effect waves-button">
+                    <p>تسجيل جهة الدورات</p> <span class=""></span>
+                </a>
+            </li>*@
+                                <!--<li class="">
                                     <a href="/ACourcesDeptins" class="waves-effect waves-button">
                                         <p>  جهات الدورات  </p> <span class=""></span>
                                     </a>
-                                </li>
+                                </li>-->
                                 @*<li class="">
-                                        <a href="/ACourcesDeptouts/Create" class="waves-effect waves-button">
-                                            <p>تسجيل الادارات والاقسام </p> <span class=""></span>
-                                        </a>
-                                    </li>*@
-                                <li class="">
+                <a href="/ACourcesDeptouts/Create" class="waves-effect waves-button">
+                    <p>تسجيل الادارات والاقسام </p> <span class=""></span>
+                </a>
+            </li>*@
+                                <!--<li class="">
                                     <a href="/ACourcesDeptouts" class="waves-effect waves-button">
                                         <p>  الادارات والاقسام  </p> <span class=""></span>
                                     </a>
@@ -578,7 +581,8 @@
                                         <p>تسجيل خروج</p> <span class=""></span>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>-->
+
                         </li>
                     </ul>
 

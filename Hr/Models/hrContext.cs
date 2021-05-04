@@ -32,6 +32,7 @@ namespace Hr.Models
         public virtual DbSet<ACourcesTrainingMethod> ACourcesTrainingMethods { get; set; }
         public virtual DbSet<ACourcesType> ACourcesTypes { get; set; }
         public virtual DbSet<Cemp> Cemps { get; set; }
+        public virtual DbSet<MenuModels> menuemodelss { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -129,6 +130,21 @@ namespace Hr.Models
                 entity.Property(e => e.CourcesNameDeptin)
                     .HasMaxLength(250)
                     .HasColumnName("COURCES_NAME_DEPTIN");
+            });
+            modelBuilder.Entity<MenuModels>(entity =>
+            {
+                entity.HasKey(e => e.id);
+
+                entity.ToTable("tblSubMenu");
+                entity.Property(e => e.id).HasColumnName("id");
+                entity.Property(e => e.SubMenuNamear).HasColumnName("SubMenuear");
+                entity.Property(e => e.SubMenuNameen).HasColumnName("SubMenueen");
+                entity.Property(e => e.ControllerName).HasColumnName("Controller");
+                entity.Property(e => e.ActionName).HasColumnName("Action");
+                entity.Property(e => e.MainMenuId).HasColumnName("mainmenueid");
+                entity.Property(e => e.RoleId).HasColumnName("roleid");
+
+
             });
 
             modelBuilder.Entity<ACourcesDeptout>(entity =>
@@ -307,6 +323,9 @@ namespace Hr.Models
                 entity.Property(e => e.Cemphiringdate)
                     .HasColumnType("date")
                     .HasColumnName("CEMPHIRINGDATE");
+                entity.Property(e => e.CROLEID)
+                   
+                   .HasColumnName("CROLEID");
 
                 entity.Property(e => e.CEMPNO)
                     .IsRequired()

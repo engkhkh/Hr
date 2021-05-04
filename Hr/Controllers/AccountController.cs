@@ -3,6 +3,7 @@ using Hr.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,23 @@ using System.Threading.Tasks;
 
 namespace Hr.Controllers
 {
+    public static class SessionExtensions
+    {
+        public static T GetComplexData<T>(this ISession session, string key)
+        {
+            var data = session.GetString(key);
+            if (data == null)
+            {
+                return default(T);
+            }
+            return JsonConvert.DeserializeObject<T>(data);
+        }
+
+        public static void SetComplexData(this ISession session, string key, object value)
+        {
+            session.SetString(key, JsonConvert.SerializeObject(value));
+        }
+    }
     [Route("account")]
     public class AccountController : Controller
     {
@@ -48,6 +66,31 @@ namespace Hr.Controllers
             HttpContext.Session.SetString("empdepname", objuser.DEP_NAME);
             HttpContext.Session.SetString("empmanagerid", objuser.MANAGERID);
             HttpContext.Session.SetString("empmanagername", objuser.MANAGERNAME);
+            HttpContext.Session.SetInt32("emprole",objuser.CROLEID);
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+            //ViewData["menuemaster"] = _menus;
+            //HttpContext.Session.SetComplexData("MenuMaster",_menus); //Bind the _menus list to MenuMaster session 
+            // Save
+            //var key = "MenuMaster";
+            //var str = JsonConvert.SerializeObject(_menus);
+            //HttpContext.Session.SetString("MenuMaster", str);
+
+            //// Retrieve
+            //var str2 = HttpContext.Session.GetString("MenuMaster");
+            //var obj2 = JsonConvert.DeserializeObject<MenuModels>(str2);
+
             // admin
             if (username != null && password != null && username.Equals("123") && password.Equals("123"))
             {

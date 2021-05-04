@@ -37,6 +37,9 @@ namespace Hr
             });
 
             services.ConfigureRequestLocalization();
+            services.AddMemoryCache();
+            services.AddSession();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             /*
              *   services.AddSession(options => {  
         options.IdleTimeout = TimeSpan.FromMinutes(1);//You can set Time   
