@@ -63,6 +63,27 @@ namespace Hr.Controllers
             }
             return View(cemp);
         }
+        // update role in table 
+        public IActionResult Role()
+        {
+            return View();
+        }
+
+        // POST: Cemps/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Role([Bind("Cempid,CEMPUSERNO,CEMPPASSWRD,CEMPNO,CEMPNAME,CEMPJOBNAME,CEMPADPRTNO,DEP_NAME,CLSSNO,MANAGERID,MANAGERNAME,PARENTID,Cemphiringdate,Cemplastupgrade,PARENTNAME,CROLEID")] Cemp cemp)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(cemp);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(cemp);
+        }
 
         // GET: Cemps/Edit/5
         public async Task<IActionResult> Edit(string id)
