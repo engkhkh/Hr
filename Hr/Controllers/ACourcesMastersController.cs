@@ -547,7 +547,8 @@ namespace Hr.Controllers
                 {
                     COURCES_IDMASTER= _context.ACourcesMasters.Max(u => u.CourcesIdmaster) + 1,
                     MasterRequestFrom= HttpContext.Session.GetString("empid"),
-                    MasterRequestTo="123",
+                    MasterRequestTo= "4321031",
+                    MasterRequestTo2= "4411013",
                     MasterRequestTypeSatus=0,
                     MasterRequestNotes=""
 

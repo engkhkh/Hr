@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <StartupObject>Hr.Program</StartupObject>
+    <UserSecretsId>0fb95163-7b46-4f92-aad5-fd947c08d54e</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

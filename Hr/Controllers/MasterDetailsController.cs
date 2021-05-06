@@ -127,6 +127,7 @@ namespace Hr.Controllers
                 {
                     MasterRequestFrom = "",
                     MasterRequestTo = HttpContext.Session.GetString("empid"),
+                    MasterRequestTo2 = HttpContext.Session.GetString("empid"),
                     MasterRequestTypeSatus = 1,
                     COURCES_IDMASTER = masterDetails.COURCES_IDMASTER,
                     MasterRequestNotes = masterDetails.MasterRequestNotes
@@ -195,6 +196,7 @@ namespace Hr.Controllers
                 {
                     MasterRequestFrom = "",
                     MasterRequestTo = HttpContext.Session.GetString("empid"),
+                    MasterRequestTo2 = HttpContext.Session.GetString("empid"),
                     MasterRequestTypeSatus = 2,
                     COURCES_IDMASTER = masterDetails.COURCES_IDMASTER,
                     MasterRequestNotes = masterDetails.MasterRequestNotes

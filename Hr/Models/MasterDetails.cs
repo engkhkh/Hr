@@ -11,6 +11,8 @@ namespace Hr.Models
         public int COURCES_IDMASTER { get; set; }
         public string MasterRequestFrom { get; set; }
         public string MasterRequestTo { get; set; }
+        public string MasterRequestTo2 { get; set; }
+        
         public int MasterRequestTypeSatus { get; set; }
         public string MasterRequestNotes { get; set; }
     }

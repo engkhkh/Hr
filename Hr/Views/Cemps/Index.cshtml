@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Hr.Models.Cemp>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CEMPUSERNO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CEMPPASSWRD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CEMPNO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CEMPNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CEMPJOBNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CEMPADPRTNO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DEP_NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CLSSNO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MANAGERID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MANAGERNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PARENTID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cemphiringdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cemplastupgrade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PARENTNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CROLEID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPUSERNO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPPASSWRD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPNO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPJOBNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPADPRTNO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DEP_NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CLSSNO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MANAGERID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MANAGERNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PARENTID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cemphiringdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cemplastupgrade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PARENTNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CROLEID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Cempid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Cempid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Cempid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

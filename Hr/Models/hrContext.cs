@@ -185,6 +185,7 @@ namespace Hr.Models
 
                 entity.Property(e => e.MasterRequestFrom) .HasColumnName("MasterRequestFrom");
                 entity.Property(e => e.MasterRequestTo).HasColumnName("MasterRequestTo");
+                entity.Property(e => e.MasterRequestTo2).HasColumnName("MasterRequestTo2");
                 entity.Property(e => e.MasterRequestTypeSatus).HasColumnName("MasterRequestTypeSatus");
                 entity.Property(e => e.MasterRequestNotes).HasColumnName("MasterRequestNotes");
 
