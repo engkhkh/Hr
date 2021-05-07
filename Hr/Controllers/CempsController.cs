@@ -66,6 +66,9 @@ namespace Hr.Controllers
         // update role in table 
         public IActionResult Role()
         {
+            ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname");
+            ViewData["Cemprole"] = new SelectList(_context.roless, "Id", "Roles");
+
             return View();
         }
 
@@ -78,13 +81,72 @@ namespace Hr.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cemp);
+                var cempss = _context.Cemps.Where(b => b.Cempid == cemp.Cempid).FirstOrDefault();
+
+                //MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
+
+                cempss.Cempid = cemp.Cempid;
+                cempss.CROLEID = cemp.CROLEID;
+                
+                _context.Update(cempss);
+                //_context.Add(cemp);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(cemp);
         }
+        //role 1
+        public async Task<IActionResult> Role1(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var cemp = await _context.Cemps.FindAsync(id);
+            ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname",cemp.Cempid);
+            ViewData["Cemprole"] = new SelectList(_context.roless, "Id", "Roles");
+            if (cemp == null)
+            {
+                return NotFound();
+            }
+            return View(cemp);
+        }
+
+        // POST: Cemps/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Role1(string id, [Bind("Cempid,CEMPUSERNO,CEMPPASSWRD,CEMPNO,CEMPNAME,CEMPJOBNAME,CEMPADPRTNO,DEP_NAME,CLSSNO,MANAGERID,MANAGERNAME,PARENTID,Cemphiringdate,Cemplastupgrade,PARENTNAME,CROLEID")] Cemp cemp)
+        {
+            if (id != cemp.Cempid)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(cemp);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CempExists(cemp.Cempid))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(cemp);
+        }
         // GET: Cemps/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
@@ -98,6 +160,7 @@ namespace Hr.Controllers
             {
                 return NotFound();
             }
+            ViewData["rolec"] = new SelectList(_context.roless, "idr", "rname");
             return View(cemp);
         }
 

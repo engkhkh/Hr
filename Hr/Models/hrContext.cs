@@ -33,6 +33,7 @@ namespace Hr.Models
         public virtual DbSet<ACourcesType> ACourcesTypes { get; set; }
         public virtual DbSet<Cemp> Cemps { get; set; }
         public virtual DbSet<MenuModels> menuemodelss { get; set; }
+        public virtual DbSet<Roles> roless { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -158,6 +159,19 @@ namespace Hr.Models
                 entity.Property(e => e.CourcesNameDeptout)
                     .HasMaxLength(250)
                     .HasColumnName("COURCES_NAME_DEPTOUT");
+            });
+            //
+            modelBuilder.Entity<Roles>(entity =>
+            {
+                entity.HasKey(e => e.roleid);
+
+                entity.ToTable("tblRoles");
+
+                entity.Property(e => e.roleid).HasColumnName("Id");
+
+                entity.Property(e => e.rolename)
+                    .HasMaxLength(250)
+                    .HasColumnName("Roles");
             });
             modelBuilder.Entity<MasterRequestTypeId>(entity =>
             {
