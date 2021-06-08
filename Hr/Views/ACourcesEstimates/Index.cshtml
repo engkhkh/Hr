@@ -14,8 +14,11 @@
     <thead>
         <tr>
             <th style="width:40%;"></th>
-            <th style="width:60%;">
+            <th style="width:40%;">
                 التقدير
+            </th>
+            <th style="width:20%;">
+                الدرجة
             </th>
 
         </tr>
@@ -23,18 +26,21 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td style="width:40%;">
-                    <a asp-action="Create" class="btn btn-success">اضافة </a>
-                    <a asp-action="Edit" asp-route-id="@item.CourcesIdEstimate" class="btn btn-success" >تعديل </a> 
-                    <a asp-action="Details" asp-route-id="@item.CourcesIdEstimate" class="btn btn-success">تفاصيل</a> 
-                    @*<a asp-action="Delete" asp-route-id="@item.CourcesIdEstimate">حذف</a>*@
-                </td>
-                <td style="width:60%;">
-                    @Html.DisplayFor(modelItem => item.CourcesNameEstimate)
-                </td>
+        <tr>
+            <td style="width:40%;">
+                @*<a asp-action="Create" class="btn btn-success">اضافة </a>*@
+                <a asp-action="Edit" asp-route-id="@item.CourcesIdEstimate" class="btn btn-success">تعديل </a>
+                <a asp-action="Details" asp-route-id="@item.CourcesIdEstimate" class="btn btn-success">تفاصيل</a>
+                @*<a asp-action="Delete" asp-route-id="@item.CourcesIdEstimate">حذف</a>*@
+            </td>
+            <td style="width:40%;">
+                @Html.DisplayFor(modelItem => item.CourcesNameEstimate)
+            </td>
+            <td style="width:20%;">
+                @Html.DisplayFor(modelItem => item.Range)
+            </td>
 
-            </tr>
+        </tr>
         }
     </tbody>
 </table>

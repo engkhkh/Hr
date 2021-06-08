@@ -15,8 +15,15 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 @*<label asp-for="CourcesNameEstimate" class="control-label"></label>*@
+                التقدير 
                 <input asp-for="CourcesNameEstimate" class="form-control" />
                 <span asp-validation-for="CourcesNameEstimate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourcesNameEstimate" class="control-label"></label>*@
+                الدرجة
+                <input asp-for="Range" class="form-control" />
+                <span asp-validation-for="Range" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="حفظ" class="btn btn-success" />
@@ -25,10 +32,21 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index" class="btn btn-success">عودة الي الرئيسية</a>
-</div>
+@*<div>
+        <a asp-action="Index" class="btn btn-success">عودة الي الرئيسية</a>
+    </div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            try {
+                $("input[type='text']").each(function () {
+                    $(this).attr("autocomplete", "off");
+                });
+            }
+            catch (e) { }
+        });
+
+</script>

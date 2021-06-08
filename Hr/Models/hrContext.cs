@@ -10,13 +10,17 @@ namespace Hr.Models
     {
         internal readonly object ACourcesName;
 
-        public hrContext()
+        public hrContext() 
         {
+
+            
         }
 
         public hrContext(DbContextOptions<hrContext> options)
             : base(options)
         {
+            //this.Database.SetCommandTimeout(3 * 60);
+
         }
         public virtual DbSet<MasterRequestTypeId> MasterRequestTypeIds { get; set; }
         public virtual DbSet<MasterDetails> MasterDetailss { get; set; }
@@ -34,13 +38,33 @@ namespace Hr.Models
         public virtual DbSet<Cemp> Cemps { get; set; }
         public virtual DbSet<MenuModels> menuemodelss { get; set; }
         public virtual DbSet<Roles> roless { get; set; }
+        public virtual DbSet<MainMenue> MainMenues { get; set; }
+        public virtual DbSet<ViewModelRoleWithOther> ViewModelRoleWithOther { get; set; }
+
+        public virtual DbSet<ACoursesLocation> ACoursesLocation { get; set; }
+
+        public virtual DbSet<ACourcesOffered> ACourcesOffered { get; set; }
+
+        public virtual DbSet<ACourcesIdManagement> ACourcesIdManagement { get; set; }
+
+        public virtual DbSet<ACourcesOptions> ACourcesOptions { get; set; }
+
+
+        public virtual DbSet<OfferedDetails> OfferedDetails { get; set; }
+
+        public virtual DbSet<OfferedRequestTypeId> OfferedRequestTypeId { get; set; }
+
+
+        public virtual DbSet<DepartWithMnagement> DepartWithMnagement { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-4IRPVGQ\\SQLEXPRESS;Database=hr;Trusted_Connection=True;");
+                //optionsBuilder.UseSqlServer("Server=DESKTOP-4IRPVGQ\\SQLEXPRESS;Database=hr;Trusted_Connection=True;");
             }
         }
 
@@ -120,6 +144,95 @@ namespace Hr.Models
                     .HasColumnName("NOTE");
             });
 
+            modelBuilder.Entity<ACourcesOffered>(entity =>
+            {
+                entity.HasKey(e => e.CourcesOfferedId);
+
+                entity.ToTable("A_COURCES-OFFERED_FOR_CANDIDACY");
+                entity.Property(e => e.CourcesOfferedId).HasColumnName("A_COURCES-OFFEREDID");
+
+                entity.Property(e => e.CourcesId).HasColumnName("COURCES_ID");
+
+                entity.Property(e => e.CourcesIdDeptout).HasColumnName("COURCES_ID_DEPTOUT");
+
+                entity.Property(e => e.CourcesIdLocation).HasColumnName("COURCES_ID_LOCATIONID");
+                entity.Property(e => e.CourcesIdManagement).HasColumnName("COURCES_ID_MANAGEMENTIN");
+
+                entity.Property(e => e.CourcesIdperiodbydays).HasColumnName("COURCES_PERIODBYDAYS");
+
+                entity.Property(e => e.CourcesIdTime).HasColumnName("COURCES_TIME");
+
+                entity.Property(e => e.CourcesStartDate).HasColumnName("COURCES_START_DATE");
+
+                entity.Property(e => e.CourcesStartDateh).HasColumnName("COURSES_START_DATE_HIJ");
+
+                entity.Property(e => e.CourcesIdTraining).HasColumnName("COURCES_ID_TRAINING");
+
+                entity.Property(e => e.Cempid).HasColumnName("CEMPID");
+
+                entity.Property(e => e.Option).HasColumnName("option");
+
+
+            });
+
+            modelBuilder.Entity<DepartWithMnagement>(entity =>
+            {
+                entity.HasKey(e => e.id);
+
+                entity.ToTable("DepartWithMnagement");
+                entity.Property(e => e.CEMPADPRTNO).HasColumnName("CEMPADPRTNO");
+
+                entity.Property(e => e.DEP_NAME).HasColumnName("DEP_NAME");
+
+                entity.Property(e => e.MANAGERID).HasColumnName("MANAGERID");
+
+                entity.Property(e => e.MANAGERNAME).HasColumnName("MANAGERNAME");
+                entity.Property(e => e.PARENTID).HasColumnName("PARENTID");
+
+                entity.Property(e => e.PARENTNAME).HasColumnName("PARENTNAME");
+
+                entity.Property(e => e.PARENTMANAGERID).HasColumnName("PARENTMANAGERID");
+
+                entity.Property(e => e.PARENTMANAGERNAME).HasColumnName("PARENTMANAGERNAME");
+
+               
+
+
+            });
+
+            modelBuilder.Entity<ACourcesIdManagement>(entity =>
+            {
+                entity.HasKey(e => e.id);
+
+                entity.ToTable("A_COURCES-MANAGEMENTIN");
+
+                entity.Property(e => e.id).HasColumnName("COURCES_ID_MANAGEMENTIN");
+
+                entity.Property(e => e.name)
+                    .HasMaxLength(250)
+                    .HasColumnName("COURCES_NAME_MANAGEMENTIN");
+                entity.Property(e => e.ManagerId)
+                    .HasMaxLength(250)
+                    .HasColumnName("ManagerId");
+                entity.Property(e => e.ManagerName)
+                 .HasMaxLength(250)
+                 .HasColumnName("ManagerName");
+            });
+
+            modelBuilder.Entity<ACourcesOptions>(entity =>
+            {
+                entity.HasKey(e => e.id);
+
+                entity.ToTable("A_COURCES_OPTIONS");
+
+                entity.Property(e => e.id).HasColumnName("id");
+
+                entity.Property(e => e.name)
+                    .HasMaxLength(50)
+                    .HasColumnName("optionch");
+            });
+
+
             modelBuilder.Entity<ACourcesDeptin>(entity =>
             {
                 entity.HasKey(e => e.CourcesIdDeptin);
@@ -144,8 +257,23 @@ namespace Hr.Models
                 entity.Property(e => e.ActionName).HasColumnName("Action");
                 entity.Property(e => e.MainMenuId).HasColumnName("mainmenueid");
                 entity.Property(e => e.RoleId).HasColumnName("roleid");
+                entity.Property(e => e.mmodule).HasColumnName("mmodule");
 
 
+            });
+
+
+            modelBuilder.Entity<ACoursesLocation>(entity =>
+            {
+                entity.HasKey(e => e.id);
+
+                entity.ToTable("A_COURCES_LOCATIONS");
+
+                entity.Property(e => e.id).HasColumnName("id");
+
+                entity.Property(e => e.name)
+                    .HasMaxLength(250)
+                    .HasColumnName("name");
             });
 
             modelBuilder.Entity<ACourcesDeptout>(entity =>
@@ -173,6 +301,58 @@ namespace Hr.Models
                     .HasMaxLength(250)
                     .HasColumnName("Roles");
             });
+            //
+            modelBuilder.Entity<MainMenue>(entity =>
+            {
+                entity.HasKey(e => e.id);
+
+                entity.ToTable("tblMainMenu");
+
+                entity.Property(e => e.id).HasColumnName("id");
+
+                entity.Property(e => e.mainmenue)
+                    .HasMaxLength(250)
+                    .HasColumnName("mainmenue");
+
+                entity.Property(e => e.mainarabic)
+                   .HasMaxLength(250)
+                   .HasColumnName("mainarabic");
+            });
+            modelBuilder.Entity<OfferedRequestTypeId>(entity =>
+            {
+                entity.HasKey(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial);
+                //entity.HasKey(e => e.COURCES_IDMASTER);
+
+                entity.ToTable("OfferedRequestTypeId");
+                entity.Property(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial).HasColumnName("OfferedRequestTypeIdsOfferedRequestTypeIdserial");
+
+                entity.Property(e => e.COURCES_IDOffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.OfferedRequestType)
+
+                    .HasColumnName("OfferedRequestType");
+            });
+
+            modelBuilder.Entity<OfferedDetails>(entity =>
+            {
+                entity.HasKey(e => e.OfferedDetailsSerial);
+                //entity.HasKey(e => e.COURCES_IDMASTER);
+
+                entity.ToTable("OfferedDetails");
+
+                entity.Property(e => e.COURCES_IDOffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.OfferedRequestFrom).HasColumnName("OfferedRequestFrom");
+                entity.Property(e => e.OfferedRequestTo).HasColumnName("OfferedRequestTo");
+                entity.Property(e => e.OfferedRequestTo2).HasColumnName("OfferedRequestTo2");
+                entity.Property(e => e.OfferedRequestTo3).HasColumnName("OfferedRequestTo3");
+                entity.Property(e => e.OfferedRequestTo4).HasColumnName("OfferedRequestTo4");
+                entity.Property(e => e.OfferedRequestTo5).HasColumnName("OfferedRequestTo5");
+                entity.Property(e => e.OfferedRequestTypeSatus).HasColumnName("OfferedRequestTypeSatus");
+                entity.Property(e => e.OfferedRequestNotes).HasColumnName("OfferedRequestNotes");
+                entity.Property(e => e.Offeredoption).HasColumnName("Offeredoption");
+
+            });
             modelBuilder.Entity<MasterRequestTypeId>(entity =>
             {
                 entity.HasKey(e => e.MasterRequestTypeIdsMasterRequestTypeIdserial);
@@ -184,7 +364,7 @@ namespace Hr.Models
                 entity.Property(e => e.COURCES_IDMASTER).HasColumnName("COURCES_IDMASTER");
 
                 entity.Property(e => e.MasterRequestType)
-                    
+
                     .HasColumnName("MasterRequestType");
             });
 
@@ -219,6 +399,10 @@ namespace Hr.Models
                 entity.Property(e => e.CourcesNameEstimate)
                     .HasMaxLength(250)
                     .HasColumnName("COURCES_NAME_ESTIMATE");
+
+                entity.Property(e => e.Range)
+                  .HasMaxLength(250)
+                  .HasColumnName("Range");
             });
 
             modelBuilder.Entity<ACourcesMaster>(entity =>
@@ -238,6 +422,20 @@ namespace Hr.Models
                     .HasColumnType("date")
                     .HasColumnName("COURCES_END_DATE")
                     .HasDefaultValueSql("(getdate())");
+
+
+                entity.Property(e => e.CourcesStartDateh)
+                    .HasColumnType("date")
+                    .HasColumnName("COURSES_START_DATE_HIJ");
+
+
+
+                entity.Property(e => e.CourceendDateh)
+                    .HasColumnType("date")
+                    .HasColumnName("COURSES_END_DATE_HIJ");
+
+
+
 
                 entity.Property(e => e.CourcesId).HasColumnName("COURCES_ID");
 
@@ -338,9 +536,16 @@ namespace Hr.Models
                 entity.Property(e => e.Cemphiringdate)
                     .HasColumnType("date")
                     .HasColumnName("CEMPHIRINGDATE");
+                entity.Property(e => e.CEMPHIRINGDATEHIJRA)
+                   .HasColumnType("date")
+                   .HasColumnName("CEMPHIRINGDATEHIJRA");
+
                 entity.Property(e => e.CROLEID)
                    
                    .HasColumnName("CROLEID");
+                entity.Property(e => e.login)
+
+                 .HasColumnName("login");
 
                 entity.Property(e => e.CEMPNO)
                     .IsRequired()
@@ -350,6 +555,11 @@ namespace Hr.Models
                 entity.Property(e => e.Cemplastupgrade)
                     .HasColumnType("date")
                     .HasColumnName("CEMPLASTUPGRADE");
+
+                entity.Property(e => e.CEMPLASTUPGRADEHIJRA)
+                  .HasColumnType("date")
+                  .HasColumnName("CEMPLASTUPGRADEHIJRA");
+
 
                 entity.Property(e => e.CEMPNAME)
                     .IsRequired()

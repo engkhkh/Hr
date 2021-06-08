@@ -15,9 +15,16 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CourcesIdEstimate" />
             <div class="form-group">
+                التقدير 
                 @*<label asp-for="CourcesNameEstimate" class="control-label"></label>*@
                 <input asp-for="CourcesNameEstimate" class="form-control" />
                 <span asp-validation-for="CourcesNameEstimate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourcesNameEstimate" class="control-label"></label>*@
+                الدرجة
+                <input asp-for="Range" class="form-control" />
+                <span asp-validation-for="Range" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="حفظ" class="btn btn-success" />

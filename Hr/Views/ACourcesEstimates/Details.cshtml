@@ -11,11 +11,19 @@
     @*<h4>ACourcesEstimate</h4>*@
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @*@Html.DisplayNameFor(model => model.CourcesNameEstimate)*@
+            التقدير
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CourcesNameEstimate)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.CourcesNameEstimate)*@
+            الدرجة
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Range)
         </dd>
     </dl>
 </div>

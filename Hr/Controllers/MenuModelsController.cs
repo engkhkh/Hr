@@ -36,6 +36,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -64,6 +65,27 @@ namespace Hr.Controllers
         // GET: MenuModels/Create
         public IActionResult Create()
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+            ViewData["roleid"] = new SelectList(_context.roless, "roleid", "rolename");
+            ViewData["mainmenueid"] = new SelectList(_context.MainMenues, "id", "mainarabic");
+            ViewData["controller"] = new SelectList(_context.MainMenues, "mainmenue", "mainmenue");
             return View();
         }
 
@@ -72,10 +94,11 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,MainMenuId,SubMenuNamear,SubMenuNameen,ControllerName,ActionName,RoleId")] MenuModels menuModels)
+        public async Task<IActionResult> Create([Bind("id,MainMenuId,SubMenuNamear,SubMenuNameen,ControllerName,ActionName,RoleId,mmodule")] MenuModels menuModels)
         {
             if (ModelState.IsValid)
             {
+                //menuModels.ControllerName=
                 _context.Add(menuModels);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,6 +109,24 @@ namespace Hr.Controllers
         // GET: MenuModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
             if (id == null)
             {
                 return NotFound();
@@ -137,6 +178,24 @@ namespace Hr.Controllers
         // GET: MenuModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
             if (id == null)
             {
                 return NotFound();

@@ -77,6 +77,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -96,6 +97,23 @@ namespace Hr.Controllers
             if (username != null && password != null && username.Equals(objuser.Cempid) && password.Equals(objuser.CEMPPASSWRD))
             {
                 HttpContext.Session.SetString("username", username);
+                try
+                {
+                    objuser.Cempid = HttpContext.Session.GetString("empid");
+                    objuser.login = '1';
+
+
+                    _context.Update(objuser);
+                    _context.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+
+                }
+                finally
+                {
+
+                }
                 ViewData["MenuItemActive"] = "disabled";
                 ViewBag.ContentCssClass = "disabled";
                
@@ -104,7 +122,7 @@ namespace Hr.Controllers
 
 
                 //return View("ACourcesEstimates/Index");
-                return RedirectToAction("Create","ACourcesMasters", new { area = "" });
+                return RedirectToAction("MyInfo", "Cemps", new { area = "" });
                 //    ViewBag.Name = HttpContext.Session.GetString(SessionName);
             }
             // will approve only
@@ -162,6 +180,24 @@ namespace Hr.Controllers
         [HttpGet]
         public IActionResult Logout()
         {
+            try
+            {
+                var objuser1 = _context.Cemps.Where(b => b.Cempid == HttpContext.Session.GetString("empid")).FirstOrDefault();
+                objuser1.Cempid = HttpContext.Session.GetString("empid");
+                objuser1.login = '0';
+
+
+                _context.Update(objuser1);
+                _context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally
+            {
+
+            }
             HttpContext.Session.Remove("username");
             return RedirectToAction("Show");
             //return RedirectToAction("Index", "Account", new { area = "" });

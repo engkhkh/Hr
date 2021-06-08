@@ -1,0 +1,70 @@
+﻿@model Hr.Models.DepartWithMnagement
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>DepartWithMnagement</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="CEMPADPRTNO" class="control-label"></label>
+                <input asp-for="CEMPADPRTNO" class="form-control" />
+                <span asp-validation-for="CEMPADPRTNO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DEP_NAME" class="control-label"></label>
+                <input asp-for="DEP_NAME" class="form-control" />
+                <span asp-validation-for="DEP_NAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MANAGERID" class="control-label"></label>
+                <input asp-for="MANAGERID" class="form-control" />
+                <span asp-validation-for="MANAGERID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MANAGERNAME" class="control-label"></label>
+                <input asp-for="MANAGERNAME" class="form-control" />
+                <span asp-validation-for="MANAGERNAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PARENTID" class="control-label"></label>
+                <input asp-for="PARENTID" class="form-control" />
+                <span asp-validation-for="PARENTID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PARENTNAME" class="control-label"></label>
+                <input asp-for="PARENTNAME" class="form-control" />
+                <span asp-validation-for="PARENTNAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PARENTMANAGERID" class="control-label"></label>
+                <input asp-for="PARENTMANAGERID" class="form-control" />
+                <span asp-validation-for="PARENTMANAGERID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PARENTMANAGERNAME" class="control-label"></label>
+                <input asp-for="PARENTMANAGERNAME" class="form-control" />
+                <span asp-validation-for="PARENTMANAGERNAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

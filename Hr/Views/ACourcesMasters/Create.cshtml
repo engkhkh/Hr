@@ -1,7 +1,7 @@
 ﻿@model Hr.Models.ACourcesMaster
 
 @{
-    ViewData["Title"] = "انشاء طلب دورة جديد";
+    ViewData["Title"] = "طلب أرشفة دورة جديدة";
     //Layout = "~/Views/Shared/_Layout - Copy - Copy.cshtml";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -28,43 +28,52 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label class="control-label"> تحديد اسم الكورس </label>
-                    <select asp-for="CourcesId" id="chosen-select" class="chosen-select form-control" asp-items="ViewBag.CourcesId">
-                        <option value="">تحديد</option>
+                    <select asp-for="CourcesId" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId">
+                        <option value="55">تحديد</option>
+                        @*<option value="00">كورس غير مدرج -اخر </option>*@
                     </select>
+                    <span asp-validation-for="CourcesId" class="text-danger"></span>
+                </div>
+                <div class="form-group response" id="respond-1" style="display:none;">
+                    <label class="control-label">اسم الكورس الجديد   </label>
+                    <input asp-for="CourcesPassRate" class="form-control" />
+                    <span asp-validation-for="CourcesPassRate" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">تحديد نوع الكورس </label>
-                    <select asp-for="CourcesIdType" id="chosen-select1" class="chosen-select form-control" asp-items="ViewBag.ACourcesType">
+                    <select asp-for="CourcesIdType" id="chosen-select1" class="chosen-select form-control chosen11 " data-placeholder="اختيار نوع الكورس " asp-items="ViewBag.ACourcesType">
                         <option value="">تحديد</option>
                     </select>
                     <span asp-validation-for="CourcesIdType" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label class="control-label">الادارة  </label>
-                    <select asp-for="CourcesIdDeptin" id="chosen-select2" class="form-control chosen-select" asp-items="ViewBag.ACourcesDeptin">
+                    <select asp-for="CourcesIdDeptin" id="chosen-select2" class="form-control chosen-select" data-placeholder="اختيار الادارة " asp-items="ViewBag.ACourcesDeptin">
                         <option value="">تحديد</option>
                     </select>
                     <span asp-validation-for="CourcesIdDeptin" class="text-danger"></span>
-                </div>
+                </div>*@
                 <div class="form-group">
                     <label class="control-label">حدد نوع التدريب </label>
-                    <select asp-for="CourcesIdTraining" id="chosen-select3" class="form-control chosen-select" asp-items="ViewBag.ACourcesTrainingMethod">
+                    <select asp-for="CourcesIdTraining" id="chosen-select3" class="form-control chosen-select" data-placeholder="اختيار نوع التدريب  " asp-items="ViewBag.ACourcesTrainingMethod">
                         <option value="">تحديد</option>
                     </select>
                     <span asp-validation-for="CourcesIdTraining" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">جهة مقدم الدورة </label>
-                    <select asp-for="CourcesIdDeptout" id="chosen-select4" class="chosen-select form-control" asp-items="ViewBag.ACourcesDeptout">
+                    <label class="control-label">جهة الدورة </label>
+                    <select asp-for="CourcesIdDeptout" id="chosen-select4" class="chosen-select form-control" data-placeholder="اختيار مقدم الدورة  " asp-items="ViewBag.ACourcesDeptout">
                         <option value="">تحديد</option>
                     </select>
                     <span asp-validation-for="CourcesIdDeptout" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="a" @*id="respond-2" style="display:none;"*@>
                     <label class="control-label">تقدير الدورة </label>
-                    <select asp-for="CourcesIdEstimate" id="chosen-select5" class="form-control chosen-select" asp-items="ViewBag.ACourcesEstimate">
-                        <option value="">تحديد</option>
+                    <select asp-for="CourcesIdEstimate" id="chosen-select5" class="form-control chosen-select chosen5" data-placeholder="ممتاز +90 جيد جدا+80 جيد +70 مقبول +60" asp-items="ViewBag.ACourcesEstimate">
+                        <option value="7">تحديد</option>
+                        @*<option value="66">ممتاز +90 جيد جدا+80 جيد +70 مقبول +60</option>*@
                     </select>
+                    @*multiple style="width:350px;" tabindex="9" to use place holder *@
                     <span asp-validation-for="CourcesIdEstimate" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -88,21 +97,17 @@
                     <span asp-validation-for="CourcesEndDate" class="text-danger"></span>
                 </div>
                 @*<div class="form-group">
-                        <label class="control-label">عدد ايام التدريب  </label>
-                        <input asp-for="CourcesNumberofdays" readonly class="form-control" />
-                        <span asp-validation-for="CourcesNumberofdays" class="text-danger"></span>
-                    </div>*@
-                <div class="form-group">
-                    <label class="control-label">نسبة الانجاز %  </label>
-                    <input asp-for="CourcesPassRate" class="form-control" />
-                    <span asp-validation-for="CourcesPassRate" class="text-danger"></span>
-                </div>
+            <label class="control-label">عدد ايام التدريب  </label>
+            <input asp-for="CourcesNumberofdays" readonly class="form-control" />
+            <span asp-validation-for="CourcesNumberofdays" class="text-danger"></span>
+        </div>*@
+
                 @*<div class="form-group">
-                        <label class="control-label">اسم الموظف </label>
-                        <select asp-for="Cempid" class="form-control" asp-items="ViewBag.Cempid">
-                            <option value="">Select--</option>
-                        </select>
-                    </div>*@
+            <label class="control-label">اسم الموظف </label>
+            <select asp-for="Cempid" class="form-control" asp-items="ViewBag.Cempid">
+                <option value="">Select--</option>
+            </select>
+        </div>*@
                 <div class="form-group">
                     <input type="submit" value="حفظ" class="btn btn-success" />
                 </div>
@@ -127,7 +132,9 @@
     <script src="~/js/prism.js"></script>
 
     <script type="text/javascript">
-
+        $('#chosen-select16').append(new Option('كورس غير مدرج -اخر', 5));
+       /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
+        $("#a").css('visibility', 'hidden');
         var config = {
             '.chosen-select': {},
             '.chosen-select-deselect': { allow_single_deselect: true },
@@ -139,7 +146,53 @@
         for (var selector in config) {
             $(selector).chosen(config[selector]);
         }
+        $("select.chosen11").change(function () {
 
+            var selectedCountry11 = $(this).children("option:selected").val();
+            /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+            if (selectedCountry11 == 2) {
+                alert("  يرجي اختيار التقدير  - ");
+                $("#a").css('visibility', 'visible');
+                var hiddenBox = $("#respond-2");
+                hiddenBox.show();
+
+
+
+            }
+            else {
+                $("#a").css('visibility', 'hidden');
+                var hiddenBox = $("#respond-2");
+                hiddenBox.hide();
+
+            }
+        });
+    
+        $("select.chosen1").change(function () {
+            var selectedCountry = $(this).children("option:selected").val();
+            /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+            if (selectedCountry == 5) {
+                alert("  يرجي ادخال اسم الكورس الجديد باالاسفل - " );
+
+                var hiddenBox = $("#respond-1");
+                hiddenBox.show();
+
+
+
+            }
+            else {
+                var hiddenBox = $("#respond-1");
+                hiddenBox.hide();
+
+            }
+        });
+        $("select").change(function () {
+            var selected5 = $(this).children("option:selected").val();
+            /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+            if (selected5 == 0) {
+                alert("لايتم اختيار هذا العنصر  - ");
+               
+            }
+        });
     </script>
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {

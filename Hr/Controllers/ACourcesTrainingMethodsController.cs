@@ -36,6 +36,29 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+            return View(await _context.ACourcesTrainingMethods.ToListAsync());
+        }
+        public async Task<IActionResult> IndexWithout()
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -59,6 +82,41 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var aCourcesTrainingMethod = await _context.ACourcesTrainingMethods
+                .FirstOrDefaultAsync(m => m.CourcesIdTraining == id);
+            if (aCourcesTrainingMethod == null)
+            {
+                return NotFound();
+            }
+
+            return View(aCourcesTrainingMethod);
+        }
+        public async Task<IActionResult> DetailsWithout(int? id)
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -94,6 +152,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -112,7 +171,7 @@ namespace Hr.Controllers
             {
                 _context.Add(aCourcesTrainingMethod);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexWithout));
             }
             return View(aCourcesTrainingMethod);
         }
@@ -133,6 +192,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -201,6 +261,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;

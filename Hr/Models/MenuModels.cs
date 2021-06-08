@@ -18,6 +18,7 @@ namespace Hr.Models
         public string ActionName { get; set; }
         public int RoleId { get; set; }
         //public string RoleName { get; set; }
+        public string mmodule { get; set; }
 
 
     }

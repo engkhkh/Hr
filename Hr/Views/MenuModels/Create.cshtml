@@ -1,59 +1,138 @@
 ﻿@model Hr.Models.MenuModels
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "انشاء صلاحية علي الشاشات ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1></h1>
 
-<h4>MenuModels</h4>
+<div>
+    <a asp-action="Create" asp-controller="Roles" class="btn btn-success">انشاء اسم الصلاحية </a>
+    </div>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
-                <label asp-for="MainMenuId" class="control-label"></label>
-                <input asp-for="MainMenuId" class="form-control" />
-                <span asp-validation-for="MainMenuId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SubMenuNamear" class="control-label"></label>
+                @*<label asp-for="SubMenuNamear" class="control-label"></label>*@
+                اسم الشاشة بالعربي
                 <input asp-for="SubMenuNamear" class="form-control" />
                 <span asp-validation-for="SubMenuNamear" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SubMenuNameen" class="control-label"></label>
+                @*<label asp-for="SubMenuNameen" class="control-label"></label>*@
+                الشاشة بالانجليزي
                 <input asp-for="SubMenuNameen" class="form-control" />
                 <span asp-validation-for="SubMenuNameen" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ControllerName" class="control-label"></label>
-                <input asp-for="ControllerName" class="form-control" />
+                @*<label asp-for="MainMenuId" class="control-label"></label>*@
+                القائمة
+                @*<input asp-for="MainMenuId" class="form-control" />*@
+                <select asp-for="MainMenuId" id="chosen-select" class="chosen-select form-control" asp-items="ViewBag.mainmenueid">
+                    <option value="">تحديد</option>
+                </select>
+                <span asp-validation-for="MainMenuId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="ControllerName" class="control-label"></label>*@
+                ال Controller
+                @*<input asp-for="ControllerName" class="form-control" />*@
+                <select asp-for="ControllerName" id="chosen-select" class="chosen-select form-control" asp-items="ViewBag.controller">
+                    <option value="">تحديد</option>
+                </select>
                 <span asp-validation-for="ControllerName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ActionName" class="control-label"></label>
-                <input asp-for="ActionName" class="form-control" />
+                @*<label asp-for="ActionName" class="control-label"></label>*@
+                الاكشن علي الشاشة
+                @*<input asp-for="ActionName" class="form-control" />*@
+                <select asp-for="ActionName" id="chosen-select" class="chosen-select form-control">
+                    <option value="">تحديد</option>
+                    <option value="Create">اضافة</option>
+                    @*<option value="Edit">تعديل</option>*@
+                    @*<option value="Delete">Delete</option>*@
+                    <option value="Index">عرض وتعديل</option>
+                    <option value="IndexWithout">عرض </option>
+                    <option value="Search">بحث</option>
+                </select>
                 <span asp-validation-for="ActionName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RoleId" class="control-label"></label>
-                <input asp-for="RoleId" class="form-control" />
+                @*<label asp-for="RoleId" class="control-label"></label>*@
+                للصلاحية
+                @*<input asp-for="RoleId" class="form-control" />*@
+                <select asp-for="RoleId" id="chosen-select" class="chosen-select form-control" asp-items="ViewBag.roleid">
+                    <option value="">تحديد</option>
+                </select>
                 <span asp-validation-for="RoleId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                @*<label asp-for="RoleId" class="control-label"></label>*@
+                للسيكشن
+                @*<input asp-for="RoleId" class="form-control" />*@
+                <select asp-for="mmodule" id="chosen-select" class="chosen-select form-control">
+                    <option value="">تحديد</option>
+                    <option value="Administraton">سيكشن ادارة النظام </option>
+                    <option value="hr-courses">سيكشن التطوير والتدريب  </option>
+                </select>
+                <span asp-validation-for="mmodule" class="text-danger"></span>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+<link href="~/js/chosen.css" rel="stylesheet" />
+<link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+<link href="~/js/prism.css" rel="stylesheet" />
+<script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+<script src="~/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+<script src="~/js/prism.js"></script>
+
+<script type="text/javascript">
+
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" }//,
+            //'.chosen-search': {disable_search: false}
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+
+</script>
+<script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            try {
+                $("input[type='text']").each(function () {
+                    $(this).attr("autocomplete", "off");
+                });
+            }
+            catch (e) { }
+        });
+
+</script>

@@ -339,6 +339,16 @@
                                 </ul>
                             </li>
                             <li>
+
+                                <i class=""></i>
+                                @*<asp:LinkButton ID="LoginOut" runat="server">تسجيل خروج</asp:LinkButton>*@
+                                <a class="log-out waves-effect waves-button waves-classic icontoplink" href="~/Cemps/MyInfo">معلوماتي </a>
+
+
+
+                            </li>
+                            <li>
+
                                 <i class=""></i>
                                 @*<asp:LinkButton ID="LoginOut" runat="server">تسجيل خروج</asp:LinkButton>*@
                                 <a class="log-out waves-effect waves-button waves-classic icontoplink" href="~/Account/Logout">تسجيل خروج</a>
@@ -346,8 +356,9 @@
 
 
                             </li>
-                        </ul>
 
+                        </ul>
+                    
 
 
                         <ul class="nav navbar-nav navbar-right">
@@ -398,21 +409,21 @@
                                 </li>
                                 <li class="">
 
-                                    <a href="HR_EVALUATION.aspx" class="waves-effect waves-button">
+                                    <a href="https://qmapps.qassim.gov.sa/HR/HR_EVALUATION.aspx" class="waves-effect waves-button">
                                         <p>ميثاق الاداء</p> <span class=""></span>
                                     </a>
                                 </li>
 
                                 <li class="">
 
-                                    <a href="HR_EVALUATION.aspx" class="waves-effect waves-button">
+                                    <a href="https://qmapps.qassim.gov.sa/HR/HR_EVALUATION.aspx" class="waves-effect waves-button">
                                         <p>ميثاق الاداء</p> <span class=""></span>
                                     </a>
                                 </li>
 
                                 <li class="">
 
-                                    <a href="HR_EVALUATION_Deatils.aspx" class="waves-effect waves-button">
+                                    <a href="https://qmapps.qassim.gov.sa/HR/HR_EVALUATION_Deatils.aspx" class="waves-effect waves-button">
                                         <p>اعتماد ميثاق الاداء</p> <span class=""></span>
                                     </a>
                                 </li>
@@ -421,45 +432,6 @@
 
 
                                 </li>
-
-
-
-                                <li class="">
-                                    <a href="#/Request/ExcuseIndex" class="waves-effect waves-button">
-                                        <p>الاستئذانات</p> <span class=""></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="#/Request/JustificationIndex" class="waves-effect waves-button">
-                                        <p>التبريرات</p> <span class=""></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="#/Request/DutyIndex" class="waves-effect waves-button">
-                                        <p>التكليف</p> <span class=""></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="#/Request/VacationIndex" class="waves-effect waves-button">
-                                        <p>الإجازات</p> <span class=""></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="#/Request/JobVacationIndex" class="waves-effect waves-button">
-                                        <p>المهام</p> <span class=""></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="#/DailyEmployeeShift/EmployeeDailyShifts" class="waves-effect waves-button">
-                                        <p>الورديات المجدولة </p> <span class=""></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="#/Enquiry/EmployeeEnquiryIndex" class="waves-effect waves-button">
-                                        <p>المسائلات</p> <span class=""></span>
-                                    </a>
-                                </li>
-
                                 <li class="">
                                     <a href="logins.aspx" class="waves-effect waves-button">
                                         <p>تسجيل خروج</p> <span class=""></span>
@@ -468,123 +440,212 @@
                             </ul>
                         </li>
                     </ul>
-                   
-                    <ul id="menu" class="menu accordion-menu">
-                        <li class="droplink">
-
-                            <a href="Default.aspx" class="waves-effect waves-button">
-                                <span class="  menu-icon   menu-icon glyphicon glyphicon-user"></span>
-                                <p><asp:Label ID="LoginLink" runat="server" CssClass="LoginLink" Height="30px"></asp:Label></p>
-                                <span class="arrow"></span><p style="font:status-bar; font-family:'Times New Roman', Times, serif; font-size:larger; color:white;" class="waves-effect waves-button">تسجيل الدورات</p>
-                            </a>
-                            @Html.Partial("_MenuPartial")
-                            <!--<ul class="sub-menu" style="display: none;">
-                                <li class="">
-
-                                    <a href="/ACourcesMasters/Search11" class="waves-effect waves-button">
-                                        <p> الطلبات </p> <span class=""></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="/ACourcesMasters/Create11" class="waves-effect waves-button">
-                                        <p>تسجيل طلب دورة جديد </p> <span class=""></span>
-                                    </a>
-                                </li>-->
-                                @*<li class="">
-
-                <a href="/ACourcesMasters" class="waves-effect waves-button">
-                    <p>  الدورات والكورسات </p> <span class=""></span>
-                </a>
-            </li>*@
-
-                                @*<li class="">
-
-                <a href="/ACourcesNames/Create" class="waves-effect waves-button">
-                    <p>تسجيل   الكورسات </p> <span class=""></span>
-                </a>
-            </li>*@
-
-                                <!--<li class="">
-
-                                    <a href="/ACourcesNames" class="waves-effect waves-button">
-                                        <p class="">    الكورسات </p> <span class=""></span>
-                                    </a>
-                                </li>
-
-                                <li class="">
 
 
-                                </li>-->
+                    @Html.Partial("_MenuCoursesPartial")
+                    @Html.Partial("_MenuAdministratonPartial")
+                    <!--<ul class="sub-menu" style="display: none;">
+    <li class="">
+
+        <a href="/ACourcesMasters/Search11" class="waves-effect waves-button">
+            <p> الطلبات </p> <span class=""></span>
+        </a>
+    </li>
+    <li class="">
+        <a href="/ACourcesMasters/Create11" class="waves-effect waves-button">
+            <p>تسجيل طلب دورة جديد </p> <span class=""></span>
+        </a>
+    </li>-->
+                    @*<li class="">
+
+            <a href="/ACourcesMasters" class="waves-effect waves-button">
+                <p>  الدورات والكورسات </p> <span class=""></span>
+            </a>
+        </li>*@
+
+                    @*<li class="">
+
+            <a href="/ACourcesNames/Create" class="waves-effect waves-button">
+                <p>تسجيل   الكورسات </p> <span class=""></span>
+            </a>
+        </li>*@
+
+                    <!--<li class="">
+
+        <a href="/ACourcesNames" class="waves-effect waves-button">
+            <p class="">    الكورسات </p> <span class=""></span>
+        </a>
+    </li>
+
+    <li class="">
 
 
+    </li>-->
+                    @*<li class="">
+            <a href="/ACourcesEstimates/Create" class="waves-effect waves-button">
+                <p>تسجيل التقدير والنتائج  </p> <span class=""></span>
+            </a>
+        </li>*@
+                    <!--<li class="">
+        <a href="/ACourcesEstimates" class="waves-effect waves-button">
+            <p>  التقدير والنتائج</p> <span class=""></span>
+        </a>
+    </li>-->
+                    @*<li class="">
+            <a href="/ACourcesTrainingMethods/Create" class="waves-effect waves-button">
+                <p>تسجيل طريقة التدريب   </p> <span class=""></span>
+            </a>
+        </li>*@
+                    <!--<li class="">
+        <a href="/ACourcesTrainingMethods" class="waves-effect waves-button">
+            <p>  طريقة التدريب </p> <span class=""></span>
+        </a>
+    </li>-->
+                    @*<li class="">
+            <a href="/ACourcesTypes/Create" class="waves-effect waves-button">
+                <p>تسجيل نوع التدريب </p> <span class=""></span>
+            </a>
+        </li>*@
+                    <!--<li class="">
+        <a href="/ACourcesTypes" class="waves-effect waves-button">
+            <p>  نوع التدريب </p> <span class=""></span>
+        </a>
+    </li>-->
+                    @*<li class="">
+            <a href="/ACourcesDeptins/Create" class="waves-effect waves-button">
+                <p>تسجيل جهة الدورات</p> <span class=""></span>
+            </a>
+        </li>*@
+                    <!--<li class="">
+        <a href="/ACourcesDeptins" class="waves-effect waves-button">
+            <p>  جهات الدورات  </p> <span class=""></span>
+        </a>
+    </li>-->
+                    @*<li class="">
+            <a href="/ACourcesDeptouts/Create" class="waves-effect waves-button">
+                <p>تسجيل الادارات والاقسام </p> <span class=""></span>
+            </a>
+        </li>*@
+                    <!--<li class="">
+            <a href="/ACourcesDeptouts" class="waves-effect waves-button">
+                <p>  الادارات والاقسام  </p> <span class=""></span>
+            </a>
+        </li>
+        <li class="">
+            <a href="/ViewModelMasterwithother" class="waves-effect waves-button">
+                <p>  المعاملات</p> <span class=""></span>
+            </a>
+        </li>
 
-                                @*<li class="">
-                <a href="/ACourcesEstimates/Create" class="waves-effect waves-button">
-                    <p>تسجيل التقدير والنتائج  </p> <span class=""></span>
-                </a>
-            </li>*@
-                                <!--<li class="">
-                                    <a href="/ACourcesEstimates" class="waves-effect waves-button">
-                                        <p>  التقدير والنتائج</p> <span class=""></span>
-                                    </a>
-                                </li>-->
 
-                                @*<li class="">
-                <a href="/ACourcesTrainingMethods/Create" class="waves-effect waves-button">
-                    <p>تسجيل طريقة التدريب   </p> <span class=""></span>
-                </a>
-            </li>*@
-                                <!--<li class="">
-                                    <a href="/ACourcesTrainingMethods" class="waves-effect waves-button">
-                                        <p>  طريقة التدريب </p> <span class=""></span>
-                                    </a>
-                                </li>-->
-                                @*<li class="">
-                <a href="/ACourcesTypes/Create" class="waves-effect waves-button">
-                    <p>تسجيل نوع التدريب </p> <span class=""></span>
-                </a>
-            </li>*@
-                                <!--<li class="">
-                                    <a href="/ACourcesTypes" class="waves-effect waves-button">
-                                        <p>  نوع التدريب </p> <span class=""></span>
-                                    </a>
-                                </li>-->
-                                @*<li class="">
-                <a href="/ACourcesDeptins/Create" class="waves-effect waves-button">
-                    <p>تسجيل جهة الدورات</p> <span class=""></span>
-                </a>
-            </li>*@
-                                <!--<li class="">
-                                    <a href="/ACourcesDeptins" class="waves-effect waves-button">
-                                        <p>  جهات الدورات  </p> <span class=""></span>
-                                    </a>
-                                </li>-->
-                                @*<li class="">
-                <a href="/ACourcesDeptouts/Create" class="waves-effect waves-button">
-                    <p>تسجيل الادارات والاقسام </p> <span class=""></span>
-                </a>
-            </li>*@
-                                <!--<li class="">
-                                    <a href="/ACourcesDeptouts" class="waves-effect waves-button">
-                                        <p>  الادارات والاقسام  </p> <span class=""></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="/ViewModelMasterwithother" class="waves-effect waves-button">
-                                        <p>  المعاملات</p> <span class=""></span>
-                                    </a>
-                                </li>
+        <li class="">
+            <a href="/Account/Logout" class="waves-effect waves-button">
+                <p>تسجيل خروج</p> <span class=""></span>
+            </a>
+        </li>
+    </ul>-->
+                    <!--<ul class="sub-menu" style="display: none;">
+    <li class="">
+
+        <a href="/ACourcesMasters/Search11" class="waves-effect waves-button">
+            <p> الطلبات </p> <span class=""></span>
+        </a>
+    </li>
+    <li class="">
+        <a href="/ACourcesMasters/Create11" class="waves-effect waves-button">
+            <p>تسجيل طلب دورة جديد </p> <span class=""></span>
+        </a>
+    </li>-->
+                    @*<li class="">
+
+            <a href="/ACourcesMasters" class="waves-effect waves-button">
+                <p>  الدورات والكورسات </p> <span class=""></span>
+            </a>
+        </li>*@
+
+                    @*<li class="">
+
+            <a href="/ACourcesNames/Create" class="waves-effect waves-button">
+                <p>تسجيل   الكورسات </p> <span class=""></span>
+            </a>
+        </li>*@
+
+                    <!--<li class="">
+
+        <a href="/ACourcesNames" class="waves-effect waves-button">
+            <p class="">    الكورسات </p> <span class=""></span>
+        </a>
+    </li>
+
+    <li class="">
 
 
-                                <li class="">
-                                    <a href="/Account/Logout" class="waves-effect waves-button">
-                                        <p>تسجيل خروج</p> <span class=""></span>
-                                    </a>
-                                </li>
-                            </ul>-->
+    </li>-->
+                    @*<li class="">
+            <a href="/ACourcesEstimates/Create" class="waves-effect waves-button">
+                <p>تسجيل التقدير والنتائج  </p> <span class=""></span>
+            </a>
+        </li>*@
+                    <!--<li class="">
+        <a href="/ACourcesEstimates" class="waves-effect waves-button">
+            <p>  التقدير والنتائج</p> <span class=""></span>
+        </a>
+    </li>-->
+                    @*<li class="">
+            <a href="/ACourcesTrainingMethods/Create" class="waves-effect waves-button">
+                <p>تسجيل طريقة التدريب   </p> <span class=""></span>
+            </a>
+        </li>*@
+                    <!--<li class="">
+        <a href="/ACourcesTrainingMethods" class="waves-effect waves-button">
+            <p>  طريقة التدريب </p> <span class=""></span>
+        </a>
+    </li>-->
+                    @*<li class="">
+            <a href="/ACourcesTypes/Create" class="waves-effect waves-button">
+                <p>تسجيل نوع التدريب </p> <span class=""></span>
+            </a>
+        </li>*@
+                    <!--<li class="">
+        <a href="/ACourcesTypes" class="waves-effect waves-button">
+            <p>  نوع التدريب </p> <span class=""></span>
+        </a>
+    </li>-->
+                    @*<li class="">
+            <a href="/ACourcesDeptins/Create" class="waves-effect waves-button">
+                <p>تسجيل جهة الدورات</p> <span class=""></span>
+            </a>
+        </li>*@
+                    <!--<li class="">
+        <a href="/ACourcesDeptins" class="waves-effect waves-button">
+            <p>  جهات الدورات  </p> <span class=""></span>
+        </a>
+    </li>-->
+                    @*<li class="">
+            <a href="/ACourcesDeptouts/Create" class="waves-effect waves-button">
+                <p>تسجيل الادارات والاقسام </p> <span class=""></span>
+            </a>
+        </li>*@
+                    <!--<li class="">
+            <a href="/ACourcesDeptouts" class="waves-effect waves-button">
+                <p>  الادارات والاقسام  </p> <span class=""></span>
+            </a>
+        </li>
+        <li class="">
+            <a href="/ViewModelMasterwithother" class="waves-effect waves-button">
+                <p>  المعاملات</p> <span class=""></span>
+            </a>
+        </li>
 
-                        </li>
-                    </ul>
+
+        <li class="">
+            <a href="/Account/Logout" class="waves-effect waves-button">
+                <p>تسجيل خروج</p> <span class=""></span>
+            </a>
+        </li>
+    </ul>-->
+
+
 
                 </div><div class="slimScrollBar" style="background: rgb(204, 204, 204); width: 7px; position: absolute; top: 0px; opacity: 0.3; display: none; border-radius: 0px; z-index: 99; right: 0px; height: 182px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 0px;"></div>
             </div><!-- Page Sidebar Inner -->

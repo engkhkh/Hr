@@ -15,14 +15,15 @@
         <tr>
             <th></th>
             @*<th>
-                    @Html.DisplayNameFor(model => model.CEMPUSERNO)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CEMPPASSWRD)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CEMPNO)
-                </th>*@
+            @Html.DisplayNameFor(model => model.CEMPUSERNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CEMPPASSWRD)
+        </th>*@
+            <th>
+                @*@Html.DisplayNameFor(model => model.CEMPNO)*@
+                الرقم الوظيفي
+            </th>
             <th>
                 الموظف
                 @*@Html.DisplayNameFor(model => model.CEMPNAME)*@
@@ -31,35 +32,42 @@
                 الوظيفة
                 @*@Html.DisplayNameFor(model => model.CEMPJOBNAME)*@
             </th>
+            <th>
+                الرقم السري
+            </th>
             @*<th>
-                    @Html.DisplayNameFor(model => model.CEMPADPRTNO)
-                </th>*@
+            @Html.DisplayNameFor(model => model.CEMPADPRTNO)
+        </th>*@
             <th>
                 قسم الموظف
                 @*@Html.DisplayNameFor(model => model.DEP_NAME)*@
             </th>
             @*<th>
-                    @Html.DisplayNameFor(model => model.CLSSNO)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.MANAGERID)
-                </th>*@
+            @Html.DisplayNameFor(model => model.CLSSNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MANAGERID)
+        </th>*@
             <th>
                 المدير
                 @*@Html.DisplayNameFor(model => model.MANAGERNAME)*@
             </th>
             @*<th>
-                    @Html.DisplayNameFor(model => model.PARENTID)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cemphiringdate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cemplastupgrade)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PARENTNAME)
-                </th>*@
+            @Html.DisplayNameFor(model => model.PARENTID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cemphiringdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cemplastupgrade)
+        </th>*@
+            <th>
+                @*@Html.DisplayNameFor(model => model.PARENTNAME)*@
+                الادارة
+            </th>
+            <th>
+                هل نشط علي النظام
+            </th>
             <th>
                 صلاحية الموظف علي الشاشات
                 @*@Html.DisplayNameFor(model => model.CROLEID)*@
@@ -70,73 +78,92 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Cempid" >تحديث صلاحية </a>
-                    @*<a asp-action="Details" asp-route-id="@item.Cempid">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Cempid">Delete</a>
-                        <a asp-action="Role" asp-route-id="@item.Cempid">Role</a>*@
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.CEMPUSERNO)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CEMPPASSWRD)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CEMPNO)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.CEMPNAME)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CEMPJOBNAME)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.CEMPADPRTNO)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.DEP_NAME)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.CLSSNO)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MANAGERID)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.MANAGERNAME)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.PARENTID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cemphiringdate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cemplastupgrade)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PARENTNAME)
-                    </td>*@
-                <td>
-                    @if (item.CROLEID == 1)
-                    {
-                        <p>Admin</p>
+        <tr>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Cempid">تحديث صلاحية </a>
+                @*<a asp-action="Details" asp-route-id="@item.Cempid">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Cempid">Delete</a>
+            <a asp-action="Role" asp-route-id="@item.Cempid">Role</a>*@
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.CEMPUSERNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CEMPPASSWRD)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPNO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPJOBNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPPASSWRD)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.CEMPADPRTNO)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.DEP_NAME)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.CLSSNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MANAGERID)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.MANAGERNAME)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.PARENTID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cemphiringdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cemplastupgrade)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.PARENTNAME)
+            </td>
+            <td>
+                @if (item.login == '1')
+                {
+                    <p>Yes</p>
 
-                    }
-                    else if (item.CROLEID == 2)
-                    {
-                        <p>Manager </p>
-                    }
-                    else
-                    {
-                        <p>User</p>
-                    }
-                    @*@Html.DisplayFor(modelItem => item.CROLEID)*@
-                </td>
+                }
+                else
+                {
+                    <p>No </p>
+                }
 
-            </tr>
+            </td>
+            <td>
+                @if (item.CROLEID == 1)
+                {
+                    <p>Administrator</p>
+
+                }
+                else if (item.CROLEID == 2)
+                {
+                    <p>Manager </p>
+                }
+                else if (item.CROLEID == 3)
+                {
+                    <p>User</p>
+                }
+                else
+                {
+                    <p>New Role Id:@Html.DisplayFor(modelItem => item.CROLEID)</p>
+                }
+                @*@Html.DisplayFor(modelItem => item.CROLEID)*@
+            </td>
+
+        </tr>
         }
     </tbody>
 </table>

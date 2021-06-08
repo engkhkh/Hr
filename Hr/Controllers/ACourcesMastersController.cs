@@ -48,6 +48,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -69,6 +70,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -217,6 +219,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -400,6 +403,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -509,6 +513,8 @@ namespace Hr.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourcesIdmaster,CourcesId,CourcesIdType,CourcesIdDeptin,CourcesIdTraining,CourcesIdDeptout,CourcesIdEstimate,CourcesIdImagecert,CourcesIdImagehr,CourcesStartDate,CourcesEndDate,CourcesNumberofdays,CourcesPassRate,Cempid,Filecer,Filehr")] ACourcesMaster aCourcesMaster)
         {
+            var objuser1 = _context.Cemps.Where(b => b.Cempid == HttpContext.Session.GetString("empid")).FirstOrDefault();
+            
             if (ModelState.IsValid)
             {
                 string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
@@ -521,9 +527,10 @@ namespace Hr.Controllers
                 //
                 ACourcesMaster aCourcesMasteritems = new ACourcesMaster
                 {
+                    CourcesIdmaster= aCourcesMaster.CourcesIdmaster,
                     CourcesId = aCourcesMaster.CourcesId,
                     CourcesIdType = aCourcesMaster.CourcesIdType,
-                    CourcesIdDeptin = aCourcesMaster.CourcesIdDeptin,
+                    CourcesIdDeptin =Convert.ToInt32( HttpContext.Session.GetString("empdepid")) /*aCourcesMaster.CourcesIdDeptin*/,
                     CourcesIdTraining = aCourcesMaster.CourcesIdTraining,
                     CourcesIdDeptout = aCourcesMaster.CourcesIdDeptout,
                     CourcesIdEstimate = aCourcesMaster.CourcesIdEstimate,
@@ -537,6 +544,9 @@ namespace Hr.Controllers
 
 
                 };
+               
+                 
+                
                 MasterRequestTypeId MasterRequestTypeIds = new MasterRequestTypeId
                 {
                     COURCES_IDMASTER = _context.ACourcesMasters.Max(u => u.CourcesIdmaster) + 1,
@@ -553,10 +563,67 @@ namespace Hr.Controllers
                     MasterRequestNotes=""
 
                 };
-                _context.Add(aCourcesMasteritems);
-                _context.Add(MasterRequestTypeIds);
-                _context.Add(MasterDetailss);
-                await _context.SaveChangesAsync();
+                ACourcesName newcourcename = new ACourcesName
+                {
+                   
+
+                    CourcesName = aCourcesMaster.CourcesPassRate
+                       
+                };
+               
+               
+               
+                if (objuser1.Cemplastupgrade > objuser1.Cemphiringdate)
+                {
+                    if(aCourcesMasteritems.CourcesStartDate> objuser1.Cemplastupgrade)
+                    {
+                        if (aCourcesMaster.CourcesPassRate != null)
+                        {
+                            _context.Add(newcourcename);
+                            await _context.SaveChangesAsync();
+                            aCourcesMasteritems.CourcesId = _context.ACourcesNames.Max(u => u.CourcesId);
+
+                        }
+                        _context.Add(aCourcesMasteritems);
+                        _context.Add(MasterRequestTypeIds);
+                        _context.Add(MasterDetailss);
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        //ViewBag.Message = "تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!";
+                        return Content("<script language='javascript' type='text/javascript'>alert('تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!');</script>");
+                        //ModelState.AddModelError("CourcesStartDate", "تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!");
+
+
+                    }
+
+                }
+                if (objuser1.Cemplastupgrade < objuser1.Cemphiringdate)
+                {
+                    if (aCourcesMasteritems.CourcesStartDate > objuser1.Cemphiringdate)
+                    {
+                        if (aCourcesMaster.CourcesPassRate != null)
+                        {
+                            _context.Add(newcourcename);
+                            await _context.SaveChangesAsync();
+                            aCourcesMasteritems.CourcesId = _context.ACourcesNames.Max(u => u.CourcesId);
+
+                        }
+                        _context.Add(aCourcesMasteritems);
+                        _context.Add(MasterRequestTypeIds);
+                        _context.Add(MasterDetailss);
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                       // ViewBag.Message = "تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم الحفظ!";
+                        return Content("<script language='javascript' type='text/javascript'>alert('تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم الحفظ!');</script>");
+                    }
+
+                }
+
+
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Search", "ACourcesMasters", new { area = "" });
             }
@@ -589,6 +656,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -777,6 +845,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -878,6 +947,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;

@@ -37,8 +37,8 @@ namespace Hr.Models
         [Required]
         public int CourcesNumberofdays { get; set; }
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:P2}")]
-        [Required]
-        public decimal CourcesPassRate { get; set; }
+        //[Required]
+        public string CourcesPassRate { get; set; }
         public string Cempid { get; set; }
         [NotMapped]
         public IFormFile Filecer { get; set; }
@@ -47,5 +47,18 @@ namespace Hr.Models
 
         public virtual Cemp Cemp { get; set; }
         public virtual ACourcesName Cources { get; set; }
+
+
+
+
+
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public DateTime CourcesStartDateh { get; set; }
+
+
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public DateTime CourceendDateh { get; set; }
+
+
     }
 }

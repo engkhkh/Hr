@@ -36,6 +36,29 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+            return View(await _context.ACourcesEstimates.ToListAsync());
+        }
+        public async Task<IActionResult> IndexWithout()
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -59,6 +82,41 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var aCourcesEstimate = await _context.ACourcesEstimates
+                .FirstOrDefaultAsync(m => m.CourcesIdEstimate == id);
+            if (aCourcesEstimate == null)
+            {
+                return NotFound();
+            }
+
+            return View(aCourcesEstimate);
+        }
+        public async Task<IActionResult> DetailsWithout(int? id)
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -94,6 +152,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -106,13 +165,13 @@ namespace Hr.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CourcesIdEstimate,CourcesNameEstimate")] ACourcesEstimate aCourcesEstimate)
+        public async Task<IActionResult> Create([Bind("CourcesIdEstimate,CourcesNameEstimate,Range")] ACourcesEstimate aCourcesEstimate)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(aCourcesEstimate);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexWithout));
             }
             return View(aCourcesEstimate);
         }
@@ -133,6 +192,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -155,7 +215,7 @@ namespace Hr.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CourcesIdEstimate,CourcesNameEstimate")] ACourcesEstimate aCourcesEstimate)
+        public async Task<IActionResult> Edit(int id, [Bind("CourcesIdEstimate,CourcesNameEstimate,Range")] ACourcesEstimate aCourcesEstimate)
         {
             if (id != aCourcesEstimate.CourcesIdEstimate)
             {
@@ -201,6 +261,7 @@ namespace Hr.Controllers
                 ControllerName = x.ControllerName,
                 ActionName = x.ActionName,
                 RoleId = x.RoleId,
+                mmodule = x.mmodule
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;

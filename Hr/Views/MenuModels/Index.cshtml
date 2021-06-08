@@ -8,8 +8,8 @@
 <h1></h1>
 
 <p>
-        @*<a asp-action="Create">Create New</a>*@
-    @*<a asp-action="Create" class="btn btn-success">اضافة</a>*@
+    <a asp-action="Create" class="btn btn-success">انشاء صلاحية وقائمة </a>
+    <a asp-action="Index" asp-controller="Cemps" class="btn btn-success">صلاحيات الموظفين</a>
     </p>
 <table id="table" class="table table-bordered table-condensed table-striped table-hover sortable">
     <thead>
@@ -69,16 +69,20 @@
                 <td>
                     @if (item.RoleId == 1)
                     {
-                        <p>Admin</p>
+                        <p>Administrator</p>
 
                     }
-                   else if (item.RoleId == 2)
+                    else if (item.RoleId == 2)
                     {
                         <p>Manager </p>
                     }
-                    else
+                    else if (item.RoleId == 3)
                     {
                         <p>User</p>
+                    }
+                    else
+                    {
+                <p>New Role Id:@Html.DisplayFor(modelItem => item.RoleId)</p>
                     }
                     @*@Html.DisplayFor(modelItem => item.RoleId)*@
                 </td>

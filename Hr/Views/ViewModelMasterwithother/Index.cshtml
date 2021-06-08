@@ -81,9 +81,9 @@
             <th>
                 عدد ايام  الدورة
             </th>
-            <th>
+            @*<th>
                 نسبة الانجاز %
-            </th>
+            </th>*@
             <th>
                 جهة الدورة
             </th>
@@ -131,6 +131,7 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
+                    @item.ACourcesMasters.CourcesStartDateh.AddDays(-1).ToShortDateString()
                 </td>
                 @*<td>
                         @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
@@ -138,9 +139,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
                 </td>

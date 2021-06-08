@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -24,10 +25,17 @@ namespace Hr.Models
         public string MANAGERID { get; set; }
         public string MANAGERNAME { get; set; }
         public string PARENTID { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime? Cemphiringdate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public DateTime? CEMPHIRINGDATEHIJRA { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime? Cemplastupgrade { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public DateTime? CEMPLASTUPGRADEHIJRA { get; set; }
         public string PARENTNAME { get; set; }
         public int CROLEID { get; set; }
+        public char login { get; set; }
 
         public virtual ICollection<ACourcesMaster> ACourcesMasters { get; set; }
     }

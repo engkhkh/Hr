@@ -9,5 +9,6 @@ namespace Hr.Models
     {
         public int CourcesIdEstimate { get; set; }
         public string CourcesNameEstimate { get; set; }
+        public string Range { get; set; }
     }
 }

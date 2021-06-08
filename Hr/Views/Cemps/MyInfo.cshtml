@@ -1,0 +1,242 @@
+﻿@model Hr.Models.Cemp
+
+@{
+    ViewData["Title"] = "معلوماتي ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>معلوماتي </h1>
+
+
+    <h4></h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div>
+                    <label>
+                        رقم الموظف
+                    </label>
+                    @Html.DisplayFor(model => model.CEMPUSERNO)
+                </div>
+
+                <div>
+                  <label> اسم الموظف
+                    </label>
+                    @Html.DisplayFor(model => model.CEMPNAME)
+                </div>
+                <div>
+                    <label>المسمي الوظيفي</label> 
+
+                    @Html.DisplayFor(model => model.CEMPJOBNAME)
+
+                </div>
+                <div>
+                    <label>الرقم السري</label> 
+
+                    @Html.DisplayFor(model => model.CEMPPASSWRD)
+                </div>
+
+            </div>
+            <div class="col-md-4">
+
+                <div>
+                    <label>كود القسم</label> 
+
+                    @Html.DisplayFor(model => model.CEMPADPRTNO)
+                </div>
+                <div>
+                    <label>القسم</label>
+
+                    @Html.DisplayFor(model => model.DEP_NAME)
+                </div>
+                <div>
+                    <label>الرقم الوظيفي للمدير</label>
+
+                    @Html.DisplayFor(model => model.MANAGERID)
+                </div>
+                <div>
+                    <label>اسم المدير</label> 
+
+                    @Html.DisplayFor(model => model.MANAGERNAME)
+
+                </div>
+            </div>
+            <div class="col-md-4">
+
+
+                @*<div>
+                    تاريخ المباشرة
+
+                    @Html.DisplayFor(model => model.Cemphiringdate)
+                </div>
+                <div>
+                    اخر ترقية
+
+                    @Html.DisplayFor(model => model.Cemplastupgrade)
+                </div>*@
+
+                <div>
+                    <label>الادارة</label> 
+                    @Html.DisplayFor(model => model.PARENTNAME)
+                </div>
+                <div>
+                    <label>الصلاحية علي النظام</label>
+                    @if (Model.CROLEID == 1)
+                    {
+                        <label style="background-color:aqua;">مدير النظام</label>
+                    }
+                    else if (Model.CROLEID == 2)
+                    {
+                        <label  style="background-color:aqua;">مدير </label>
+                    }
+                    else if (Model.CROLEID == 3)
+                    {
+                        <label  style="background-color:aqua;">موظف</label>
+                    }
+                    else
+                    {
+                <label style="background-color:aqua;">صلاحية جديدة رقم</label>
+                        @Html.DisplayFor(model => model.CROLEID)
+
+                    }
+                    @*@Html.DisplayFor(model => model.CROLEID)*@
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+
+
+                <div>
+                    <label>اول تعيين بالدولة -ميلادي</label>
+
+                    @Html.DisplayFor(model => model.Cemphiringdate)
+                </div>
+
+                <div>
+                    <label>اول تعيين بالدولة -هجري</label>
+
+                    @Html.DisplayFor(model => model.CEMPHIRINGDATEHIJRA)
+                </div>
+                <div>
+                    <label> اخر ترقية -ميلادي </label>
+
+                    @Html.DisplayFor(model => model.Cemplastupgrade)
+                </div>
+                <div>
+                    <label> اخر ترقية -هجري </label>
+
+                    @Html.DisplayFor(model => model.CEMPLASTUPGRADEHIJRA)
+                </div>
+
+
+            </div>
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+
+            </div>
+
+        </div>
+    </div>
+    <hr />
+    @*<dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPUSERNO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPUSERNO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPPASSWRD)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPPASSWRD)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPNO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPNO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPNAME)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPNAME)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPJOBNAME)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPJOBNAME)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPADPRTNO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPADPRTNO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DEP_NAME)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DEP_NAME)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CLSSNO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CLSSNO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MANAGERID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MANAGERID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MANAGERNAME)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MANAGERNAME)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PARENTID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PARENTID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cemphiringdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cemphiringdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cemplastupgrade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cemplastupgrade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PARENTNAME)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PARENTNAME)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CROLEID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CROLEID)
+        </dd>
+    </dl>*@
+
+<div>
+    <a asp-action="Edit1" asp-route-id="@Model.Cempid" class="btn btn-success">تغيير الرقم السري </a> 
+    @*<a asp-action="Index">Back to List</a>*@
+</div>
