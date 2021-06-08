@@ -519,14 +519,21 @@ namespace Hr.Controllers
             {
 
 
+                if (aCourcesMaster.Filecer != null)
+                {
 
-                string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
-                string fullPath = Path.Combine(uploads, aCourcesMaster.Filecer.FileName);
-                aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
+                    string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+                    string fullPath = Path.Combine(uploads, aCourcesMaster.Filecer.FileName);
+                    aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
+
+                }
                 //
-                string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
-                string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
-                aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
+                if (aCourcesMaster.Filehr != null)
+                {
+                    string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
+                    string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
+                    aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
+                }
                 
                 
                 //
