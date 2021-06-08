@@ -1,0 +1,156 @@
+﻿
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>
+        Bootstrap Hijri Date Picker Examples
+    </title>
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">
+    <link href="css/bootstrap-datetimepicker.css?v2" rel="stylesheet" />
+
+
+</head>
+<body class="bg-light" style="background-color:#fafafa">
+<div id="jquery-script-menu">
+<div class="jquery-script-center">
+<ul>
+<li><a href="https://www.jqueryscript.net/time-clock/hijri-date-picker-bootstrap.html">Download This Plugin</a></li>
+<li><a href="https://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
+</ul><div id="carbon-block"></div>
+<div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+    <div class="container" style="margin:150px auto">
+        <div class="py-5 text-center">
+            <h1>Bootstrap Hijri Date Picker Examples</h1>
+            <p class="lead">
+
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>
+                        Default
+                    </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control hijri-date-default" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>
+                        With Options
+                    </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control hijri-date-input" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-hijri@2.1.2/moment-hijri.min.js"></script>
+    <script src="js/bootstrap-hijri-datetimepicker.js?v2"></script>
+
+    <script type="text/javascript">
+
+
+       $(function () {
+
+            initHijrDatePicker();
+
+            initHijrDatePickerDefault();
+
+            $('.disable-date').hijriDatePicker({
+
+                minDate:"2020-01-01",
+                maxDate:"2021-01-01",
+                viewMode:"years",
+                hijri:true,
+                debug:true
+            });
+
+        });
+
+        function initHijrDatePicker() {
+
+            $(".hijri-date-input").hijriDatePicker({
+                locale: "ar-sa",
+                format: "DD-MM-YYYY",
+                hijriFormat:"iYYYY-iMM-iDD",
+                dayViewHeaderFormat: "MMMM YYYY",
+                hijriDayViewHeaderFormat: "iMMMM iYYYY",
+                showSwitcher: true,
+                allowInputToggle: true,
+                showTodayButton: false,
+                useCurrent: true,
+                isRTL: false,
+                viewMode:'months',
+                keepOpen: false,
+                hijri: false,
+                debug: true,
+                showClear: true,
+                showTodayButton: true,
+                showClose: true
+            });
+        }
+
+        function initHijrDatePickerDefault() {
+
+            $(".hijri-date-default").hijriDatePicker();
+        }
+
+    </script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script>
+try {
+  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
+    return true;
+  }).catch(function(e) {
+    var carbonScript = document.createElement("script");
+    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+    carbonScript.id = "_carbonads_js";
+    document.getElementById("carbon-block").appendChild(carbonScript);
+  });
+} catch (error) {
+  console.log(error);
+}
+</script>
+</body>
+</html>

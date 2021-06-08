@@ -12,27 +12,30 @@ namespace Hr.Models
     {
         [Required]
         public int CourcesIdmaster { get; set; }
-       [Required]
+       [Required(ErrorMessage = "اختر الدورة ")]
         public int CourcesId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "اختر نوع الدورة ")]
         public int CourcesIdType { get; set; }
-        [Required]
+        [Required(ErrorMessage = "اختر الادارة او القسم")]
         public int CourcesIdDeptin { get; set; }
-        [Required]
+        [Required(ErrorMessage = "اختر طريقة التدريب ")]
         public int CourcesIdTraining { get; set; }
-        [Required]
+        [Required(ErrorMessage = "اختر جهة التدريب ")]
         public int CourcesIdDeptout { get; set; }
-        [Required]
+        [Required(ErrorMessage = "اختر التقدير ")]
         public int CourcesIdEstimate { get; set; }
         //[Required]
+       
         public string CourcesIdImagecert { get; set; }
         //[Required]
         public string CourcesIdImagehr { get; set; }
         //[DisplayFormat(DataFormatString = "{dd-MMM-yyyy}")]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "ادخل تاريخ البداية   ")]
         public DateTime CourcesStartDate { get; set; }
         //[DisplayFormat(DataFormatString = "{dd-MMM-yyyy}")]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "ادخل تاريخ النهاية    ")]
         public DateTime CourcesEndDate { get; set; }
         [Required]
         public int CourcesNumberofdays { get; set; }
@@ -41,6 +44,8 @@ namespace Hr.Models
         public string CourcesPassRate { get; set; }
         public string Cempid { get; set; }
         [NotMapped]
+        
+       //[Required(ErrorMessage = "ارفق الشهادة  ")]
         public IFormFile Filecer { get; set; }
         [NotMapped]
         public IFormFile Filehr { get; set; }

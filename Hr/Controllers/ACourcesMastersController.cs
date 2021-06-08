@@ -517,6 +517,9 @@ namespace Hr.Controllers
             
             if (ModelState.IsValid)
             {
+
+
+
                 string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
                 string fullPath = Path.Combine(uploads, aCourcesMaster.Filecer.FileName);
                 aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
@@ -524,6 +527,8 @@ namespace Hr.Controllers
                 string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
                 string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
                 aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
+                
+                
                 //
                 ACourcesMaster aCourcesMasteritems = new ACourcesMaster
                 {
@@ -573,9 +578,9 @@ namespace Hr.Controllers
                
                
                
-                if (objuser1.Cemplastupgrade > objuser1.Cemphiringdate)
+                if (objuser1.CEMPLASTUPGRADEHIJRA > objuser1.CEMPHIRINGDATEHIJRA)
                 {
-                    if(aCourcesMasteritems.CourcesStartDate> objuser1.Cemplastupgrade)
+                    if(aCourcesMasteritems.CourcesStartDate> objuser1.CEMPLASTUPGRADEHIJRA)
                     {
                         if (aCourcesMaster.CourcesPassRate != null)
                         {
@@ -599,9 +604,9 @@ namespace Hr.Controllers
                     }
 
                 }
-                if (objuser1.Cemplastupgrade < objuser1.Cemphiringdate)
+                if (objuser1.CEMPLASTUPGRADEHIJRA < objuser1.CEMPHIRINGDATEHIJRA)
                 {
-                    if (aCourcesMasteritems.CourcesStartDate > objuser1.Cemphiringdate)
+                    if (aCourcesMasteritems.CourcesStartDate > objuser1.CEMPHIRINGDATEHIJRA)
                     {
                         if (aCourcesMaster.CourcesPassRate != null)
                         {
