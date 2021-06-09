@@ -20,6 +20,8 @@ namespace Hr.Models
         //public string RoleName { get; set; }
         public string mmodule { get; set; }
 
+        public int treeroot { get; set; }
+
 
     }
 }

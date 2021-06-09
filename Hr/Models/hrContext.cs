@@ -258,6 +258,7 @@ namespace Hr.Models
                 entity.Property(e => e.MainMenuId).HasColumnName("mainmenueid");
                 entity.Property(e => e.RoleId).HasColumnName("roleid");
                 entity.Property(e => e.mmodule).HasColumnName("mmodule");
+                entity.Property(e => e.treeroot).HasColumnName("treeroot");
 
 
             });
