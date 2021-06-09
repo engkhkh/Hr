@@ -514,29 +514,36 @@ namespace Hr.Controllers
         public async Task<IActionResult> Create([Bind("CourcesIdmaster,CourcesId,CourcesIdType,CourcesIdDeptin,CourcesIdTraining,CourcesIdDeptout,CourcesIdEstimate,CourcesIdImagecert,CourcesIdImagehr,CourcesStartDate,CourcesEndDate,CourcesNumberofdays,CourcesPassRate,Cempid,Filecer,Filehr")] ACourcesMaster aCourcesMaster)
         {
             var objuser1 = _context.Cemps.Where(b => b.Cempid == HttpContext.Session.GetString("empid")).FirstOrDefault();
+            string x = "", y = "";
+
+            if (aCourcesMaster.Filecer != null)
+            {
+                string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+                string fullPath = Path.Combine(uploads, aCourcesMaster.Filecer.FileName);
+                aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
+            }
+            else
+            {
+                ModelState.AddModelError("uploadError", "يرجي رفع شهادة الدورة");
+                return Content("<script language='javascript' type='text/javascript'>alert('يرجي رفع شهادة الدورة!');</script>");
+            }
+
+            //
+            if (aCourcesMaster.Filehr != null)
+            {
+                string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
+                string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
+                aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
+                x = aCourcesMaster.Filehr.FileName;
+            }
+            else
+            {
+                y = "";
+            }
+           
             
             if (ModelState.IsValid)
             {
-
-
-                if (aCourcesMaster.Filecer != null)
-                {
-
-                    string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
-                    string fullPath = Path.Combine(uploads, aCourcesMaster.Filecer.FileName);
-                    aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
-
-                }
-                //
-                if (aCourcesMaster.Filehr != null)
-                {
-                    string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
-                    string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
-                    aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
-                }
-                
-                
-                //
                 ACourcesMaster aCourcesMasteritems = new ACourcesMaster
                 {
                     CourcesIdmaster= aCourcesMaster.CourcesIdmaster,
@@ -547,7 +554,7 @@ namespace Hr.Controllers
                     CourcesIdDeptout = aCourcesMaster.CourcesIdDeptout,
                     CourcesIdEstimate = aCourcesMaster.CourcesIdEstimate,
                     CourcesIdImagecert = aCourcesMaster.Filecer.FileName,
-                    CourcesIdImagehr = aCourcesMaster.Filehr.FileName,
+                    CourcesIdImagehr = x==x?x:y,
                     CourcesStartDate = aCourcesMaster.CourcesStartDate,
                     CourcesEndDate = aCourcesMaster.CourcesEndDate,
                     CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays),
@@ -582,13 +589,15 @@ namespace Hr.Controllers
                     CourcesName = aCourcesMaster.CourcesPassRate
                        
                 };
-               
-               
-               
+
+
+                //int z=0,zz=0;
                 if (objuser1.CEMPLASTUPGRADEHIJRA > objuser1.CEMPHIRINGDATEHIJRA)
                 {
                     if(aCourcesMasteritems.CourcesStartDate> objuser1.CEMPLASTUPGRADEHIJRA)
                     {
+                        // z = aCourcesMasteritems.CourcesStartDate.CompareTo(objuser1.CEMPLASTUPGRADEHIJRA);
+                        //zz = aCourcesMasteritems.CourcesStartDate.CompareTo(objuser1.Cemplastupgrade);
                         if (aCourcesMaster.CourcesPassRate != null)
                         {
                             _context.Add(newcourcename);

@@ -169,7 +169,7 @@ namespace Hr.Controllers
             {
                 _context.Add(aCourcesType);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(IndexWithout));
+                return RedirectToAction(nameof(Index));
             }
             return View(aCourcesType);
         }

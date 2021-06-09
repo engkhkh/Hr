@@ -51,12 +51,12 @@
                     <span asp-validation-for="CourcesIdType" class="text-danger"></span>
                 </div>
                 @*<div class="form-group">
-                        <label class="control-label">الادارة  </label>
-                        <select asp-for="CourcesIdDeptin" id="chosen-select2" class="form-control chosen-select" data-placeholder="اختيار الادارة " asp-items="ViewBag.ACourcesDeptin">
-                            <option value="">تحديد</option>
-                        </select>
-                        <span asp-validation-for="CourcesIdDeptin" class="text-danger"></span>
-                    </div>*@
+            <label class="control-label">الادارة  </label>
+            <select asp-for="CourcesIdDeptin" id="chosen-select2" class="form-control chosen-select" data-placeholder="اختيار الادارة " asp-items="ViewBag.ACourcesDeptin">
+                <option value="">تحديد</option>
+            </select>
+            <span asp-validation-for="CourcesIdDeptin" class="text-danger"></span>
+        </div>*@
                 <div class="form-group">
                     <label class="control-label">حدد نوع التدريب </label>
                     <select asp-for="CourcesIdTraining" id="chosen-select3" class="form-control chosen-select" data-placeholder="اختيار نوع التدريب  " asp-items="ViewBag.ACourcesTrainingMethod">
@@ -91,38 +91,38 @@
                     <span asp-validation-for="CourcesIdImagehr" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" >بداية الدورة   </label>
+                    <label class="control-label">بداية الدورة   </label>
                     <div class="input-group" style="float: left">
-                     <input type="text" class="form-control hijri-date-input"  asp-for="CourcesStartDate" />
-                     </div>
-                     <span asp-validation-for="CourcesStartDate" class="text-danger"></span>
+                        <input type="text" class="form-control hijri-date-input" asp-for="CourcesStartDate" />
                     </div>
+                    <span asp-validation-for="CourcesStartDate" class="text-danger"></span>
+                </div>
                 <br />
                 <div class="form-group">
-                    <label class="control-label" >نهاية الدورة   </label>
+                    <label class="control-label">نهاية الدورة   </label>
                     <div class="input-group" style="float: left">
-                    <input type="text" class="form-control hijri-date-input" asp-for="CourcesEndDate"  />
+                        <input type="text" class="form-control hijri-date-input" asp-for="CourcesEndDate" />
                     </div>
-                     <span asp-validation-for="CourcesEndDate" class="text-danger"></span>
-                    </div>
-                    @*<div class="form-group">
+                    <span asp-validation-for="CourcesEndDate" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
             <label class="control-label">عدد ايام التدريب  </label>
             <input asp-for="CourcesNumberofdays" readonly class="form-control" />
             <span asp-validation-for="CourcesNumberofdays" class="text-danger"></span>
         </div>*@
 
-                    @*<div class="form-group">
+                @*<div class="form-group">
             <label class="control-label">اسم الموظف </label>
             <select asp-for="Cempid" class="form-control" asp-items="ViewBag.Cempid">
                 <option value="">Select--</option>
             </select>
         </div>*@
+                @Html.ValidationMessage("uploadError")
 
-                
-                    <div class="form-group">
-                        <input type="submit" value="حفظ" class="btn btn-success" />
-                    </div>
-</form>
+                <div class="form-group">
+                    <input type="submit" value="حفظ" class="btn btn-success" />
+                </div>
+            </form>
         </div>
     </div>
 
@@ -252,7 +252,7 @@
                 hijriFormat: "iYYYY-iMM-iDD", 
                 dayViewHeaderFormat: "MMMM YYYY",
                 hijriDayViewHeaderFormat: "iMMMM iYYYY",
-                showSwitcher: true,
+                showSwitcher: false,
                 allowInputToggle: true,
                 showTodayButton: false,
                 useCurrent: true,

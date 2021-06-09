@@ -48,7 +48,7 @@ namespace Hr.Models
        //[Required(ErrorMessage = "ارفق الشهادة  ")]
         public IFormFile  Filecer { get; set; }
         [NotMapped]
-        public  IFormFile ? Filehr { get; set; }
+        public  IFormFile  Filehr { get; set; }
 
         public virtual Cemp Cemp { get; set; }
         public virtual ACourcesName Cources { get; set; }
