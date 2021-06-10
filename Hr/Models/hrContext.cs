@@ -607,6 +607,11 @@ namespace Hr.Models
             .HasMaxLength(250)
             .HasColumnName("PARENTNAME");
 
+
+             entity.Property(e => e.imagepath)
+           .HasMaxLength(250)
+           .HasColumnName("imagepath");
+
             });
 
             OnModelCreatingPartial(modelBuilder);

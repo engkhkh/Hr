@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -36,6 +38,11 @@ namespace Hr.Models
         public string PARENTNAME { get; set; }
         public int CROLEID { get; set; }
         public char login { get; set; }
+
+
+        public string imagepath { get; set; }
+        [NotMapped]
+        public IFormFile Fileimagepath { get; set; }
 
         public virtual ICollection<ACourcesMaster> ACourcesMasters { get; set; }
     }

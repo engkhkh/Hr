@@ -8,16 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Hr.Controllers
 {
     public class CempsController : Controller
     {
         private readonly hrContext _context;
-
-        public CempsController(hrContext context)
+        private readonly IHostingEnvironment _hosting;
+        public CempsController(hrContext context, IHostingEnvironment hosting)
         {
             _context = context;
+            _hosting = hosting;
         }
 
         // GET: Cemps
@@ -397,6 +400,104 @@ namespace Hr.Controllers
             return View(cemp);
 
         }
+
+
+
+
+
+        // edit image 
+        public async Task<IActionResult> Edit2(string id)
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var cemp = await _context.Cemps.FindAsync(id);
+            if (cemp == null)
+            {
+                return NotFound();
+            }
+            ViewData["rolec"] = new SelectList(_context.roless, "roleid", "rolename");
+            return View(cemp);
+        }
+
+        // POST: Cemps/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit2(string id, [Bind("Cempid,CEMPUSERNO,CEMPPASSWRD,CEMPNO,CEMPNAME,CEMPJOBNAME,CEMPADPRTNO,DEP_NAME,CLSSNO,MANAGERID,MANAGERNAME,PARENTID,Cemphiringdate,Cemplastupgrade,PARENTNAME,CROLEID,imagepath,Fileimagepath")] Cemp cemp)
+        {
+            if (id != cemp.Cempid)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                if (cemp.Fileimagepath!= null)
+                {
+                    string uploads = Path.Combine(_hosting.WebRootPath, @"img\emps");
+                    string fullPath = Path.Combine(uploads, cemp.Fileimagepath.FileName);
+                    cemp.Fileimagepath.CopyTo(new FileStream(fullPath, FileMode.Create));
+                }
+                else
+                {
+                    ModelState.AddModelError("uploadError", "يرجي رفع الصورة");
+                    return Content("<script language='javascript' type='text/javascript'>alert('يرجي رفع الصورة!');</script>");
+                }
+                try
+                {
+                    var emp2 = _context.Cemps.Where(b => b.CEMPNAME == cemp.CEMPNAME).FirstOrDefault();
+                    //m => m.Cempid == HttpContext.Session.GetString("username")
+
+
+                    //emp2.CEMPNAME = cemp.CEMPNAME;
+                    emp2.Cempid = cemp.Cempid;
+                    emp2.imagepath = cemp.Fileimagepath.FileName;
+
+
+                    _context.Update(emp2);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CempExists(cemp.Cempid))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(MyInfo));
+                //return RedirectToAction("MyInfo", "Cemps", new { area = "" });
+            }
+            return View(cemp);
+
+        }
+
 
         // GET: Cemps/Delete/5
         public async Task<IActionResult> Delete(string id)

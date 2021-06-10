@@ -562,7 +562,7 @@ namespace Hr.Controllers
                     CourcesIdImagehr = x==x?x:y,
                     CourcesStartDate = aCourcesMaster.CourcesStartDate,
                     CourcesEndDate = aCourcesMaster.CourcesEndDate,
-                    CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays),
+                    CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays)+1,
                     CourcesPassRate = aCourcesMaster.CourcesPassRate,
                     Cempid = HttpContext.Session.GetString("empid")
 

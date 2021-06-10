@@ -78,8 +78,20 @@
                     <option value="">تحديد</option>
                     <option value="Administraton">سيكشن ادارة النظام </option>
                     <option value="hr-courses">سيكشن التطوير والتدريب  </option>
+                    <option value="inbox">صندوق الوارد   </option>
                 </select>
                 <span asp-validation-for="mmodule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="RoleId" class="control-label"></label>*@
+                داخل 
+                @*<input asp-for="RoleId" class="form-control" />*@
+                <select asp-for="treeroot" id="chosen-select" class="chosen-select form-control">
+                    <option value="">تحديد</option>
+                    <option value="1">داخل اول قائمه منسدلة  </option>
+                    <option value="2">داخل ثاني قائمة منسدلة   </option>
+                </select>
+                <span asp-validation-for="treeroot" class="text-danger"></span>
             </div>
             <br />
             <br />

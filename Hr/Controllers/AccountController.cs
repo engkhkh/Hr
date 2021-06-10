@@ -58,6 +58,11 @@ namespace Hr.Controllers
         public IActionResult Login(string username, string password)
         {
             var objuser = _context.Cemps.Where(b => b.Cempid == username).FirstOrDefault();
+            if(objuser==null)
+            {
+                ViewBag.error = "Invalid Account";
+                return View("Show");
+            }
             // saved sesssions here 
             HttpContext.Session.SetString("empid", objuser.Cempid);
             HttpContext.Session.SetString("empidpass", objuser.CEMPPASSWRD);
@@ -126,20 +131,20 @@ namespace Hr.Controllers
                 return RedirectToAction("MyInfo", "Cemps", new { area = "" });
                 //    ViewBag.Name = HttpContext.Session.GetString(SessionName);
             }
-            // will approve only
-            else if(username != null && password != null && username.Equals("456") && password.Equals("456"))
-            {
-                HttpContext.Session.SetString("username", username);
-                ViewBag.ContentCssClass = "";
-                return RedirectToAction("Index","ViewModelMasterwithother", new { area = "" });
-            }
-            // will create request and search only
-            else if (username != null && password != null && username.Equals("789") && password.Equals("789"))
-            {
-                HttpContext.Session.SetString("username", username);
-                ViewBag.ContentCssClass = "";
-                return RedirectToAction("Create","ACourcesMasters", new { area = "" });
-            }
+            //// will approve only
+            //else if(username != null && password != null && username.Equals("456") && password.Equals("456"))
+            //{
+            //    HttpContext.Session.SetString("username", username);
+            //    ViewBag.ContentCssClass = "";
+            //    return RedirectToAction("Index","ViewModelMasterwithother", new { area = "" });
+            //}
+            //// will create request and search only
+            //else if (username != null && password != null && username.Equals("789") && password.Equals("789"))
+            //{
+            //    HttpContext.Session.SetString("username", username);
+            //    ViewBag.ContentCssClass = "";
+            //    return RedirectToAction("Create","ACourcesMasters", new { area = "" });
+            //}
             else
             {
                 //ViewData["MenuItemActive"] = "";

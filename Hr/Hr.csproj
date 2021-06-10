@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\img\emps\" />
     <Folder Include="wwwroot\img\portfolio\" />
     <Folder Include="wwwroot\xjstabls\" />
   </ItemGroup>

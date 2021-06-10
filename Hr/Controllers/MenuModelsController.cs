@@ -96,7 +96,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,MainMenuId,SubMenuNamear,SubMenuNameen,ControllerName,ActionName,RoleId,mmodule")] MenuModels menuModels)
+        public async Task<IActionResult> Create([Bind("id,MainMenuId,SubMenuNamear,SubMenuNameen,ControllerName,ActionName,RoleId,mmodule,treeroot")] MenuModels menuModels)
         {
             if (ModelState.IsValid)
             {
