@@ -56,6 +56,8 @@ namespace Hr.Models
 
 
         public virtual DbSet<DepartWithMnagement> DepartWithMnagement { get; set; }
+        
+      
 
 
 

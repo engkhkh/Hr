@@ -529,8 +529,10 @@ namespace Hr.Controllers
             }
             else
             {
-                ModelState.AddModelError("uploadError", "يرجي رفع شهادة الدورة");
-                return Content("<script language='javascript' type='text/javascript'>alert('يرجي رفع شهادة الدورة!');</script>");
+                ViewBag.ErrorMessage = "يرجي رفع شهادة الدورة";
+                return View(aCourcesMaster);
+                //ModelState.AddModelError("uploadError", "يرجي رفع شهادة الدورة");
+                //return Content("<script language='javascript' type='text/javascript'>alert('يرجي رفع شهادة الدورة!');</script>");
             }
 
             //
@@ -617,8 +619,10 @@ namespace Hr.Controllers
                     }
                     else
                     {
+                        ViewBag.ErrorMessage1 = "تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم حفظ وارسال الطلب !";
+                        return View(aCourcesMaster);
                         //ViewBag.Message = "تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!";
-                        return Content("<script language='javascript' type='text/javascript'>alert('تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!');</script>");
+                        //return Content("<script language='javascript' type='text/javascript'>alert('تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!');</script>");
                         //ModelState.AddModelError("CourcesStartDate", "تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!");
 
 
@@ -643,8 +647,10 @@ namespace Hr.Controllers
                     }
                     else
                     {
-                       // ViewBag.Message = "تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم الحفظ!";
-                        return Content("<script language='javascript' type='text/javascript'>alert('تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم الحفظ!');</script>");
+                        ViewBag.ErrorMessage2 = "تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم حفظ وارسال الطلب !";
+                        return View(aCourcesMaster);
+                        // ViewBag.Message = "تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم الحفظ!";
+                        //return Content("<script language='javascript' type='text/javascript'>alert('تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم الحفظ!');</script>");
                     }
 
                 }

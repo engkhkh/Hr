@@ -82,8 +82,9 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">ارفاق شهادة الدورة*  </label>
-                    <input type="file" asp-for="Filecer" class="form-control" asp-items="ViewBag.CourcesIdImagecert" />
+                    <input type="file" asp-for="Filecer" class="form-control" id="f1" asp-items="ViewBag.CourcesIdImagecert" />
                     <span asp-validation-for="CourcesIdImagecert" class="text-danger"></span>
+                    <p style="color:red">@ViewBag.ErrorMessage</p>
                 </div>
                 <div class="form-group">
                     <label class="control-label">ارفاق ملف اعتماد الموارد البشرية </label>
@@ -96,6 +97,8 @@
                         <input type="text" class="form-control hijri-date-input" asp-for="CourcesStartDate" />
                     </div>
                     <span asp-validation-for="CourcesStartDate" class="text-danger"></span>
+                    <p style="color:red">@ViewBag.ErrorMessage1</p>
+                    <p style="color:red">@ViewBag.ErrorMessage2</p>
                 </div>
                 <br />
                 <div class="form-group">
@@ -117,10 +120,10 @@
                 <option value="">Select--</option>
             </select>
         </div>*@
-                @Html.ValidationMessage("uploadError")
+                @*@Html.ValidationMessage("uploadError")*@
 
                 <div class="form-group">
-                    <input type="submit" value="حفظ" class="btn btn-success" />
+                    <input type="submit" value="حفظ" class="btn btn-success" @*onClick="m()"*@ />
                 </div>
             </form>
         </div>
@@ -144,12 +147,32 @@
 <script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
 
 
+   @*<script type="text/javascript">
+       $(document).on("click", ":submit", function (e) {
 
+           if (!$('#f1').val()) {
+               e.preventDefault();
+               alert('يرجي ارفاق شهادة الدورة ');
+           }
+
+       }
+
+   </script>*@
 
     <script type="text/javascript">
+
         $('#chosen-select16').append(new Option('اخري', 5));
         /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
         $("#a").css('visibility', 'hidden');
+
+        //function m() {
+        //    if (document.getElementById("f1").files.length == 0) {
+        //        console.log("لم يتم ارفاق شهادة الدورة ");
+        //        alert("لم يتم ارفاق شهادة الدورة ");
+        //    }
+            
+        //}
+        
         var config = {
             '.chosen-select': {},
             '.chosen-select-deselect': { allow_single_deselect: true },
