@@ -104,9 +104,10 @@ namespace Hr.Controllers
                               from n in table6.ToList()
                               join x in MasterRequestTypeIds on e.CourcesIdmaster equals x.COURCES_IDMASTER into table7
                               from x in table7.ToList()
-                              //where x.MasterRequestType != 0
+                              where x.MasterRequestType == 0
                               join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
                               from y in table8.ToList()
+                              where y.MasterRequestTypeSatus == 0 && y.MasterRequestTypeSatus != 2 && y.MasterRequestTypeSatus != 1
                               join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
                               from z in table9.ToList()
 
@@ -156,9 +157,9 @@ namespace Hr.Controllers
                               from n in table6.ToList()
                               join x in MasterRequestTypeIds on e.CourcesIdmaster equals x.COURCES_IDMASTER into table7
                               from x in table7.ToList()
-                              //where x.MasterRequestType != 0
+                              where x.MasterRequestType == 0
                               join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
-                              from y in table8.ToList()
+                              from y in table8.ToList() where y.MasterRequestTypeSatus==0 && y.MasterRequestTypeSatus!=2 &&y.MasterRequestTypeSatus != 1
                               join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
                               from z in table9.ToList()
                               where z.CourcesName.Contains(search)
@@ -518,6 +519,41 @@ namespace Hr.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourcesIdmaster,CourcesId,CourcesIdType,CourcesIdDeptin,CourcesIdTraining,CourcesIdDeptout,CourcesIdEstimate,CourcesIdImagecert,CourcesIdImagehr,CourcesStartDate,CourcesEndDate,CourcesNumberofdays,CourcesPassRate,Cempid,Filecer,Filehr")] ACourcesMaster aCourcesMaster)
         {
+            // dublicate 
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+            ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname");
+            ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
+            ViewData["CourcesIdImagecert"] = new SelectList(_context.ACourcesCertImages, "CourcesIdImagecert", "CourcesIdmaster");
+            ViewData["ACourcesCertImagehr"] = new SelectList(_context.ACourcesCertImagehrs, "CourcesIdImagehr", "CourcesIdmaster");
+            ViewData["ACourcesDeptin"] = new SelectList(_context.ACourcesDeptins, "CourcesIdDeptin", "CourcesNameDeptin");
+            ViewData["ACourcesDeptout"] = new SelectList(_context.ACourcesDeptouts, "CourcesIdDeptout", "CourcesNameDeptout");
+            ViewData["ACourcesType"] = new SelectList(_context.ACourcesTypes, "CourcesIdType", "CourcesTypeName");
+            ViewData["ACourcesTrainingMethod"] = new SelectList(_context.ACourcesTrainingMethods, "CourcesIdTraining", "CourcesNameTraining");
+            ViewData["ACourcesEstimate"] = new SelectList(_context.ACourcesEstimates, "CourcesIdEstimate", "CourcesNameEstimate");
+
+            // end dublicate in  post create 
+
+
+
+
             var objuser1 = _context.Cemps.Where(b => b.Cempid == HttpContext.Session.GetString("empid")).FirstOrDefault();
             string x = "", y = "";
 
@@ -541,7 +577,7 @@ namespace Hr.Controllers
                 string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
                 string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
                 aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
-                x = aCourcesMaster.Filehr.FileName;
+                x = aCourcesMaster.Filehr.FileName+ DateTime.Now;
             }
             else
             {
@@ -560,7 +596,7 @@ namespace Hr.Controllers
                     CourcesIdTraining = aCourcesMaster.CourcesIdTraining,
                     CourcesIdDeptout = aCourcesMaster.CourcesIdDeptout,
                     CourcesIdEstimate = aCourcesMaster.CourcesIdEstimate,
-                    CourcesIdImagecert = aCourcesMaster.Filecer.FileName,
+                    CourcesIdImagecert = aCourcesMaster.Filecer.FileName+ DateTime.Now,
                     CourcesIdImagehr = x==x?x:y,
                     CourcesStartDate = aCourcesMaster.CourcesStartDate,
                     CourcesEndDate = aCourcesMaster.CourcesEndDate,

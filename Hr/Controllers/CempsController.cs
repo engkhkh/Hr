@@ -463,8 +463,9 @@ namespace Hr.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("uploadError", "يرجي رفع الصورة");
-                    return Content("<script language='javascript' type='text/javascript'>alert('يرجي رفع الصورة!');</script>");
+                    ViewBag.ErrorMessage1 = "يرجي رفع الصورة !";
+                    //ModelState.AddModelError("uploadError", "يرجي رفع الصورة");
+                    //return Content("<script language='javascript' type='text/javascript'>alert('يرجي رفع الصورة!');</script>");
                 }
                 try
                 {
@@ -474,7 +475,7 @@ namespace Hr.Controllers
 
                     //emp2.CEMPNAME = cemp.CEMPNAME;
                     emp2.Cempid = cemp.Cempid;
-                    emp2.imagepath = cemp.Fileimagepath.FileName;
+                    emp2.imagepath = cemp.Fileimagepath.FileName+DateTime.Now;
 
 
                     _context.Update(emp2);
