@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Hr.Models.ViewModelMasterwithother>
+
+@{
+    ViewData["Title"] = "صندوق الوارد  ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}  
+
+
+
+<hr />
+<div class=" container">
+    <div class="row">
+        <div class="col-md-4">
+            
+            <div class="flex-column">
+                <label style="background-color:orangered; font-size:xx-large; font-family:Arial; font-stretch:inherit">
+                    @*@Model.Select(x => x.MasterRequestTypeIds.COURCES_IDMASTER).ToList().Distinct().Count()*@
+                    @TempData["MasterRequestTypeIds1"].ToString()
+                </label>
+                <a href="~/ViewModelMasterwithother/Index" style="font-size: xx-large; font-family:'Times New Roman', Times, serif; font-stretch: inherit;">الارشفة</a>
+
+
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div>
+                <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
+                    @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                    @TempData["OfferedRequestTypeId1"].ToString()
+                </label>
+                <a href="~/ViewModelMasterwithother/IndexOffered" style="font-size: xx-large; font-family:'Times New Roman', Times, serif; font-stretch: inherit;">دورات الترشح</a>
+
+            </div>
+        </div>
+        <div class="col-md-4">
+
+            <div>
+                <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
+                    @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                    @TempData["OfferedRequestTypeId2"].ToString()
+                </label>
+                <a href="~/ViewModelMasterwithother/IndexOffered2" style="font-size: xx-large; font-family:'Times New Roman', Times, serif; font-stretch: inherit;">نموذج الترشح </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+            <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
+                @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                @TempData["OfferedRequestTypeId3"].ToString()
+            </label>
+            <a href="~/ViewModelMasterwithother/IndexOffered3" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">الترشح لدورات الجهات التدريبية  </a>
+        </div>
+            </div>
+        <div class="col-md-4">
+            <div>
+                <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
+                    @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                    @*@TempData["OfferedRequestTypeId2"].ToString()*@
+                </label>
+                <a href="~/ViewModelMasterwithother/IndexOffered4" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">مسح الاحتياج التدريبي للموظفين  </a>
+
+            </div>
+
+        </div>
+        <div class="col-md-4">
+           
+            <div>
+                <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
+                    @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                    @*@TempData["OfferedRequestTypeId2"].ToString()*@
+                </label>
+                <a href="~/ViewModelMasterwithother/IndexOffered5" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">مسح احتياج التدريب التعاوني   </a>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+           
+        </div>
+        <div class="col-md-4">
+
+        </div>
+
+
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+

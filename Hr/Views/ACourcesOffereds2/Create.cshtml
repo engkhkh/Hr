@@ -1,0 +1,310 @@
+﻿@model Hr.Models.ACourcesOffered2
+
+@{
+    ViewData["Title"] = " نموذج الترشح لدورة ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <a asp-action="search1" class="btn btn-success">عرض الدورات </a>
+</div>
+<h1>نموذج الترشح ل دورة تدريبية مطلوبة  </h1>
+
+<h4>@*ACourcesOffered*@</h4>
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="CourcesId" class="control-label"></label>*@
+                اختيار أسم الدورة
+                @*<input asp-for="CourcesId" class="form-control" />*@
+                <select asp-for="CourcesId" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId">
+                    <option value="55">تحديد</option>
+                    @*<option value="00">كورس غير مدرج -اخر </option>*@
+                </select>
+                <span asp-validation-for="CourcesId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourcesIdDeptout" class="control-label"></label>*@
+                جهة الدورة
+                @*<input asp-for="CourcesIdDeptout" class="form-control" />*@
+                <select asp-for="CourcesIdDeptout" id="chosen-select4" class="chosen-select form-control" data-placeholder="اختيار مقدم الدورة  " asp-items="ViewBag.ACourcesDeptout">
+                    <option value="">تحديد</option>
+                </select>
+                <span asp-validation-for="CourcesIdDeptout" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourcesIdLocation" class="control-label"></label>*@
+                المكان
+                @*<input asp-for="CourcesIdLocation" class="form-control" />*@
+                <select asp-for="CourcesIdLocation" id="chosen-select4" class="chosen-select form-control" data-placeholder="اختيار مكان الدورة " asp-items="ViewBag.CourcesIdLocation">
+                    <option value="">تحديد</option>
+                </select>
+                <span asp-validation-for="CourcesIdLocation" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="CourcesIdTraining" class="control-label"></label>*@
+                طريقة التدريب
+                @*<input asp-for="CourcesIdTraining" class="form-control" />*@
+
+                <select asp-for="CourcesIdTraining" id="chosen-select4" class="chosen-select form-control" data-placeholder="طريقة التدريب " asp-items="ViewBag.ACourcesTrainingMethod">
+                    <option value="">تحديد</option>
+                </select>
+                <span asp-validation-for="CourcesIdTraining" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourcesIdperiodbydays" class="control-label"></label>*@
+                عدد ايام الدورة
+                <input asp-for="CourcesIdperiodbydays" class="form-control" />
+                <span asp-validation-for="CourcesIdperiodbydays" class="text-danger"></span>
+            </div>
+
+
+            <br />
+            <div class="form-group">
+                @*<label asp-for="CourcesIdTime" class="control-label"></label>*@
+                فترة الدورة
+                @*<input asp-for="CourcesIdTime" class="form-control" />*@
+                <select asp-for="CourcesIdTime" id="chosen-select44" class="chosen-select form-control" data-placeholder="اختيار فترة الدورة ">
+                    <option value="">تحديد</option>
+                    <option value="صباحا">صباحا</option>
+                    <option value="مساء">مساء</option>
+                </select>
+                <span asp-validation-for="CourcesIdTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="CourcesIdTime" class="control-label"></label>*@
+                توقيت الدورة من-الي
+                <input type="time" asp-for="timefrom" class="form-control" id="datepicker" />
+                <input type="time" asp-for="timeto" class="form-control" id="datepicker" />
+
+                <span asp-validation-for="timefrom" class="text-danger"></span>
+                <span asp-validation-for="timeto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourcesIdManagement" class="control-label"></label>*@
+                رسوم الدورة للفرد تشمل الضريبة
+                @*<input asp-for="CourcesIdManagement" class="form-control" />*@
+                <input type="text" asp-for="CourcesIdManagement" class="form-control" />
+                @*<select asp-for="CourcesIdManagement" id="chosen-select4" class="chosen-select form-control" data-placeholder="اختيار الادارة " asp-items="ViewBag.ACourcesIdManagement">
+                <option value="">تحديد</option>
+            </select>*@
+                <span asp-validation-for="CourcesIdManagement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                اسباب الحاجة اليها والهدف المرجو
+                <textarea asp-for="available" class="form-control"></textarea>
+                <span asp-validation-for="available" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">ارفاق ملف (اختياري)مرفق </label>
+                <input type="file" asp-for="Filehr" class="form-control" asp-items="ViewBag.ACourcesCertImagehr" />
+                <span asp-validation-for="COURCES_ID_IMAGE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">بداية الدورة   </label>
+
+                <div class="input-group" style="float: left">
+
+                    <input type="text" asp-for="CourcesStartDate" class="form-control hijri-date-input" />
+
+                </div>
+                <span asp-validation-for="CourcesStartDate" class="text-danger"></span>
+                <p style="color:red">@ViewBag.ErrorMessage1</p>
+                <p style="color:red">@ViewBag.ErrorMessage2</p>
+            </div>
+            <br />
+
+            @*<div class="form-group">
+            <label asp-for="Cempid" class="control-label"></label>
+            <input asp-for="Cempid" class="form-control" />
+            <span asp-validation-for="Cempid" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+<link href="~/js/chosen.css" rel="stylesheet" />
+<link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+<link href="~/js/prism.css" rel="stylesheet" />
+<script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+<script src="~/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+<script src="~/js/prism.js"></script>
+<script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
+
+
+
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+            $('#timepicker').timepicker();
+        }
+        catch (e) { }
+    });
+
+</script>
+
+
+<script type="text/javascript">
+    /*  $('#chosen-select16').append(new Option('كورس غير مدرج -اخر', 5));*/
+    /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
+    /* $("#a").css('visibility', 'hidden');*/
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" }//,
+        //'.chosen-search': {disable_search: false}
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+    //$("select.chosen11").change(function () {
+
+    //    var selectedCountry11 = $(this).children("option:selected").val();
+    //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+    //    if (selectedCountry11 == 2) {
+    //        alert("  يرجي اختيار التقدير  - ");
+    //        $("#a").css('visibility', 'visible');
+    //        var hiddenBox = $("#respond-2");
+    //        hiddenBox.show();
+
+
+
+    //    }
+    //    else {
+    //        $("#a").css('visibility', 'hidden');
+    //        var hiddenBox = $("#respond-2");
+    //        hiddenBox.hide();
+
+    //    }
+    //});
+
+    //$("select.chosen1").change(function () {
+    //    var selectedCountry = $(this).children("option:selected").val();
+    //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+    //    if (selectedCountry == 5) {
+    //        alert("  يرجي ادخال اسم الكورس الجديد باالاسفل - ");
+
+    //        var hiddenBox = $("#respond-1");
+    //        hiddenBox.show();
+
+
+
+    //    }
+    //    else {
+    //        var hiddenBox = $("#respond-1");
+    //        hiddenBox.hide();
+
+    //    }
+    //});
+    //$("select").change(function () {
+    //    var selected5 = $(this).children("option:selected").val();
+    //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+    //    if (selected5 == 0) {
+    //        alert("لايتم اختيار هذا العنصر  - ");
+
+    //    }
+    //});
+</script>
+
+
+<script type="text/javascript">
+
+
+    $(function () {
+
+        initHijrDatePicker();
+
+        initHijrDatePickerDefault();
+
+        $('.disable-date').hijriDatePicker({
+
+            minDate: "2020-01-01",
+            maxDate: "2021-01-01",
+            viewMode: "years",
+            hijri: true,
+            debug: true
+        });
+
+    });
+
+   
+    function initHijrDatePicker() {
+
+        $(".hijri-date-input").hijriDatePicker({
+            locale: "ar-sa",
+            format: "YYYY-MM-DD",
+            hijriFormat: "iYYYY-iMM-iDD",
+            dayViewHeaderFormat: "MMMM YYYY",
+            hijriDayViewHeaderFormat: "iMMMM iYYYY",
+            showSwitcher: false,
+            allowInputToggle: true,
+            showTodayButton: false,
+            useCurrent: true,
+            isRTL: false,
+            viewMode: 'months',
+            keepOpen: false,
+            hijri: true,
+            debug: true,
+            showClear: true,
+            showTodayButton: true,
+            showClose: true
+        });
+    }
+
+    function initHijrDatePickerDefault() {
+
+        $(".hijri-date-default").hijriDatePicker();
+    }
+
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+<script>
+    try {
+        fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function (response) {
+            return true;
+        }).catch(function (e) {
+            var carbonScript = document.createElement("script");
+            carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+            carbonScript.id = "_carbonads_js";
+            document.getElementById("carbon-block").appendChild(carbonScript);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+</script>

@@ -31,6 +31,12 @@ namespace Hr.Models
         public string PARENTMANAGERNAME { get; set; }
 
 
+        public string depcode { get; set; }
+
+
+        public string mancode { get; set; }
+
+
 
 
     }

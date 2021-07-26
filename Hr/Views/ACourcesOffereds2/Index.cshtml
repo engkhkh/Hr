@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Hr.Models.ACourcesOffered2>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdDeptout)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdManagement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdperiodbydays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesIdTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourcesStartDateh)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.CourcesIdTraining)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cempid)
+            </th>*@
+            <th>تسلسل</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdDeptout)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdManagement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdperiodbydays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesIdTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourcesStartDateh)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.CourcesIdTraining)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cempid)
+            </td>*@
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Option)*@
+            @*<input name="IsActive" type="checkbox" checked="@(item.Option== true)" />*@
+        </td>
+            <td>
+               
+                @*<a asp-action="Edit" asp-route-id="@item.CourcesOfferedId">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.CourcesOfferedId">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.CourcesOfferedId">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

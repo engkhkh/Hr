@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div>
-        <a asp-action="search1" class="btn btn-success">عرض الدورات </a>
-    </div>
+    <a asp-action="search1" class="btn btn-success">عرض الدورات </a>
+</div>
 <h1>اضافة دورة للترشح </h1>
 
 <h4>@*ACourcesOffered*@</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="col-md-5">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 @*<label asp-for="CourcesId" class="control-label"></label>*@
@@ -68,6 +68,9 @@
                 <input asp-for="CourcesIdperiodbydays" class="form-control" />
                 <span asp-validation-for="CourcesIdperiodbydays" class="text-danger"></span>
             </div>
+
+
+            <br />
             <div class="form-group">
                 @*<label asp-for="CourcesIdTime" class="control-label"></label>*@
                 فترة الدورة
@@ -79,23 +82,42 @@
                 </select>
                 <span asp-validation-for="CourcesIdTime" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                @*<label asp-for="CourcesStartDate" class="control-label"></label>*@
-                بداية الدورة
-                <input type="date" asp-for="CourcesStartDate" class="form-control" />
-                <span asp-validation-for="CourcesStartDate" class="text-danger"></span>
+                @*<label asp-for="CourcesIdTime" class="control-label"></label>*@
+                توقيت الدورة من-الي
+                <input type="time" asp-for="timefrom" class="form-control" id="datepicker" />
+                <input type="time" asp-for="timeto" class="form-control" id="datepicker" />
+
+                <span asp-validation-for="timefrom" class="text-danger"></span>
+                <span asp-validation-for="timeto" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                    <label asp-for="CourcesStartDateh" class="control-label"></label>
-                    <input asp-for="CourcesStartDateh" class="form-control" />
-                    <span asp-validation-for="CourcesStartDateh" class="text-danger"></span>
-                </div>*@
+
+            <div class="form-group">
+                العدد المسموح به
+                <input asp-for="available" class="form-control" />
+                <span asp-validation-for="available" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">بداية الدورة   </label>
+
+                <div class="input-group" style="float: left">
+
+                    <input type="text" asp-for="CourcesStartDate" class="form-control hijri-date-input" />
+
+                </div>
+                <span asp-validation-for="CourcesStartDate" class="text-danger"></span>
+                <p style="color:red">@ViewBag.ErrorMessage1</p>
+                <p style="color:red">@ViewBag.ErrorMessage2</p>
+            </div>
+            <br />
 
             @*<div class="form-group">
-                    <label asp-for="Cempid" class="control-label"></label>
-                    <input asp-for="Cempid" class="form-control" />
-                    <span asp-validation-for="Cempid" class="text-danger"></span>
-                </div>*@
+            <label asp-for="Cempid" class="control-label"></label>
+            <input asp-for="Cempid" class="form-control" />
+            <span asp-validation-for="Cempid" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <input type="submit" value="حفظ" class="btn btn-success" />
             </div>
@@ -110,6 +132,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
 <link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
 <link href="~/js/chosen.css" rel="stylesheet" />
 <link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
@@ -118,12 +141,18 @@
 <script src="~/js/chosen.jquery.js"></script>
 <script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
 <script src="~/js/prism.js"></script>
+<script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
+
+
+
+
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
         try {
             $("input[type='text']").each(function () {
                 $(this).attr("autocomplete", "off");
             });
+            $('#timepicker').timepicker();
         }
         catch (e) { }
     });
@@ -193,4 +222,84 @@
 
     //    }
     //});
+</script>
+
+
+<script type="text/javascript">
+
+
+    $(function () {
+
+        initHijrDatePicker();
+
+        initHijrDatePickerDefault();
+
+        $('.disable-date').hijriDatePicker({
+
+            minDate: "2020-01-01",
+            maxDate: "2021-01-01",
+            viewMode: "years",
+            hijri: true,
+            debug: true
+        });
+
+    });
+
+   
+    function initHijrDatePicker() {
+
+        $(".hijri-date-input").hijriDatePicker({
+            locale: "ar-sa",
+            format: "YYYY-MM-DD",
+            hijriFormat: "iYYYY-iMM-iDD",
+            dayViewHeaderFormat: "MMMM YYYY",
+            hijriDayViewHeaderFormat: "iMMMM iYYYY",
+            showSwitcher: false,
+            allowInputToggle: true,
+            showTodayButton: false,
+            useCurrent: true,
+            isRTL: false,
+            viewMode: 'months',
+            keepOpen: false,
+            hijri: true,
+            debug: true,
+            showClear: true,
+            showTodayButton: true,
+            showClose: true
+        });
+    }
+
+    function initHijrDatePickerDefault() {
+
+        $(".hijri-date-default").hijriDatePicker();
+    }
+
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+<script>
+    try {
+        fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function (response) {
+            return true;
+        }).catch(function (e) {
+            var carbonScript = document.createElement("script");
+            carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+            carbonScript.id = "_carbonads_js";
+            document.getElementById("carbon-block").appendChild(carbonScript);
+        });
+    } catch (error) {
+        console.log(error);
+    }
 </script>

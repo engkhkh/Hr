@@ -16,5 +16,7 @@ namespace Hr.Models
 
 
         public string ManagerName { get; set; }
+
+        public string newcode { get; set; }
     }
 }

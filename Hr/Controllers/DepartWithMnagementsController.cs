@@ -38,7 +38,7 @@ namespace Hr.Controllers
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
-            return View(await _context.DepartWithMnagement.ToListAsync());
+            return View(await _context.DepartWithMnagement.Where(d=>d.depcode !=null ).ToListAsync());
         }
 
         // GET: DepartWithMnagements/Details/5

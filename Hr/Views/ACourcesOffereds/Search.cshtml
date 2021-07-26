@@ -10,16 +10,51 @@
     //Layout = "~/Views/Shared/_Layout - Copy - Copy.cshtml";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<table>
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    @using (@Html.BeginForm())
+                    {
+                        <button type="submit" name="1" value="1" class="=btn btn-success" asp-action="approveduser1" asp-controller="ViewModelMasterwithother" formmethod="post">تم الموافقة عليها </button>
+                        <button type="submit" name="2" value="2" class="=btn btn-success" asp-action="canceluser1" asp-controller="ViewModelMasterwithother" formmethod="post">تم رفضها  </button>
+
+                        @*@Html.TextBox("search", "", new { placeholder = "بحث بالدورة", @class = "" })*@
+
+
+
+                    }
+                </p>
+            </td>
+            <td>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
 @*@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
+    {
+        <script type="text/javascript">
 
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-    </script>
+                window.onload = function () {
+                    alert("@ViewBag.Message");
+                };
+        </script>
 
-}*@
+    }*@
 @*<table>
         <thead>
             <tr>
@@ -81,117 +116,192 @@
             <th>
                 الأدارة
             </th>
-         
+
             <th>
                 بداية الدورة
 
             </th>
-          
+            <th>
+                فترة الدورة
+
+            </th>
+            <th>
+                توقيت الدورة
+
+            </th>
+
             <th>
                 عدد ايام  الدورة
+            </th>
+            <th>
+                عدد المقاعد المتاحة
             </th>
             @*<th>
             نسبة الانجاز %
         </th>*@
 
+            @*<th>
+            الترشح
+        </th>*@
             <th>
-                الترشح
-            </th>
-            <th>
-                الاعتماد وارسال الطلب 
+                الاعتماد وارسال الطلب
             </th>
 
         </tr>
     </thead>
+
+
     <tbody>
-    
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <!--<td>-->
-                    @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
-                    <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
-                    @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
-                    <!--</td>-->
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
-                    </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesOffered.CourcesOfferedId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACoursesLocation.name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesIdManagement.name)
-                    </td>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <!--<td>-->
+            @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
+        <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
+            @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesOffered.CourcesStartDate)
-                        @*@Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDateh)*@
-                        @item.ACourcesOffered.CourcesStartDateh.AddDays(-1).ToShortDateString()
+            <!--</td>-->
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered.CourcesOfferedId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACoursesLocation.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesIdManagement.name)
+            </td>
 
-                    </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered.CourcesStartDate)
+                @*@Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDateh)*@
+                @*@item.ACourcesOffered.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACourcesOffered.CourcesIdperiodbydays)
-                    </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
-                    </td>*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered.CourcesIdTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered.timefrom)
+                @Html.DisplayFor(modelItem => item.ACourcesOffered.timeto)
 
-                <td>
-                    @*@Html.CheckBoxFor(modelItem => item.Option1)*@
-                    @*@Html.ValidationMessageFor(modelItem => item.Option1)*@
-                    @*<input type="checkbox" value="<%:item.ACourcesOffered.CourcesOfferedId %>" class="custom-checkbox" name="ItemId" />*@
-                    @*@for (var i = 1; i <= 10; i++)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered.CourcesIdperiodbydays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered.available)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
+        </td>*@
+
+            <!--<td>-->
+            @*@Html.CheckBoxFor(modelItem => item.Option1)*@
+            @*@Html.ValidationMessageFor(modelItem => item.Option1)*@
+            @*<input type="checkbox" value="<%:item.ACourcesOffered.CourcesOfferedId %>" class="custom-checkbox" name="ItemId" />*@
+            @*@for (var i = 1; i <= 10; i++)
         {
             <input name="AreChecked" type="checkbox" value="@i" /> @i<br />
         }
         <button>Click</button>*@
 
-                    @*<input type="checkbox" class="form-check-input" id="item_@item.ACourcesOffered.CourcesOfferedId" name="itemn_@item.ACourcesOffered.CourcesOfferedId" asp-for="@item.ACourcesOffered.Option" value="@item.ACourcesOffered.Option" checked="@item.ACourcesOffered.Option" style="height:20px; opacity:1;" />*@
-                    @*<input id="2" type='hidden' value="@item.ACourcesOffered.Option" name="@item.ACourcesOffered.Option">*@
+            @*<input type="checkbox" class="form-check-input" id="item_@item.ACourcesOffered.CourcesOfferedId" name="itemn_@item.ACourcesOffered.CourcesOfferedId" asp-for="@item.ACourcesOffered.Option" value="@item.ACourcesOffered.Option" checked="@item.ACourcesOffered.Option" style="height:20px; opacity:1;" />*@
+            @*<input id="2" type='hidden' value="@item.ACourcesOffered.Option" name="@item.ACourcesOffered.Option">*@
 
-                    <select asp-for="@item.ACourcesOffered.Option" id="chosen-select3" class="form-control chosen-select" data-placeholder="اختيار نوع التدريب" asp-items="ViewBag.ACourcesOfferedoption">
-                        <option value="">تحديد</option>
-                    </select>
-                 
-                    @*<input name="@item.ACourcesOffered.Option" type="hidden" value="false">*@
+            @*<select asp-for="@item.ACourcesOffered.Option" id="chosen-select3" class="form-control chosen-select" data-placeholder="اختيار نوع التدريب" asp-items="ViewBag.ACourcesOfferedoption">
+            <option value="">تحديد</option>
+        </select>*@
 
-                    @*@Html.CheckBoxFor(modelItem =>item.ACourcesOffered.Option)*@
+            @*<input name="@item.ACourcesOffered.Option" type="hidden" value="false">*@
 
-                    @*<input type="checkbox" id="@Model.Filters[i].Name" asp-for="@Model.Filters[i].Selected" value="@Model.Filters[i].Selected" checked="@Model.Filters[i].Selected" />*@
+            @*@Html.CheckBoxFor(modelItem =>item.ACourcesOffered.Option)*@
 
-
-                    @*@Html.CheckBoxFor(modelItem => item.ACourcesOffered.CourcesOfferedId, new { @checked = "checked" })*@
-                    @*<input id="AllowRating" type="checkbox" @(item.AllowRating ? "checked='checked'" : "") style="" onchange="" />*@
-                    @*@Html.CheckBoxFor(modelItem => item.AllowRating, new { @checked = item.AllowRating })*@
+            @*<input type="checkbox" id="@Model.Filters[i].Name" asp-for="@Model.Filters[i].Selected" value="@Model.Filters[i].Selected" checked="@Model.Filters[i].Selected" />*@
 
 
+            @*@Html.CheckBoxFor(modelItem => item.ACourcesOffered.CourcesOfferedId, new { @checked = "checked" })*@
+            @*<input id="AllowRating" type="checkbox" @(item.AllowRating ? "checked='checked'" : "") style="" onchange="" />*@
+            @*@Html.CheckBoxFor(modelItem => item.AllowRating, new { @checked = item.AllowRating })*@
 
 
-                </td>
-                <td>
-                    <a asp-action="Search" asp-controller="ACourcesOffereds" asp-route-id="@item.ACourcesOffered.CourcesOfferedId" class="btn btn-success">أرسال</a>
-                    @*<input type="submit" value="Save" asp-action="Search" asp-controller="ACourcesOffereds" asp-route-id="@item.ACourcesOffered.CourcesOfferedId" class="btn btn-primary" />*@
-                </td>
 
-                </tr>
-            }
-           
+
+            <!--</td>-->
+            <td>
+                @*<input type="submit" value="SomeAction" id="Submit" class="btn btn-default" onclick="location.href='@Url.Action("SomeAction", "ACourcesOffereds",@item.ACourcesOffered.CourcesOfferedId)'" />*@
+                @*<a asp-action="send" asp-controller="ACourcesOffereds" asp-route-id="@item.ACourcesOffered.CourcesOfferedId" class="btn btn-success">أرسال</a>*@
+                @Html.ActionLink("اترشح ", "SomeAction", new { id = @item.ACourcesOffered.CourcesOfferedId }, new { onclick = "return AreYouSureFunction(this);" })
+
+                <input value="false" onclick="return AreYouSureFunction1(this);" type="checkbox" />
+
+
+
+                @*<input type="submit" value="Save" asp-action="Search" asp-controller="ACourcesOffereds" asp-route-id="@item.ACourcesOffered.CourcesOfferedId" class="btn btn-primary" />*@
+            </td>
+
+        </tr>
+
+        }
+
     </tbody>
 </table>
+<!-- Your Script -->
+<script type='text/javascript'>
+    function AreYouSureFunction(source) {
+        //Prompt for confirmation
+        if (confirm("هل تريد الترشح لهذه الدورة ؟")) {
+            //Your AJAX call that corresponds with the href attribute of your link
+            $.ajax({
+                url: source,
+            }).done(function () {
+                //Item created!
+                alert("تم ارسال الطلب للاعتماد !");
+            });
+            //This prevents the default behavior of the actual link (it will hit your controller action)
+            return false;
+        }
+        else {
+            alert(" تم الغاء ارسال الطلب !");
+            //Unconfirmed - cancel any further actions
+            return false;
+        }
+    }
+
+    function AreYouSureFunction1() {
+        //Prompt for confirmation
+        if (confirm("هل تريد الترشح لهذه الدورة ؟")) {
+            //Your AJAX call that corresponds with the href attribute of your link
+            $.ajax({
+                url: '/ACourcesOffereds/SomeAction',
+            }).done(function () {
+                //Item created!
+                alert("تم ارسال الطلب للاعتماد !");
+            });
+            //This prevents the default behavior of the actual link (it will hit your controller action)
+            return false;
+        }
+        else {
+            alert(" تم الغاء ارسال الطلب !");
+            //Unconfirmed - cancel any further actions
+            return false;
+        }
+    }
+
+</script>
 
 @*</div>*@
 
@@ -233,41 +343,41 @@
     }
 
     </script>*@
-    @*<script language="javascript" type="text/javascript">
-        $(document).ready(function () {
-        try {
-         
-            //$('form').on('change', ':checkbox', function () {
-            //    if (this.checked) {
-            //        $(this).val(true);
-            //    }
-            //    else {
-            //        $(this).val(false);
-            //    }
-            //});
-            $("input[type='text']").each(function () {
-                $(this).attr("autocomplete", "off");
-            });
-            //$('input[type="checkbox"]').each(function () {
-            //    $(this).attr('value', $(this).is(':checked'));
-            //});
-            /*    $("input[type='checkbox']").show();*/
+@*<script language="javascript" type="text/javascript">
+            $(document).ready(function () {
+            try {
 
-            //   $('input[type="checkbox"]').each(function () {
-            //    $(this).attr("Display", "inline");
-            //});
-        }
-        catch (e) { }
-    });
+                //$('form').on('change', ':checkbox', function () {
+                //    if (this.checked) {
+                //        $(this).val(true);
+                //    }
+                //    else {
+                //        $(this).val(false);
+                //    }
+                //});
+                $("input[type='text']").each(function () {
+                    $(this).attr("autocomplete", "off");
+                });
+                //$('input[type="checkbox"]').each(function () {
+                //    $(this).attr('value', $(this).is(':checked'));
+                //});
+                /*    $("input[type='checkbox']").show();*/
 
-</script>*@
+                //   $('input[type="checkbox"]').each(function () {
+                //    $(this).attr("Display", "inline");
+                //});
+            }
+            catch (e) { }
+        });
+
+    </script>*@
 <script>
 
     $(document).ready(function () {
         $('#table').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                /*'copy', 'csv', 'excel', 'pdf',*/ 'print'
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",

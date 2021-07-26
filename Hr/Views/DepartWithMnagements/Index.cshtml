@@ -18,6 +18,9 @@
                 كود القسم
             </th>
             <th>
+                كود القسم الجديد
+            </th>
+            <th>
                 @*@Html.DisplayNameFor(model => model.DEP_NAME)*@
                 القسم
             </th>
@@ -32,6 +35,9 @@
             <th>
                 @*@Html.DisplayNameFor(model => model.PARENTID)*@
                 كود الادارة
+            </th>
+            <th>
+                كود الادارة الجديد
             </th>
             <th>
                 @*@Html.DisplayNameFor(model => model.PARENTNAME)*@
@@ -51,37 +57,43 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CEMPADPRTNO)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DEP_NAME)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MANAGERID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MANAGERNAME)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PARENTID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PARENTNAME)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PARENTMANAGERID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PARENTMANAGERNAME)
-                </td>
-                <td>
-                    @*<a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPADPRTNO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.depcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DEP_NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MANAGERID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MANAGERNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PARENTID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mancode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PARENTNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PARENTMANAGERID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PARENTMANAGERNAME)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
+            </td>
+        </tr>
         }
     </tbody>
 </table>
@@ -126,7 +138,7 @@
         $('#table').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                /*'copy', 'csv', 'excel', 'pdf',*/ 'print'
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print','excel'
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",

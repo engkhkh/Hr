@@ -1,0 +1,364 @@
+﻿@model IEnumerable<Hr.Models.ViewModelMasterwithother>
+
+@{
+    ViewData["Title"] = "الموافقة علي نماذج الترشح للموظفين";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table>
+<thead>
+    <tr>
+        <th>
+
+        </th>
+        <th>
+
+        </th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>
+            <p>
+                @using (@Html.BeginForm())
+                {
+                    <button type="submit" name="1" value="1" class="=btn btn-success" asp-action="approvedoffered2" asp-controller="ViewModelMasterwithother" formmethod="post" >تم الموافقة عليها </button>
+                    <button type="submit" name="2" value="2" class="=btn btn-success" asp-action="canceloffered2" formmethod="post" >تم رفضها  </button>
+                    
+                    @*@Html.TextBox("search", "", new { placeholder = "بحث بالدورة", @class = "" })*@
+
+
+
+                }
+            </p>
+        </td>
+        <td>
+
+        </td>
+    </tr>
+
+</tbody>
+</table>
+
+@*<div id="sortMsg" style="text-align: center; color: Red;">
+</div>*@
+@*<div class="row" style="float:right; width:100%">*@
+<table id="table" @*style="width: 100%;"*@ class="table table-bordered table-condensed table-striped table-hover table-responsive-lg sortable">
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                تسلسل الترشح
+            </th>
+            <th>
+                الموظف
+            </th>
+            <th>
+                رقم الطلب
+            </th>
+            <th>
+                الدورة
+            </th>
+            <th>
+                الموقع
+            </th>
+            <th>
+                طريقة الدورة
+            </th>
+            <th>
+                رسوم الدورة
+            </th>
+            <th>
+                اسباب الحاجة والهدف المرجو 
+            </th>
+            <th>
+                بداية الدورة
+            </th>
+            @*<th>
+            نهاية الدورة
+        </th>*@
+            <th>
+                عدد ايام  الدورة
+            </th>
+            @*<th>
+            نسبة الانجاز %
+        </th>*@
+            <th>
+                جهة الدورة
+            </th>
+            <th>
+                توقيت الدورة
+            </th>
+            <th>
+                من-الي
+            </th>
+            <th>
+                المرفق
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <a asp-controller="OfferDetails2" asp-action="Create" asp-route-id="@item.OfferedDetails2.COURCES_IDOffered" asp-route-from="@item.OfferedDetails2.OfferedRequestFrom" class="btn btn-success">موافق</a>
+                <a asp-controller="OfferDetails2" asp-action="Create2" asp-route-id="@item.OfferedDetails2.COURCES_IDOffered" asp-route-from="@item.OfferedDetails2.OfferedRequestFrom" class="btn btn-danger">رفض</a>
+                @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferedDetails2.OfferedDetailsSerial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered2.CourcesOfferedId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACoursesLocation.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered2.CourcesIdManagement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered2.available)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered2.CourcesStartDate)
+                @*@item.ACourcesMasters.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered2.CourcesIdperiodbydays)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered2.CourcesIdTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered2.timefrom)
+                @Html.DisplayFor(modelItem => item.ACourcesOffered2.timeto)
+            </td>
+            <td>
+                <a href="~/img/aCourcesOffered2/@item.ACourcesOffered2.COURCES_ID_IMAGE" class="btn btn-link">@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="20" height="20" />*@تحميل</a>
+
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+@*</div>*@
+
+<br />
+@*<div id="pager" class="pager">
+        <br />
+        <img src="~/Content/first.png" />
+        <img src="~/Content/first.png" class="first" />
+        <img src="~/Content/prev.png" class="prev" />
+        <input type="text" class="pagedisplay" />
+        <img src="~/Content/next.png" class="next" />
+        <img src="~/Content/last.png" class="last" />
+        <select class="pagesize">
+            <option selected="selected" value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+        </select>
+    </div>*@
+@*<script type="text/javascript">
+        $(function () {
+            $("#empTable")
+                .tablesorter({ widthFixed: true })
+                .tablesorterPager({ container: $("#pager") });
+            $("#empTable").bind("sortStart", function () {
+                $("#sortMsg").html('Sorting');
+            }).bind("sortEnd", function () {
+                $("#sortMsg").html('');
+            });
+
+            //Hide/delete row on click.
+            $("#empTable img").click(function () { $(this).parent().parent().hide(); });
+        });
+    </script>*@
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+        }
+        catch (e) { }
+    });
+
+</script>
+<script>
+
+    $(document).ready(function () {
+        $('#table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print','excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+
+</script>
+
+<link href="~/DataTables (1)/datatables.css" rel="stylesheet" />
+
+<script src="~/DataTables (1)/datatables.js"></script>
+
+<script src="~/DataTables (1)/pdfmake-0.1.36/pdfmake.js"></script>
+
+<script src="~/DataTables (1)/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="~/DataTables (1)/JSZip-2.5.0/jszip.js"></script>
+@*<script src="~/js/jquery-1.4.1.min.js"></script>
+    <script src="~/js/jquery.tablesorter.min.js"></script>
+    <script src="~/js/jquery.tablesorter.pager.js"></script>*@

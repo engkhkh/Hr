@@ -20,6 +20,6 @@ namespace Hr.Models
         public string OfferedRequestNotes { get; set; }
 
 
-        public int Offeredoption { get; set; }
+        public string Offeredoption { get; set; }
     }
 }

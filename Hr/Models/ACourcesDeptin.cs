@@ -9,5 +9,7 @@ namespace Hr.Models
     {
         public int CourcesIdDeptin { get; set; }
         public string CourcesNameDeptin { get; set; }
+
+        public string newcode { get; set; }
     }
 }

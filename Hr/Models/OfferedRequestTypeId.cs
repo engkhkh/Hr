@@ -12,6 +12,8 @@ namespace Hr.Models
         public int COURCES_IDOffered { get; set; }
         public int OfferedRequestType { get; set; }
 
-      
+        public string Offercoursefrom { get; set; }
+
+
     }
 }

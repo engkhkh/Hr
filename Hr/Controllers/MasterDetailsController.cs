@@ -72,14 +72,14 @@ namespace Hr.Controllers
                 return NotFound();
             }
 
-            var masterDetails = await _context.MasterDetailss
+            var MasterDetails = await _context.MasterDetailss
                 .FirstOrDefaultAsync(m => m.MasterDetailsSerial == id);
-            if (masterDetails == null)
+            if (MasterDetails == null)
             {
                 return NotFound();
             }
 
-            return View(masterDetails);
+            return View(MasterDetails);
         }
 
         // GET: MasterDetails/Create
@@ -109,7 +109,7 @@ namespace Hr.Controllers
                 return NotFound();
             }
 
-            //var masterDetails = await _context.MasterDetailss.FindAsync(id);
+            //var MasterDetails = await _context.MasterDetailss.FindAsync(id);
             var MasterDetailssss = _context.MasterDetailss
                .Where(e => e.COURCES_IDMASTER == id)
                .SingleOrDefault();
@@ -125,7 +125,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MasterDetailsSerial,COURCES_IDMASTER,MasterRequestFrom,MasterRequestTo,MasterRequestTypeSatus,MasterRequestNotes")] MasterDetails masterDetails)
+        public async Task<IActionResult> Create([Bind("MasterDetailsSerial,COURCES_IDMASTER,MasterRequestFrom,MasterRequestTo,MasterRequestTypeSatus,MasterRequestNotes")] MasterDetails MasterDetails)
         {
             if (ModelState.IsValid)
             {
@@ -135,22 +135,22 @@ namespace Hr.Controllers
                     MasterRequestTo = HttpContext.Session.GetString("empid"),
                     MasterRequestTo2 = HttpContext.Session.GetString("empid"),
                     MasterRequestTypeSatus = 1,
-                    COURCES_IDMASTER = masterDetails.COURCES_IDMASTER,
-                    MasterRequestNotes = masterDetails.MasterRequestNotes
+                    COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER,
+                    MasterRequestNotes = MasterDetails.MasterRequestNotes
                 };
-                var MasterRequestTypeIdsMasterRequestTypeIdserial2 = _context.MasterRequestTypeIds.Where(b => b.COURCES_IDMASTER == masterDetails.COURCES_IDMASTER).FirstOrDefault();
+                var MasterRequestTypeIdsMasterRequestTypeIdserial2 = _context.MasterRequestTypeIds.Where(b => b.COURCES_IDMASTER == MasterDetails.COURCES_IDMASTER).FirstOrDefault();
 
                 //MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
 
                 MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestType = 1;
-                MasterRequestTypeIdsMasterRequestTypeIdserial2.COURCES_IDMASTER = masterDetails.COURCES_IDMASTER;
+                MasterRequestTypeIdsMasterRequestTypeIdserial2.COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER;
                 _context.Add(mas);
                 _context.Update(MasterRequestTypeIdsMasterRequestTypeIdserial2);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Index", "ViewModelMasterwithother", new { area = "" });
             }
-            return View(masterDetails);
+            return View(MasterDetails);
         }
         //
         // GET: MasterDetails/Create
@@ -180,7 +180,7 @@ namespace Hr.Controllers
                 return NotFound();
             }
 
-            //var masterDetails = await _context.MasterDetailss.FindAsync(id);
+            //var MasterDetails = await _context.MasterDetailss.FindAsync(id);
             var MasterDetailssss = _context.MasterDetailss
                .Where(e => e.COURCES_IDMASTER == id)
                .SingleOrDefault();
@@ -196,7 +196,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create2([Bind("MasterDetailsSerial,COURCES_IDMASTER,MasterRequestFrom,MasterRequestTo,MasterRequestTypeSatus,MasterRequestNotes")] MasterDetails masterDetails)
+        public async Task<IActionResult> Create2([Bind("MasterDetailsSerial,COURCES_IDMASTER,MasterRequestFrom,MasterRequestTo,MasterRequestTypeSatus,MasterRequestNotes")] MasterDetails MasterDetails)
         {
             if (ModelState.IsValid)
             {
@@ -206,15 +206,15 @@ namespace Hr.Controllers
                     MasterRequestTo = HttpContext.Session.GetString("empid"),
                     MasterRequestTo2 = HttpContext.Session.GetString("empid"),
                     MasterRequestTypeSatus = 2,
-                    COURCES_IDMASTER = masterDetails.COURCES_IDMASTER,
-                    MasterRequestNotes = masterDetails.MasterRequestNotes
+                    COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER,
+                    MasterRequestNotes = MasterDetails.MasterRequestNotes
                 };
-                var MasterRequestTypeIdsMasterRequestTypeIdserial2 = _context.MasterRequestTypeIds.Where(b => b.COURCES_IDMASTER == masterDetails.COURCES_IDMASTER).FirstOrDefault();
+                var MasterRequestTypeIdsMasterRequestTypeIdserial2 = _context.MasterRequestTypeIds.Where(b => b.COURCES_IDMASTER == MasterDetails.COURCES_IDMASTER).FirstOrDefault();
 
                 //MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
 
                 MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestType = 2;
-                MasterRequestTypeIdsMasterRequestTypeIdserial2.COURCES_IDMASTER = masterDetails.COURCES_IDMASTER;
+                MasterRequestTypeIdsMasterRequestTypeIdserial2.COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER;
                
                 _context.Add(mas);
                 _context.Update(MasterRequestTypeIdsMasterRequestTypeIdserial2);
@@ -222,7 +222,7 @@ namespace Hr.Controllers
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Index", "ViewModelMasterwithother", new { area = "" });
             }
-            return View(masterDetails);
+            return View(MasterDetails);
         }
         // GET: MasterDetails/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -251,7 +251,7 @@ namespace Hr.Controllers
                 return NotFound();
             }
 
-            //var masterDetails = await _context.MasterDetailss.FindAsync(id);
+            //var MasterDetails = await _context.MasterDetailss.FindAsync(id);
             var MasterDetailssss = _context.MasterDetailss
                .Where(e => e.COURCES_IDMASTER == id)
                .SingleOrDefault();
@@ -267,9 +267,9 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MasterDetailsSerial,COURCES_IDMASTER,MasterRequestFrom,MasterRequestTo,MasterRequestTypeSatus,MasterRequestNotes")] MasterDetails masterDetails)
+        public async Task<IActionResult> Edit(int id, [Bind("MasterDetailsSerial,COURCES_IDMASTER,MasterRequestFrom,MasterRequestTo,MasterRequestTypeSatus,MasterRequestNotes")] MasterDetails MasterDetails)
         {
-            if (id != masterDetails.MasterDetailsSerial)
+            if (id != MasterDetails.MasterDetailsSerial)
             {
                 return NotFound();
             }
@@ -283,14 +283,14 @@ namespace Hr.Controllers
                         MasterRequestFrom = "",
                         MasterRequestTo = "",
                         MasterRequestTypeSatus = 1,
-                        COURCES_IDMASTER = masterDetails.COURCES_IDMASTER,
-                        MasterRequestNotes = masterDetails.MasterRequestNotes
+                        COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER,
+                        MasterRequestNotes = MasterDetails.MasterRequestNotes
                     };
                     var mt = new MasterRequestTypeId
                     {
                         MasterRequestTypeIdsMasterRequestTypeIdserial = _context.MasterRequestTypeIds.Max(u => u.MasterRequestTypeIdsMasterRequestTypeIdserial),
                         MasterRequestType = 2,
-                        COURCES_IDMASTER = masterDetails.COURCES_IDMASTER
+                        COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER
                     };
                     _context.Add(mas);
                     _context.Update(mt);
@@ -298,7 +298,7 @@ namespace Hr.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MasterDetailsExists(masterDetails.MasterDetailsSerial))
+                    if (!MasterDetailsExists(MasterDetails.MasterDetailsSerial))
                     {
                         return NotFound();
                     }
@@ -309,7 +309,7 @@ namespace Hr.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(masterDetails);
+            return View(MasterDetails);
         }
 
         // GET: MasterDetails/Delete/5
@@ -339,14 +339,14 @@ namespace Hr.Controllers
                 return NotFound();
             }
 
-            var masterDetails = await _context.MasterDetailss
+            var MasterDetails = await _context.MasterDetailss
                 .FirstOrDefaultAsync(m => m.MasterDetailsSerial == id);
-            if (masterDetails == null)
+            if (MasterDetails == null)
             {
                 return NotFound();
             }
 
-            return View(masterDetails);
+            return View(MasterDetails);
         }
 
         // POST: MasterDetails/Delete/5
@@ -354,8 +354,8 @@ namespace Hr.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var masterDetails = await _context.MasterDetailss.FindAsync(id);
-            _context.MasterDetailss.Remove(masterDetails);
+            var MasterDetails = await _context.MasterDetailss.FindAsync(id);
+            _context.MasterDetailss.Remove(MasterDetails);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

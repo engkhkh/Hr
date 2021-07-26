@@ -517,7 +517,7 @@ namespace Hr.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CourcesIdmaster,CourcesId,CourcesIdType,CourcesIdDeptin,CourcesIdTraining,CourcesIdDeptout,CourcesIdEstimate,CourcesIdImagecert,CourcesIdImagehr,CourcesStartDate,CourcesEndDate,CourcesNumberofdays,CourcesPassRate,Cempid,Filecer,Filehr")] ACourcesMaster aCourcesMaster)
+        public async Task<IActionResult> Create([Bind("CourcesIdmaster,CourcesId,CourcesIdType,CourcesIdDeptin,CourcesIdTraining,CourcesIdDeptout,CourcesIdEstimate,CourcesIdImagecert,CourcesIdImagehr,CourcesStartDate,CourcesEndDate,CourcesNumberofdays,CourcesPassRate,Cempid,Filecer,Filehr,COURCES_EXCUTION")] ACourcesMaster aCourcesMaster)
         {
             // dublicate 
             if (HttpContext.Session.GetString("username") == null)
@@ -543,7 +543,7 @@ namespace Hr.Controllers
             ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
             ViewData["CourcesIdImagecert"] = new SelectList(_context.ACourcesCertImages, "CourcesIdImagecert", "CourcesIdmaster");
             ViewData["ACourcesCertImagehr"] = new SelectList(_context.ACourcesCertImagehrs, "CourcesIdImagehr", "CourcesIdmaster");
-            ViewData["ACourcesDeptin"] = new SelectList(_context.ACourcesDeptins, "CourcesIdDeptin", "CourcesNameDeptin");
+            ViewData["ACourcesDeptin"] = new SelectList(_context.ACourcesDeptins.Where(d=>d.newcode!=null), "CourcesIdDeptin", "CourcesNameDeptin");
             ViewData["ACourcesDeptout"] = new SelectList(_context.ACourcesDeptouts, "CourcesIdDeptout", "CourcesNameDeptout");
             ViewData["ACourcesType"] = new SelectList(_context.ACourcesTypes, "CourcesIdType", "CourcesTypeName");
             ViewData["ACourcesTrainingMethod"] = new SelectList(_context.ACourcesTrainingMethods, "CourcesIdTraining", "CourcesNameTraining");
@@ -555,12 +555,19 @@ namespace Hr.Controllers
 
 
             var objuser1 = _context.Cemps.Where(b => b.Cempid == HttpContext.Session.GetString("empid")).FirstOrDefault();
-            string x = "", y = "";
+            var coursesforuser = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesId== aCourcesMaster.CourcesId &&b.CourcesStartDate== aCourcesMaster.CourcesStartDate).FirstOrDefault();
+            if (coursesforuser!=null)
+            {
+                ViewBag.ErrorMessage3 = "تم تسجيل الدورة سابقا بنفس تاريخ البداية ";
+                return View(aCourcesMaster);
+            }
+            string x = "", y = "",file1="",file2="";
 
             if (aCourcesMaster.Filecer != null)
             {
+                file1 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filecer.FileName;
                 string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
-                string fullPath = Path.Combine(uploads, aCourcesMaster.Filecer.FileName);
+                string fullPath = Path.Combine(uploads,file1);
                 aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
             }
             else
@@ -574,10 +581,11 @@ namespace Hr.Controllers
             //
             if (aCourcesMaster.Filehr != null)
             {
+                file2 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filehr.FileName;
                 string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
-                string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
+                string fullPath2 = Path.Combine(uploads2,file2);
                 aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
-                x = aCourcesMaster.Filehr.FileName+ DateTime.Now;
+                x = file2;
             }
             else
             {
@@ -596,12 +604,13 @@ namespace Hr.Controllers
                     CourcesIdTraining = aCourcesMaster.CourcesIdTraining,
                     CourcesIdDeptout = aCourcesMaster.CourcesIdDeptout,
                     CourcesIdEstimate = aCourcesMaster.CourcesIdEstimate,
-                    CourcesIdImagecert = aCourcesMaster.Filecer.FileName+ DateTime.Now,
+                    CourcesIdImagecert = file1,
                     CourcesIdImagehr = x==x?x:y,
                     CourcesStartDate = aCourcesMaster.CourcesStartDate,
                     CourcesEndDate = aCourcesMaster.CourcesEndDate,
                     CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays)+1,
                     CourcesPassRate = aCourcesMaster.CourcesPassRate,
+                    COURCES_EXCUTION=aCourcesMaster.COURCES_EXCUTION,
                     Cempid = HttpContext.Session.GetString("empid")
 
 
@@ -655,7 +664,7 @@ namespace Hr.Controllers
                     }
                     else
                     {
-                        ViewBag.ErrorMessage1 = "تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم حفظ وارسال الطلب !";
+                        ViewBag.ErrorMessage1 = "لا يمكن تسجيل الدورة التدريبية لكون تاريخ الحصول عليها  قبل تاريخ آخر ترقية  ";
                         return View(aCourcesMaster);
                         //ViewBag.Message = "تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!";
                         //return Content("<script language='javascript' type='text/javascript'>alert('تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!');</script>");
@@ -683,7 +692,7 @@ namespace Hr.Controllers
                     }
                     else
                     {
-                        ViewBag.ErrorMessage2 = "تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم حفظ وارسال الطلب !";
+                        ViewBag.ErrorMessage2 = "لا يمكن تسجيل الدورة التدريبية لكون تاريخ الحصول عليها  قبل تاريخ التعين ";
                         return View(aCourcesMaster);
                         // ViewBag.Message = "تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم الحفظ!";
                         //return Content("<script language='javascript' type='text/javascript'>alert('تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم الحفظ!');</script>");

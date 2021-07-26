@@ -7,7 +7,14 @@
 
 <h1> <img src="~/img/emps/@Model.imagepath" class="img-thumbnail" width="110" height="110" /></h1>
 <p style="color:red">@ViewBag.ErrorMessage1</p>
+@if (TempData["total"] != null)
+{
+<label style="color:red">
+    لديك عدد @TempData["total"].ToString()معاملات   
 
+
+</label>
+}
     <hr />
     <div class="container">
         <h1 style="font-family:Tahoma; font-display:initial;font:400">معلوماتي </h1>
@@ -68,15 +75,15 @@
 
 
                 @*<div>
-                    تاريخ المباشرة
+                        تاريخ المباشرة
 
-                    @Html.DisplayFor(model => model.Cemphiringdate)
-                </div>
-                <div>
-                    اخر ترقية
+                        @Html.DisplayFor(model => model.Cemphiringdate)
+                    </div>
+                    <div>
+                        اخر ترقية
 
-                    @Html.DisplayFor(model => model.Cemplastupgrade)
-                </div>*@
+                        @Html.DisplayFor(model => model.Cemplastupgrade)
+                    </div>*@
 
                 <div>
                     <label>الادارة</label>
@@ -146,100 +153,100 @@
     </div>
     <hr />
     @*<dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CEMPUSERNO)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CEMPUSERNO)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CEMPPASSWRD)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CEMPPASSWRD)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CEMPNO)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CEMPNO)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CEMPNAME)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CEMPNAME)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CEMPJOBNAME)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CEMPJOBNAME)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CEMPADPRTNO)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CEMPADPRTNO)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DEP_NAME)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DEP_NAME)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CLSSNO)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CLSSNO)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MANAGERID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MANAGERID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MANAGERNAME)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MANAGERNAME)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PARENTID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PARENTID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cemphiringdate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cemphiringdate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cemplastupgrade)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cemplastupgrade)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PARENTNAME)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PARENTNAME)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CROLEID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CROLEID)
-        </dd>
-    </dl>*@
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CEMPUSERNO)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CEMPUSERNO)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CEMPPASSWRD)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CEMPPASSWRD)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CEMPNO)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CEMPNO)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CEMPNAME)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CEMPNAME)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CEMPJOBNAME)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CEMPJOBNAME)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CEMPADPRTNO)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CEMPADPRTNO)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.DEP_NAME)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.DEP_NAME)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CLSSNO)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CLSSNO)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.MANAGERID)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.MANAGERID)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.MANAGERNAME)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.MANAGERNAME)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.PARENTID)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.PARENTID)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Cemphiringdate)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Cemphiringdate)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Cemplastupgrade)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Cemplastupgrade)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.PARENTNAME)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.PARENTNAME)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CROLEID)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CROLEID)
+            </dd>
+        </dl>*@
 
-<div>
-    <a asp-action="Edit1" asp-route-id="@Model.Cempid" class="btn btn-success">تغيير الرقم السري </a> -
-    <a asp-action="Edit2" asp-route-id="@Model.Cempid" class="btn btn-success">ارفاق صورة</a>
-    @*<a asp-action="Index">Back to List</a>*@
-</div>
+    <div>
+        <a asp-action="Edit1" asp-route-id="@Model.Cempid" class="btn btn-success">تغيير الرقم السري </a> -
+        <a asp-action="Edit2" asp-route-id="@Model.Cempid" class="btn btn-success">ارفاق صورة</a>
+        @*<a asp-action="Index">Back to List</a>*@
+    </div>

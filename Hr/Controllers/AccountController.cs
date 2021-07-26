@@ -72,6 +72,7 @@ namespace Hr.Controllers
             HttpContext.Session.SetString("empdepname", objuser.DEP_NAME);
             HttpContext.Session.SetString("empmanagerid", objuser.MANAGERID);
             HttpContext.Session.SetString("empmanagername", objuser.MANAGERNAME);
+            HttpContext.Session.SetString("manageid", objuser.PARENTID);
             HttpContext.Session.SetInt32("emprole",objuser.CROLEID);
             List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
             {
@@ -124,8 +125,66 @@ namespace Hr.Controllers
                 ViewBag.ContentCssClass = "disabled";
                
                 ViewData["ContentCssClass"] = "disabled";
-               
 
+                List<MasterDetails> masterdeatails = _context.MasterDetailss.ToList();
+                List<MasterRequestTypeId> MasterRequestTypeIds = _context.MasterRequestTypeIds.ToList();
+
+
+                List<OfferedDetails> OfferedDetails = _context.OfferedDetails.ToList();
+
+                List<OfferedRequestTypeId> OfferedRequestTypeId = _context.OfferedRequestTypeId.ToList();
+
+
+
+
+                List<OfferedDetails2> OfferedDetails2 = _context.OfferedDetails2.ToList();
+              
+                List<OfferedRequestTypeId2> OfferedRequestTypeId2 = _context.OfferedRequestTypeId2.ToList();
+
+
+                List<OfferedDetails3> OfferedDetails3 = _context.OfferedDetails3.ToList();
+
+                List<OfferedRequestTypeId3> OfferedRequestTypeId3 = _context.OfferedRequestTypeId3.ToList();
+
+
+                var xx = from e in OfferedRequestTypeId
+                         join m in OfferedDetails on e.COURCES_IDOffered equals m.COURCES_IDOffered into table77
+                         from m in table77.ToList().Distinct()
+                         where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption==HttpContext.Session.GetString("empid")&& m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                         select (e.COURCES_IDOffered).ToString();
+                TempData["OfferedRequestTypeId1"] = xx.ToList().Count();
+                //
+                var xx2 = from e in OfferedRequestTypeId2
+                         join m in OfferedDetails2 on e.COURCES_IDOffered equals m.COURCES_IDOffered into table77
+                         from m in table77.ToList().Distinct()
+                         where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                         select (e.COURCES_IDOffered).ToString();
+                TempData["OfferedRequestTypeId2"] = xx2.ToList().Count();
+
+
+                //
+
+                var xx3 = from e in OfferedRequestTypeId3
+                          join m in OfferedDetails3 on e.COURCES_IDOffered equals m.COURCES_IDOffered into table77
+                          from m in table77.ToList().Distinct()
+                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                          select (e.COURCES_IDOffered).ToString();
+                TempData["OfferedRequestTypeId3"] = xx3.ToList().Count();
+
+
+                //
+
+
+
+                var yy = from x in MasterRequestTypeIds
+                         join n in masterdeatails on x.COURCES_IDMASTER equals n.COURCES_IDMASTER into table88
+                         from n in table88.ToList().Distinct()
+                         where (n.MasterRequestTo == HttpContext.Session.GetString("empid") || n.MasterRequestTo2 == HttpContext.Session.GetString("empid")) && x.MasterRequestType == 0 && n.MasterRequestTypeSatus == 0
+                         select (x.COURCES_IDMASTER).ToString();
+                TempData["MasterRequestTypeIds1"] = yy.ToList().Count();
+
+
+                TempData["total"] = yy.ToList().Count() + xx.ToList().Count() + xx2.ToList().Count() + xx3.ToList().Count();
 
                 //return View("ACourcesEstimates/Index");
                 return RedirectToAction("MyInfo", "Cemps", new { area = "" });

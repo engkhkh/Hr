@@ -39,10 +39,15 @@ namespace Hr.Models
         [Required]
         public int CourcesIdTraining { get; set; }
 
-        public string Cempid { get; set; }
+        public string ? Cempid { get; set; }
 
-        public int Option { get; set; }
+        public int ? Option { get; set; }
 
 
+
+        public int ? available { get; set; }
+
+        public string ? timefrom { get; set; }
+        public string? timeto { get; set; }
     }
 }

@@ -65,5 +65,9 @@ namespace Hr.Models
         public DateTime CourceendDateh { get; set; }
 
 
+        [Required(ErrorMessage = " اختر جهة  تنفيذ التدريب ")]
+        public string COURCES_EXCUTION { get; set; }
+
+
     }
 }

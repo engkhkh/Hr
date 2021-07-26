@@ -458,7 +458,7 @@ namespace Hr.Controllers
                 if (cemp.Fileimagepath!= null)
                 {
                     string uploads = Path.Combine(_hosting.WebRootPath, @"img\emps");
-                    string fullPath = Path.Combine(uploads, cemp.Fileimagepath.FileName);
+                    string fullPath = Path.Combine(uploads, DateTime.Now.ToString("ddMMMyyhhmmsstt")+cemp.Fileimagepath.FileName);
                     cemp.Fileimagepath.CopyTo(new FileStream(fullPath, FileMode.Create));
                 }
                 else
@@ -475,7 +475,7 @@ namespace Hr.Controllers
 
                     //emp2.CEMPNAME = cemp.CEMPNAME;
                     emp2.Cempid = cemp.Cempid;
-                    emp2.imagepath = cemp.Fileimagepath.FileName+DateTime.Now;
+                    emp2.imagepath = DateTime.Now.ToString("ddMMMyyhhmmsstt")+cemp.Fileimagepath.FileName;
 
 
                     _context.Update(emp2);

@@ -23,7 +23,9 @@
     </style>
 </head>
 <body>
-  
+    <div>
+        <a asp-action="search" class="btn btn-success">عرض الدورات </a>
+    </div>
     <h4>تسجيل الدورات  التدريبية </h4>
     <hr />
     <div class="row" @*style="float:right; width:40%"*@>
@@ -37,6 +39,7 @@
                         @*<option value="00">كورس غير مدرج -اخر </option>*@
                     </select>
                     <span asp-validation-for="CourcesId" class="text-danger"></span>
+                    <p style="color:red">@ViewBag.ErrorMessage3</p>
                 </div>
                 <div class="form-group response" id="respond-1" style="display:none;">
                     <label class="control-label">اسم الدورة الجديد   </label>
@@ -70,6 +73,16 @@
                         <option value="">تحديد</option>
                     </select>
                     <span asp-validation-for="CourcesIdDeptout" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">جهة تنفيذ التدريب </label>
+                    <select asp-for="COURCES_EXCUTION" id="chosen-select4" class="chosen-select form-control" data-placeholder="اختيار جهة تنفيذ التدريب  ">
+                        <option value="">تحديد</option>
+                        <option value="جهة تدريب دولية">جهة تدريب دولية</option>
+                        <option value="جهة تدريب حكومية">جهة تدريب حكومية</option>
+                        <option value="جهة تدريب بالقطاع الخاص">جهة تدريب بالقطاع الخاص</option>
+                    </select>
+                    <span asp-validation-for="COURCES_EXCUTION" class="text-danger"></span>
                 </div>
                 <div class="form-group" id="a" @*id="respond-2" style="display:none;"*@>
                     <label class="control-label">تقدير الدورة </label>
