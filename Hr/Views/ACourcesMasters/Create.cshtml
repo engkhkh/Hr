@@ -94,13 +94,13 @@
                     <span asp-validation-for="CourcesIdEstimate" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">ارفاق شهادة الدورة*  </label>
+                    <label class="control-label">ارفاق شهادة الدورة*   <label style="color:red;">"(jpeg,jpg,png,gif,jfif,pdf) !"</label>  </label>
                     <input type="file" asp-for="Filecer" class="form-control" id="f1" asp-items="ViewBag.CourcesIdImagecert" />
                     <span asp-validation-for="CourcesIdImagecert" class="text-danger"></span>
                     <p style="color:red">@ViewBag.ErrorMessage</p>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">ارفاق ملف اعتماد الموارد البشرية </label>
+                    <label class="control-label">ارفاق ملف اعتماد الموارد البشرية <label style="color:red;">"(jpeg,jpg,png,gif,jfif,pdf) !"</label> </label>
                     <input type="file" asp-for="Filehr" class="form-control" asp-items="ViewBag.ACourcesCertImagehr" />
                     <span asp-validation-for="CourcesIdImagehr" class="text-danger"></span>
                 </div>
@@ -201,7 +201,7 @@
 
             var selectedCountry11 = $(this).children("option:selected").val();
             /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
-            if (selectedCountry11 == 2) {
+            if (selectedCountry11 == 2 || selectedCountry11 == 4) {
                 alert("  يرجي اختيار التقدير  - ");
                 $("#a").css('visibility', 'visible');
                 var hiddenBox = $("#respond-2");
@@ -271,10 +271,12 @@
             $('.disable-date').hijriDatePicker({
 
                 minDate: "2020-01-01",
-                maxDate: "2021-01-01",
+                maxDate: "2022-01-01",
                 viewMode: "years",
                 hijri: true,
-                debug: true
+                debug: true,
+              
+
             });
 
         });
@@ -283,6 +285,9 @@
         function initHijrDatePicker() {
 
             $(".hijri-date-input").hijriDatePicker({
+                minDate: "2000-01-01",
+                maxDate: new Date(),
+                //disabledDates: [new Date()],
                 locale: "ar-sa",
                 format: "YYYY-MM-DD",
                 hijriFormat: "iYYYY-iMM-iDD", 
@@ -299,7 +304,11 @@
                 debug: true,
                 showClear: true,
                 showTodayButton: true,
-                showClose: true
+                showClose: true,
+
+               
+
+
             });
         }
 

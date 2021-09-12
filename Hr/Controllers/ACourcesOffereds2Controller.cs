@@ -450,8 +450,9 @@ namespace Hr.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourcesOfferedId,CourcesId,CourcesIdDeptout,CourcesIdLocation,CourcesIdManagement,CourcesIdperiodbydays,CourcesIdTime,CourcesStartDate,CourcesStartDateh,CourcesIdTraining,Cempid,available,timefrom,timeto,COURCES_ID_IMAGE,Filehr")] ACourcesOffered2 aCourcesOffered2)
         {
+            string extension = Path.GetExtension(aCourcesOffered2.Filehr.FileName);
             string x = "", y = "", file1 = "", file2 = "";
-            if (aCourcesOffered2.Filehr != null)
+            if (aCourcesOffered2.Filehr != null && (extension == ".jpeg" || extension == ".jpg" || extension == ".png" || extension == ".gif" || extension == ".jfif"))
             {
                 file2 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesOffered2.Filehr.FileName;
                 string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\aCourcesOffered2");

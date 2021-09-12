@@ -1,16 +1,27 @@
 ﻿using Devart.Data.Oracle;
+using DNTCaptcha.Core;
 using Hr.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+
+
 
 namespace Hr.Controllers
 {
+    //[Authorize]
     public static class SessionExtensions
     {
         public static T GetComplexData<T>(this ISession session, string key)
@@ -28,14 +39,30 @@ namespace Hr.Controllers
             session.SetString(key, JsonConvert.SerializeObject(value));
         }
     }
+
+    //[Authorize]
+    //[AllowAnonymous]
+    //[Authorize(AuthenticationSchemes = "Bearer")]
     [Route("account")]
     public class AccountController : Controller
     {
+
+
+        private readonly IDNTCaptchaValidatorService _validatorService;
+        private readonly DNTCaptchaOptions _captchaOptions;
         private readonly hrContext _context;
-      
+        Logger loggerx = LogManager.GetCurrentClassLogger();
+        //Here can be implemented checking logic from the database  
+        ClaimsIdentity identity = null;
+        bool isAuthenticated = false;
+        //
+        private static int cntAttemps = 0;
+
         private readonly string _connectionString;
-        public AccountController(hrContext context, IConfiguration _configuratio)
+        public AccountController(hrContext context, IConfiguration _configuratio, IDNTCaptchaValidatorService validatorService, IOptions<DNTCaptchaOptions> options)
         {
+            _validatorService = validatorService;
+            _captchaOptions = options == null ? throw new ArgumentNullException(nameof(options)) : options.Value;
             _connectionString = _configuratio.GetConnectionString("ora");
             _context = context;
         }
@@ -53,16 +80,80 @@ namespace Hr.Controllers
             //return RedirectToAction("Index", "Account", new { area = "" });
         }
 
+
+        public static string GetClientIPAddress(HttpContext context)
+        {
+            string ip = string.Empty;
+            if (!string.IsNullOrEmpty(context.Request.Headers["X-Forwarded-For"]))
+            {
+                ip = context.Request.Headers["X-Forwarded-For"];
+            }
+            else
+            {
+                ip = context.Request.HttpContext.Features.Get<IHttpConnectionFeature>().RemoteIpAddress.ToString();
+            }
+            return ip;
+        }
+
         [Route("login")]
         [HttpPost]
+        [ValidateDNTCaptcha(
+            ErrorMessage = "ضع  كمابالصورة ",
+            CaptchaGeneratorLanguage = Language.English,
+            CaptchaGeneratorDisplayMode = DisplayMode.ShowDigits)]
         public IActionResult Login(string username, string password)
         {
+            string clientIp = GetClientIPAddress(HttpContext);
             var objuser = _context.Cemps.Where(b => b.Cempid == username).FirstOrDefault();
             if(objuser==null)
             {
-                ViewBag.error = "Invalid Account";
+                // savelogin time and ip 
+                loginc loginc = new loginc();
+                loginc.userid = username.ToString();
+                loginc.dtimelogin = DateTime.Now;
+
+                loginc.ip = clientIp.ToString();
+                loginc.comment = "خطيء برقم المستخدم: "+username.ToString();
+                _context.Add(loginc);
+                _context.SaveChanges();
+                ViewBag.error = "خطيء برقم المستخدم ";
+                loggerx.Error("خطيء برقم المستخدم ");
                 return View("Show");
             }
+            if (!ModelState.IsValid) // If `ValidateDNTCaptcha` fails, it will set a `ModelState.AddModelError`.
+            {
+                //TODO: Save data
+                ViewBag.error = "غير مطابق كمابالصورة ";
+                // savelogin time and ip 
+                loginc loginc = new loginc();
+                loginc.userid = username.ToString();
+                loginc.dtimelogin = DateTime.Now;
+
+                loginc.ip = clientIp.ToString();
+                loginc.comment = "غير مطابق كمابالصورة";
+                _context.Add(loginc);
+                _context.SaveChanges();
+               // loggerx.ErrorException("Error occured in Login controller");
+                loggerx.Error("غير مطابق كمابالصورة ");
+                return View("Show");
+            }
+          
+            //if (cntAttemps == 3)
+            //{
+            //    ViewBag.error = "باقي لك 2 محاولة  ";
+
+            //    return View("Show");
+            //}
+            //if (!_validatorService.HasRequestValidCaptchaEntry(Language.English, DisplayMode.SumOfTwoNumbersToWords))
+            //{
+            //    this.ModelState.AddModelError(_captchaOptions.CaptchaComponent.CaptchaInputName, "Please enter the security code as a number.");
+            //    //ViewBag.error = "Invalid Captcha";
+
+            //    return View("Show");
+            //    //return View(nameof(Index));
+            //}
+
+
             // saved sesssions here 
             HttpContext.Session.SetString("empid", objuser.Cempid);
             HttpContext.Session.SetString("empidpass", objuser.CEMPPASSWRD);
@@ -73,6 +164,7 @@ namespace Hr.Controllers
             HttpContext.Session.SetString("empmanagerid", objuser.MANAGERID);
             HttpContext.Session.SetString("empmanagername", objuser.MANAGERNAME);
             HttpContext.Session.SetString("manageid", objuser.PARENTID);
+            HttpContext.Session.SetString("pname", objuser.PARENTNAME);
             HttpContext.Session.SetInt32("emprole",objuser.CROLEID);
             List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
             {
@@ -99,19 +191,92 @@ namespace Hr.Controllers
             //// Retrieve
             //var str2 = HttpContext.Session.GetString("MenuMaster");
             //var obj2 = JsonConvert.DeserializeObject<MenuModels>(str2);
-
+            // Code for validating the CAPTCHA  
+         
             // admin
             if (username != null && password != null && username.Equals(objuser.Cempid) && password.Equals(objuser.CEMPPASSWRD))
             {
+
                 HttpContext.Session.SetString("username", username);
+
+
+                var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name,"authenticatedUser"),
+                new Claim("Sys-Id","YES")
+            };
+
+                //var identity = new ClaimsIdentity(claims, "College Identity");
+
+                //var userPrincipal = new ClaimsPrincipal(new[] { identity });
+
+                //HttpContext.SignInAsync(userPrincipal);
+
+                if (objuser.CROLEID == 1)
+                {
+                    //Create the identity for the user  
+                    identity = new ClaimsIdentity(new[] {
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Role, "Admin")
+                }, "Sys Identity");
+
+                    isAuthenticated = true;
+
+                }
+                else if (objuser.CROLEID == 2)
+                {
+                    //Create the identity for the user  
+                    identity = new ClaimsIdentity(new[] {
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Role, "Manager")
+                }, "Sys Identity");
+
+                    isAuthenticated = true;
+
+                }
+                else if (objuser.CROLEID == 3)
+                {
+                    //Create the identity for the user  
+                    identity = new ClaimsIdentity(new[] {
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Role, "User")
+                }, "Sys Identity");
+
+                    isAuthenticated = true;
+
+                }
+                else 
+                {
+                    //Create the identity for the user  
+                    identity = new ClaimsIdentity(new[] {
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Role, "Else")
+                }, "Sys Identity");
+
+                    isAuthenticated = true;
+
+                }
+
+
+
                 try
                 {
+                    // savelogin time and ip 
+                    logind logind = new logind();
+                    logind.userid = HttpContext.Session.GetString("empid");
+                    logind.dtimelogin = DateTime.Now;
+                    logind.dtimelogout = null;
+                    logind.ip = clientIp.ToString();
+
                     objuser.Cempid = HttpContext.Session.GetString("empid");
                     objuser.login = '1';
 
 
                     _context.Update(objuser);
+                    _context.Add(logind);
+
                     _context.SaveChanges();
+
                 }
                 catch(Exception ex)
                 {
@@ -146,6 +311,32 @@ namespace Hr.Controllers
 
                 List<OfferedRequestTypeId3> OfferedRequestTypeId3 = _context.OfferedRequestTypeId3.ToList();
 
+                //Needed1
+                List<NeededDetails> NeededDetails = _context.NeededDetails.ToList();
+                List<NeededRequestTypeId> NeededRequestTypeId = _context.NeededRequestTypeId.ToList();
+
+                //Needed2
+                List<Needed1Details> Needed1Details = _context.Needed1Details.ToList();
+                List<Needed1RequestTypeId> Needed1RequestTypeId = _context.Needed1RequestTypeId.ToList();
+
+                //Eval 
+                List<EvalDetail> EvalDetails = _context.EvalDetailss.ToList();
+
+                List<EvalRequestTypeId> EvalRequestTypeId = _context.EvalRequestTypeIds.ToList();
+                //Transfer 
+
+                List<TransferDetail> TransferDetails = _context.TransferDetails.ToList();
+
+                List<TransferRequestTypeId> TransferRequestTypeIds = _context.TransferRequestTypeIds.ToList();
+
+
+                var yy = from x in MasterRequestTypeIds
+                         join n in masterdeatails on x.COURCES_IDMASTER equals n.COURCES_IDMASTER into table88
+                         from n in table88.ToList().Distinct()
+                         where (n.MasterRequestTo == HttpContext.Session.GetString("empid") || n.MasterRequestTo2 == HttpContext.Session.GetString("empid")) && x.MasterRequestType == 0 && n.MasterRequestTypeSatus == 0
+                         select (x.COURCES_IDMASTER).ToString();
+                TempData["MasterRequestTypeIds1"] = yy.ToList().Count();
+
 
                 var xx = from e in OfferedRequestTypeId
                          join m in OfferedDetails on e.COURCES_IDOffered equals m.COURCES_IDOffered into table77
@@ -174,20 +365,55 @@ namespace Hr.Controllers
 
                 //
 
+                var xx4 = from e in NeededRequestTypeId
+                          join m in NeededDetails on e.COURCES_IDOffered equals m.COURCES_IDOffered into table77
+                          from m in table77.ToList().Distinct()
+                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                          select (e.COURCES_IDOffered).ToString();
+                TempData["OfferedRequestTypeId4"] = xx4.ToList().Count();
+
+                //
+                var xx5 = from e in Needed1RequestTypeId
+                          join m in Needed1Details on e.COURCES_IDOffered equals m.COURCES_IDOffered into table77
+                          from m in table77.ToList().Distinct()
+                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                          select (e.COURCES_IDOffered).ToString();
+                TempData["OfferedRequestTypeId5"] = xx5.ToList().Count();
+                //
+                //
+                var xx6 = from e in EvalRequestTypeId
+                          join m in EvalDetails on e.CourcesIdoffered equals m.CourcesIdoffered into table77
+                          from m in table77.ToList().Distinct()
+                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                          select (e.CourcesIdoffered).ToString();
+                TempData["OfferedRequestTypeId6"] = xx6.ToList().Count();
+                //
+                //
+
+                var xx7 = from e in TransferRequestTypeIds
+                          join m in TransferDetails on e.CourcesIdoffered equals m.CourcesIdoffered into table77
+                          from m in table77.ToList().Distinct()
+                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                          select (e.CourcesIdoffered).ToString();
+                TempData["OfferedRequestTypeId7"] = xx7.ToList().Count();
 
 
-                var yy = from x in MasterRequestTypeIds
-                         join n in masterdeatails on x.COURCES_IDMASTER equals n.COURCES_IDMASTER into table88
-                         from n in table88.ToList().Distinct()
-                         where (n.MasterRequestTo == HttpContext.Session.GetString("empid") || n.MasterRequestTo2 == HttpContext.Session.GetString("empid")) && x.MasterRequestType == 0 && n.MasterRequestTypeSatus == 0
-                         select (x.COURCES_IDMASTER).ToString();
-                TempData["MasterRequestTypeIds1"] = yy.ToList().Count();
 
 
-                TempData["total"] = yy.ToList().Count() + xx.ToList().Count() + xx2.ToList().Count() + xx3.ToList().Count();
+                TempData["total"] = yy.ToList().Count() + xx.ToList().Count() + xx2.ToList().Count() + xx3.ToList().Count()+ xx4.ToList().Count()+ xx5.ToList().Count()+xx6.ToList().Count()+xx7.ToList().Count();
 
+
+                if (isAuthenticated)
+                {
+                    var principal = new ClaimsPrincipal(identity);
+
+                    var login = HttpContext.SignInAsync(principal);
+
+                    return RedirectToAction("MyInfo", "Cemps", new { area = "" });
+                }
                 //return View("ACourcesEstimates/Index");
                 return RedirectToAction("MyInfo", "Cemps", new { area = "" });
+                //return View();
                 //    ViewBag.Name = HttpContext.Session.GetString(SessionName);
             }
             //// will approve only
@@ -206,8 +432,21 @@ namespace Hr.Controllers
             //}
             else
             {
+                cntAttemps++;
+                // savelogin time and ip 
+                loginc loginc = new loginc();
+                loginc.userid = username.ToString();
+                loginc.dtimelogin = DateTime.Now;
+              
+                loginc.ip = clientIp.ToString();
+                loginc.comment = "خطيْ بكلمة السر: "+password.ToString();
+                _context.Add(loginc);
+
+                _context.SaveChanges();
+
                 //ViewData["MenuItemActive"] = "";
-                ViewBag.error = "Invalid Account";
+                ViewBag.error = "خطيء بكلمة السر";
+                loggerx.Error("خطيء بكلمة السر ");
                 return View("Show");
                 //return RedirectToAction("Index", "Account", new { area = "" });
             }
@@ -247,12 +486,20 @@ namespace Hr.Controllers
         {
             try
             {
+                var result = _context.logind.Where(t => t.userid == HttpContext.Session.GetString("empid")).OrderByDescending(t => t.dtimelogin).First();
+             
+
+
                 var objuser1 = _context.Cemps.Where(b => b.Cempid == HttpContext.Session.GetString("empid")).FirstOrDefault();
                 objuser1.Cempid = HttpContext.Session.GetString("empid");
                 objuser1.login = '0';
+                ///////////
+                result.userid= HttpContext.Session.GetString("empid");
+                result.dtimelogout = DateTime.Now;
 
 
                 _context.Update(objuser1);
+                _context.Update(result);
                 _context.SaveChanges();
             }
             catch(Exception ex)
@@ -264,8 +511,16 @@ namespace Hr.Controllers
 
             }
             HttpContext.Session.Remove("username");
+            var login = HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.SignOutAsync("Sys-Id");
+           
             return RedirectToAction("Show");
             //return RedirectToAction("Index", "Account", new { area = "" });
         }
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = System.Diagnostics.Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }

@@ -25,8 +25,8 @@ namespace Hr.Models
         [Required(ErrorMessage = "اختر التقدير ")]
         public int CourcesIdEstimate { get; set; }
         //[Required]
-       
-        public string CourcesIdImagecert { get; set; }
+        //[AllowHtml
+         public string CourcesIdImagecert { get; set; }
         //[Required]
         public string CourcesIdImagehr { get; set; }
         //[DisplayFormat(DataFormatString = "{dd-MMM-yyyy}")]

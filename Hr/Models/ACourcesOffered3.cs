@@ -17,14 +17,14 @@ namespace Hr.Models
         [Required]
         public int CourcesId { get; set; }
 
-        public int CourcesId2 { get; set; }
+        public int ? CourcesId2 { get; set; }
 
-        public int CourcesId3 { get; set; }
-        public int CourcesId4 { get; set; }
-        public int CourcesId5 { get; set; }
-        public int CourcesId6 { get; set; }
-        public int CourcesId7 { get; set; }
-        public int CourcesId8 { get; set; }
+        public int ? CourcesId3 { get; set; }
+        public int ? CourcesId4 { get; set; }
+        public int ? CourcesId5 { get; set; }
+        public int ? CourcesId6 { get; set; }
+        public int ? CourcesId7 { get; set; }
+        public int ? CourcesId8 { get; set; }
 
         [Required]
         public int CourcesIdDeptout { get; set; }
@@ -49,26 +49,26 @@ namespace Hr.Models
         public DateTime CourcesStartDate1 { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime CourcesStartDate2 { get; set; }
+        public DateTime ? CourcesStartDate2 { get; set; }
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime CourcesStartDate3 { get; set; }
+        public DateTime ? CourcesStartDate3 { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime CourcesStartDate4 { get; set; }
+        public DateTime ? CourcesStartDate4 { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime CourcesStartDate5 { get; set; }
+        public DateTime ? CourcesStartDate5 { get; set; }
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime CourcesStartDate6 { get; set; }
+        public DateTime ? CourcesStartDate6 { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime CourcesStartDate7 { get; set; }
+        public DateTime ? CourcesStartDate7 { get; set; }
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime CourcesStartDate8 { get; set; }
+        public DateTime ? CourcesStartDate8 { get; set; }
 
 
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime CourcesStartDateh { get; set; }
+        public DateTime ? CourcesStartDateh { get; set; }
 
         //[Required]
         //public int CourcesIdTraining { get; set; }

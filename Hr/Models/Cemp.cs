@@ -17,6 +17,14 @@ namespace Hr.Models
 
         public string Cempid { get; set; }
         public string CEMPUSERNO { get; set; }
+
+
+        //[Required]
+        //[StringLength(10, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 5)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$",
+         ErrorMessage = "Password must contain 1 + number / 1 + lowercase / 1 + uppercase / 1 + special character and range 8 - 15")]
         public string CEMPPASSWRD { get; set; }
         public string CEMPNO { get; set; }
         public string CEMPNAME { get; set; }

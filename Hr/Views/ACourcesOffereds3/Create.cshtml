@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 @*<label asp-for="CourcesIdDeptout" class="control-label"></label>*@
-                اختر اسم الجهة التدريبية
+                اختر اسم الجهة التدريبية*
                 @*<input asp-for="CourcesIdDeptout" class="form-control" />*@
                 <select asp-for="CourcesIdDeptout" id="chosen-select4" class="chosen-select form-control" data-placeholder="اختيار مقدم الدورة  " asp-items="ViewBag.ACourcesDeptout">
                     <option value="0">تحديد</option>
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 @*<label asp-for="CourcesId" class="control-label"></label>*@
-                اسم البرنامج -اولوية 1
+                اسم البرنامج -اولوية 1*
                 @*<input asp-for="CourcesId" class="form-control" />*@
                 <select asp-for="CourcesId" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId">
                     <option value="307">تحديد</option>
@@ -42,36 +42,48 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label">تاريخ التنفيذ -البرنامج الاول </label>
+                <label class="control-label">تاريخ التنفيذ -البرنامج الاول* </label>
 
                 <div class="input-group" style="float: left">
 
-                    <input type="text" asp-for="CourcesStartDate1"  class="form-control hijri-date-input" />
+                    <input type="text" asp-for="CourcesStartDate1" class="form-control hijri-date-input" />
 
                 </div>
                 <span asp-validation-for="CourcesStartDate1" class="text-danger"></span>
-               
-            </div>
-            <div class="form-group">
-                @*<label asp-for="CourcesId" class="control-label"></label>*@
-                اسم البرنامج -اولوية 2
-                @*<input asp-for="CourcesId" class="form-control" />*@
-                <select asp-for="CourcesId2" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId">
-                    <option value="307">تحديد</option>
-                    @*<option value="00">كورس غير مدرج -اخر </option>*@
-                </select>
-                <span asp-validation-for="CourcesId2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">تاريخ التنفيذ -البرنامج الثاني </label>
 
-                <div class="input-group" style="float: left">
+            </div>
+            @*<input type="button" id="btn1" name="اضف اسم البرنامج اولوية 2" value="اضف اسم البرنامج اولوية 2" class="btn" onclick="" />
+            <input type="button" id="btn2" name="اضف اسم البرنامج اولوية 3" value="اضف اسم البرنامج اولوية 3" class="btn" onclick="" />
+            <input type="button" id="btn3" name="اضف اسم البرنامج اولوية 4" value="اضف اسم البرنامج اولوية 4" class="btn" onclick="" />
+            <input type="button" id="btn4" name="اضف اسم البرنامج اولوية 5" value="اضف اسم البرنامج اولوية 5" class="btn" onclick="" />
+            <input type="button" id="btn5" name="اضف اسم البرنامج اولوية 6" value="اضف اسم البرنامج اولوية 6" class="btn" onclick="" />
+            <input type="button" id="btn6" name="اضف اسم البرنامج اولوية 7" value="اضف اسم البرنامج اولوية 7" class="btn" onclick="" />
+            <input type="button" id="btn7" name="اضف اسم البرنامج اولوية 8" value="اضف اسم البرنامج اولوية 8" class="btn" onclick="" />*@
+            <hr />
+            في حالة التسجيل ببرامج اخري ,يرجي التسجيل طبقا للاولوية 
+            <hr />
+            <div id="a111">
+                <div class="form-group">
+                    @*<label asp-for="CourcesId" class="control-label"></label>*@
+                    اسم البرنامج -اولوية 2
+                    @*<input asp-for="CourcesId" class="form-control" />*@
+                    <select asp-for="CourcesId2" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId2">
+                        <option value="307">تحديد</option>
+                        @*<option value="00">كورس غير مدرج -اخر </option>*@
+                    </select>
+                    <span asp-validation-for="CourcesId2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">تاريخ التنفيذ -البرنامج الثاني </label>
 
-                    <input type="text" asp-for="CourcesStartDate2" placeholder="يرجي ادخال اي تاريخ مؤقتا "  class="form-control hijri-date-input" />
+                    <div class="input-group" style="float: left">
+
+                        <input type="text" asp-for="CourcesStartDate2" placeholder=" " class="form-control hijri-date-input" />
+
+                    </div>
+                    <span asp-validation-for="CourcesStartDate2" class="text-danger"></span>
 
                 </div>
-                <span asp-validation-for="CourcesStartDate2" class="text-danger"></span>
-              
             </div>
             <!--<div class="form-group">-->
             @*<label asp-for="CourcesIdLocation" class="control-label"></label>*@
@@ -82,27 +94,29 @@
         </select>
         <span asp-validation-for="CourcesIdLocation" class="text-danger"></span>
     </div>-->
-            <div class="form-group">
-                @*<label asp-for="CourcesId" class="control-label"></label>*@
-                اسم البرنامج -اولوية 3
-                @*<input asp-for="CourcesId" class="form-control" />*@
-                <select asp-for="CourcesId3" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId">
-                    <option value="307">تحديد</option>
-                    @*<option value="00">كورس غير مدرج -اخر </option>*@
-                </select>
-                @*<span asp-validation-for="CourcesId3" class="text-danger"></span>*@
-            </div>
-            <div class="form-group">
-                <label class="control-label">تاريخ التنفيذ -البرنامج الثالث </label>
-
-                <div class="input-group" style="float: left">
-
-                    <input type="text" asp-for="CourcesStartDate3" placeholder="يرجي ادخال اي تاريخ مؤقتا " class="form-control hijri-date-input" />
-
+            <div id="a222">
+                <div class="form-group">
+                    @*<label asp-for="CourcesId" class="control-label"></label>*@
+                    اسم البرنامج -اولوية 3
+                    @*<input asp-for="CourcesId" class="form-control" />*@
+                    <select asp-for="CourcesId3" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId3">
+                        <option value="307">تحديد</option>
+                        @*<option value="00">كورس غير مدرج -اخر </option>*@
+                    </select>
+                    @*<span asp-validation-for="CourcesId3" class="text-danger"></span>*@
                 </div>
-                @*<span asp-validation-for="CourcesStartDate3" class="text-danger"></span>
-                <p style="color:red">@ViewBag.ErrorMessage1</p>
+                <div class="form-group">
+                    <label class="control-label">تاريخ التنفيذ -البرنامج الثالث </label>
+
+                    <div class="input-group" style="float: left">
+
+                        <input type="text" asp-for="CourcesStartDate3" placeholder=" " class="form-control hijri-date-input " />
+
+                    </div>
+                    <span asp-validation-for="CourcesStartDate3" class="text-danger"></span>
+                @*<p style="color:red">@ViewBag.ErrorMessage1</p>
                 <p style="color:red">@ViewBag.ErrorMessage2</p>*@
+                </div>
             </div>
             <!--<div class="form-group">-->
             @*<label asp-for="CourcesIdManagement" class="control-label"></label>*@
@@ -113,11 +127,12 @@
         </select>
         <span asp-validation-for="CourcesIdManagement" class="text-danger"></span>
     </div>-->
+        <div id="a333">
             <div class="form-group">
                 @*<label asp-for="CourcesId" class="control-label"></label>*@
                 اسم البرنامج -اولوية 4
                 @*<input asp-for="CourcesId" class="form-control" />*@
-                <select asp-for="CourcesId4" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId">
+                <select asp-for="CourcesId4" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId4">
                     <option value="307">تحديد</option>
                     @*<option value="00">كورس غير مدرج -اخر </option>*@
                 </select>
@@ -128,13 +143,14 @@
 
                 <div class="input-group" style="float: left">
 
-                    <input type="text" asp-for="CourcesStartDate4" placeholder="يرجي ادخال اي تاريخ مؤقتا " class="form-control hijri-date-input" />
+                    <input type="text" asp-for="CourcesStartDate4" placeholder=" " class="form-control hijri-date-input" />
 
                 </div>
-                @*<span asp-validation-for="CourcesStartDate4" class="text-danger"></span>
-                <p style="color:red">@ViewBag.ErrorMessage1</p>
-                <p style="color:red">@ViewBag.ErrorMessage2</p>*@
+                <span asp-validation-for="CourcesStartDate4" class="text-danger"></span>
+            @*<p style="color:red">@ViewBag.ErrorMessage1</p>
+            <p style="color:red">@ViewBag.ErrorMessage2</p>*@
             </div>
+        </div>
             <!--<div class="form-group">-->
             @*<label asp-for="CourcesIdTraining" class="control-label"></label>*@
             <!--طريقة التدريب-->
@@ -145,11 +161,12 @@
         </select>
         <span asp-validation-for="CourcesIdTraining" class="text-danger"></span>
     </div>-->
+        <div id="a444">
             <div class="form-group">
                 @*<label asp-for="CourcesId" class="control-label"></label>*@
                 اسم البرنامج -اولوية 5
                 @*<input asp-for="CourcesId" class="form-control" />*@
-                <select asp-for="CourcesId5" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId">
+                <select asp-for="CourcesId5" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId5">
                     <option value="307">تحديد</option>
                     @*<option value="00">كورس غير مدرج -اخر </option>*@
                 </select>
@@ -160,13 +177,14 @@
 
                 <div class="input-group" style="float: left">
 
-                    <input type="text" asp-for="CourcesStartDate5" placeholder="يرجي ادخال اي تاريخ مؤقتا " class="form-control hijri-date-input" />
+                    <input type="text" asp-for="CourcesStartDate5" placeholder=" " class="form-control hijri-date-input " />
 
                 </div>
-                @*<span asp-validation-for="CourcesStartDate5" class="text-danger"></span>
-                <p style="color:red">@ViewBag.ErrorMessage1</p>
-                <p style="color:red">@ViewBag.ErrorMessage2</p>*@
+                <span asp-validation-for="CourcesStartDate5" class="text-danger"></span>
+            @*<p style="color:red">@ViewBag.ErrorMessage1</p>
+            <p style="color:red">@ViewBag.ErrorMessage2</p>*@
             </div>
+        </div>
             <!--<div class="form-group">-->
             @*<label asp-for="CourcesIdperiodbydays" class="control-label"></label>*@
             <!--عدد ايام الدورة
@@ -176,27 +194,29 @@
 
 
             <br />
-            <div class="form-group">
-                @*<label asp-for="CourcesId" class="control-label"></label>*@
-                اسم البرنامج -اولوية 6
-                @*<input asp-for="CourcesId" class="form-control" />*@
-                <select asp-for="CourcesId6" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId">
-                    <option value="307">تحديد</option>
-                    @*<option value="00">كورس غير مدرج -اخر </option>*@
-                </select>
-                @*<span asp-validation-for="CourcesId6" class="text-danger"></span>*@
-            </div>
-            <div class="form-group">
-                <label class="control-label">تاريخ التنفيذ -البرنامج السادس </label>
-
-                <div class="input-group" style="float: left">
-
-                    <input type="text" asp-for="CourcesStartDate6" placeholder="يرجي ادخال اي تاريخ مؤقتا " class="form-control hijri-date-input" />
-
+            <div id="a555">
+                <div class="form-group">
+                    @*<label asp-for="CourcesId" class="control-label"></label>*@
+                    اسم البرنامج -اولوية 6
+                    @*<input asp-for="CourcesId" class="form-control" />*@
+                    <select asp-for="CourcesId6" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId6">
+                        <option value="307">تحديد</option>
+                        @*<option value="00">كورس غير مدرج -اخر </option>*@
+                    </select>
+                    @*<span asp-validation-for="CourcesId6" class="text-danger"></span>*@
                 </div>
-                @*<span asp-validation-for="CourcesStartDate6" class="text-danger"></span>
-                <p style="color:red">@ViewBag.ErrorMessage1</p>
-                <p style="color:red">@ViewBag.ErrorMessage2</p>*@
+                <div class="form-group">
+                    <label class="control-label">تاريخ التنفيذ -البرنامج السادس </label>
+
+                    <div class="input-group" style="float: left">
+
+                        <input type="text" asp-for="CourcesStartDate6" placeholder=" " class="form-control hijri-date-input" />
+
+                    </div>
+                </div>
+                <span asp-validation-for="CourcesStartDate6" class="text-danger"></span>
+                @* <p style="color:red">@ViewBag.ErrorMessage1</p>
+        <p style="color:red">@ViewBag.ErrorMessage2</p>*@
             </div>
             <!--<div class="form-group">-->
             @*<label asp-for="CourcesIdTime" class="control-label"></label>*@
@@ -209,11 +229,12 @@
         </select>
         <span asp-validation-for="CourcesIdTime" class="text-danger"></span>
     </div>-->
+            <div id="a666">
             <div class="form-group">
                 @*<label asp-for="CourcesId" class="control-label"></label>*@
                 اسم البرنامج -اولوية 7
                 @*<input asp-for="CourcesId" class="form-control" />*@
-                <select asp-for="CourcesId7" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId">
+                <select asp-for="CourcesId7" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId7">
                     <option value="307">تحديد</option>
                     @*<option value="00">كورس غير مدرج -اخر </option>*@
                 </select>
@@ -224,12 +245,13 @@
 
                 <div class="input-group" style="float: left">
 
-                    <input type="text" asp-for="CourcesStartDate7" placeholder="يرجي ادخال اي تاريخ مؤقتا " class="form-control hijri-date-input" />
+                    <input type="text" asp-for="CourcesStartDate7" placeholder=" " class="form-control hijri-date-input" />
 
                 </div>
+            </div>
                 @*<span asp-validation-for="CourcesStartDate7" class="text-danger"></span>
-                <p style="color:red">@ViewBag.ErrorMessage1</p>
-                <p style="color:red">@ViewBag.ErrorMessage2</p>*@
+            <p style="color:red">@ViewBag.ErrorMessage1</p>
+            <p style="color:red">@ViewBag.ErrorMessage2</p>*@
             </div>
             <!--<div class="form-group">-->
             @*<label asp-for="CourcesIdTime" class="control-label"></label>*@
@@ -240,11 +262,12 @@
         <span asp-validation-for="timefrom" class="text-danger"></span>
         <span asp-validation-for="timeto" class="text-danger"></span>
     </div>-->
+        <div id="a777">
             <div class="form-group">
                 @*<label asp-for="CourcesId" class="control-label"></label>*@
                 اسم البرنامج -اولوية 8
                 @*<input asp-for="CourcesId" class="form-control" />*@
-                <select asp-for="CourcesId8" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId">
+                <select asp-for="CourcesId8" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId8">
                     <option value="307">تحديد</option>
                     @*<option value="00">كورس غير مدرج -اخر </option>*@
                 </select>
@@ -257,13 +280,14 @@
 
                 <div class="input-group" style="float: left">
 
-                    <input type="text" asp-for="CourcesStartDate8" placeholder="يرجي ادخال اي تاريخ مؤقتا " class="form-control hijri-date-input" />
+                    <input type="text" asp-for="CourcesStartDate8" placeholder=" " class="form-control hijri-date-input" />
 
                 </div>
                 <span asp-validation-for="CourcesStartDate8" class="text-danger"></span>
-                <p style="color:red">@ViewBag.ErrorMessage1</p>
-                <p style="color:red">@ViewBag.ErrorMessage2</p>
+                @*<p style="color:red">@ViewBag.ErrorMessage1</p>
+                <p style="color:red">@ViewBag.ErrorMessage2</p>*@
             </div>
+        </div>
             <br />
 
             @*<div class="form-group">
@@ -306,6 +330,10 @@
                 $(this).attr("autocomplete", "off");
             });
             $('#timepicker').timepicker();
+          
+
+
+          /*  $("#a").css('visibility', 'visible');*/
         }
         catch (e) { }
     });
@@ -316,7 +344,15 @@
 <script type="text/javascript">
     /*  $('#chosen-select16').append(new Option('كورس غير مدرج -اخر', 5));*/
     /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
-    /* $("#a").css('visibility', 'hidden');*/
+    //$("#a111").css('visibility', 'hidden');
+    //$("#a222").css('visibility', 'hidden');
+    //$("#a333").css('visibility', 'hidden');
+    //$("#a444").css('visibility', 'hidden');
+    //$("#a555").css('visibility', 'hidden');
+    //$("#a666").css('visibility', 'hidden');
+    //$("#a777").css('visibility', 'hidden');
+    //$("#a888").css('visibility', 'hidden');
+  
     var config = {
         '.chosen-select': {},
         '.chosen-select-deselect': { allow_single_deselect: true },

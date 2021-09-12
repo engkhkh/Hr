@@ -1,4 +1,5 @@
 ﻿using System;
+using Hr.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -22,6 +23,11 @@ namespace Hr.Models
             //this.Database.SetCommandTimeout(3 * 60);
 
         }
+        public virtual DbSet<ACourcesLogs> ACourcesLogs { get; set; }
+        public virtual DbSet<EvalRequestTypeId> EvalRequestTypeIds { get; set; }
+        public virtual DbSet<EvalDetail> EvalDetailss { get; set; }
+        public virtual DbSet<Evalcomment> EvalComments { get; set; }
+
         public virtual DbSet<MasterRequestTypeId> MasterRequestTypeIds { get; set; }
         public virtual DbSet<MasterDetails> MasterDetailss { get; set; }
         public virtual DbSet<ViewModelMasterwithother> ViewModelMasterwithothers { get; set; }
@@ -35,17 +41,26 @@ namespace Hr.Models
         public virtual DbSet<ACourcesName> ACourcesNames { get; set; }
 
         public virtual DbSet<ACourcesPrograms> ACourcesPrograms { get; set; }
+        public virtual DbSet<ACourcesPrograms1> ACourcesPrograms1 { get; set; }
         public virtual DbSet<AJobsNames> AJobsNames { get; set; }
         public virtual DbSet<ACourcesTrainingMethod> ACourcesTrainingMethods { get; set; }
         public virtual DbSet<ACourcesType> ACourcesTypes { get; set; }
         public virtual DbSet<Cemp> Cemps { get; set; }
         public virtual DbSet<MenuModels> menuemodelss { get; set; }
         public virtual DbSet<Roles> roless { get; set; }
+        public virtual DbSet<logind> logind { get; set; }
+
+        public virtual DbSet<loginc> loginc { get; set; }
+
         public virtual DbSet<MainMenue> MainMenues { get; set; }
         public virtual DbSet<ViewModelRoleWithOther> ViewModelRoleWithOther { get; set; }
+      
+        public virtual DbSet<ViewModelEvalwithother> ViewModelEvalwithother { get; set; }
+        public virtual DbSet<ViewModelEvalwithother1> ViewModelEvalwithother1 { get; set; }
 
         public virtual DbSet<ACoursesLocation> ACoursesLocation { get; set; }
         public virtual DbSet<ACourcesNeeded> ACourcesNeeded { get; set; }
+        public virtual DbSet<ACourcesNeeded1> ACourcesNeeded1 { get; set; }
         public virtual DbSet<ACourcesOffered> ACourcesOffered { get; set; }
         public virtual DbSet<ACourcesOffered2> ACourcesOffered2 { get; set; }
 
@@ -55,12 +70,15 @@ namespace Hr.Models
 
         public virtual DbSet<ACourcesOptions> ACourcesOptions { get; set; }
 
-
+        public virtual DbSet<NeededDetails> NeededDetails { get; set; }
+        public virtual DbSet<Needed1Details> Needed1Details { get; set; }
         public virtual DbSet<OfferedDetails> OfferedDetails { get; set; }
 
         public virtual DbSet<OfferedDetails2> OfferedDetails2 { get; set; }
 
         public virtual DbSet<OfferedDetails3> OfferedDetails3 { get; set; }
+        public virtual DbSet<NeededRequestTypeId> NeededRequestTypeId { get; set; }
+        public virtual DbSet<Needed1RequestTypeId> Needed1RequestTypeId { get; set; }
 
         public virtual DbSet<OfferedRequestTypeId> OfferedRequestTypeId { get; set; }
 
@@ -69,9 +87,27 @@ namespace Hr.Models
 
 
         public virtual DbSet<DepartWithMnagement> DepartWithMnagement { get; set; }
+        public virtual DbSet<NeededComments> NeededComments { get; set; }
+        public virtual DbSet<Needed1Comments> Needed1Comments { get; set; }
         public virtual DbSet<OfferComments> OfferComments { get; set; }
+
+
+        
         public virtual DbSet<OfferComments2> OfferComments2 { get; set; }
         public virtual DbSet<OfferComments3> OfferComments3 { get; set; }
+
+
+        public virtual DbSet<AEvaluEmpType> AEvaluEmpTypes { get; set; }
+        public virtual DbSet<AEvaluationCompetenciesD> AEvaluationCompetenciesDs { get; set; }
+        public virtual DbSet<AEvaluationCompetenciesM> AEvaluationCompetenciesMs { get; set; }
+        public virtual DbSet<AEvaluationEmp> AEvaluationEmps { get; set; }
+        public virtual DbSet<AEvaluationEmpLog> AEvaluationEmpLogs { get; set; }
+        public virtual DbSet<AEvaluationGoal> AEvaluationGoals { get; set; }
+
+        public virtual DbSet<TransferDetail> TransferDetails { get; set; }
+        public virtual DbSet<TransferProcess> TransferProcesss { get; set; }
+        public virtual DbSet<TransferRequestTypeId> TransferRequestTypeIds { get; set; }
+        public virtual DbSet<Transfercomment> Transfercomments { get; set; }
 
 
 
@@ -89,7 +125,441 @@ namespace Hr.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+            //
+            modelBuilder.Entity<ACourcesLogs>(entity =>
+            {
+                entity.ToTable("A_COURCES_LOGS");
+                entity.HasKey(e => e.id)
+                    .HasName("id");
 
+                entity.Property(e => e.requestid).HasColumnName("REUESTID");
+                entity.Property(e => e.userr).HasColumnName("USERr");
+                entity.Property(e => e.tt).HasColumnName("tt");
+
+
+            });
+
+            //
+            modelBuilder.Entity<TransferDetail>(entity =>
+            {
+                entity.HasKey(e => e.OfferedDetailsSerial)
+                    .HasName("PK_OfferedDetails_copy3_copy1");
+
+                entity.Property(e => e.CourcesIdoffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.OfferedRequestFrom).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestNotes).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo2).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo3).HasMaxLength(50);
+
+                entity.Property(e => e.OfferedRequestTo4)
+                    .HasMaxLength(250)
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.OfferedRequestTo5)
+                    .HasMaxLength(250)
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Offeredoption).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<TransferProcess>(entity =>
+            {
+                entity.ToTable("TransferProcess");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.fromr).HasColumnName("fromr");
+
+                entity.Property(e => e.Daterequest)
+                    .HasColumnType("datetime")
+                    .HasColumnName("daterequest");
+
+                entity.Property(e => e.Manageolddepid).HasColumnName("manageolddepid");
+
+                entity.Property(e => e.Managernewid).HasColumnName("managernewid");
+
+                entity.Property(e => e.Managernewname)
+                    .HasMaxLength(50)
+                    .HasColumnName("managernewname");
+
+                entity.Property(e => e.Manageroldname)
+                    .HasMaxLength(250)
+                    .HasColumnName("manageroldname");
+
+                entity.Property(e => e.Newdepid).HasColumnName("newdepid");
+
+                entity.Property(e => e.Newdepname)
+                    .HasMaxLength(250)
+                    .HasColumnName("newdepname");
+
+                entity.Property(e => e.Olddepid).HasColumnName("olddepid");
+
+                entity.Property(e => e.Olddepname)
+                    .HasMaxLength(250)
+                    .HasColumnName("olddepname");
+            });
+
+            modelBuilder.Entity<TransferRequestTypeId>(entity =>
+            {
+                entity.HasKey(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial)
+                    .HasName("PK_OfferedRequestTypeId_copy3_copy1");
+
+                entity.ToTable("TransferRequestTypeId");
+
+                entity.Property(e => e.CourcesIdoffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.Offercoursefrom).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<Transfercomment>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Offerapproval)
+                    .HasMaxLength(250)
+                    .HasColumnName("offerapproval");
+
+                entity.Property(e => e.Offerdetailscomment)
+                    .HasMaxLength(250)
+                    .HasColumnName("offerdetailscomment");
+
+                entity.Property(e => e.Offerdetailsid).HasColumnName("offerdetailsid");
+            });
+            //
+            modelBuilder.Entity<AEvaluEmpType>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("A_EVALU_EMP_TYPE");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(250)
+                    .HasColumnName("NAME");
+            });
+
+            modelBuilder.Entity<AEvaluationCompetenciesD>(entity =>
+            {
+                entity.HasKey(e => e.Idd2);
+
+                entity.ToTable("A_EVALUATION_COMPETENCIES_D");
+
+                //entity.Property(e => e.Idd2)
+                //    .ValueGeneratedNever()
+                //    .HasColumnName("IDD");
+
+                entity.Property(e => e.CovenantCompetenciecDLevel).HasColumnName("COVENANT_COMPETENCIEC_D_LEVEL");
+
+                entity.Property(e => e.CovenantCompetenciesDDesc)
+                    .HasMaxLength(250)
+                    .HasColumnName("COVENANT_COMPETENCIES_D_DESC");
+
+                entity.Property(e => e.CovenantCompetenciesDSeq).HasColumnName("COVENANT_COMPETENCIES_D_SEQ");
+
+                entity.Property(e => e.CovenantCompetenciesDSeqD).HasColumnName("COVENANT_COMPETENCIES_D_SEQ_D");
+
+                entity.Property(e => e.CovenantId).HasColumnName("COVENANT_ID");
+
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
+
+                entity.Property(e => e.EvaluationOutputCompetency).HasColumnName("EVALUATION_OUTPUT_COMPETENCY");
+
+                entity.Property(e => e.EvaluationResults).HasColumnName("EVALUATION_RESULTS");
+
+                entity.Property(e => e.EvaluationTotal).HasColumnName("EVALUATION_TOTAL");
+            });
+
+            modelBuilder.Entity<AEvaluationCompetenciesM>(entity =>
+            {
+                entity.HasKey(e => e.Idd1);
+
+                entity.ToTable("A_EVALUATION_COMPETENCIES_M");
+
+                //entity.Property(e => e.Idd1)
+                //    .ValueGeneratedNever()
+                //    .HasColumnName("IDD");
+
+                entity.Property(e => e.CovenantCompetenciesSeq).HasColumnName("COVENANT_COMPETENCIES_SEQ");
+
+                entity.Property(e => e.CovenantCompetencyName)
+                    .HasMaxLength(250)
+                    .HasColumnName("COVENANT_COMPETENCY_NAME");
+
+                entity.Property(e => e.CovenantId).HasColumnName("COVENANT_ID");
+
+                entity.Property(e => e.CovenantWeight)
+                    .HasMaxLength(250)
+                    .HasColumnName("COVENANT_WEIGHT");
+
+                entity.Property(e => e.CovenantWeightSum).HasColumnName("COVENANT_WEIGHT_SUM");
+
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
+            });
+
+            modelBuilder.Entity<AEvaluationEmp>(entity =>
+            {
+                entity.HasKey(e => e.Idd);
+
+                entity.ToTable("A_EVALUATION_EMP");
+
+                //entity.Property(e => e.Idd)
+                //    .ValueGeneratedNever()
+                //    .HasColumnName("IDD");
+
+                entity.Property(e => e.Adprtno).HasColumnName("ADPRTNO");
+
+                entity.Property(e => e.CovenantDate)
+                    .HasColumnType("date")
+                    .HasColumnName("COVENANT_DATE");
+
+                entity.Property(e => e.CovenantId).HasColumnName("COVENANT_ID");
+
+                entity.Property(e => e.CovenantYear).HasColumnName("COVENANT_YEAR");
+
+                entity.Property(e => e.DepName)
+                    .HasMaxLength(250)
+                    .HasColumnName("DEP_NAME");
+
+                entity.Property(e => e.EmpIdEnter).HasColumnName("EMP_ID_ENTER");
+
+                entity.Property(e => e.Empname)
+                    .HasMaxLength(250)
+                    .HasColumnName("EMPNAME");
+
+                entity.Property(e => e.Empno).HasColumnName("EMPNO");
+
+                entity.Property(e => e.EvaEmpnoNameOut)
+                    .HasMaxLength(250)
+                    .HasColumnName("EVA_EMPNO_NAME_OUT");
+
+                entity.Property(e => e.EvaEmpnoNameOut1)
+                    .HasMaxLength(250)
+                    .HasColumnName("EVA_EMPNO_NAME_OUT1");
+
+                entity.Property(e => e.EvaEmpnoOut).HasColumnName("EVA_EMPNO_OUT");
+
+                entity.Property(e => e.Jobname)
+                    .HasMaxLength(250)
+                    .HasColumnName("JOBNAME");
+
+                entity.Property(e => e.ManagerName)
+                    .HasMaxLength(250)
+                    .HasColumnName("MANAGER_NAME");
+
+                entity.Property(e => e.Managerid).HasColumnName("MANAGERID");
+
+                entity.Property(e => e.Notes)
+                    .HasMaxLength(250)
+                    .HasColumnName("NOTES");
+
+                entity.Property(e => e.Parentid).HasColumnName("PARENTID");
+
+                entity.Property(e => e.SubDepName)
+                    .HasMaxLength(250)
+                    .HasColumnName("SUB_DEP_NAME");
+
+                entity.Property(e => e.TypeNo)
+                    .HasColumnName("TYPE_NO")
+                    .HasDefaultValueSql("((1))");
+            });
+
+            modelBuilder.Entity<AEvaluationEmpLog>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("A_EVALUATION_EMP_LOG");
+
+                entity.Property(e => e.Adprtno).HasColumnName("ADPRTNO");
+
+                entity.Property(e => e.CovenantDate)
+                    .HasColumnType("date")
+                    .HasColumnName("COVENANT_DATE");
+
+                entity.Property(e => e.CovenantId).HasColumnName("COVENANT_ID");
+
+                entity.Property(e => e.CovenantYear).HasColumnName("COVENANT_YEAR");
+
+                entity.Property(e => e.Datee)
+                    .HasColumnType("date")
+                    .HasColumnName("DATEE")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.DepName)
+                    .HasMaxLength(250)
+                    .HasColumnName("DEP_NAME");
+
+                entity.Property(e => e.EmpIdEnter).HasColumnName("EMP_ID_ENTER");
+
+                entity.Property(e => e.Empname)
+                    .HasMaxLength(250)
+                    .HasColumnName("EMPNAME");
+
+                entity.Property(e => e.Empno).HasColumnName("EMPNO");
+
+                entity.Property(e => e.EvaEmpnoNameOut)
+                    .HasMaxLength(250)
+                    .HasColumnName("EVA_EMPNO_NAME_OUT");
+
+                entity.Property(e => e.EvaEmpnoNameOut1)
+                    .HasMaxLength(250)
+                    .HasColumnName("EVA_EMPNO_NAME_OUT1");
+
+                entity.Property(e => e.EvaEmpnoOut).HasColumnName("EVA_EMPNO_OUT");
+
+                entity.Property(e => e.Idd).HasColumnName("IDD");
+
+                entity.Property(e => e.Jobname)
+                    .HasMaxLength(250)
+                    .HasColumnName("JOBNAME");
+
+                entity.Property(e => e.ManagerName)
+                    .HasMaxLength(250)
+                    .HasColumnName("MANAGER_NAME");
+
+                entity.Property(e => e.Managerid).HasColumnName("MANAGERID");
+
+                entity.Property(e => e.Notes)
+                    .HasMaxLength(250)
+                    .HasColumnName("NOTES");
+
+                entity.Property(e => e.OpType)
+                    .HasMaxLength(250)
+                    .HasColumnName("OP_TYPE");
+
+                entity.Property(e => e.OpTypeId).HasColumnName("OP_TYPE_ID");
+
+                entity.Property(e => e.Parentid).HasColumnName("PARENTID");
+
+                entity.Property(e => e.Seq).HasColumnName("SEQ");
+
+                entity.Property(e => e.SubDepName)
+                    .HasMaxLength(250)
+                    .HasColumnName("SUB_DEP_NAME");
+
+                entity.Property(e => e.TypeNo).HasColumnName("TYPE_NO");
+            });
+
+            modelBuilder.Entity<AEvaluationGoal>(entity =>
+            {
+                entity.HasKey(e => e.Idd4);
+
+                entity.ToTable("A_EVALUATION_GOALS");
+
+                entity.Property(e => e.CovenantDate)
+                    .HasColumnType("date")
+                    .HasColumnName("COVENANT_DATE");
+
+                entity.Property(e => e.CovenantGoalsName)
+                    .HasMaxLength(250)
+                    .HasColumnName("COVENANT_GOALS_NAME");
+
+                entity.Property(e => e.CovenantGoalsSeq).HasColumnName("COVENANT_GOALS_SEQ");
+
+                entity.Property(e => e.CovenantId).HasColumnName("COVENANT_ID");
+
+                entity.Property(e => e.CovenantMeasurementCriteria)
+                    .HasMaxLength(250)
+                    .HasColumnName("COVENANT_MEASUREMENT_CRITERIA");
+
+                entity.Property(e => e.CovenantPercentageWeight).HasColumnName("COVENANT_PERCENTAGE_WEIGHT");
+
+                entity.Property(e => e.CovenantTargetedOutput).HasColumnName("COVENANT_TARGETED_OUTPUT");
+
+                entity.Property(e => e.CovenantWeightSum).HasColumnName("COVENANT_WEIGHT_SUM");
+
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
+
+                entity.Property(e => e.EmpIdEnter).HasColumnName("EMP_ID_ENTER");
+
+                entity.Property(e => e.EmpType)
+                    .HasMaxLength(250)
+                    .HasColumnName("EMP_TYPE");
+
+                entity.Property(e => e.EvaluationActualOutput).HasColumnName("EVALUATION_ACTUAL_OUTPUT");
+
+                entity.Property(e => e.EvaluationDate)
+                    .HasColumnType("date")
+                    .HasColumnName("EVALUATION_DATE");
+
+                entity.Property(e => e.EvaluationDifferenceOutputs).HasColumnName("EVALUATION_DIFFERENCE_OUTPUTS");
+
+                entity.Property(e => e.EvaluationEquilibrium).HasColumnName("EVALUATION_EQUILIBRIUM");
+
+                entity.Property(e => e.EvaluationId).HasColumnName("EVALUATION_ID");
+
+                entity.Property(e => e.EvaluationResult).HasColumnName("EVALUATION_RESULT");
+
+                entity.Property(e => e.EvaluationTotal).HasColumnName("EVALUATION_TOTAL");
+
+                entity.Property(e => e.Idd4).HasColumnName("IDD");
+            });
+            //
+            modelBuilder.Entity<EvalDetail>(entity =>
+            {
+                entity.HasKey(e => e.OfferedDetailsSerial)
+                    .HasName("PK_OfferedDetails_copy3");
+                entity.ToTable("EvalDetails");
+
+                entity.Property(e => e.CourcesIdoffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.OfferedRequestFrom).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestNotes).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo2).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo3).HasMaxLength(50);
+
+                entity.Property(e => e.OfferedRequestTo4)
+                    .HasMaxLength(250)
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.OfferedRequestTo5)
+                    .HasMaxLength(250)
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Offeredoption).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<EvalRequestTypeId>(entity =>
+            {
+                entity.HasKey(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial)
+                    .HasName("PK_OfferedRequestTypeId_copy3");
+
+                entity.ToTable("EvalRequestTypeId");
+
+                entity.Property(e => e.CourcesIdoffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.Offercoursefrom).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<Evalcomment>(entity =>
+            {
+                entity.HasKey(e => e.id)
+                    .HasName("id");
+                entity.ToTable("Evalcomments");
+                entity.Property(e => e.Offerapproval)
+                    .HasMaxLength(250)
+                    .HasColumnName("offerapproval");
+
+                entity.Property(e => e.Offerdetailscomment)
+                    .HasMaxLength(250)
+                    .HasColumnName("offerdetailscomment");
+
+                entity.Property(e => e.Offerdetailsid).HasColumnName("offerdetailsid");
+                entity.Property(e => e.id).HasColumnName("id");
+            });
+
+
+            //
             modelBuilder.Entity<ACourcesCertImage>(entity =>
             {
                 entity.HasKey(e => e.CourcesIdImagecert);
@@ -186,6 +656,36 @@ namespace Hr.Models
                 entity.Property(e => e.notes).HasColumnName("NOTES");
                 entity.Property(e => e.available).HasColumnName("available");
                
+
+
+            });
+
+
+
+            modelBuilder.Entity<ACourcesNeeded1>(entity =>
+            {
+                entity.HasKey(e => e.CourcesNeededId);
+
+                entity.ToTable("A_COURCES-NEEDED1_FOR_CANDIDACY");
+                entity.Property(e => e.CourcesNeededId).HasColumnName("A_COURCES-NEEDEDID");
+
+                entity.Property(e => e.CourcesId).HasColumnName("COURCES_ID");
+                entity.Property(e => e.CourcesIdDegree).HasColumnName("COURCES_ID_DEGREE");
+
+                entity.Property(e => e.CourcesIdNOOFSTUDENT).HasColumnName("COURCES_ID_NOOFSTUDENT");
+
+
+                entity.Property(e => e.CourcesIdSEARCHTITLE).HasColumnName("COURCES_ID_SEARCHTITLE");
+
+                entity.Property(e => e.GRADUATIONTITLE).HasColumnName("COURCES_GRADUATIONTITLE");
+
+                //entity.Property(e => e.CourcesIdTraining).HasColumnName("COURCES_ID_TRAINING");
+
+                entity.Property(e => e.Cempid).HasColumnName("CEMPID");
+
+                entity.Property(e => e.notes).HasColumnName("NOTES");
+                entity.Property(e => e.available).HasColumnName("available");
+
 
 
             });
@@ -375,6 +875,40 @@ namespace Hr.Models
             });
 
 
+            modelBuilder.Entity<NeededComments>(entity =>
+            {
+
+
+                entity.ToTable("neededcomments");
+
+                entity.Property(e => e.id).HasColumnName("offerdetailsid");
+
+                entity.Property(e => e.comments)
+
+                    .HasColumnName("offerdetailscomment");
+
+                entity.Property(e => e.offerapproval)
+
+                   .HasColumnName("offerapproval");
+            });
+
+            modelBuilder.Entity<Needed1Comments>(entity =>
+            {
+
+
+                entity.ToTable("needed1comments");
+
+                entity.Property(e => e.id).HasColumnName("offerdetailsid");
+
+                entity.Property(e => e.comments)
+
+                    .HasColumnName("offerdetailscomment");
+
+                entity.Property(e => e.offerapproval)
+
+                   .HasColumnName("offerapproval");
+            });
+
             modelBuilder.Entity<OfferComments>(entity =>
             {
                
@@ -442,6 +976,38 @@ namespace Hr.Models
 
                 entity.Property(e => e.newcode).HasColumnName("newcode");
             });
+
+            modelBuilder.Entity<loginc>(entity =>
+            {
+                entity.HasKey(e => e.id);
+
+                entity.ToTable("loginc");
+                entity.Property(e => e.id).HasColumnName("id");
+                entity.Property(e => e.userid).HasColumnName("userid");
+                entity.Property(e => e.dtimelogin).HasColumnName("dttimelogin");
+        
+                entity.Property(e => e.ip).HasColumnName("userlastip");
+                entity.Property(e => e.comment).HasColumnName("comment");
+
+
+
+            });
+
+            modelBuilder.Entity<logind>(entity =>
+            {
+                entity.HasKey(e => e.id);
+
+                entity.ToTable("logind");
+                entity.Property(e => e.id).HasColumnName("id");
+                entity.Property(e => e.userid).HasColumnName("userid");
+                entity.Property(e => e.dtimelogin).HasColumnName("dttimelogin");
+                entity.Property(e => e.dtimelogout).HasColumnName("dtimelogout");
+                entity.Property(e => e.ip).HasColumnName("userlastip");
+             
+
+
+            });
+
             modelBuilder.Entity<MenuModels>(entity =>
             {
                 entity.HasKey(e => e.id);
@@ -516,6 +1082,47 @@ namespace Hr.Models
                    .HasMaxLength(250)
                    .HasColumnName("mainarabic");
             });
+
+            modelBuilder.Entity<NeededRequestTypeId>(entity =>
+            {
+                entity.HasKey(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial);
+                //entity.HasKey(e => e.COURCES_IDMASTER);
+
+                entity.ToTable("NeededRequestTypeId");
+                entity.Property(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial).HasColumnName("OfferedRequestTypeIdsOfferedRequestTypeIdserial");
+
+                entity.Property(e => e.COURCES_IDOffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.OfferedRequestType)
+
+                    .HasColumnName("OfferedRequestType");
+
+                entity.Property(e => e.Offercoursefrom)
+
+                   .HasColumnName("Offercoursefrom");
+            });
+            modelBuilder.Entity<Needed1RequestTypeId>(entity =>
+            {
+                entity.HasKey(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial);
+                //entity.HasKey(e => e.COURCES_IDMASTER);
+
+                entity.ToTable("Needed1RequestTypeId");
+                entity.Property(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial).HasColumnName("OfferedRequestTypeIdsOfferedRequestTypeIdserial");
+
+                entity.Property(e => e.COURCES_IDOffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.OfferedRequestType)
+
+                    .HasColumnName("OfferedRequestType");
+
+                entity.Property(e => e.Offercoursefrom)
+
+                   .HasColumnName("Offercoursefrom");
+            });
+
+
+
+
             modelBuilder.Entity<OfferedRequestTypeId>(entity =>
             {
                 entity.HasKey(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial);
@@ -574,6 +1181,52 @@ namespace Hr.Models
 
                    .HasColumnName("Offercoursefrom");
             });
+
+            modelBuilder.Entity<NeededDetails>(entity =>
+            {
+                entity.HasKey(e => e.OfferedDetailsSerial);
+                //entity.HasKey(e => e.COURCES_IDMASTER);
+
+                entity.ToTable("NeededDetails");
+                entity.Property(e => e.OfferedDetailsSerial).HasColumnName("OfferedDetailsSerial");
+
+                entity.Property(e => e.COURCES_IDOffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.OfferedRequestFrom).HasColumnName("OfferedRequestFrom");
+                entity.Property(e => e.OfferedRequestTo).HasColumnName("OfferedRequestTo");
+                entity.Property(e => e.OfferedRequestTo2).HasColumnName("OfferedRequestTo2");
+                entity.Property(e => e.OfferedRequestTo3).HasColumnName("OfferedRequestTo3");
+                entity.Property(e => e.OfferedRequestTo4).HasColumnName("OfferedRequestTo4");
+                entity.Property(e => e.OfferedRequestTo5).HasColumnName("OfferedRequestTo5");
+                entity.Property(e => e.OfferedRequestTypeSatus).HasColumnName("OfferedRequestTypeSatus");
+                entity.Property(e => e.OfferedRequestNotes).HasColumnName("OfferedRequestNotes");
+                entity.Property(e => e.Offeredoption).HasColumnName("Offeredoption");
+
+            });
+            modelBuilder.Entity<Needed1Details>(entity =>
+            {
+                entity.HasKey(e => e.OfferedDetailsSerial);
+                //entity.HasKey(e => e.COURCES_IDMASTER);
+
+                entity.ToTable("Needed1Details");
+                entity.Property(e => e.OfferedDetailsSerial).HasColumnName("OfferedDetailsSerial");
+
+                entity.Property(e => e.COURCES_IDOffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.OfferedRequestFrom).HasColumnName("OfferedRequestFrom");
+                entity.Property(e => e.OfferedRequestTo).HasColumnName("OfferedRequestTo");
+                entity.Property(e => e.OfferedRequestTo2).HasColumnName("OfferedRequestTo2");
+                entity.Property(e => e.OfferedRequestTo3).HasColumnName("OfferedRequestTo3");
+                entity.Property(e => e.OfferedRequestTo4).HasColumnName("OfferedRequestTo4");
+                entity.Property(e => e.OfferedRequestTo5).HasColumnName("OfferedRequestTo5");
+                entity.Property(e => e.OfferedRequestTypeSatus).HasColumnName("OfferedRequestTypeSatus");
+                entity.Property(e => e.OfferedRequestNotes).HasColumnName("OfferedRequestNotes");
+                entity.Property(e => e.Offeredoption).HasColumnName("Offeredoption");
+
+            });
+
+
+
 
             modelBuilder.Entity<OfferedDetails>(entity =>
             {
@@ -782,6 +1435,18 @@ namespace Hr.Models
                 entity.HasKey(e => e.CourcesId);
 
                 entity.ToTable("A_PROGRAMS_NAME");
+
+                entity.Property(e => e.CourcesId).HasColumnName("COURCES_ID");
+
+                entity.Property(e => e.CourcesName)
+                    .HasMaxLength(250)
+                    .HasColumnName("COURCES_NAME");
+            });
+            modelBuilder.Entity<ACourcesPrograms1>(entity =>
+            {
+                entity.HasKey(e => e.CourcesId);
+
+                entity.ToTable("A_PROGRAMS_NAME1");
 
                 entity.Property(e => e.CourcesId).HasColumnName("COURCES_ID");
 

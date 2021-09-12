@@ -17,6 +17,7 @@ namespace Hr.Controllers
     {
         private readonly hrContext _context;
         private readonly IHostingEnvironment _hosting;
+        string extension2="";
 
         public ACourcesMastersController(hrContext context, IHostingEnvironment hosting)
         {
@@ -553,7 +554,13 @@ namespace Hr.Controllers
 
 
 
-
+            string extension = Path.GetExtension(aCourcesMaster.Filecer.FileName);
+           
+            if (aCourcesMaster.Filehr != null)
+            {
+                 extension2 = Path.GetExtension(aCourcesMaster.Filehr.FileName);
+            }
+           
             var objuser1 = _context.Cemps.Where(b => b.Cempid == HttpContext.Session.GetString("empid")).FirstOrDefault();
             var coursesforuser = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesId== aCourcesMaster.CourcesId &&b.CourcesStartDate== aCourcesMaster.CourcesStartDate).FirstOrDefault();
             if (coursesforuser!=null)
@@ -563,7 +570,7 @@ namespace Hr.Controllers
             }
             string x = "", y = "",file1="",file2="";
 
-            if (aCourcesMaster.Filecer != null)
+            if (aCourcesMaster.Filecer != null && (extension == ".jpeg" || extension == ".jpg" || extension == ".png" || extension == ".gif" || extension == ".jfif" || extension == ".pdf"))
             {
                 file1 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filecer.FileName;
                 string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
@@ -572,14 +579,14 @@ namespace Hr.Controllers
             }
             else
             {
-                ViewBag.ErrorMessage = "يرجي رفع شهادة الدورة";
+                ViewBag.ErrorMessage = "يرجي رفع شهادة الدورة (jpeg, jpg, png, gif, jfif,pdf)!";
                 return View(aCourcesMaster);
                 //ModelState.AddModelError("uploadError", "يرجي رفع شهادة الدورة");
                 //return Content("<script language='javascript' type='text/javascript'>alert('يرجي رفع شهادة الدورة!');</script>");
             }
 
             //
-            if (aCourcesMaster.Filehr != null)
+            if (aCourcesMaster.Filehr != null && (extension2 == ".jpeg" || extension2 == ".jpg" || extension2 == ".png" || extension2 == ".gif" || extension2 == ".jfif" || extension == ".pdf"))
             {
                 file2 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filehr.FileName;
                 string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
@@ -646,7 +653,12 @@ namespace Hr.Controllers
                 //int z=0,zz=0;
                 if (objuser1.CEMPLASTUPGRADEHIJRA > objuser1.CEMPHIRINGDATEHIJRA)
                 {
-                    if(aCourcesMasteritems.CourcesStartDate> objuser1.CEMPLASTUPGRADEHIJRA)
+                    if (aCourcesMasteritems.CourcesEndDate < aCourcesMasteritems.CourcesStartDate)
+                    {
+                        ViewBag.ErrorMessage1 = "تاريخ نهاية الدورة اقل من تاريخ بداية الدورة   ";
+                        return View(aCourcesMaster);
+                    }
+                    if (aCourcesMasteritems.CourcesEndDate> objuser1.CEMPLASTUPGRADEHIJRA)
                     {
                         // z = aCourcesMasteritems.CourcesStartDate.CompareTo(objuser1.CEMPLASTUPGRADEHIJRA);
                         //zz = aCourcesMasteritems.CourcesStartDate.CompareTo(objuser1.Cemplastupgrade);
@@ -676,7 +688,7 @@ namespace Hr.Controllers
                 }
                 if (objuser1.CEMPLASTUPGRADEHIJRA < objuser1.CEMPHIRINGDATEHIJRA)
                 {
-                    if (aCourcesMasteritems.CourcesStartDate > objuser1.CEMPHIRINGDATEHIJRA)
+                    if (aCourcesMasteritems.CourcesEndDate > objuser1.CEMPHIRINGDATEHIJRA)
                     {
                         if (aCourcesMaster.CourcesPassRate != null)
                         {
@@ -960,29 +972,161 @@ namespace Hr.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CourcesIdmaster,CourcesId,CourcesIdType,CourcesIdDeptin,CourcesIdTraining,CourcesIdDeptout,CourcesIdEstimate,CourcesIdImagecert,CourcesIdImagehr,CourcesStartDate,CourcesEndDate,CourcesNumberofdays,CourcesPassRate,Cempid,Filecer,Filehr")] ACourcesMaster aCourcesMaster)
+        public async Task<IActionResult> Edit(int id,ACourcesMaster aCourcesMaster)
         {
             if (id != aCourcesMaster.CourcesIdmaster)
             {
                 return NotFound();
             }
+            string extension = Path.GetExtension(aCourcesMaster.Filecer.FileName);
 
+            if (aCourcesMaster.Filehr != null)
+            {
+                extension2 = Path.GetExtension(aCourcesMaster.Filehr.FileName);
+            }
+
+            var objuser1 = _context.Cemps.Where(b => b.Cempid == HttpContext.Session.GetString("empid")).FirstOrDefault();
+            var coursesforuser = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesId == aCourcesMaster.CourcesId && b.CourcesStartDate == aCourcesMaster.CourcesStartDate).FirstOrDefault();
+            if (coursesforuser != null)
+            {
+                ViewBag.ErrorMessage3 = "تم تسجيل الدورة سابقا بنفس تاريخ البداية ";
+                return View(aCourcesMaster);
+            }
+            string x = "", y = "", file1 = "", file2 = "";
+
+            if (aCourcesMaster.Filecer != null && (extension == ".jpeg" || extension == ".jpg" || extension == ".png" || extension == ".gif" || extension == ".jfif" || extension == ".pdf"))
+            {
+                file1 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filecer.FileName;
+                string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+                string fullPath = Path.Combine(uploads, file1);
+                aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "يرجي رفع شهادة الدورة (jpeg, jpg, png, gif, jfif,pdf)!";
+                return View(aCourcesMaster);
+                //ModelState.AddModelError("uploadError", "يرجي رفع شهادة الدورة");
+                //return Content("<script language='javascript' type='text/javascript'>alert('يرجي رفع شهادة الدورة!');</script>");
+            }
+
+            //
+            if (aCourcesMaster.Filehr != null && (extension2 == ".jpeg" || extension2 == ".jpg" || extension2 == ".png" || extension2 == ".gif" || extension2 == ".jfif" || extension == ".pdf"))
+            {
+                file2 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filehr.FileName;
+                string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
+                string fullPath2 = Path.Combine(uploads2, file2);
+                aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
+                x = file2;
+            }
+            else
+            {
+                y = "";
+            }
+            var ac = _context.ACourcesMasters.Find(aCourcesMaster.CourcesIdmaster);
+            if (ac == null)
+            {
+                return NotFound();
+            }
             if (ModelState.IsValid)
             {
                 try
                 {
-                    string uploads1 = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
-                    string fullPath1 = Path.Combine(uploads1, aCourcesMaster.Filecer.FileName);
-                    aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath1, FileMode.Create));
+                    //string uploads1 = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+                    //string fullPath1 = Path.Combine(uploads1, aCourcesMaster.Filecer.FileName);
+                    //aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath1, FileMode.Create));
+                    ////
+                    //string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
+                    //string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
+                    //aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
+                    //aCourcesMaster.CourcesIdImagecert = aCourcesMaster.Filecer.FileName;
+                    //aCourcesMaster.CourcesIdImagehr = aCourcesMaster.Filehr.FileName;
+                    ac.CourcesIdmaster = aCourcesMaster.CourcesIdmaster;
+                    ac.CourcesId = aCourcesMaster.CourcesId;
+                    ac.CourcesIdType = aCourcesMaster.CourcesIdType;
+                    ac.CourcesIdDeptin = Convert.ToInt32(HttpContext.Session.GetString("empdepid")) /*aCourcesMaster.CourcesIdDeptin*/;
+                    ac.CourcesIdTraining = aCourcesMaster.CourcesIdTraining;
+                    ac.CourcesIdDeptout = aCourcesMaster.CourcesIdDeptout;
+                    ac.CourcesIdEstimate = aCourcesMaster.CourcesIdEstimate;
+                    ac.CourcesIdImagecert = file1;
+                    ac.CourcesIdImagehr = x == x ? x : y;
+                    ac.CourcesStartDate = aCourcesMaster.CourcesStartDate;
+                    ac.CourcesEndDate = aCourcesMaster.CourcesEndDate;
+                    ac.CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays) + 1;
+                    ac.CourcesPassRate = aCourcesMaster.CourcesPassRate;
+                    ac.COURCES_EXCUTION = aCourcesMaster.COURCES_EXCUTION;
+                    //ac.Cempid = HttpContext.Session.GetString("empid");
                     //
-                    string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
-                    string fullPath2 = Path.Combine(uploads2, aCourcesMaster.Filehr.FileName);
-                    aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
-                    aCourcesMaster.CourcesIdImagecert = aCourcesMaster.Filecer.FileName;
-                    aCourcesMaster.CourcesIdImagehr = aCourcesMaster.Filehr.FileName;
-                    //
-                    _context.Update(aCourcesMaster);
-                    await _context.SaveChangesAsync();
+                 
+                                                    //int z=0,zz=0;
+                    if (objuser1.CEMPLASTUPGRADEHIJRA > objuser1.CEMPHIRINGDATEHIJRA)
+                    {
+                        if (aCourcesMaster.CourcesEndDate < aCourcesMaster.CourcesStartDate)
+                        {
+                            ViewBag.ErrorMessage1 = "تاريخ نهاية الدورة اقل من تاريخ بداية الدورة   ";
+                            return View(aCourcesMaster);
+                        }
+                        if (aCourcesMaster.CourcesEndDate > objuser1.CEMPLASTUPGRADEHIJRA)
+                        {
+                            //// z = aCourcesMasteritems.CourcesStartDate.CompareTo(objuser1.CEMPLASTUPGRADEHIJRA);
+                            ////zz = aCourcesMasteritems.CourcesStartDate.CompareTo(objuser1.Cemplastupgrade);
+                            //if (aCourcesMaster.CourcesPassRate != null)
+                            //{
+                            //    _context.Add(newcourcename);
+                            //    await _context.SaveChangesAsync();
+                            //    aCourcesMasteritems.CourcesId = _context.ACourcesNames.Max(u => u.CourcesId);
+
+                            //}
+                            //_context.Add(aCourcesMasteritems);
+                            //_context.Add(MasterRequestTypeIds);
+                            //_context.Add(MasterDetailss);
+                            //await _context.SaveChangesAsync();
+                            _context.Update(ac);//
+                            await _context.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            ViewBag.ErrorMessage1 = "لا يمكن تسجيل الدورة التدريبية لكون تاريخ الحصول عليها  قبل تاريخ آخر ترقية  ";
+                            return View(aCourcesMaster);
+                            //ViewBag.Message = "تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!";
+                            //return Content("<script language='javascript' type='text/javascript'>alert('تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!');</script>");
+                            //ModelState.AddModelError("CourcesStartDate", "تاريخ الدورة اقل من تاريخ اخر ترقية ولن يتم الحفظ!");
+
+
+                        }
+
+                    }
+                    if (objuser1.CEMPLASTUPGRADEHIJRA < objuser1.CEMPHIRINGDATEHIJRA)
+                    {
+                        if (aCourcesMaster.CourcesEndDate > objuser1.CEMPHIRINGDATEHIJRA)
+                        {
+                            //if (aCourcesMaster.CourcesPassRate != null)
+                            //{
+                            //    _context.Add(newcourcename);
+                            //    await _context.SaveChangesAsync();
+                            //    aCourcesMasteritems.CourcesId = _context.ACourcesNames.Max(u => u.CourcesId);
+
+                            //}
+                            //_context.Add(aCourcesMasteritems);
+                            //_context.Add(MasterRequestTypeIds);
+                            //_context.Add(MasterDetailss);
+                            //await _context.SaveChangesAsync();
+                            _context.Update(ac);//
+                            await _context.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            ViewBag.ErrorMessage2 = "لا يمكن تسجيل الدورة التدريبية لكون تاريخ الحصول عليها  قبل تاريخ التعين ";
+                            return View(aCourcesMaster);
+                            // ViewBag.Message = "تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم الحفظ!";
+                            //return Content("<script language='javascript' type='text/javascript'>alert('تاريخ الدورة اقل من تاريخ التعيين بالدولة  ولن يتم الحفظ!');</script>");
+                        }
+
+                    }
+
+
+                    //return RedirectToAction(nameof(Index));
+                   
+                   
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -995,7 +1139,21 @@ namespace Hr.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
+
+                //logs
+                ACourcesLogs aa = new ACourcesLogs
+                {
+                    requestid = Convert.ToString(aCourcesMaster.CourcesIdmaster),
+                    userr = HttpContext.Session.GetString("empid"),
+                    tt=DateTime.Now
+                };
+
+                _context.ACourcesLogs.Add(aa);//
+                await _context.SaveChangesAsync();
+
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "ViewModelMasterwithother", new { area = "" });
             }
             ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname", aCourcesMaster.Cempid);
             ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName", aCourcesMaster.CourcesId);

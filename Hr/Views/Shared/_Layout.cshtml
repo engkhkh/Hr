@@ -60,7 +60,7 @@
     <link href="~/StyleSheet/jqx.base.css" rel="stylesheet" type="text/css">
     <link href="~/StyleSheet/jqx.office.css" rel="stylesheet" type="text/css">
     <link href="~/StyleSheet/tabs-menu-home.css" rel="stylesheet" type="text/css">
-    <script src="~/StyleSheet/jquery-2.1.3.min.js"></script>
+    @*<script src="~/StyleSheet/jquery-2.1.3.min.js"></script>*@
     <script src="~/StyleSheet/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
     <script src="~/StyleSheet/jquery.meio.mask.js" type="text/javascript"></script>
     <script src="~/StyleSheet/jquery.cookie.js" type="text/javascript"></script>
@@ -391,55 +391,57 @@
 
                         </div>
                     </div>
-                    <ul id="menu" class="menu accordion-menu">
-                        <li class="droplink">
+                    <!--<ul id="menu" class="menu accordion-menu">
+        <li class="droplink">
 
-                            <a href="Default.aspx" class="waves-effect waves-button">
-                                <span class="  menu-icon   menu-icon glyphicon glyphicon-user"></span>
-                                <p><asp:Label ID="LoginLink" runat="server" CssClass="LoginLink" Height="30px"></asp:Label></p>
-                                <span class="arrow"></span>
-                            </a>
+            <a href="Default.aspx" class="waves-effect waves-button">
+                <span class="  menu-icon   menu-icon glyphicon glyphicon-user"></span>
+                <p><asp:Label ID="LoginLink" runat="server" CssClass="LoginLink" Height="30px"></asp:Label></p>
+                <span class="arrow"></span>
+            </a>
 
-                            <ul class="sub-menu" style="display: none;">
+            <ul class="sub-menu" style="display: none;">
 
-                                <li class="">
-                                    <a href="#" class="waves-effect waves-button">
-                                        <p>معلومات المستخدم</p> <span class=""></span>
-                                    </a>
-                                </li>
-                                <li class="">
+                <li class="">
+                    <a href="#" class="waves-effect waves-button">-->
+                    @*<p>معلومات المستخدم</p> <span class=""></span>*@
+                    <!--</a>
+    </li>
+    <li class="">
 
-                                    <a href="https://qmapps.qassim.gov.sa/HR/HR_EVALUATION.aspx" class="waves-effect waves-button">
-                                        <p>ميثاق الاداء</p> <span class=""></span>
-                                    </a>
-                                </li>
+        <a href="https://qmapps.qassim.gov.sa/HR/HR_EVALUATION.aspx" class="waves-effect waves-button">-->
+                    @*<p>ميثاق الاداء</p> <span class=""></span>*@
+                    <!--</a>
+    </li>
 
-                                <li class="">
+    <li class="">
 
-                                    <a href="https://qmapps.qassim.gov.sa/HR/HR_EVALUATION.aspx" class="waves-effect waves-button">
-                                        <p>ميثاق الاداء الوظيفي</p> <span class=""></span>
-                                    </a>
-                                </li>
+        <a href="https://qmapps.qassim.gov.sa/HR/HR_EVALUATION.aspx" class="waves-effect waves-button">-->
+                    @*<p>ميثاق الاداء الوظيفي</p> <span class=""></span>*@
+                    <!--</a>
+    </li>
 
-                                <li class="">
+    <li class="">
 
-                                    <a href="https://qmapps.qassim.gov.sa/HR/HR_EVALUATION_Deatils.aspx" class="waves-effect waves-button">
-                                        <p>اعتماد ميثاق الاداء</p> <span class=""></span>
-                                    </a>
-                                </li>
+        <a href="https://qmapps.qassim.gov.sa/HR/HR_EVALUATION_Deatils.aspx" class="waves-effect waves-button">-->
+                    @*<p>اعتماد ميثاق الاداء</p> <span class=""></span>*@
+                    <!--</a>
+    </li>
 
-                                <li class="">
+    <li class="">
 
 
-                                </li>
-                                <li class="">
-                                    <a href="logins.aspx" class="waves-effect waves-button">
-                                        <p>تسجيل خروج</p> <span class=""></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+    </li>
+    <li class="">
+        <a href="logins.aspx" class="waves-effect waves-button">-->
+                    @*<p>تسجيل خروج</p> <span class=""></span>*@
+                    <!--</a>
+                </li>
+            </ul>
+        </li>
+    </ul>-->
+                    @Html.Partial("_MenuePerPartial")
+
                     @Html.Partial("_MenueProcessPartial")
 
                     @Html.Partial("_MenuCoursesPartial")

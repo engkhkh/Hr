@@ -1,0 +1,473 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Hr.Models.ViewModelOfferedwithother>
+
+@{
+    ViewData["Title"] = " الاستعلام عن  نماذج الاحتياج التدريبي للموظفين";
+    //Layout = "~/Views/Shared/_Layout - Copy - Copy.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table>
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    @using (@Html.BeginForm())
+                    {
+                        <button type="submit" name="1" value="1" class="=btn btn-success" asp-action="approveduser1n" asp-controller="ViewModelMasterwithother" formmethod="post">تم الموافقة عليها </button>
+                        <button type="submit" name="2" value="2" class="=btn btn-success" asp-action="canceluser1n" asp-controller="ViewModelMasterwithother" formmethod="post">تم رفضها  </button>
+
+                        @*@Html.TextBox("search", "", new { placeholder = "بحث بالدورة", @class = "" })*@
+
+
+
+                    }
+                </p>
+            </td>
+            <td>
+            </td>
+        </tr>
+
+    </tbody>
+    @*@if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+
+                    window.onload = function () {
+                        alert("@ViewBag.Message");
+                    };
+            </script>
+
+        }*@
+    @*<table>
+            <thead>
+                <tr>
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>
+                            @using (@Html.BeginForm())
+                            {
+                                <button type="submit" class="=btn btn-primary mb-lg-4">بحث</button>
+                                @Html.TextBox("search", "", new { placeholder = "بحث بالدورة ", @class = "" })
+
+                            }
+                        </p>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>*@
+
+    @*<div id="sortMsg" style="text-align: center; color: Red;">
+        </div>*@
+    @*<div class="row" style="float:right; width:100%">*@
+    </table>
+    <table @*style="width: 100%;"*@ id="table" class="table table-responsive-lg table-bordered table-condensed table-striped table-hover  sortable">
+        <thead>
+            <tr>
+                @*<th>
+
+        </th>*@
+                <th>
+                    الموظف
+                </th>
+                <th>
+                    الرقم الوظيفي
+                </th>
+                <th>
+                    المسمي الوظيفي
+                </th>
+                <th>
+                    القسم
+                </th>
+                <th>
+                    الأدارة
+                </th>
+                <th>
+                    رقم الطلب
+                </th>
+                <th>
+                    أسم البرنامج التدريبي
+                </th>
+                <th>
+                    وصف البرنامج التدريبي
+                </th>
+                <th>
+                    الوظيفة الفعلية المستهدفة
+                </th>
+
+                <th>
+                    الأدارة
+                </th>
+
+                <th>
+                    الوحدة الأدارية
+
+                </th>
+                <th>
+                    عدد الموظفين المستهدفين
+
+                </th>
+                <th>
+                    طريقة التدريب
+                </th>
+                <th>
+                    ملاحظات
+
+                </th>
+
+                @*<th>
+            عدد ايام  الدورة
+        </th>
+        <th>
+            عدد المقاعد المتاحة
+        </th>*@
+                @*<th>
+            نسبة الانجاز %
+        </th>*@
+
+                <!--<th>
+        الترشح
+    </th>
+    <th>-->
+                @*الاعتماد وارسال الطلب*@
+                <!--الاعتماد
+    </th>-->
+
+            </tr>
+        </thead>
+        <tbody>
+            <form asp-action="Search" enctype="multipart/form-data">
+                @foreach (var item in Model)
+                {
+            <tr>
+                <!--<td>
+                <a asp-controller="NeededDetails" asp-action="Create" asp-route-id="@item.ACourcesNeeded.CourcesNeededId">موافق</a> |
+        <a asp-controller="NeededDetails" asp-action="Create2" asp-route-id="@item.ACourcesNeeded.CourcesNeededId">رفض</a>-->
+                @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
+
+                <!--</td>-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.Cempid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.CEMPJOBNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.DEP_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.PARENTNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesNeeded.CourcesNeededId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesPrograms.CourcesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesNeeded.CourcesIdDescription)
+                    @*@Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesIdDeptin)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AJobsNames.CourcesName)
+                    @*@Html.DisplayFor(modelItem => item.ACoursesLocation.name)*@
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesIdManagement.name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
+                    @*@Html.DisplayFor(modelItem => item.ACourcesOffered.CourcesStartDate)*@
+                    @*@Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDateh)*@
+                    @*@item.ACourcesOffered.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesNeeded.available)
+                    @*@Html.DisplayFor(modelItem => item.ACourcesOffered.CourcesIdTime)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesNeeded.notes)
+                    @*@Html.DisplayFor(modelItem => item.ACourcesOffered.timefrom)
+            @Html.DisplayFor(modelItem => item.ACourcesOffered.timeto)*@
+                </td>
+
+                <!--<td>-->
+                @*@Html.DisplayFor(modelItem => item.ACourcesOffered.CourcesIdperiodbydays)*@
+                <!--</td>
+    <td>-->
+                @*@Html.DisplayFor(modelItem => item.ACourcesOffered.available)*@
+                <!--</td>-->
+                @*<td>
+            @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
+        </td>*@
+
+                @*<td>
+
+        </td>*@
+                <!--<td>-->
+                @*<a asp-action="Edit" asp-route-id="@item.ACourcesOffered.CourcesOfferedId" class="btn btn-success">أرسال</a>*@
+                <!--</td>-->
+
+            </tr>
+            }
+                </form>
+            </tbody>
+        </table>
+
+        @*</div>*@
+
+        @*<div id="pager" class="pager">
+                <br />
+                <img src="~/Content/first.png" />
+                <img src="~/Content/first.png" class="first" />
+                <img src="~/Content/prev.png" class="prev" />
+                <input type="text" class="pagedisplay" />
+                <img src="~/Content/next.png" class="next" />
+                <img src="~/Content/last.png" class="last" />
+                <select class="pagesize">
+                    <option selected="selected" value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                </select>
+            </div>
+
+            <script type="text/javascript">
+                $(function () {
+                    $("#empTable")
+                        .tablesorter({ widthFixed: true })
+                        .tablesorterPager({ container: $("#pager") });
+                    $("#empTable").bind("sortStart", function () {
+                        $("#sortMsg").html('Sorting');
+                    }).bind("sortEnd", function () {
+                        $("#sortMsg").html('');
+                    });
+
+                    //Hide/delete row on click.
+                    $("#empTable img").click(function () { $(this).parent().parent().hide(); });
+                });
+            </script>*@
+        <script language="javascript" type="text/javascript">
+
+            if (document.getElementById("#1").checked) {
+                document.getElementById("#2").disabled = true;
+            }
+
+        </script>
+        <script language="javascript" type="text/javascript">
+            $(document).ready(function () {
+                try {
+
+                    //$('form').on('change', ':checkbox', function () {
+                    //    if (this.checked) {
+                    //        $(this).val(true);
+                    //    }
+                    //    else {
+                    //        $(this).val(false);
+                    //    }
+                    //});
+                    $("input[type='text']").each(function () {
+                        $(this).attr("autocomplete", "off");
+                    });
+                    //$('input[type="checkbox"]').each(function () {
+                    //    $(this).attr('value', $(this).is(':checked'));
+                    //});
+                    /*    $("input[type='checkbox']").show();*/
+
+                    //   $('input[type="checkbox"]').each(function () {
+                    //    $(this).attr("Display", "inline");
+                    //});
+                }
+                catch (e) { }
+            });
+
+        </script>
+        <script>
+
+            $(document).ready(function () {
+                $('#table').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+                    ],
+                    "language": {
+                        "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                        "loadingRecords": "جارٍ التحميل...",
+                        "processing": "جارٍ التحميل...",
+                        "lengthMenu": "أظهر _MENU_ مدخلات",
+                        "zeroRecords": "لم يعثر على أية سجلات",
+                        "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                        "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                        "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                        "search": "ابحث:",
+                        "paginate": {
+                            "first": "الأول",
+                            "previous": "السابق",
+                            "next": "التالي",
+                            "last": "الأخير"
+                        },
+                        "aria": {
+                            "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                            "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                        },
+                        "select": {
+                            "rows": {
+                                "_": "%d قيمة محددة",
+                                "0": "",
+                                "1": "1 قيمة محددة"
+                            },
+                            "1": "%d سطر محدد",
+                            "_": "%d أسطر محددة",
+                            "cells": {
+                                "1": "1 خلية محددة",
+                                "_": "%d خلايا محددة"
+                            },
+                            "columns": {
+                                "1": "1 عمود محدد",
+                                "_": "%d أعمدة محددة"
+                            }
+                        },
+                        "buttons": {
+                            "print": "طباعة",
+                            "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                            "copySuccess": {
+                                "_": "%d قيمة نسخت",
+                                "1": "1 قيمة نسخت"
+                            },
+                            "pageLength": {
+                                "-1": "اظهار الكل",
+                                "_": "إظهار %d أسطر"
+                            },
+                            "collection": "مجموعة",
+                            "copy": "نسخ",
+                            "copyTitle": "نسخ إلى الحافظة",
+                            "csv": "CSV",
+                            "excel": "Excel",
+                            "pdf": "PDF",
+                            "colvis": "إظهار الأعمدة",
+                            "colvisRestore": "إستعادة العرض"
+                        },
+                        "autoFill": {
+                            "cancel": "إلغاء",
+                            "info": "مثال عن الملئ التلقائي",
+                            "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                            "fillHorizontal": "تعبئة الحقول أفقيًا",
+                            "fillVertical": "تعبئة الحقول عموديا"
+                        },
+                        "searchBuilder": {
+                            "add": "اضافة شرط",
+                            "clearAll": "ازالة الكل",
+                            "condition": "الشرط",
+                            "data": "المعلومة",
+                            "logicAnd": "و",
+                            "logicOr": "أو",
+                            "title": [
+                                "منشئ البحث"
+                            ],
+                            "value": "القيمة",
+                            "conditions": {
+                                "date": {
+                                    "after": "بعد",
+                                    "before": "قبل",
+                                    "between": "بين",
+                                    "empty": "فارغ",
+                                    "equals": "تساوي",
+                                    "not": "ليس",
+                                    "notBetween": "ليست بين",
+                                    "notEmpty": "ليست فارغة"
+                                },
+                                "number": {
+                                    "between": "بين",
+                                    "empty": "فارغة",
+                                    "equals": "تساوي",
+                                    "gt": "أكبر من",
+                                    "gte": "أكبر وتساوي",
+                                    "lt": "أقل من",
+                                    "lte": "أقل وتساوي",
+                                    "not": "ليست",
+                                    "notBetween": "ليست بين",
+                                    "notEmpty": "ليست فارغة"
+                                },
+                                "string": {
+                                    "contains": "يحتوي",
+                                    "empty": "فاغ",
+                                    "endsWith": "ينتهي ب",
+                                    "equals": "يساوي",
+                                    "not": "ليست",
+                                    "notEmpty": "ليست فارغة",
+                                    "startsWith": " تبدأ بـ "
+                                }
+                            },
+                            "button": {
+                                "0": "فلاتر البحث",
+                                "_": "فلاتر البحث (%d)"
+                            },
+                            "deleteTitle": "حذف فلاتر"
+                        },
+                        "searchPanes": {
+                            "clearMessage": "ازالة الكل",
+                            "collapse": {
+                                "0": "بحث",
+                                "_": "بحث (%d)"
+                            },
+                            "count": "عدد",
+                            "countFiltered": "عدد المفلتر",
+                            "loadMessage": "جارِ التحميل ...",
+                            "title": "الفلاتر النشطة"
+                        },
+                        "searchPlaceholder": "ابحث ..."
+                    }
+                });
+            });
+
+        </script>
+
+        <link href="~/DataTables (1)/datatables.css" rel="stylesheet" />
+
+        <script src="~/DataTables (1)/datatables.js"></script>
+
+        <script src="~/DataTables (1)/pdfmake-0.1.36/pdfmake.js"></script>
+
+        <script src="~/DataTables (1)/pdfmake-0.1.36/vfs_fonts.js"></script>
+        <script src="~/DataTables (1)/JSZip-2.5.0/jszip.js"></script>
+        @*<script src="~/js/jquery-1.4.1.min.js"></script>
+            <script src="~/js/jquery.tablesorter.min.js"></script>
+            <script src="~/js/jquery.tablesorter.pager.js"></script>*@
+        @*<link href="~/DataTables/datatables.css" rel="stylesheet" />
+            <script src="~/DataTables/datatables.js"></script>*@
+
+

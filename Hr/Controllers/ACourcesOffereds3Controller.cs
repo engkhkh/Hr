@@ -452,13 +452,16 @@ namespace Hr.Controllers
 
             ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname");
             ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
-            ViewData["CourcesIdLocation"] = new SelectList(_context.ACoursesLocation, "id", "name");
-            ViewData["ACourcesIdManagement"] = new SelectList(_context.ACourcesIdManagement, "id", "name");
-            ViewData["ACourcesDeptin"] = new SelectList(_context.ACourcesDeptins, "CourcesIdDeptin", "CourcesNameDeptin");
+            ViewData["CourcesId2"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
+            ViewData["CourcesId3"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
+            ViewData["CourcesId4"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
+            ViewData["CourcesId5"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
+            ViewData["CourcesId6"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
+            ViewData["CourcesId7"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
+            ViewData["CourcesId8"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
+
             ViewData["ACourcesDeptout"] = new SelectList(_context.ACourcesDeptouts, "CourcesIdDeptout", "CourcesNameDeptout");
-            ViewData["ACourcesType"] = new SelectList(_context.ACourcesTypes, "CourcesIdType", "CourcesTypeName");
-            ViewData["ACourcesTrainingMethod"] = new SelectList(_context.ACourcesTrainingMethods, "CourcesIdTraining", "CourcesNameTraining");
-            ViewData["ACourcesEstimate"] = new SelectList(_context.ACourcesEstimates, "CourcesIdEstimate", "CourcesNameEstimate");
+           
             return View();
         }
 

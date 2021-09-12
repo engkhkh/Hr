@@ -79,8 +79,8 @@ namespace Hr.Controllers
                 List<ACourcesIdManagement> ACourcesIdManagements = _context.ACourcesIdManagement.ToList();
                 List<ACourcesNeeded> ACourcesNeeded = _context.ACourcesNeeded.ToList();
                 List<ACourcesDeptin> ACourcesDeptins = _context.ACourcesDeptins.ToList();
-                List<MasterRequestTypeId> MasterRequestTypeIds = _context.MasterRequestTypeIds.ToList();
-                List<MasterDetails> MasterDetailss = _context.MasterDetailss.ToList();
+                List<NeededRequestTypeId> NeededRequestTypeIds = _context.NeededRequestTypeId.ToList();
+                List<NeededDetails> NeededDetailss = _context.NeededDetails.ToList();
                 List<ACourcesDeptout> ACourcesDeptouts = _context.ACourcesDeptouts.ToList();
                 List<ACourcesTrainingMethod> ACourcesTrainingMethods = _context.ACourcesTrainingMethods.ToList();
                 List<ACourcesName> ACourcesNames = _context.ACourcesNames.ToList();
@@ -331,58 +331,58 @@ namespace Hr.Controllers
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
-            List<ACoursesLocation> ACoursesLocations = _context.ACoursesLocation.ToList();
+
+
+            List<AJobsNames> AJobsNames = _context.AJobsNames.ToList();
             List<Cemp> Cemps = _context.Cemps.ToList();
-            List<ACourcesIdManagement> ACourcesIdManagements = _context.ACourcesIdManagement.ToList();
-            List<ACourcesOffered> ACourcesOffereds = _context.ACourcesOffered.ToList();
+            List<ACourcesIdManagement> ACourcesIdManagement = _context.ACourcesIdManagement.ToList();
+            List<ACourcesNeeded> ACourcesNeeded = _context.ACourcesNeeded.ToList();
             List<ACourcesDeptin> ACourcesDeptins = _context.ACourcesDeptins.ToList();
-            List<MasterRequestTypeId> MasterRequestTypeIds = _context.MasterRequestTypeIds.ToList();
-            List<MasterDetails> MasterDetailss = _context.MasterDetailss.ToList();
+            List<NeededRequestTypeId> NeededRequestTypeId = _context.NeededRequestTypeId.ToList();
+            List<NeededDetails> NeededDetails = _context.NeededDetails.ToList();
             List<ACourcesDeptout> ACourcesDeptouts = _context.ACourcesDeptouts.ToList();
             List<ACourcesTrainingMethod> ACourcesTrainingMethods = _context.ACourcesTrainingMethods.ToList();
-            List<ACourcesName> ACourcesNames = _context.ACourcesNames.ToList();
-            List<ACourcesOptions> ACourcesOptions = _context.ACourcesOptions.ToList();
-            var Records = from e in ACourcesOffereds
-                          join d in ACoursesLocations on e.CourcesIdLocation equals d.id into table1
+            List<ACourcesPrograms> ACourcesPrograms = _context.ACourcesPrograms.ToList();
+            var Records = from e in ACourcesNeeded
+                          join d in AJobsNames on e.jobsid equals d.CourcesId into table1
                           from d in table1.ToList()
-                              join i in Cemps on e.Cempid equals i.Cempid into table2
-                              from i in table2.ToList()
-                              where i.Cempid == HttpContext.Session.GetString("empid")
-                          join j in ACourcesIdManagements on e.CourcesIdManagement equals j.id into table3
+                          join i in Cemps on e.Cempid equals i.Cempid into table2
+                          from i in table2.ToList()
+                          where i.Cempid == HttpContext.Session.GetString("empid")
+                          join j in ACourcesIdManagement on e.CourcesIdManagement equals j.id into table3
                           from j in table3.ToList()
-                              //join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
-                              //from f in table4.ToList()
-                          //join q in ACourcesOptions on e.Option equals q.id into table44
-                          //from q in table44.ToList()
-                          join h in ACourcesDeptouts on e.CourcesIdDeptout equals h.CourcesIdDeptout into table5
-                          from h in table5.ToList()
+                          join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
+                          from f in table4.ToList()
+                              //join h in ACourcesDeptouts on e.CourcesIdDeptout equals h.CourcesIdDeptout into table5
+                              //from h in table5.ToList()
                           join n in ACourcesTrainingMethods on e.CourcesIdTraining equals n.CourcesIdTraining into table6
                           from n in table6.ToList()
-                              //join x in MasterRequestTypeIds on e.CourcesIdmaster equals x.COURCES_IDMASTER into table7
-                              //from x in table7.ToList()
-                              //where x.MasterRequestType != 0
-                              //join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
-                              //from y in table8.ToList()
-                          join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
+                          join x in NeededRequestTypeId on e.CourcesNeededId equals x.COURCES_IDOffered into table7
+                          from x in table7.ToList()
+                          where x.OfferedRequestType == 0
+                          join y in NeededDetails on e.CourcesNeededId equals y.COURCES_IDOffered into table8
+                          from y in table8.Distinct().ToList()
+                          where y.OfferedRequestTypeSatus == 0
+                          //where y.MasterRequestTo == HttpContext.Session.GetString("empid") || y.MasterRequestTo2 == HttpContext.Session.GetString("empid")
+                          join z in ACourcesPrograms on e.CourcesId equals z.CourcesId into table9
                           from z in table9.ToList()
 
 
                           select new ViewModelOfferedwithother
                           {
-                              ACourcesOffered = e,
-                              ACoursesLocation = d,
+                              ACourcesNeeded = e,
+                              AJobsNames = d,
                               Cemps = i,
                               ACourcesIdManagement = j,
-                              //ACourcesOptions=q,
-                              //ACourcesDeptins = f,
-                              ACourcesDeptouts = h,
+                              ACourcesDeptins = f,
+                              //ACourcesDeptouts = h,
                               ACourcesTrainingMethods = n,
-                              //MasterRequestTypeIds = x,
-                              //MasterDetails = y,
-                              ACourcesNames = z
+                              NeededRequestTypeIds = x,
+                              NeededDetails = y,
+                              ACourcesPrograms = z
                           };
-
             return View(Records);
+
         }
 
         // GET: ACourcesOffereds/Details/5
@@ -429,8 +429,8 @@ namespace Hr.Controllers
 
 
             ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname");
-            ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName");
-            ViewData["CourcesIdLocation"] = new SelectList(_context.ACoursesLocation, "id", "name");
+            ViewData["CourcesId"] = new SelectList(_context.ACourcesPrograms, "CourcesId", "CourcesName");
+            ViewData["CourcesJobsId"] = new SelectList(_context.AJobsNames, "CourcesId", "CourcesName");
             ViewData["ACourcesIdManagement"] = new SelectList(_context.ACourcesIdManagement, "id", "name");
             ViewData["ACourcesDeptin"] = new SelectList(_context.ACourcesDeptins, "CourcesIdDeptin", "CourcesNameDeptin");
             ViewData["ACourcesDeptout"] = new SelectList(_context.ACourcesDeptouts, "CourcesIdDeptout", "CourcesNameDeptout");
@@ -445,7 +445,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CourcesOfferedId,CourcesId,CourcesIdDeptout,CourcesIdLocation,CourcesIdManagement,CourcesIdperiodbydays,CourcesIdTime,CourcesStartDate,CourcesStartDateh,CourcesIdTraining,Cempid,available,timefrom,timeto")] ACourcesOffered aCourcesOffered)
+        public async Task<IActionResult> Create([Bind("CourcesNeededId,CourcesId,CourcesIdDescription,CourcesIdDeptin,CourcesIdManagement,jobsid,CourcesIdTraining,Cempid,available,notes")] ACourcesNeeded ACourcesNeeded)
         {
 
 
@@ -453,13 +453,65 @@ namespace Hr.Controllers
             if (ModelState.IsValid)
             {
 
-                aCourcesOffered.Cempid = HttpContext.Session.GetString("username");
-                aCourcesOffered.Option = 0;
-                _context.Add(aCourcesOffered);
+                ACourcesNeeded.Cempid = HttpContext.Session.GetString("username");
+               
+                _context.Add(ACourcesNeeded);
                 await _context.SaveChangesAsync();
+
+                //
+
+                var depwithmangforemp = _context.DepartWithMnagement.FirstOrDefault(m => m.CEMPADPRTNO == HttpContext.Session.GetString("empdepid"));
+                //int count = depwithmangforemps.Count;
+                //int count = 1;
+                if (depwithmangforemp != null)
+                {
+                    //var depwithmangforemp = _context.DepartWithMnagement.FirstOrDefaultAsync(m => m.CEMPADPRTNO == HttpContext.Session.GetString("empdepid"));
+
+                    NeededDetails OfferedDetailss = new NeededDetails
+                    {
+                        COURCES_IDOffered = ACourcesNeeded.CourcesNeededId/*_context.ACourcesOffered.Max(u => u.CourcesOfferedId) + 1*/,
+                        OfferedRequestFrom = HttpContext.Session.GetString("empid"),
+                        OfferedRequestTo = depwithmangforemp.MANAGERID,// status in offerrequestto3
+                        OfferedRequestTo2 = depwithmangforemp.PARENTMANAGERID,// status in offerrequestto4
+                        OfferedRequestTo3 = "0",
+                        OfferedRequestTo4 = "1",
+                        OfferedRequestTo5 = "1",// status for  hrpersonapproval
+                        OfferedRequestTypeSatus = 0,
+                        OfferedRequestNotes = "",
+                        Offeredoption = "4321031"   // will srore hr person
+
+                    };
+                    _context.Add(OfferedDetailss);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    //foreach (var item in depwithmangforemps)
+                    //{
+                    //    string x = item.MANAGERID;
+
+                    //}
+                }
+
+
+
+
+                NeededRequestTypeId OfferedRequestTypeIds = new NeededRequestTypeId
+                {
+                    COURCES_IDOffered = ACourcesNeeded.CourcesNeededId,
+                    Offercoursefrom = HttpContext.Session.GetString("empid"),
+                    OfferedRequestType = 0
+
+                };
+                _context.Add(OfferedRequestTypeIds);
+                _context.SaveChanges();
+
+
+
+
                 return RedirectToAction(nameof(search1));
             }
-            return View(aCourcesOffered);
+            return View(ACourcesNeeded);
         }
 
         // GET: ACourcesOffereds/Edit/5

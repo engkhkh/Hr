@@ -8,16 +8,18 @@
 
 
 <hr />
+التطوير والتدريب 
+<hr />
 <div class=" container">
     <div class="row">
         <div class="col-md-4">
-            
+
             <div class="flex-column">
                 <label style="background-color:orangered; font-size:xx-large; font-family:Arial; font-stretch:inherit">
                     @*@Model.Select(x => x.MasterRequestTypeIds.COURCES_IDMASTER).ToList().Distinct().Count()*@
                     @TempData["MasterRequestTypeIds1"].ToString()
                 </label>
-                <a href="~/ViewModelMasterwithother/Index" style="font-size: xx-large; font-family:'Times New Roman', Times, serif; font-stretch: inherit;">الارشفة</a>
+                <a href="~/ViewModelMasterwithother/Index" style="font-size: xx-large; font-family:'Times New Roman', Times, serif; font-stretch: inherit;">أرشفة دورة تدريبية</a>
 
 
             </div>
@@ -52,18 +54,18 @@
     <div class="row">
         <div class="col-md-4">
             <div>
-            <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
-                @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
-                @TempData["OfferedRequestTypeId3"].ToString()
-            </label>
-            <a href="~/ViewModelMasterwithother/IndexOffered3" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">الترشح لدورات الجهات التدريبية  </a>
-        </div>
+                <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
+                    @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                    @TempData["OfferedRequestTypeId3"].ToString()
+                </label>
+                <a href="~/ViewModelMasterwithother/IndexOffered3" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">الترشح لدورات الجهات التدريبية  </a>
             </div>
+        </div>
         <div class="col-md-4">
             <div>
                 <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
                     @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
-                    @*@TempData["OfferedRequestTypeId2"].ToString()*@
+                    @TempData["OfferedRequestTypeId4"].ToString()
                 </label>
                 <a href="~/ViewModelMasterwithother/IndexOffered4" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">مسح الاحتياج التدريبي للموظفين  </a>
 
@@ -71,11 +73,11 @@
 
         </div>
         <div class="col-md-4">
-           
+
             <div>
                 <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
                     @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
-                    @*@TempData["OfferedRequestTypeId2"].ToString()*@
+                    @TempData["OfferedRequestTypeId5"].ToString()
                 </label>
                 <a href="~/ViewModelMasterwithother/IndexOffered5" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">مسح احتياج التدريب التعاوني   </a>
             </div>
@@ -83,12 +85,66 @@
 
 
     </div>
+    <hr />
+    ميثاق ألاداء
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
+                    @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                    @TempData["OfferedRequestTypeId6"].ToString()
+                </label>
+                <a href="~/ViewModelEvalwithother1/IndexOffered3" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">أعتماد ميثاق الأداء   </a>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div>
+                <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
+                    @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                    @TempData["OfferedRequestTypeId6"].ToString()
+                </label>
+                <a href="~/ViewModelEvalwithother1/IndexOffered3" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">أعتماد تقييم الأداء   </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+
+
+    </div>
+
+  
+    <hr />
+    الخدمات الذاتية 
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
+                    @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                    @TempData["OfferedRequestTypeId7"].ToString()
+                </label>
+                <a href="~/Cemps/IndexOffered3" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">اعتماد تحديث المدير    </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+
+        </div>
+
+
+    </div>
+    <hr />
     <div class="row">
         <div class="col-md-4">
 
         </div>
         <div class="col-md-4">
-           
+
         </div>
         <div class="col-md-4">
 

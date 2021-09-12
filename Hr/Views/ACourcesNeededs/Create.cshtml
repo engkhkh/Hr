@@ -1,0 +1,284 @@
+﻿@model Hr.Models.ACourcesNeeded
+
+@{
+    ViewData["Title"] = "نموذج مسح الاحتياج التدريبي للموظفين خاص بالمدراء";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <a asp-action="search1" class="btn btn-success">عرض الدورات </a>
+</div>
+<h1>مسح الاحتياج التدريبي للموظفين  </h1>
+
+<h4>@*ACourcesOffered*@</h4>
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="CourcesId" class="control-label"></label>*@
+                اختيار أسم البرنامج التدريبي
+                @*<input asp-for="CourcesId" class="form-control" />*@
+                <select asp-for="CourcesId" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.CourcesId">
+                    <option value="55">تحديد</option>
+                    @*<option value="00">كورس غير مدرج -اخر </option>*@
+                </select>
+                <span asp-validation-for="CourcesId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="CourcesId" class="control-label"></label>*@
+                وصف البرنامج التدريبي
+                @*<input asp-for="CourcesId" class="form-control" />*@
+                <textarea asp-for="CourcesIdDescription" class="form-control">
+                    @*<option value="55">تحديد</option>*@
+                    @*<option value="00">كورس غير مدرج -اخر </option>*@
+                </textarea>
+                <span asp-validation-for="CourcesIdDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourcesIdLocation" class="control-label"></label>*@
+                الوظيفة الفعلية المستهدفة بالتدريب 
+                @*<input asp-for="CourcesIdLocation" class="form-control" />*@
+                <select asp-for="jobsid" id="chosen-select4" class="chosen-select form-control" data-placeholder=" " asp-items="ViewBag.CourcesJobsId">
+                    <option value="">تحديد</option>
+                </select>
+                <span asp-validation-for="jobsid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourcesIdDeptout" class="control-label"></label>*@
+                الوحدة الادارية 
+                @*<input asp-for="CourcesIdDeptout" class="form-control" />*@
+                <select asp-for="CourcesIdDeptin" id="chosen-select4" class="chosen-select form-control" data-placeholder="" asp-items="ViewBag.ACourcesDeptin">
+                    <option value="">تحديد</option>
+                </select>
+                <span asp-validation-for="CourcesIdDeptin" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="CourcesIdManagement" class="control-label"></label>*@
+                الوكالة او الادارة العامة 
+                @*<input asp-for="CourcesIdManagement" class="form-control" />*@
+                <select asp-for="CourcesIdManagement" id="chosen-select4" class="chosen-select form-control" data-placeholder="اختيار الادارة " asp-items="ViewBag.ACourcesIdManagement">
+                    <option value="">تحديد</option>
+                </select>
+                <span asp-validation-for="CourcesIdManagement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourcesIdTraining" class="control-label"></label>*@
+                طريقة التدريب
+                @*<input asp-for="CourcesIdTraining" class="form-control" />*@
+
+                <select asp-for="CourcesIdTraining" id="chosen-select4" class="chosen-select form-control" data-placeholder="طريقة التدريب " asp-items="ViewBag.ACourcesTrainingMethod">
+                    <option value="">تحديد</option>
+                </select>
+                <span asp-validation-for="CourcesIdTraining" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourcesIdperiodbydays" class="control-label"></label>*@
+                عدد الموظفين المستهدفين 
+                <input asp-for="available" class="form-control" />
+                <span asp-validation-for="available" class="text-danger"></span>
+            </div>
+
+            <br />
+           
+            <div class="form-group">
+                ملاحظات 
+                <textarea asp-for="notes" class="form-control" ></textarea>
+                <span asp-validation-for="notes" class="text-danger"></span>
+            </div>
+
+           
+            <br />
+
+            @*<div class="form-group">
+            <label asp-for="Cempid" class="control-label"></label>
+            <input asp-for="Cempid" class="form-control" />
+            <span asp-validation-for="Cempid" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+<link href="~/js/chosen.css" rel="stylesheet" />
+<link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+<link href="~/js/prism.css" rel="stylesheet" />
+<script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+<script src="~/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+<script src="~/js/prism.js"></script>
+<script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
+
+
+
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+            $('#timepicker').timepicker();
+        }
+        catch (e) { }
+    });
+
+</script>
+
+
+<script type="text/javascript">
+    /*  $('#chosen-select16').append(new Option('كورس غير مدرج -اخر', 5));*/
+    /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
+    /* $("#a").css('visibility', 'hidden');*/
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" }//,
+        //'.chosen-search': {disable_search: false}
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+    //$("select.chosen11").change(function () {
+
+    //    var selectedCountry11 = $(this).children("option:selected").val();
+    //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+    //    if (selectedCountry11 == 2) {
+    //        alert("  يرجي اختيار التقدير  - ");
+    //        $("#a").css('visibility', 'visible');
+    //        var hiddenBox = $("#respond-2");
+    //        hiddenBox.show();
+
+
+
+    //    }
+    //    else {
+    //        $("#a").css('visibility', 'hidden');
+    //        var hiddenBox = $("#respond-2");
+    //        hiddenBox.hide();
+
+    //    }
+    //});
+
+    //$("select.chosen1").change(function () {
+    //    var selectedCountry = $(this).children("option:selected").val();
+    //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+    //    if (selectedCountry == 5) {
+    //        alert("  يرجي ادخال اسم الكورس الجديد باالاسفل - ");
+
+    //        var hiddenBox = $("#respond-1");
+    //        hiddenBox.show();
+
+
+
+    //    }
+    //    else {
+    //        var hiddenBox = $("#respond-1");
+    //        hiddenBox.hide();
+
+    //    }
+    //});
+    //$("select").change(function () {
+    //    var selected5 = $(this).children("option:selected").val();
+    //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+    //    if (selected5 == 0) {
+    //        alert("لايتم اختيار هذا العنصر  - ");
+
+    //    }
+    //});
+</script>
+
+
+<script type="text/javascript">
+
+
+    $(function () {
+
+        initHijrDatePicker();
+
+        initHijrDatePickerDefault();
+
+        $('.disable-date').hijriDatePicker({
+
+            minDate: "2020-01-01",
+            maxDate: "2021-01-01",
+            viewMode: "years",
+            hijri: true,
+            debug: true
+        });
+
+    });
+
+   
+    function initHijrDatePicker() {
+
+        $(".hijri-date-input").hijriDatePicker({
+            locale: "ar-sa",
+            format: "YYYY-MM-DD",
+            hijriFormat: "iYYYY-iMM-iDD",
+            dayViewHeaderFormat: "MMMM YYYY",
+            hijriDayViewHeaderFormat: "iMMMM iYYYY",
+            showSwitcher: false,
+            allowInputToggle: true,
+            showTodayButton: false,
+            useCurrent: true,
+            isRTL: false,
+            viewMode: 'months',
+            keepOpen: false,
+            hijri: true,
+            debug: true,
+            showClear: true,
+            showTodayButton: true,
+            showClose: true
+        });
+    }
+
+    function initHijrDatePickerDefault() {
+
+        $(".hijri-date-default").hijriDatePicker();
+    }
+
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+<script>
+    try {
+        fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function (response) {
+            return true;
+        }).catch(function (e) {
+            var carbonScript = document.createElement("script");
+            carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+            carbonScript.id = "_carbonads_js";
+            document.getElementById("carbon-block").appendChild(carbonScript);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+</script>

@@ -58,12 +58,17 @@ namespace Hr.Models
 
         public OfferedRequestTypeId3 OfferedRequestTypeId3 { get; set; }
 
+        public NeededRequestTypeId NeededRequestTypeIds { get; set; }
+        public ACourcesNeeded ACourcesNeeded { get; set; }
+        public NeededDetails NeededDetails { get; set; }
+        public AJobsNames AJobsNames { get; set; }
+        public ACourcesPrograms ACourcesPrograms { get; set; }
 
+        public ACourcesNeeded1 ACourcesNeeded1 { get; set; }
+        public Needed1RequestTypeId Needed1RequestTypeIds { get; set; }
+        public Needed1Details Needed1Details { get; set; }
 
-
-
-
-
+        public ACourcesPrograms1 ACourcesPrograms1 { get; set; }
 
     }
 }

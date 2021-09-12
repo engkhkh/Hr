@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hr.Controllers
 {
@@ -19,7 +20,7 @@ namespace Hr.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Roles
         public async Task<IActionResult> Index()
         {
@@ -82,6 +83,7 @@ namespace Hr.Controllers
             return View(roles);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Roles/Create
         public IActionResult Create()
         {

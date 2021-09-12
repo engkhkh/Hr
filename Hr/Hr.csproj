@@ -6,8 +6,14 @@
     <UserSecretsId>0fb95163-7b46-4f92-aad5-fd947c08d54e</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Devart.Data.Oracle.EFCore" Version="9.14.1234" />
+    <PackageReference Include="DNTCaptcha.Core" Version="4.1.0" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.5" />
@@ -24,9 +30,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="NLog" Version="4.7.11" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.14.0" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="model1\" />
     <Folder Include="wwwroot\img\emps\" />
     <Folder Include="wwwroot\img\aCourcesOffered2\" />
     <Folder Include="wwwroot\img\portfolio\" />

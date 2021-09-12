@@ -73,7 +73,8 @@
                 اعتماد الموارد
             </th>
             <th>
-                بداية الدورة
+                بداية الدورة <br />
+                نهاية الدورة 
             </th>
             @*<th>
                     نهاية الدورة
@@ -100,7 +101,7 @@
                 <td>
                     <a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-success">موافق</a>
                     <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-danger">رفض</a>
-                    @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
+                    <a asp-controller="ACourcesMasters" asp-action="Edit" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-warning">تعديل </a>
 
                 </td>
                 <td>
@@ -122,15 +123,16 @@
                     @Html.DisplayFor(modelItem => item.ACourcesEstimates.CourcesNameEstimate)
                 </td>
                 <td>
-                    <a href="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="btn btn-link">تحميل </a> @*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="50" height="50" />*@
+                    <a href="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" target="_blank" class="btn btn-link">تحميل </a> @*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="50" height="50" />*@
                     @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
                 </td>
                 <td>
-                    <a href="~/img/portfoliohr/@item.ACourcesMasters.CourcesIdImagehr" class="btn btn-link">تحميل</a>@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="50" height="50" />*@
+                    <a href="~/img/portfoliohr/@item.ACourcesMasters.CourcesIdImagehr" target="_blank" class="btn btn-link">تحميل</a>@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="50" height="50" />*@
                     @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
                     @*@item.ACourcesMasters.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
                 </td>
                 @*<td>
