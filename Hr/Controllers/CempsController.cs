@@ -119,6 +119,124 @@ namespace Hr.Controllers
             return View(cemp);
         }
 
+        public void hader(int id,string from)
+        {
+            var emp = _context.Cemps.Where(x => x.Cempid == from).FirstOrDefault();
+            var course = _context.ACourcesMasters.Where(x => x.Cempid == from&&x.CourcesIdmaster==id).FirstOrDefault();
+
+            MessagesProcess messagesProcess = new MessagesProcess
+            {
+                Fromr = HttpContext.Session.GetString("empid"),
+                mestypereqid=id,
+                mestypetopic="  معالجة ايام الغياب اثناء الدورة  للموظف  "+ emp.CEMPNAME  +"/ ورقمه الوظيفي  "+emp.Cempid,
+                redesc="فترة الدورة  "+course.CourcesStartDate.ToString("d") + "  :  " + course.CourcesEndDate.ToString("d"),
+                Daterequest =DateTime.Now
+
+
+            };
+
+
+            _context.Add(messagesProcess);
+            _context.SaveChanges();
+
+            MessagesDetail OfferedDetailss = new MessagesDetail
+                {
+                    CourcesIdoffered = messagesProcess.Id/*_context.ACourcesOffered.Max(u => u.CourcesOfferedId) + 1*/,
+                    OfferedRequestFrom = HttpContext.Session.GetString("empid"),
+                    OfferedRequestTo = "4331051", // status in offerrequestto3  4291135
+                    OfferedRequestTo2 = "",// status in offerrequestto4
+                    OfferedRequestTo3 = "0",
+                    OfferedRequestTo4 = "1",
+                    OfferedRequestTo5 = "1",// status for  hrpersonapproval
+                    OfferedRequestTypeSatus = 0,
+                    OfferedRequestNotes = "",
+                    Offeredoption = ""   // will srore hr person
+
+                };
+                _context.Add(OfferedDetailss);
+                _context.SaveChanges();
+            
+             
+
+
+
+
+            MessagesRequestTypeId OfferedRequestTypeIds = new MessagesRequestTypeId
+            {
+                CourcesIdoffered = messagesProcess.Id,
+                Offercoursefrom = HttpContext.Session.GetString("empid"),
+                OfferedRequestType = 0
+
+            };
+            _context.Add(OfferedRequestTypeIds);
+            _context.SaveChanges();
+
+
+            //return RedirectToAction(nameof(Search));
+
+            //return View(aCourcesOffered1);
+
+
+        }
+        public void payroll(int id,  string from)
+        {
+            var emp = _context.Cemps.Where(x => x.Cempid == from).FirstOrDefault();
+            var course = _context.ACourcesMasters.Where(x => x.Cempid == from && x.CourcesIdmaster == id).FirstOrDefault();
+
+            MessagesProcess messagesProcess = new MessagesProcess
+            {
+                Fromr = HttpContext.Session.GetString("empid"),
+                mestypereqid = id,
+                mestypetopic = " احتساب الاستحقاقات المالية للدورة للموظف   " + emp.CEMPNAME + "  ورقمه الوظيفي " + emp.Cempid,
+                redesc = "فترة الدورة " + course.CourcesStartDate.ToString("d") +"  :   "+ course.CourcesEndDate.ToString("d"),
+                Daterequest = DateTime.Now
+
+
+            };
+            _context.Add(messagesProcess);
+            _context.SaveChanges();
+
+            MessagesDetail OfferedDetailss = new MessagesDetail
+                {
+                    CourcesIdoffered = messagesProcess.Id/*_context.ACourcesOffered.Max(u => u.CourcesOfferedId) + 1*/,
+                    OfferedRequestFrom = HttpContext.Session.GetString("empid"),
+                    OfferedRequestTo = "4291135",// status in offerrequestto3
+                    OfferedRequestTo2 ="",// status in offerrequestto4
+                    OfferedRequestTo3 = "0",
+                    OfferedRequestTo4 = "1",
+                    OfferedRequestTo5 = "1",// status for  hrpersonapproval
+                    OfferedRequestTypeSatus = 0,
+                    OfferedRequestNotes = "",
+                    Offeredoption = ""   // will srore hr person
+
+                };
+                _context.Add(OfferedDetailss);
+                _context.SaveChanges();
+           
+             
+
+
+
+
+            MessagesRequestTypeId OfferedRequestTypeIds = new MessagesRequestTypeId
+            {
+                CourcesIdoffered = messagesProcess.Id,
+                Offercoursefrom = HttpContext.Session.GetString("empid"),
+                OfferedRequestType = 0
+
+            };
+            _context.Add(OfferedRequestTypeIds);
+            _context.SaveChanges();
+
+
+
+            //return RedirectToAction(nameof(Search));
+
+            //return View(aCourcesOffered1);
+
+
+        }
+
         // GET: Cemps/Create
         public IActionResult Create()
         {
@@ -827,6 +945,135 @@ namespace Hr.Controllers
 
             //return View(await _context.ViewModelEvalwithother.ToListAsync());
         }
+        public async Task<IActionResult> approveduserm()
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+
+            List<MessagesProcess> MessagesProcess = _context.MessagesProcesss.ToList();
+            List<MessagesDetail> MessagesDetails = _context.MessagesDetailss.ToList();
+            List<MessagesRequestTypeId> MessagesRequestTypeIds = _context.MessagesRequestTypeIds.ToList();
+            List<Cemp> cemps = _context.Cemps.ToList();
+            List<AEvaluationCompetenciesM> AEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.ToList();
+            List<AEvaluationCompetenciesD> AEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.ToList();
+            List<TransferDetail> TransferDetails = _context.TransferDetails.ToList();
+            List<TransferRequestTypeId> TransferRequestTypeIds = _context.TransferRequestTypeIds.ToList();
+            //List<Evalcomment> evalcommentss = _context.EvalComments.ToList();
+
+
+            var Records = from e in MessagesProcess
+                          join d in cemps on e.Fromr equals d.Cempid into table1
+                          from d in table1.ToList()
+                              //join i in AEvaluationCompetenciesMs on e.Idd equals i.CovenantId into table2
+                              //from i in table2.ToList() /*where i.Cempid== HttpContext.Session.GetString("empid")*/
+                              //join j in AEvaluationCompetenciesDs on e.Idd equals j.CovenantId into table3
+                              //from j in table3.ToList()
+                          join f in MessagesDetails on e.Id equals f.CourcesIdoffered into table4
+                          from f in table4.ToList()
+                          where f.OfferedRequestTypeSatus == 1
+                          where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
+                          join h in MessagesRequestTypeIds on e.Id equals h.CourcesIdoffered into table5
+                          from h in table5.ToList()
+                          where h.OfferedRequestType == 1
+
+
+
+                          select new ViewModelTransferwithother
+                          {
+                              MessagesProcess = e,
+                              cemp = d,
+                              //AEvaluationCompetenciesM = i,
+                              //AEvaluationCompetenciesD = j,
+                              MessagesDetail = f,
+                              MessagesRequestTypeId = h,
+
+                          };
+            return View(Records);
+
+            //return View(await _context.ViewModelEvalwithother.ToListAsync());
+        }
+
+        public async Task<IActionResult> canceluserm()
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+
+            List<MessagesProcess> MessagesProcess = _context.MessagesProcesss.ToList();
+            List<MessagesDetail> MessagesDetails = _context.MessagesDetailss.ToList();
+            List<MessagesRequestTypeId> MessagesRequestTypeIds = _context.MessagesRequestTypeIds.ToList();
+            List<Cemp> cemps = _context.Cemps.ToList();
+            List<AEvaluationCompetenciesM> AEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.ToList();
+            List<AEvaluationCompetenciesD> AEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.ToList();
+            List<TransferDetail> TransferDetails = _context.TransferDetails.ToList();
+            List<TransferRequestTypeId> TransferRequestTypeIds = _context.TransferRequestTypeIds.ToList();
+            //List<Evalcomment> evalcommentss = _context.EvalComments.ToList();
+
+
+            var Records = from e in MessagesProcess
+                          join d in cemps on e.Fromr equals d.Cempid into table1
+                          from d in table1.ToList()
+                              //join i in AEvaluationCompetenciesMs on e.Idd equals i.CovenantId into table2
+                              //from i in table2.ToList() /*where i.Cempid== HttpContext.Session.GetString("empid")*/
+                              //join j in AEvaluationCompetenciesDs on e.Idd equals j.CovenantId into table3
+                              //from j in table3.ToList()
+                          join f in MessagesDetails on e.Id equals f.CourcesIdoffered into table4
+                          from f in table4.ToList()
+                          where f.OfferedRequestTypeSatus == 2
+                          where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
+                          join h in MessagesRequestTypeIds on e.Id equals h.CourcesIdoffered into table5
+                          from h in table5.ToList()
+                          where h.OfferedRequestType == 2
+
+
+
+                          select new ViewModelTransferwithother
+                          {
+                              MessagesProcess = e,
+                              cemp = d,
+                              //AEvaluationCompetenciesM = i,
+                              //AEvaluationCompetenciesD = j,
+                              MessagesDetail = f,
+                              MessagesRequestTypeId = h,
+
+                          };
+            return View(Records);
+
+            //return View(await _context.ViewModelEvalwithother.ToListAsync());
+        }
 
         public ActionResult IndexOffered3()
         {
@@ -892,6 +1139,79 @@ namespace Hr.Controllers
 
 
         }
+
+        public ActionResult IndexOffered4()
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+
+
+            List<MessagesProcess> MessagesProcess = _context.MessagesProcesss.ToList();
+            List<Cemp> cemps = _context.Cemps.ToList();
+            List<AEvaluationCompetenciesM> AEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.ToList();
+            List<AEvaluationCompetenciesD> AEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.ToList();
+            List<MessagesDetail> MessagesDetails = _context.MessagesDetailss.ToList();
+            List<MessagesRequestTypeId> MessagesRequestTypeIds = _context.MessagesRequestTypeIds.ToList();
+            List<ACourcesMaster> aCourcesMasters = _context.ACourcesMasters.ToList();
+
+            //List<Evalcomment> evalcommentss = _context.EvalComments.ToList();
+
+
+            var Records = from e in MessagesProcess
+                          join d in cemps on e.Fromr equals d.Cempid into table1
+                          from d in table1.ToList()
+                          join dd in aCourcesMasters on e.mestypereqid equals dd.CourcesIdmaster into table111
+                          from dd in table111.ToList()
+                              //join i in AEvaluationCompetenciesMs on e.Idd equals i.CovenantId into table2
+                              //from i in table2.ToList() /*where i.Cempid== HttpContext.Session.GetString("empid")*/
+                              //join j in AEvaluationCompetenciesDs on e.Idd equals j.CovenantId into table3
+                              //from j in table3.ToList()
+                          join f in MessagesDetails on e.Id equals f.CourcesIdoffered into table4
+                          from f in table4.ToList()
+                          where f.OfferedRequestTypeSatus == 0
+                          where (f.OfferedRequestTo == HttpContext.Session.GetString("empid") && f.OfferedRequestTo3 == "0") || (f.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && f.OfferedRequestTo4 == "0") || (f.Offeredoption == HttpContext.Session.GetString("empid") && f.OfferedRequestTo5 == "0")
+                          join h in MessagesRequestTypeIds on e.Id equals h.CourcesIdoffered into table5
+                          from h in table5.ToList()
+                          where h.OfferedRequestType == 0
+                          where e.Fromr== HttpContext.Session.GetString("empid")
+
+
+
+
+                          select new ViewModelTransferwithother
+                          {
+                              MessagesProcess = e,
+                              cemp = d,
+                              ACourcesMaster=dd,
+                              //AEvaluationCompetenciesM = i,
+                              //AEvaluationCompetenciesD = j,
+                              MessagesDetail = f,
+                              MessagesRequestTypeId = h,
+
+                          };
+            return View(Records);
+
+
+        }
+        
+
         public async Task<IActionResult> approveduser1()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -1020,6 +1340,144 @@ namespace Hr.Controllers
             //return View(await _context.ViewModelEvalwithother.ToListAsync());
         }
 
+
+        public async Task<IActionResult> approveduser11()
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+
+            List<MessagesProcess> MessagesProcess = _context.MessagesProcesss.ToList();
+            List<MessagesDetail> MessagesDetails = _context.MessagesDetailss.ToList();
+            List<MessagesRequestTypeId> MessagesRequestTypeIds = _context.MessagesRequestTypeIds.ToList();
+            List<Cemp> cemps = _context.Cemps.ToList();
+            List<AEvaluationCompetenciesM> AEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.ToList();
+            List<AEvaluationCompetenciesD> AEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.ToList();
+            List<ACourcesMaster> aCourcesMasters = _context.ACourcesMasters.ToList();
+
+            //List<Evalcomment> evalcommentss = _context.EvalComments.ToList();
+
+
+            var Records = from e in MessagesProcess
+                          join d in cemps on e.Fromr equals d.Cempid into table1
+                          from d in table1.ToList()
+                          join dd in aCourcesMasters on e.mestypereqid equals dd.CourcesIdmaster into table111
+                          from dd in table111.ToList()
+                              //join i in AEvaluationCompetenciesMs on e.Idd equals i.CovenantId into table2
+                              //from i in table2.ToList() /*where i.Cempid== HttpContext.Session.GetString("empid")*/
+                              //join j in AEvaluationCompetenciesDs on e.Idd equals j.CovenantId into table3
+                              //from j in table3.ToList()
+                          join f in MessagesDetails on e.Id equals f.CourcesIdoffered into table4
+                          from f in table4.ToList()
+                          where (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo3 == "1") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo4 == "1") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo5 == "1")
+                          where f.OfferedRequestTypeSatus == 1
+                          where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
+                          join h in MessagesRequestTypeIds on e.Id equals h.CourcesIdoffered into table5
+                          from h in table5.ToList()
+                          where h.OfferedRequestType == 1
+
+
+
+                          select new ViewModelTransferwithother
+                          {
+                              MessagesProcess = e,
+                              cemp = d,
+                              ACourcesMaster=dd,
+                              //AEvaluationCompetenciesM = i,
+                              //AEvaluationCompetenciesD = j,
+                              MessagesDetail = f,
+                              MessagesRequestTypeId = h,
+
+                          };
+            return View(Records);
+
+            //return View(await _context.ViewModelEvalwithother.ToListAsync());
+        }
+        public async Task<IActionResult> canceluser11()
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+
+            List<MessagesProcess> MessagesProcess = _context.MessagesProcesss.ToList();
+            List<MessagesDetail> MessagesDetails = _context.MessagesDetailss.ToList();
+            List<MessagesRequestTypeId> MessagesRequestTypeIds = _context.MessagesRequestTypeIds.ToList();
+            List<Cemp> cemps = _context.Cemps.ToList();
+            List<AEvaluationCompetenciesM> AEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.ToList();
+            List<AEvaluationCompetenciesD> AEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.ToList();
+            List<ACourcesMaster> aCourcesMasters = _context.ACourcesMasters.ToList();
+
+            //List<Evalcomment> evalcommentss = _context.EvalComments.ToList();
+
+
+            var Records = from e in MessagesProcess
+                          join d in cemps on e.Fromr equals d.Cempid into table1
+                          from d in table1.ToList()
+                          join dd in aCourcesMasters on e.mestypereqid equals dd.CourcesIdmaster into table111
+                          from dd in table111.ToList()
+                              //join i in AEvaluationCompetenciesMs on e.Idd equals i.CovenantId into table2
+                              //from i in table2.ToList() /*where i.Cempid== HttpContext.Session.GetString("empid")*/
+                              //join j in AEvaluationCompetenciesDs on e.Idd equals j.CovenantId into table3
+                              //from j in table3.ToList()
+                          join f in MessagesDetails on e.Id equals f.CourcesIdoffered into table4
+                          from f in table4.ToList()
+                          where f.OfferedRequestTypeSatus == 2
+                          where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
+                          where (f.OfferedRequestTo == HttpContext.Session.GetString("empid") && f.OfferedRequestTo3 == "2") || (f.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && f.OfferedRequestTo4 == "2") || (f.Offeredoption == HttpContext.Session.GetString("empid") && f.OfferedRequestTo5 == "2")
+
+                          join h in MessagesRequestTypeIds on e.Id equals h.CourcesIdoffered into table5
+                          from h in table5.ToList()
+                          where h.OfferedRequestType == 2
+
+
+
+                          select new ViewModelTransferwithother
+                          {
+                              MessagesProcess = e,
+                              cemp = d,
+                              ACourcesMaster=dd,
+                              //AEvaluationCompetenciesM = i,
+                              //AEvaluationCompetenciesD = j,
+                              MessagesDetail = f,
+                              MessagesRequestTypeId = h,
+
+                          };
+            return View(Records);
+
+            //return View(await _context.ViewModelEvalwithother.ToListAsync());
+        }
 
         // GET: Cemps/Delete/5
         public async Task<IActionResult> Delete(string id)

@@ -130,6 +130,13 @@
             </div>
         </div>
         <div class="col-md-4">
+            <div>
+                <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
+                    @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                    @TempData["OfferedRequestTypeId8"].ToString()
+                </label>
+                <a href="~/Cemps/IndexOffered4" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">الرسائل  </a>
+            </div>
 
         </div>
         <div class="col-md-4">

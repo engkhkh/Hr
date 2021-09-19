@@ -17,7 +17,7 @@ namespace Hr.Controllers
     {
         private readonly hrContext _context;
         private readonly IHostingEnvironment _hosting;
-        string extension2="";
+        string extension2="", extension="";
 
         public ACourcesMastersController(hrContext context, IHostingEnvironment hosting)
         {
@@ -553,8 +553,10 @@ namespace Hr.Controllers
             // end dublicate in  post create 
 
 
-
-            string extension = Path.GetExtension(aCourcesMaster.Filecer.FileName);
+            if (aCourcesMaster.Filecer != null)
+            {
+                 extension = Path.GetExtension(aCourcesMaster.Filecer.FileName);
+            }
            
             if (aCourcesMaster.Filehr != null)
             {
@@ -562,10 +564,16 @@ namespace Hr.Controllers
             }
            
             var objuser1 = _context.Cemps.Where(b => b.Cempid == HttpContext.Session.GetString("empid")).FirstOrDefault();
-            var coursesforuser = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesId== aCourcesMaster.CourcesId &&b.CourcesStartDate== aCourcesMaster.CourcesStartDate).FirstOrDefault();
+            var coursesforuser = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesId== aCourcesMaster.CourcesId&&b.CourcesStartDate== aCourcesMaster.CourcesStartDate).FirstOrDefault();
             if (coursesforuser!=null)
             {
                 ViewBag.ErrorMessage3 = "تم تسجيل الدورة سابقا بنفس تاريخ البداية ";
+                return View(aCourcesMaster);
+            }
+            var coursesforuser1 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesId == aCourcesMaster.CourcesId&& b.CourcesEndDate == aCourcesMaster.CourcesEndDate).FirstOrDefault();
+            if (coursesforuser1 != null)
+            {
+                ViewBag.ErrorMessage3 = "تم تسجيل الدورة سابقا بنفس تاريخ النهاية ";
                 return View(aCourcesMaster);
             }
             string x = "", y = "",file1="",file2="";
@@ -978,8 +986,10 @@ namespace Hr.Controllers
             {
                 return NotFound();
             }
-            string extension = Path.GetExtension(aCourcesMaster.Filecer.FileName);
-
+            if (aCourcesMaster.Filecer != null)
+            {
+                 extension = Path.GetExtension(aCourcesMaster.Filecer.FileName);
+            }
             if (aCourcesMaster.Filehr != null)
             {
                 extension2 = Path.GetExtension(aCourcesMaster.Filehr.FileName);

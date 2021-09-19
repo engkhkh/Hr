@@ -40,6 +40,7 @@
     <Folder Include="model1\" />
     <Folder Include="wwwroot\img\emps\" />
     <Folder Include="wwwroot\img\aCourcesOffered2\" />
+    <Folder Include="wwwroot\img\ticket\" />
     <Folder Include="wwwroot\img\portfolio\" />
     <Folder Include="wwwroot\xjstabls\" />
   </ItemGroup>

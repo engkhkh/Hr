@@ -319,62 +319,73 @@
                                 <a href="#/#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown"><i class="fa fa-support"></i></a>
                                 <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
                                     <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
-                                        <li class="dropdown-menu-list slimscroll tasks" style="overflow: hidden; width: auto; height: 100%;">
-                                            <ul class="list-unstyled">
+                                    <li class="dropdown-menu-list slimscroll tasks" style="overflow: hidden; width: auto; height: 100%;">
+                                        <ul class="list-unstyled">
 
 
-                                                <li>
-                                                    <a href="~/Home/UserManaul" target="_blank">
-                                                        <div class="task-icon badge badge-success">
-                                                            <span class="fa fa-user"></span>
-                                                        </div>
-                                                        <p class="task-details"> دليل الموظف</p>
-                                                    </a>
-                                                </li>
+                                            <li>
+                                                <a href="~/Home/UserManaul" target="_blank">
+                                                    <div class="task-icon badge badge-success">
+                                                        <span class="fa fa-user"></span>
+                                                    </div>
+                                                    <p class="task-details"> دليل الموظف</p>
+                                                </a>
+                                            </li>
 
 
-                                            </ul>
-                                        </li><div class="slimScrollBar" style="background: rgb(204, 204, 204); width: 7px; position: absolute; top: 0px; opacity: 0.3; display: none; border-radius: 0px; z-index: 99; right: 0px; height: 46px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 0px;"></div>
-                                    </div>
-                                </ul>
-                            </li>
-                            <li>
+                                        </ul>
+                                    </li>
+                                    <div class="slimScrollBar" style="background: rgb(204, 204, 204); width: 7px; position: absolute; top: 0px; opacity: 0.3; display: none; border-radius: 0px; z-index: 99; right: 0px; height: 46px;"></div>
+                                    <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 0px;"></div>
+                    </div>
+                    </ul>
+                    </li>
+                    <li>
 
-                                <i class=""></i>
-                                @*<asp:LinkButton ID="LoginOut" runat="server">تسجيل خروج</asp:LinkButton>*@
-                                <a class="log-out waves-effect waves-button waves-classic icontoplink" href="~/Cemps/MyInfo">معلوماتي </a>
-
-
-
-                            </li>
-                            <li>
-
-                                <i class=""></i>
-                                @*<asp:LinkButton ID="LoginOut" runat="server">تسجيل خروج</asp:LinkButton>*@
-                                <a class="log-out waves-effect waves-button waves-classic icontoplink" href="~/Account/Logout">تسجيل خروج</a>
+                        <i class=""></i>
+                        @*<asp:LinkButton ID="LoginOut" runat="server">تسجيل خروج</asp:LinkButton>*@
+                        <a class="log-out waves-effect waves-button waves-classic icontoplink" href="~/Cemps/MyInfo">معلوماتي </a>
 
 
 
-                            </li>
+                    </li>
+                    <li>
 
-                        </ul>
-                    
-
-
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown" style="display: none">
-                                <a href="#/#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-success pull-right">0</span></a>
-                                <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
-                                </ul>
-                            </li>
-
-
-                        </ul>
+                        <i class=""></i>
+                        @*<asp:LinkButton ID="LoginOut" runat="server">تسجيل خروج</asp:LinkButton>*@
+                        <a class="log-out waves-effect waves-button waves-classic icontoplink" href="~/Support/ticket">دعم</a>
 
 
 
-                        <!-- Nav -->
-                    </div><!-- Top Menu -->
+                    </li>
+                    <li>
+
+                        <i class=""></i>
+                        @*<asp:LinkButton ID="LoginOut" runat="server">تسجيل خروج</asp:LinkButton>*@
+                        <a class="log-out waves-effect waves-button waves-classic icontoplink" href="~/Account/Logout">تسجيل خروج</a>
+
+
+
+                    </li>
+
+                    </ul>
+
+
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown" style="display: none">
+                            <a href="#/#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-success pull-right">0</span></a>
+                            <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
+                            </ul>
+                        </li>
+
+
+                    </ul>
+
+
+
+                    <!-- Nav -->
+                </div><!-- Top Menu -->
                 </div>
             </div>
         </div><!-- Navbar -->
@@ -888,6 +899,7 @@
         </script>*@
 
     @RenderSection("Scripts", required: false)
+
 
 </body>
 </html>

@@ -14,53 +14,114 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label  class="control-label">رقم الطلب </label>
-                <input asp-for="COURCES_IDMASTER" readonly class="form-control" />
+                <input asp-for="MasterRequestFrom" type="hidden" id="ff" class="form-control" />
+                <label class="control-label">رقم الطلب </label>
+                <input asp-for="COURCES_IDMASTER" id="ii" readonly class="form-control" />
                 <span asp-validation-for="COURCES_IDMASTER" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-                <label asp-for="MasterRequestFrom" class="control-label"></label>
-                <input asp-for="MasterRequestFrom" class="form-control" />
-                <span asp-validation-for="MasterRequestFrom" class="text-danger"></span>
-            </div>
+                    <label asp-for="MasterRequestFrom" class="control-label"></label>
+                    <input asp-for="MasterRequestFrom" class="form-control" />
+                    <span asp-validation-for="MasterRequestFrom" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MasterRequestTo" class="control-label"></label>
+                    <input asp-for="MasterRequestTo" class="form-control" />
+                    <span asp-validation-for="MasterRequestTo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MasterRequestTypeSatus" class="control-label"></label>
+                    <input asp-for="MasterRequestTypeSatus" class="form-control" />
+                    <span asp-validation-for="MasterRequestTypeSatus" class="text-danger"></span>
+                </div>*@
             <div class="form-group">
-                <label asp-for="MasterRequestTo" class="control-label"></label>
-                <input asp-for="MasterRequestTo" class="form-control" />
-                <span asp-validation-for="MasterRequestTo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MasterRequestTypeSatus" class="control-label"></label>
-                <input asp-for="MasterRequestTypeSatus" class="form-control" />
-                <span asp-validation-for="MasterRequestTypeSatus" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label  class="control-label">تعليق </label>
-                <textarea asp-for="MasterRequestNotes" class="form-control" ></textarea>
+                <label class="control-label">تعليق </label>
+                <textarea asp-for="MasterRequestNotes" class="form-control"></textarea>
                 <span asp-validation-for="MasterRequestNotes" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="حفظ" class="btn btn-success" />
+                @*<input type="button" value="ارسال لمسئول حاضر " class="btn btn-success" onclick="return AreYouSureFunction(this);" />
+                <input type="button" value="ارسال لمسئول الرواتب " class="btn btn-success" onclick="return AreYouSureFunction1(this);" />*@
+                @Html.ActionLink("ارسال لمسئول حاضر  ", "SomeAction1", new { id = Model.COURCES_IDMASTER,from=Model.MasterRequestFrom }, new { onclick = "return AreYouSureFunction(this);"})|
+                @Html.ActionLink("ارسال لمسئول الرواتب  ","SomeAction11", new { id = Model.COURCES_IDMASTER, from = Model.MasterRequestFrom }, new { onclick = "return AreYouSureFunction1(this);"})
             </div>
         </form>
     </div>
 </div>
 
 @*<div>
-    <a asp-action="Index">Back to List</a>
-</div>*@
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script src="~/StyleSheet/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+
+<script type='text/javascript'>
+    function AreYouSureFunction(source) {
+        //Prompt for confirmation
+        if (confirm("هل تريد ارسال لمسئول حاضر الدورة ؟")) {
+            //Your AJAX call that corresponds with the href attribute of your link
+            $.ajax({
+              /*  url: '<%= Url.Action("Cemps", "hader") %>',*/
+                 @*url: @Url.Action("hader", "Cemps"),*@
+                /* url: '/Cemps/hader',*/
+                url: source,
+                datatype: "json",
+                type: "POST",
+                data: { "id": $("#ii").val(), "from": $("#ff").val() },
+
+            }).done(function () {
+                //Item created!
+                alert("تم ارسال الطلب  !");
+            });
+            //This prevents the default behavior of the actual link (it will hit your controller action)
+            return false;
+        }
+        else {
+            alert(" تم الغاء ارسال الطلب !");
+            //Unconfirmed - cancel any further actions
+            return false;
+        }
+    }
+
+    function AreYouSureFunction1(source) {
+        //Prompt for confirmation
+        if (confirm("هل تريد ارسال لمسئول الرواتب الدورة ؟")) {
+            //Your AJAX call that corresponds with the href attribute of your link
+            $.ajax({
+            /*    url: '<%= Url.Action("Cemps", "payroll") %>',*/
+                 @*url: @Url.Action("payroll", "Cemps"),*@
+                /* url: '/Cemps/payroll',*/
+                url: source,
+                datatype: "json",
+                type: "POST",
+                data: { "id": $("#ii").val(), "from": $("#ff").val() },
+            }).done(function () {
+                //Item created!
+                alert("تم ارسال الطلب  !");
+            });
+            //This prevents the default behavior of the actual link (it will hit your controller action)
+            return false;
+        }
+        else {
+            alert(" تم الغاء ارسال الطلب !");
+            //Unconfirmed - cancel any further actions
+            return false;
+        }
+    }
+
+</script>
 <script language="javascript" type="text/javascript">
-        $(document).ready(function () {
-            try {
-                $("input[type='text']").each(function(){
-                               $(this).attr("autocomplete","off");
-                            });
-            }
-            catch (e)
-            { }
-        });
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+        }
+        catch (e) { }
+    });
 
 </script>

@@ -1,0 +1,59 @@
+﻿@model Hr.Models.SupportProcess
+
+@{
+    ViewData["Title"] = "تسجيل تذكرة ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>الأقتراحات والدعم الفني </h1>
+<div>
+    <a asp-action="mytickets" class="btn btn-success">طلباتي</a>
+</div>
+@*<h4>ACourcesType</h4>*@
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="ticket" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                الموضوع
+                @*<label asp-for="CourcesTypeName" class="control-label"></label>*@
+                <input asp-for="Mestypetopic" class="form-control" />
+                <span asp-validation-for="Mestypetopic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                تفاصيل
+                @*<label asp-for="CourcesTypeName" class="control-label"></label>*@
+                <textarea asp-for="Redesc" class="form-control"></textarea>
+                <span asp-validation-for="Redesc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">ارفاق مرفق توضيحي *   <label style="color:red;">"(jpeg,jpg,png,gif,jfif,pdf) !"</label>  </label>
+                <input type="file" asp-for="Filecer" class="form-control" id="f1" asp-items="ViewBag.CourcesIdImagecert" />
+                <span asp-validation-for="Mestypereqidp" class="text-danger"></span>
+                <p style="color:red">@ViewBag.ErrorMessage</p>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="أرسال" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            try {
+                $("input[type='text']").each(function () {
+                    $(this).attr("autocomplete", "off");
+                });
+            }
+            catch (e) { }
+        });
+
+</script>

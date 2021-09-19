@@ -44,7 +44,123 @@ namespace Hr.Controllers
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
             return View(await _context.MasterDetailss.ToListAsync());
         }
+        public void SomeAction1(int id, string from)
+        {
+            var emp = _context.Cemps.Where(x => x.Cempid == from).FirstOrDefault();
+            var course = _context.ACourcesMasters.Where(x => x.Cempid == from && x.CourcesIdmaster == id).FirstOrDefault();
 
+            MessagesProcess messagesProcess = new MessagesProcess
+            {
+                Fromr = HttpContext.Session.GetString("empid"),
+                mestypereqid = id,
+                mestypetopic = "  معالجة ايام الغياب اثناء الدورة  للموظف  " + emp.CEMPNAME + "/ ورقمه الوظيفي  " + emp.Cempid,
+                redesc = "فترة الدورة  " + course.CourcesStartDate.ToString("d") + "  :  " + course.CourcesEndDate.ToString("d"),
+                Daterequest = DateTime.Now
+
+
+            };
+
+
+            _context.Add(messagesProcess);
+            _context.SaveChanges();
+
+            MessagesDetail OfferedDetailss = new MessagesDetail
+            {
+                CourcesIdoffered = messagesProcess.Id/*_context.ACourcesOffered.Max(u => u.CourcesOfferedId) + 1*/,
+                OfferedRequestFrom = HttpContext.Session.GetString("empid"),
+                OfferedRequestTo = "4331051", // status in offerrequestto3  4291135
+                OfferedRequestTo2 = "",// status in offerrequestto4
+                OfferedRequestTo3 = "0",
+                OfferedRequestTo4 = "1",
+                OfferedRequestTo5 = "1",// status for  hrpersonapproval
+                OfferedRequestTypeSatus = 0,
+                OfferedRequestNotes = "",
+                Offeredoption = ""   // will srore hr person
+
+            };
+            _context.Add(OfferedDetailss);
+            _context.SaveChanges();
+
+
+
+
+
+
+            MessagesRequestTypeId OfferedRequestTypeIds = new MessagesRequestTypeId
+            {
+                CourcesIdoffered = messagesProcess.Id,
+                Offercoursefrom = HttpContext.Session.GetString("empid"),
+                OfferedRequestType = 0
+
+            };
+            _context.Add(OfferedRequestTypeIds);
+            _context.SaveChanges();
+
+
+            //return RedirectToAction(nameof(Search));
+
+            //return View(aCourcesOffered1);
+
+
+        }
+        public void SomeAction11(int id, string from)
+        {
+            var emp = _context.Cemps.Where(x => x.Cempid == from).FirstOrDefault();
+            var course = _context.ACourcesMasters.Where(x => x.Cempid == from && x.CourcesIdmaster == id).FirstOrDefault();
+
+            MessagesProcess messagesProcess = new MessagesProcess
+            {
+                Fromr = HttpContext.Session.GetString("empid"),
+                mestypereqid = id,
+                mestypetopic = " احتساب الاستحقاقات المالية للدورة للموظف   " + emp.CEMPNAME + "  ورقمه الوظيفي " + emp.Cempid,
+                redesc = "فترة الدورة " + course.CourcesStartDate.ToString("d") + "  :   " + course.CourcesEndDate.ToString("d"),
+                Daterequest = DateTime.Now
+
+
+            };
+            _context.Add(messagesProcess);
+            _context.SaveChanges();
+
+            MessagesDetail OfferedDetailss = new MessagesDetail
+            {
+                CourcesIdoffered = messagesProcess.Id/*_context.ACourcesOffered.Max(u => u.CourcesOfferedId) + 1*/,
+                OfferedRequestFrom = HttpContext.Session.GetString("empid"),
+                OfferedRequestTo = "4291135",// status in offerrequestto3
+                OfferedRequestTo2 = "",// status in offerrequestto4
+                OfferedRequestTo3 = "0",
+                OfferedRequestTo4 = "1",
+                OfferedRequestTo5 = "1",// status for  hrpersonapproval
+                OfferedRequestTypeSatus = 0,
+                OfferedRequestNotes = "",
+                Offeredoption = ""   // will srore hr person
+
+            };
+            _context.Add(OfferedDetailss);
+            _context.SaveChanges();
+
+
+
+
+
+
+            MessagesRequestTypeId OfferedRequestTypeIds = new MessagesRequestTypeId
+            {
+                CourcesIdoffered = messagesProcess.Id,
+                Offercoursefrom = HttpContext.Session.GetString("empid"),
+                OfferedRequestType = 0
+
+            };
+            _context.Add(OfferedRequestTypeIds);
+            _context.SaveChanges();
+
+
+
+            //return RedirectToAction(nameof(Search));
+
+            //return View(aCourcesOffered1);
+
+
+        }
         // GET: MasterDetails/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -119,6 +235,69 @@ namespace Hr.Controllers
             }
             return View(MasterDetailssss);
         }
+        public void SomeAction(int id)
+        {
+            //Do work here.
+
+            //var depwithmangforemps = _context.DepartWithMnagement.Where(m => m.CEMPADPRTNO == HttpContext.Session.GetString("empdepid"))
+            //                      .ToList<DepartWithMnagement>();
+
+            var depwithmangforemp = _context.DepartWithMnagement.FirstOrDefault(m => m.CEMPADPRTNO == HttpContext.Session.GetString("empdepid"));
+            // var reqdetails=_context.ac
+            //int count = depwithmangforemps.Count;
+            //int count = 1;
+            if (depwithmangforemp != null)
+            {
+                //var depwithmangforemp = _context.DepartWithMnagement.FirstOrDefaultAsync(m => m.CEMPADPRTNO == HttpContext.Session.GetString("empdepid"));
+
+                MessagesDetail OfferedDetailss = new MessagesDetail
+                {
+                    CourcesIdoffered = id/*_context.ACourcesOffered.Max(u => u.CourcesOfferedId) + 1*/,
+                    OfferedRequestFrom = HttpContext.Session.GetString("empid"),
+                    OfferedRequestTo = depwithmangforemp.MANAGERID,// status in offerrequestto3
+                    OfferedRequestTo2 = depwithmangforemp.PARENTMANAGERID,// status in offerrequestto4
+                    OfferedRequestTo3 = "0",
+                    OfferedRequestTo4 = "1",
+                    OfferedRequestTo5 = "1",// status for  hrpersonapproval
+                    OfferedRequestTypeSatus = 0,
+                    OfferedRequestNotes = "",
+                    Offeredoption = "4321031"   // will srore hr person
+
+                };
+                _context.Add(OfferedDetailss);
+                _context.SaveChanges();
+            }
+            else
+            {
+                //foreach (var item in depwithmangforemps)
+                //{
+                //    string x = item.MANAGERID;
+
+                //}
+            }
+
+
+
+
+            MessagesRequestTypeId OfferedRequestTypeIds = new MessagesRequestTypeId
+            {
+                CourcesIdoffered = id,
+                Offercoursefrom = HttpContext.Session.GetString("empid"),
+                OfferedRequestType = 0
+
+            };
+            _context.Add(OfferedRequestTypeIds);
+            _context.SaveChanges();
+
+
+            //return RedirectToAction(nameof(Search));
+
+            //return View(aCourcesOffered1);
+
+
+        }
+
+
 
         // POST: MasterDetails/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.

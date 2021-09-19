@@ -26,6 +26,20 @@ namespace Hr.Models
         public Transfercomment Transfercomment { get; set; }
         public Cemp cemp { get; set; }
 
+        //
+        public MessagesProcess MessagesProcess { get; set; }
+        public MessagesDetail MessagesDetail { get; set; }
+        public MessagesRequestTypeId MessagesRequestTypeId { get; set; }
+        public Messagescomment Messagescomment { get; set; }
+        public ACourcesMaster ACourcesMaster { get; set; }
+
+        //
+        public SupportProcess SupportProcess { get; set; }
+        public SupportDetail SupportsDetail { get; set; }
+        public SupportRequestTypeId SupportsRequestTypeId { get; set; }
+        public Supportcomment Supportscomment { get; set; }
+       
+
 
     }
 }

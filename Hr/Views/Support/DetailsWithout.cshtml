@@ -1,0 +1,25 @@
+﻿@model Hr.Models.ACourcesType
+
+@{
+    ViewData["Title"] = "تفاصيل";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>تفاصيل</h1>
+
+<div>
+    @*<h4>ACourcesType</h4>*@
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @*@Html.DisplayNameFor(model => model.CourcesTypeName)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CourcesTypeName)
+        </dd>
+    </dl>
+</div>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.CourcesIdType" class="btn btn-warning">تعديل</a> |*@
+    <a asp-action="IndexWithout" class="btn btn-success">عودة الي الرئيسية </a>
+</div>

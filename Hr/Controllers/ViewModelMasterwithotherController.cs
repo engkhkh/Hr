@@ -1512,7 +1512,11 @@ namespace Hr.Controllers
             List<TransferDetail> TransferDetails = _context.TransferDetails.ToList();
 
             List<TransferRequestTypeId> TransferRequestTypeIds = _context.TransferRequestTypeIds.ToList();
+            //Messages 
 
+            List<MessagesDetail> MessagesDetails = _context.MessagesDetailss.ToList();
+
+            List<MessagesRequestTypeId> MessagesRequestTypeIds = _context.MessagesRequestTypeIds.ToList();
 
 
             var yy = from x in MasterRequestTypeIds
@@ -1578,11 +1582,18 @@ namespace Hr.Controllers
                       where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
                       select (e.CourcesIdoffered).ToString();
             TempData["OfferedRequestTypeId7"] = xx7.ToList().Count();
+            //
+            var xx8 = from e in MessagesRequestTypeIds
+                      join m in MessagesDetails on e.CourcesIdoffered equals m.CourcesIdoffered into table77
+                      from m in table77.ToList().Distinct()
+                      where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                      select (e.CourcesIdoffered).ToString();
+            TempData["OfferedRequestTypeId8"] = xx8.ToList().Count();
 
 
 
 
-            TempData["total"]= yy.ToList().Count()+ xx.ToList().Count()+xx2.ToList().Count() + xx3.ToList().Count() + xx4.ToList().Count()+ xx5.ToList().Count() + xx6.ToList().Count()+ xx7.ToList().Count();
+            TempData["total"]= yy.ToList().Count()+ xx.ToList().Count()+xx2.ToList().Count() + xx3.ToList().Count() + xx4.ToList().Count()+ xx5.ToList().Count() + xx6.ToList().Count()+ xx7.ToList().Count()+ xx8.ToList().Count();
 
 
 

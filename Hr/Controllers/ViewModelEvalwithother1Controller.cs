@@ -129,6 +129,7 @@ namespace Hr.Controllers
                           join f in EvalDetails on e.Idd equals f.CourcesIdoffered into table4
                           from f in table4.ToList()
                           where f.OfferedRequestTypeSatus == 0
+                          where f.OfferedRequestFrom== HttpContext.Session.GetString("username")
                           join h in EvalRequestTypeIds on e.Idd equals h.CourcesIdoffered into table5
                           from h in table5.ToList()
                           where h.OfferedRequestType == 0
@@ -191,6 +192,7 @@ namespace Hr.Controllers
                           join f in EvalDetails on e.Idd equals f.CourcesIdoffered into table4
                           from f in table4.ToList()
                           where f.OfferedRequestTypeSatus == 1
+                          where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join h in EvalRequestTypeIds on e.Idd equals h.CourcesIdoffered into table5
                           from h in table5.ToList()
                           where h.OfferedRequestType == 1
@@ -256,6 +258,7 @@ namespace Hr.Controllers
                           join f in EvalDetails on e.Idd equals f.CourcesIdoffered into table4
                           from f in table4.ToList()
                           where f.OfferedRequestTypeSatus == 2
+                          where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join h in EvalRequestTypeIds on e.Idd equals h.CourcesIdoffered into table5
                           from h in table5.ToList()
                           where h.OfferedRequestType == 2
@@ -317,10 +320,10 @@ namespace Hr.Controllers
                               //from j in table3.ToList()
                           join f in EvalDetails on e.Idd equals f.CourcesIdoffered into table4
                           from f in table4.ToList()
-                         
-                          where (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo3 == "1") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo4 == "1") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo5 == "1")
+                          where f.OfferedRequestTo == HttpContext.Session.GetString("empid") || f.OfferedRequestTo2 == HttpContext.Session.GetString("empid")
+                          //where (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo3 == "1") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo4 == "1") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo5 == "1")
                           where f.OfferedRequestTypeSatus == 1
-                          where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
+                          //where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join h in EvalRequestTypeIds on e.Idd equals h.CourcesIdoffered into table5
                           from h in table5.ToList()
                           where h.OfferedRequestType == 1
@@ -382,9 +385,9 @@ namespace Hr.Controllers
                           join f in EvalDetails on e.Idd equals f.CourcesIdoffered into table4
                           from f in table4.ToList()
                           where f.OfferedRequestTypeSatus == 2
-                          where (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo3 == "2") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo4 == "2") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo5 == "2")
-                        
-                          where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
+                          //where (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo3 == "2") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo4 == "2") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo5 == "2")
+                          where f.OfferedRequestTo == HttpContext.Session.GetString("empid") || f.OfferedRequestTo2 == HttpContext.Session.GetString("empid")
+                          //where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join h in EvalRequestTypeIds on e.Idd equals h.CourcesIdoffered into table5
                           from h in table5.ToList()
                           where h.OfferedRequestType == 2
@@ -656,8 +659,11 @@ namespace Hr.Controllers
             av2 = vAEvaluationGoals[1];
             av3 = vAEvaluationGoals[2];
             av4 = vAEvaluationGoals[3];
+            if (vAEvaluationGoals.Count > 4)
+            { 
             av5 = vAEvaluationGoals[4];
             av6 = vAEvaluationGoals[5];
+            }
             List<AEvaluationCompetenciesM> vAEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.Where(d => d.CovenantId == id).OrderBy(d => d.CovenantCompetenciesSeq).ToList();
             am1 = vAEvaluationCompetenciesMs[0];
             am2 = vAEvaluationCompetenciesMs[1];
@@ -665,7 +671,11 @@ namespace Hr.Controllers
             am4 = vAEvaluationCompetenciesMs[3];
             am5 = vAEvaluationCompetenciesMs[4];
             am6 = vAEvaluationCompetenciesMs[5];
-            am7 = vAEvaluationCompetenciesMs[6];
+            if (vAEvaluationCompetenciesMs .Count>6)
+            {
+
+                am7 = vAEvaluationCompetenciesMs[6];
+            }
 
             List<AEvaluationCompetenciesD> vAEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.Where(d => d.CovenantId == id).OrderBy(d=>d.CovenantCompetenciesDSeq).ThenBy(d => d.CovenantCompetenciesDSeqD).ToList();
             ad1 = vAEvaluationCompetenciesDs[0];
@@ -686,81 +696,161 @@ namespace Hr.Controllers
             ad16 = vAEvaluationCompetenciesDs[15];
             ad17 = vAEvaluationCompetenciesDs[16];
             ad18 = vAEvaluationCompetenciesDs[17];
+            if (vAEvaluationCompetenciesDs .Count>18)
+            { 
+           
             ad19 = vAEvaluationCompetenciesDs[18];
             ad20 = vAEvaluationCompetenciesDs[19];
             ad21 = vAEvaluationCompetenciesDs[20];
             ad22 = vAEvaluationCompetenciesDs[21];
             ad23 = vAEvaluationCompetenciesDs[22];
-
-
-            ViewModelEvalwithother1 ViewModelEvalwithother1 = new ViewModelEvalwithother1
+            }
+            if (vAEvaluationCompetenciesMs.Count > 6&& vAEvaluationCompetenciesDs.Count > 18&& vAEvaluationGoals.Count > 4)
             {
-            AEvaluationEmpIdd= vAEvaluationEmps1.Idd,
-            AEvaluationEmpEmpno = vAEvaluationEmps1.Empno,
-            AEvaluationEmpEmpname=vAEvaluationEmps1.Empname,
-            AEvaluationGoalCovenantId=av1.CovenantId,
-            AEvaluationGoalCovenantGoalsName1 = av1.CovenantGoalsName,
-            AEvaluationGoalCovenantGoalsName2 = av2.CovenantGoalsName,
-            AEvaluationGoalCovenantGoalsName3 = av3.CovenantGoalsName,
-            AEvaluationGoalCovenantGoalsName4 = av4.CovenantGoalsName,
-            AEvaluationGoalCovenantGoalsName5 = av5.CovenantGoalsName,
-            AEvaluationGoalCovenantGoalsName6 = av6.CovenantGoalsName,
-            AEvaluationGoalCovenantMeasurementCriteria1 = av1.CovenantMeasurementCriteria,
-            AEvaluationGoalCovenantMeasurementCriteria2 = av2.CovenantMeasurementCriteria,
-            AEvaluationGoalCovenantMeasurementCriteria3 = av3.CovenantMeasurementCriteria,
-            AEvaluationGoalCovenantMeasurementCriteria4 = av4.CovenantMeasurementCriteria,
-            AEvaluationGoalCovenantMeasurementCriteria5 = av5.CovenantMeasurementCriteria,
-            AEvaluationGoalCovenantMeasurementCriteria6 = av6.CovenantMeasurementCriteria,
-            AEvaluationGoalCovenantPercentageWeight1 = av1.CovenantPercentageWeight,
-            AEvaluationGoalCovenantPercentageWeight2 = av2.CovenantPercentageWeight,
-            AEvaluationGoalCovenantPercentageWeight3 = av3.CovenantPercentageWeight,
-            AEvaluationGoalCovenantPercentageWeight4 = av4.CovenantPercentageWeight,
-            AEvaluationGoalCovenantPercentageWeight5 = av5.CovenantPercentageWeight,
-            AEvaluationGoalCovenantPercentageWeight6 = av6.CovenantPercentageWeight,
-            AEvaluationGoalCovenantTargetedOutput1 = av1.CovenantTargetedOutput,
-            AEvaluationGoalCovenantTargetedOutput2 = av2.CovenantTargetedOutput,
-            AEvaluationGoalCovenantTargetedOutput3 = av3.CovenantTargetedOutput,
-            AEvaluationGoalCovenantTargetedOutput4 = av4.CovenantTargetedOutput,
-            AEvaluationGoalCovenantTargetedOutput5 = av5.CovenantTargetedOutput,
-            AEvaluationGoalCovenantTargetedOutput6 = av6.CovenantTargetedOutput,
-            AEvaluationCompetenciesMCovenantWeight1= am1.CovenantWeight,
-            AEvaluationCompetenciesMCovenantWeight2 = am2.CovenantWeight,
-            AEvaluationCompetenciesMCovenantWeight3 = am3.CovenantWeight,
-            AEvaluationCompetenciesMCovenantWeight4 = am4.CovenantWeight,
-            AEvaluationCompetenciesMCovenantWeight5 = am5.CovenantWeight,
-            AEvaluationCompetenciesMCovenantWeight6 = am6.CovenantWeight,
-            AEvaluationCompetenciesMCovenantWeight7 = am7.CovenantWeight,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel1=ad1.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel2 = ad2.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel3 = ad3.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel4 = ad4.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel5 = ad5.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel6 = ad6.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel7 = ad7.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel8 = ad8.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel9 = ad9.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel10 = ad10.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel11 = ad11.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel12 = ad12.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel13 = ad13.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel14 = ad14.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel15 = ad15.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel16 = ad16.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel17 = ad17.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel18 = ad18.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel19 = ad19.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel20 = ad20.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel21 = ad21.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel22 = ad22.CovenantCompetenciecDLevel,
-            AEvaluationCompetenciesDCovenantCompetenciecDLevel23 = ad23.CovenantCompetenciecDLevel,
+                ViewModelEvalwithother1 ViewModelEvalwithother1 = new ViewModelEvalwithother1
+                {
+                    AEvaluationEmpIdd = vAEvaluationEmps1.Idd,
+                    AEvaluationEmpEmpno = vAEvaluationEmps1.Empno,
+                    AEvaluationEmpEmpname = vAEvaluationEmps1.Empname,
+                    AEvaluationGoalCovenantId = av1.CovenantId,
+                    AEvaluationGoalCovenantGoalsName1 = av1.CovenantGoalsName,
+                    AEvaluationGoalCovenantGoalsName2 = av2.CovenantGoalsName,
+                    AEvaluationGoalCovenantGoalsName3 = av3.CovenantGoalsName,
+                    AEvaluationGoalCovenantGoalsName4 = av4.CovenantGoalsName,
+                    AEvaluationGoalCovenantGoalsName5 = av5.CovenantGoalsName,
+                    AEvaluationGoalCovenantGoalsName6 = av6.CovenantGoalsName,
+                    AEvaluationGoalCovenantMeasurementCriteria1 = av1.CovenantMeasurementCriteria,
+                    AEvaluationGoalCovenantMeasurementCriteria2 = av2.CovenantMeasurementCriteria,
+                    AEvaluationGoalCovenantMeasurementCriteria3 = av3.CovenantMeasurementCriteria,
+                    AEvaluationGoalCovenantMeasurementCriteria4 = av4.CovenantMeasurementCriteria,
+                    AEvaluationGoalCovenantMeasurementCriteria5 = av5.CovenantMeasurementCriteria,
+                    AEvaluationGoalCovenantMeasurementCriteria6 = av6.CovenantMeasurementCriteria,
+                    AEvaluationGoalCovenantPercentageWeight1 = av1.CovenantPercentageWeight,
+                    AEvaluationGoalCovenantPercentageWeight2 = av2.CovenantPercentageWeight,
+                    AEvaluationGoalCovenantPercentageWeight3 = av3.CovenantPercentageWeight,
+                    AEvaluationGoalCovenantPercentageWeight4 = av4.CovenantPercentageWeight,
+                    AEvaluationGoalCovenantPercentageWeight5 = av5.CovenantPercentageWeight,
+                    AEvaluationGoalCovenantPercentageWeight6 = av6.CovenantPercentageWeight,
+                    AEvaluationGoalCovenantTargetedOutput1 = av1.CovenantTargetedOutput,
+                    AEvaluationGoalCovenantTargetedOutput2 = av2.CovenantTargetedOutput,
+                    AEvaluationGoalCovenantTargetedOutput3 = av3.CovenantTargetedOutput,
+                    AEvaluationGoalCovenantTargetedOutput4 = av4.CovenantTargetedOutput,
+                    AEvaluationGoalCovenantTargetedOutput5 = av5.CovenantTargetedOutput,
+                    AEvaluationGoalCovenantTargetedOutput6 = av6.CovenantTargetedOutput,
+                    AEvaluationCompetenciesMCovenantWeight1 = am1.CovenantWeight,
+                    AEvaluationCompetenciesMCovenantWeight2 = am2.CovenantWeight,
+                    AEvaluationCompetenciesMCovenantWeight3 = am3.CovenantWeight,
+                    AEvaluationCompetenciesMCovenantWeight4 = am4.CovenantWeight,
+                    AEvaluationCompetenciesMCovenantWeight5 = am5.CovenantWeight,
+                    AEvaluationCompetenciesMCovenantWeight6 = am6.CovenantWeight,
+                    AEvaluationCompetenciesMCovenantWeight7 = am7.CovenantWeight,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel1 = ad1.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel2 = ad2.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel3 = ad3.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel4 = ad4.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel5 = ad5.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel6 = ad6.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel7 = ad7.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel8 = ad8.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel9 = ad9.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel10 = ad10.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel11 = ad11.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel12 = ad12.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel13 = ad13.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel14 = ad14.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel15 = ad15.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel16 = ad16.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel17 = ad17.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel18 = ad18.CovenantCompetenciecDLevel,
+
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel19 = ad19.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel20 = ad20.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel21 = ad21.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel22 = ad22.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel23 = ad23.CovenantCompetenciecDLevel,
 
 
 
 
 
-            };
-           
-            return View(ViewModelEvalwithother1);
+                };
+                return View(ViewModelEvalwithother1);
+            }
+            else
+            {
+                ViewModelEvalwithother1 ViewModelEvalwithother1 = new ViewModelEvalwithother1
+                {
+                    AEvaluationEmpIdd = vAEvaluationEmps1.Idd,
+                    AEvaluationEmpEmpno = vAEvaluationEmps1.Empno,
+                    AEvaluationEmpEmpname = vAEvaluationEmps1.Empname,
+                    AEvaluationGoalCovenantId = av1.CovenantId,
+                    AEvaluationGoalCovenantGoalsName1 = av1.CovenantGoalsName,
+                    AEvaluationGoalCovenantGoalsName2 = av2.CovenantGoalsName,
+                    AEvaluationGoalCovenantGoalsName3 = av3.CovenantGoalsName,
+                    AEvaluationGoalCovenantGoalsName4 = av4.CovenantGoalsName,
+                    //AEvaluationGoalCovenantGoalsName5 = av5.CovenantGoalsName,
+                    //AEvaluationGoalCovenantGoalsName6 = av6.CovenantGoalsName,
+                    AEvaluationGoalCovenantMeasurementCriteria1 = av1.CovenantMeasurementCriteria,
+                    AEvaluationGoalCovenantMeasurementCriteria2 = av2.CovenantMeasurementCriteria,
+                    AEvaluationGoalCovenantMeasurementCriteria3 = av3.CovenantMeasurementCriteria,
+                    AEvaluationGoalCovenantMeasurementCriteria4 = av4.CovenantMeasurementCriteria,
+                    //AEvaluationGoalCovenantMeasurementCriteria5 = av5.CovenantMeasurementCriteria,
+                    //AEvaluationGoalCovenantMeasurementCriteria6 = av6.CovenantMeasurementCriteria,
+                    AEvaluationGoalCovenantPercentageWeight1 = av1.CovenantPercentageWeight,
+                    AEvaluationGoalCovenantPercentageWeight2 = av2.CovenantPercentageWeight,
+                    AEvaluationGoalCovenantPercentageWeight3 = av3.CovenantPercentageWeight,
+                    AEvaluationGoalCovenantPercentageWeight4 = av4.CovenantPercentageWeight,
+                    //AEvaluationGoalCovenantPercentageWeight5 = av5.CovenantPercentageWeight,
+                    //AEvaluationGoalCovenantPercentageWeight6 = av6.CovenantPercentageWeight,
+                    AEvaluationGoalCovenantTargetedOutput1 = av1.CovenantTargetedOutput,
+                    AEvaluationGoalCovenantTargetedOutput2 = av2.CovenantTargetedOutput,
+                    AEvaluationGoalCovenantTargetedOutput3 = av3.CovenantTargetedOutput,
+                    AEvaluationGoalCovenantTargetedOutput4 = av4.CovenantTargetedOutput,
+                    //AEvaluationGoalCovenantTargetedOutput5 = av5.CovenantTargetedOutput,
+                    //AEvaluationGoalCovenantTargetedOutput6 = av6.CovenantTargetedOutput,
+                    AEvaluationCompetenciesMCovenantWeight1 = am1.CovenantWeight,
+                    AEvaluationCompetenciesMCovenantWeight2 = am2.CovenantWeight,
+                    AEvaluationCompetenciesMCovenantWeight3 = am3.CovenantWeight,
+                    AEvaluationCompetenciesMCovenantWeight4 = am4.CovenantWeight,
+                    AEvaluationCompetenciesMCovenantWeight5 = am5.CovenantWeight,
+                    AEvaluationCompetenciesMCovenantWeight6 = am6.CovenantWeight,
+                    //AEvaluationCompetenciesMCovenantWeight7 = am7.CovenantWeight,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel1 = ad1.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel2 = ad2.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel3 = ad3.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel4 = ad4.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel5 = ad5.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel6 = ad6.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel7 = ad7.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel8 = ad8.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel9 = ad9.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel10 = ad10.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel11 = ad11.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel12 = ad12.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel13 = ad13.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel14 = ad14.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel15 = ad15.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel16 = ad16.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel17 = ad17.CovenantCompetenciecDLevel,
+                    AEvaluationCompetenciesDCovenantCompetenciecDLevel18 = ad18.CovenantCompetenciecDLevel,
+
+                    //AEvaluationCompetenciesDCovenantCompetenciecDLevel19 = ad19.CovenantCompetenciecDLevel,
+                    //AEvaluationCompetenciesDCovenantCompetenciecDLevel20 = ad20.CovenantCompetenciecDLevel,
+                    //AEvaluationCompetenciesDCovenantCompetenciecDLevel21 = ad21.CovenantCompetenciecDLevel,
+                    //AEvaluationCompetenciesDCovenantCompetenciecDLevel22 = ad22.CovenantCompetenciecDLevel,
+                    //AEvaluationCompetenciesDCovenantCompetenciecDLevel23 = ad23.CovenantCompetenciecDLevel,
+
+
+
+
+
+                };
+                return View(ViewModelEvalwithother1);
+            }
+
+
+            return View();
+            //return View(ViewModelEvalwithother1);
         }
 
         [HttpPost]

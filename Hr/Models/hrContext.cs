@@ -23,6 +23,16 @@ namespace Hr.Models
             //this.Database.SetCommandTimeout(3 * 60);
 
         }
+
+        public virtual DbSet<SupportDetail> SupportDetails { get; set; }
+        public virtual DbSet<SupportProcess> SupportProcesses { get; set; }
+        public virtual DbSet<SupportRequestTypeId> SupportRequestTypeIds { get; set; }
+        public virtual DbSet<Supportcomment> Supportcomments { get; set; }
+        public virtual DbSet<MessagesRequestTypeId> MessagesRequestTypeIds { get; set; }
+        public virtual DbSet<MessagesDetail> MessagesDetailss { get; set; }
+        public virtual DbSet<Messagescomment> Messagescomments { get; set; }
+        public virtual DbSet<MessagesProcess> MessagesProcesss { get; set; }
+
         public virtual DbSet<ACourcesLogs> ACourcesLogs { get; set; }
         public virtual DbSet<EvalRequestTypeId> EvalRequestTypeIds { get; set; }
         public virtual DbSet<EvalDetail> EvalDetailss { get; set; }
@@ -125,6 +135,181 @@ namespace Hr.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+            //
+
+            modelBuilder.Entity<SupportDetail>(entity =>
+            {
+                entity.ToTable("SupportDetails");
+                entity.HasKey(e => e.OfferedDetailsSerial)
+                    .HasName("PK_OfferedDetails_copy3_copy1_copy1_copy1");
+                
+
+                entity.Property(e => e.CourcesIdoffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.OfferedRequestFrom).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestNotes).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo2).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo3).HasMaxLength(50);
+
+                entity.Property(e => e.OfferedRequestTo4)
+                    .HasMaxLength(250)
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.OfferedRequestTo5)
+                    .HasMaxLength(250)
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Offeredoption).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<SupportProcess>(entity =>
+            {
+                entity.ToTable("SupportProcess");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Daterequest)
+                    .HasColumnType("datetime")
+                    .HasColumnName("daterequest");
+
+                entity.Property(e => e.Fromr)
+                    .HasMaxLength(50)
+                    .HasColumnName("fromr");
+
+                entity.Property(e => e.Mestypereqidp).HasColumnName("mestypereqidp");
+
+                entity.Property(e => e.Mestypetopic)
+                    .HasMaxLength(250)
+                    .HasColumnName("mestypetopic");
+
+                entity.Property(e => e.Redesc)
+                    .HasMaxLength(250)
+                    .HasColumnName("redesc");
+            });
+
+            modelBuilder.Entity<SupportRequestTypeId>(entity =>
+            {
+                entity.ToTable("SupportRequestTypeId");
+                entity.HasKey(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial)
+                    .HasName("PK_OfferedRequestTypeId_copy3_copy1_copy1_copy1");
+
+                entity.ToTable("SupportRequestTypeId");
+
+                entity.Property(e => e.CourcesIdoffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.Offercoursefrom).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<Supportcomment>(entity =>
+            {
+                entity.ToTable("Supportcomments");
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Offerapproval)
+                    .HasMaxLength(250)
+                    .HasColumnName("offerapproval");
+
+                entity.Property(e => e.Offerdetailscomment)
+                    .HasMaxLength(250)
+                    .HasColumnName("offerdetailscomment");
+
+                entity.Property(e => e.Offerdetailsid).HasColumnName("offerdetailsid");
+            });
+
+            //
+            modelBuilder.Entity<MessagesDetail>(entity =>
+            {
+                entity.ToTable("MessagesDetails");
+                entity.HasKey(e => e.OfferedDetailsSerial)
+                    .HasName("PK_OfferedDetails_copy3_copy1_copy1");
+
+                entity.Property(e => e.CourcesIdoffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.OfferedRequestFrom).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestNotes).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo2).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo3).HasMaxLength(50);
+
+                entity.Property(e => e.OfferedRequestTo4)
+                    .HasMaxLength(250)
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.OfferedRequestTo5)
+                    .HasMaxLength(250)
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Offeredoption).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<MessagesProcess>(entity =>
+            {
+                entity.ToTable("MessagesProcess");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Daterequest)
+                    .HasColumnType("datetime")
+                    .HasColumnName("daterequest");
+
+                entity.Property(e => e.Fromr)
+                    .HasMaxLength(50)
+                    .HasColumnName("fromr");
+
+             
+
+                entity.Property(e => e.redesc)
+                    .HasMaxLength(50)
+                    .HasColumnName("redesc");
+
+              
+
+                entity.Property(e => e.mestypereqid).HasColumnName("mestypereqid");
+
+                entity.Property(e => e.mestypetopic)
+                    .HasMaxLength(250)
+                    .HasColumnName("mestypetopic");
+            });
+
+            modelBuilder.Entity<MessagesRequestTypeId>(entity =>
+            {
+                entity.HasKey(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial)
+                    .HasName("PK_OfferedRequestTypeId_copy3_copy1_copy1");
+
+                entity.ToTable("MessagesRequestTypeId");
+
+                entity.Property(e => e.CourcesIdoffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.Offercoursefrom).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<Messagescomment>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Offerapproval)
+                    .HasMaxLength(250)
+                    .HasColumnName("offerapproval");
+
+                entity.Property(e => e.Offerdetailscomment)
+                    .HasMaxLength(250)
+                    .HasColumnName("offerdetailscomment");
+
+                entity.Property(e => e.Offerdetailsid).HasColumnName("offerdetailsid");
+            });
+
+
+
+
             //
             modelBuilder.Entity<ACourcesLogs>(entity =>
             {
