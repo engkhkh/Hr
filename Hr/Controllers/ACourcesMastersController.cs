@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.SqlServer;
 
 namespace Hr.Controllers
 {
@@ -574,6 +576,30 @@ namespace Hr.Controllers
             if (coursesforuser1 != null)
             {
                 ViewBag.ErrorMessage3 = "تم تسجيل الدورة سابقا بنفس تاريخ النهاية ";
+                return View(aCourcesMaster);
+            }
+            var coursesforuser20count1446 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1446).Count();
+            var coursesforuser20count1445 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1445).Count();
+            var coursesforuser20count1444 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1444).Count();
+            var coursesforuser20count1443 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1443).Count();
+            var coursesforuser20count1442 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1442).Count();
+            var coursesforuser20count1441 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1441).Count();
+            var coursesforuser20count1440 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1440).Count();
+            if (coursesforuser20count1446 > 20||coursesforuser20count1445 > 20||coursesforuser20count1444 > 20||coursesforuser20count1443 > 20|| coursesforuser20count1442 > 20||coursesforuser20count1441 > 20|| coursesforuser20count1440 > 20)
+            {
+                ViewBag.ErrorMessage3 = "لايمكن تسجيل اكثر من 20 دورة اثرائية بالعام الواحد  ";
+                return View(aCourcesMaster);
+            }
+            var coursesforuser2count1446 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1446)).Count();
+            var coursesforuser2count1445 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1445)).Count();
+            var coursesforuser2count1444 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1444)).Count();
+            var coursesforuser2count1443 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1443)).Count();
+            var coursesforuser2count1442 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1442)).Count();
+            var coursesforuser2count1441 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1441)).Count();
+            var coursesforuser2count1440 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1440)).Count();
+            if (coursesforuser2count1446 > 2|| coursesforuser2count1445 > 2 || coursesforuser2count1444 > 2 || coursesforuser2count1443 >2|| coursesforuser2count1442 > 2|| coursesforuser2count1441 > 2|| coursesforuser2count1440 > 2)
+            {
+                ViewBag.ErrorMessage3 = "لايمكن تسجيل اكثر من 2  دورة بدون اختبار  بالعام الواحد  ";
                 return View(aCourcesMaster);
             }
             string x = "", y = "",file1="",file2="";

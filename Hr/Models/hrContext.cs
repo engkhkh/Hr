@@ -23,7 +23,10 @@ namespace Hr.Models
             //this.Database.SetCommandTimeout(3 * 60);
 
         }
-
+        public virtual DbSet<EvalRequestTypeId2> EvalRequestTypeIds2 { get; set; }
+        public virtual DbSet<EvalDetail2> EvalDetailss2 { get; set; }
+        public virtual DbSet<Evalcomment2> EvalComments2 { get; set; }
+        public virtual DbSet<Aevallog> Aevallogs { get; set; }
         public virtual DbSet<SupportDetail> SupportDetails { get; set; }
         public virtual DbSet<SupportProcess> SupportProcesses { get; set; }
         public virtual DbSet<SupportRequestTypeId> SupportRequestTypeIds { get; set; }
@@ -136,7 +139,25 @@ namespace Hr.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
             //
+            modelBuilder.Entity<Aevallog>(entity =>
+            {
+                entity.ToTable("AEVALLOGS");
+                entity.HasKey(e => e.Id);
 
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Editdate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("editdate");
+
+                entity.Property(e => e.Evid)
+                    .HasMaxLength(250)
+                    .HasColumnName("evid");
+
+                entity.Property(e => e.Useredit)
+                    .HasMaxLength(50)
+                    .HasColumnName("useredit");
+            });
             modelBuilder.Entity<SupportDetail>(entity =>
             {
                 entity.ToTable("SupportDetails");
@@ -684,6 +705,65 @@ namespace Hr.Models
 
                 entity.Property(e => e.Idd4).HasColumnName("IDD");
             });
+            //
+            modelBuilder.Entity<EvalDetail2>(entity =>
+            {
+                entity.HasKey(e => e.OfferedDetailsSerial)
+                    .HasName("PK_OfferedDetails_copy3");
+                entity.ToTable("EvalDetails2");
+
+                entity.Property(e => e.CourcesIdoffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.OfferedRequestFrom).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestNotes).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo2).HasMaxLength(250);
+
+                entity.Property(e => e.OfferedRequestTo3).HasMaxLength(50);
+
+                entity.Property(e => e.OfferedRequestTo4)
+                    .HasMaxLength(250)
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.OfferedRequestTo5)
+                    .HasMaxLength(250)
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Offeredoption).HasMaxLength(250);
+            });
+            modelBuilder.Entity<EvalRequestTypeId2>(entity =>
+            {
+                entity.HasKey(e => e.OfferedRequestTypeIdsOfferedRequestTypeIdserial)
+                    .HasName("PK_OfferedRequestTypeId_copy3");
+
+                entity.ToTable("EvalRequestTypeId2");
+
+                entity.Property(e => e.CourcesIdoffered).HasColumnName("COURCES_IDOffered");
+
+                entity.Property(e => e.Offercoursefrom).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<Evalcomment2>(entity =>
+            {
+                entity.HasKey(e => e.id)
+                    .HasName("id");
+                entity.ToTable("Evalcomments2");
+                entity.Property(e => e.Offerapproval)
+                    .HasMaxLength(250)
+                    .HasColumnName("offerapproval");
+
+                entity.Property(e => e.Offerdetailscomment)
+                    .HasMaxLength(250)
+                    .HasColumnName("offerdetailscomment");
+
+                entity.Property(e => e.Offerdetailsid).HasColumnName("offerdetailsid");
+                entity.Property(e => e.id).HasColumnName("id");
+            });
+
+
             //
             modelBuilder.Entity<EvalDetail>(entity =>
             {

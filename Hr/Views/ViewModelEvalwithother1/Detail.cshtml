@@ -1,7 +1,7 @@
 ﻿@model Hr.Models.ViewModelEvalwithother1
 
 @{
-    ViewData["Title"] = "تعديل الطلب  ";
+    ViewData["Title"] = "عرض الطلب  ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,7 +17,7 @@
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Edit">
-            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="AEvaluationEmpIdd" />
             <input type="hidden" asp-for="AEvaluationGoalCovenantId" />
 
@@ -74,7 +74,7 @@
 
                         </td>
                         <td>
-                            <input asp-for="AEvaluationGoalCovenantGoalsName1" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantGoalsName1" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
@@ -84,7 +84,7 @@
 
                         </td>
                         <td>
-                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria1" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria1" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
@@ -162,7 +162,7 @@
                         </select>*@
                         </td>
                         <td>
-                            <input asp-for="AEvaluationGoalCovenantTargetedOutput1" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput1" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
@@ -184,7 +184,7 @@
                         </td>
                         <td>
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantGoalsName2" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantGoalsName2" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
@@ -194,7 +194,7 @@
                         </td>
                         <td>
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria2" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria2" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
@@ -272,7 +272,7 @@
                         </td>
                         <td>
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantTargetedOutput2" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput2" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
@@ -294,7 +294,7 @@
                         <td>
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantGoalsName3" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantGoalsName3" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
@@ -304,7 +304,7 @@
                         <td>
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria3" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria3" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
@@ -383,7 +383,7 @@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantTargetedOutput3" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput3" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
                             <span asp-validation-for="AEvaluationGoalCovenantTargetedOutput3" class="text-danger"></span>
@@ -404,7 +404,7 @@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantGoalsName4" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantGoalsName4" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
                             <span asp-validation-for="AEvaluationGoalCovenantGoalsName4" class="text-danger"></span>
@@ -414,7 +414,7 @@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria4" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria4" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
                             <span asp-validation-for="AEvaluationGoalCovenantMeasurementCriteria4" class="text-danger"></span>
@@ -492,7 +492,7 @@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantTargetedOutput4" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput4" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
                         <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
                             <span asp-validation-for="AEvaluationGoalCovenantTargetedOutput4" class="text-danger"></span>
@@ -514,7 +514,7 @@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantGoalsName5" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantGoalsName5" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" />*@
 
                         </td>
@@ -523,7 +523,7 @@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria5" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria5" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" />*@
                         </td>
                         <td>
@@ -599,7 +599,7 @@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantTargetedOutput5" class="form-control" /><br />
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput5" readonly class="form-control" /><br />
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" />*@
                         </td>
 
@@ -620,7 +620,7 @@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantGoalsName6" class="form-control" />
+                            <input asp-for="AEvaluationGoalCovenantGoalsName6" readonly class="form-control" />
 
                         </td>
                         <td>
@@ -629,7 +629,7 @@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria6" class="form-control" />
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria6" readonly class="form-control" />
                         </td>
                         <td>
                             @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
@@ -706,7 +706,7 @@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
                             @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
-                            <input asp-for="AEvaluationGoalCovenantTargetedOutput6" class="form-control" />
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput6" readonly class="form-control" />
                         </td>
 
                     </tr>
@@ -1608,7 +1608,7 @@
 
 
             <div class="form-group">
-                <input type="submit" value="حفظ" class="btn btn-success" />
+                @*<input type="submit" value="حفظ" class="btn btn-success" />*@
             </div>
         </form>
     </div>

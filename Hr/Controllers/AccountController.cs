@@ -323,6 +323,11 @@ namespace Hr.Controllers
                 List<EvalDetail> EvalDetails = _context.EvalDetailss.ToList();
 
                 List<EvalRequestTypeId> EvalRequestTypeId = _context.EvalRequestTypeIds.ToList();
+
+                //Eval2 
+                List<EvalDetail2> EvalDetails2 = _context.EvalDetailss2.ToList();
+
+                List<EvalRequestTypeId2> EvalRequestTypeId2 = _context.EvalRequestTypeIds2.ToList();
                 //Transfer 
 
                 List<TransferDetail> TransferDetails = _context.TransferDetails.ToList();
@@ -334,6 +339,11 @@ namespace Hr.Controllers
                 List<MessagesDetail> MessagesDetails = _context.MessagesDetailss.ToList();
 
                 List<MessagesRequestTypeId> MessagesRequestTypeIds = _context.MessagesRequestTypeIds.ToList();
+                //Support 
+
+                List<SupportDetail> SupportDetails = _context.SupportDetails.ToList();
+
+                List<SupportRequestTypeId> SupportRequestTypeIds = _context.SupportRequestTypeIds.ToList();
 
 
 
@@ -412,11 +422,26 @@ namespace Hr.Controllers
                           where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
                           select (e.CourcesIdoffered).ToString();
                 TempData["OfferedRequestTypeId8"] = xx8.ToList().Count();
+                //
+                var xx9 = from e in SupportRequestTypeIds
+                          join m in SupportDetails on e.CourcesIdoffered equals m.CourcesIdoffered into table77
+                          from m in table77.ToList().Distinct()
+                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                          select (e.CourcesIdoffered).ToString();
+                TempData["OfferedRequestTypeId9"] = xx9.ToList().Count();
+                //
+
+                var xx10 = from e in EvalRequestTypeId2
+                           join m in EvalDetails2 on e.CourcesIdoffered equals m.CourcesIdoffered into table77
+                           from m in table77.ToList().Distinct()
+                           where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                           select (e.CourcesIdoffered).ToString();
+                TempData["OfferedRequestTypeId10"] = xx10.ToList().Count();
 
 
 
 
-                TempData["total"] = yy.ToList().Count() + xx.ToList().Count() + xx2.ToList().Count() + xx3.ToList().Count()+ xx4.ToList().Count()+ xx5.ToList().Count()+xx6.ToList().Count()+xx7.ToList().Count()+ xx8.ToList().Count();
+                TempData["total"] = yy.ToList().Count() + xx.ToList().Count() + xx2.ToList().Count() + xx3.ToList().Count()+ xx4.ToList().Count()+ xx5.ToList().Count()+xx6.ToList().Count()+xx7.ToList().Count()+ xx8.ToList().Count()+ xx9.ToList().Count()+ xx10.ToList().Count();
 
 
                 if (isAuthenticated)

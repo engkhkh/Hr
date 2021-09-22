@@ -78,6 +78,14 @@ namespace Hr.Controllers
             {
                 return NotFound();
             }
+            List<Cemp> _Cemps = _context.Cemps.Where(x => x.CEMPADPRTNO ==HttpContext.Session.GetString("empdepid")).Select(x => new Cemp
+            {
+               Cempid=x.Cempid,
+               CEMPNAME=x.CEMPNAME
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["Cemps"] = JsonConvert.SerializeObject(_Cemps);
 
             return View(cemp);
         }
@@ -1190,7 +1198,7 @@ namespace Hr.Controllers
                           join h in MessagesRequestTypeIds on e.Id equals h.CourcesIdoffered into table5
                           from h in table5.ToList()
                           where h.OfferedRequestType == 0
-                          where e.Fromr== HttpContext.Session.GetString("empid")
+                          //where e.Fromr== HttpContext.Session.GetString("empid")
 
 
 
