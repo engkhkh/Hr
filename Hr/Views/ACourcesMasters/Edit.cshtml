@@ -86,7 +86,7 @@
                     @*multiple style="width:350px;" tabindex="9" to use place holder *@
                     <span asp-validation-for="CourcesIdEstimate" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label class="control-label">ارفاق شهادة الدورة*   <label style="color:red;">"(jpeg,jpg,png,gif,jfif,pdf) !"</label>  </label>
                     <input type="file" asp-for="Filecer" class="form-control" id="f1" asp-items="ViewBag.CourcesIdImagecert" />
                  
@@ -97,23 +97,28 @@
                     <label class="control-label">ارفاق ملف اعتماد الموارد البشرية <label style="color:red;">"(jpeg,jpg,png,gif,jfif,pdf) !"</label> </label>
                     <input type="file" asp-for="Filehr" class="form-control" asp-items="ViewBag.ACourcesCertImagehr" />
                     <span asp-validation-for="CourcesIdImagehr" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label class="control-label">تحديث بداية الدورة <input type="text" class="form-control" readonly asp-for="CourcesStartDate" />  </label>
+              
+                <div class="input-group" style="float: left">
+                    <input type="text" class="form-control hijri-date-input" asp-for="CourcesStartDateh" />
                 </div>
-                <div class="form-group">
-                    <label class="control-label">بداية الدورة   </label>
-                    <div class="input-group" style="float: left">
-                        <input type="text" class="form-control hijri-date-input" asp-for="CourcesStartDate" />
-                    </div>
-                    <span asp-validation-for="CourcesStartDate" class="text-danger"></span>
-                    <p style="color:red">@ViewBag.ErrorMessage1</p>
-                    <p style="color:red">@ViewBag.ErrorMessage2</p>
-                </div>
+                @*<span asp-validation-for="CourcesStartDateh" class="text-danger"></span>*@
+                <p style="color:red">@ViewBag.ErrorMessage1</p>
+                <p style="color:red">@ViewBag.ErrorMessage2</p>
+            </div>
                 <br />
                 <div class="form-group">
-                    <label class="control-label">نهاية الدورة   </label>
+                    <label class="control-label">تحديث نهاية الدورة <input type="text" class="form-control" readonly asp-for="CourcesEndDate" /> </label>
+               
                     <div class="input-group" style="float: left">
-                        <input type="text" class="form-control hijri-date-input" asp-for="CourcesEndDate" />
+                        <input type="text" class="form-control hijri-date-input" asp-for="CourceendDateh" />
+                        @*@Html.TextBoxFor(model => model.CourcesEndDate, new { @class = "hijri-date-input" })*@
+                        @*@Html.TextBoxFor(model => model.CourcesEndDate, new { @Value = Model.CourcesEndDate, @class = "hijri-date-input" })*@
+
                     </div>
-                    <span asp-validation-for="CourcesEndDate" class="text-danger"></span>
+                    @*<span asp-validation-for="CourceendDateh" class="text-danger"></span>*@
                 </div>
                 @*<div class="form-group">
                         <label class="control-label">عدد ايام التدريب  </label>

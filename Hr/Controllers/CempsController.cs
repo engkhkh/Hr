@@ -1393,9 +1393,9 @@ namespace Hr.Controllers
                               //from j in table3.ToList()
                           join f in MessagesDetails on e.Id equals f.CourcesIdoffered into table4
                           from f in table4.ToList()
-                          where (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo3 == "1") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo4 == "1") && (f.OfferedRequestFrom == HttpContext.Session.GetString("empid") && f.OfferedRequestTo5 == "1")
+                          where (f.OfferedRequestTo == HttpContext.Session.GetString("empid")) || (f.OfferedRequestTo2 == HttpContext.Session.GetString("empid")) || (f.Offeredoption == HttpContext.Session.GetString("empid"))
                           where f.OfferedRequestTypeSatus == 1
-                          where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
+                          //where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join h in MessagesRequestTypeIds on e.Id equals h.CourcesIdoffered into table5
                           from h in table5.ToList()
                           where h.OfferedRequestType == 1
@@ -1462,8 +1462,8 @@ namespace Hr.Controllers
                           join f in MessagesDetails on e.Id equals f.CourcesIdoffered into table4
                           from f in table4.ToList()
                           where f.OfferedRequestTypeSatus == 2
-                          where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
-                          where (f.OfferedRequestTo == HttpContext.Session.GetString("empid") && f.OfferedRequestTo3 == "2") || (f.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && f.OfferedRequestTo4 == "2") || (f.Offeredoption == HttpContext.Session.GetString("empid") && f.OfferedRequestTo5 == "2")
+                          //where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
+                          where (f.OfferedRequestTo == HttpContext.Session.GetString("empid")) || (f.OfferedRequestTo2 == HttpContext.Session.GetString("empid")) || (f.Offeredoption == HttpContext.Session.GetString("empid"))
 
                           join h in MessagesRequestTypeIds on e.Id equals h.CourcesIdoffered into table5
                           from h in table5.ToList()

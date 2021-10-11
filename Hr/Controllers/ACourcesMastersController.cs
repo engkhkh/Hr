@@ -578,6 +578,12 @@ namespace Hr.Controllers
                 ViewBag.ErrorMessage3 = "تم تسجيل الدورة سابقا بنفس تاريخ النهاية ";
                 return View(aCourcesMaster);
             }
+            var coursesforuser11 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") /*&& b.CourcesId == aCourcesMaster.CourcesId*/ && (b.CourcesIdType == 1 || b.CourcesIdType == 2 || b.CourcesIdType == 4) && (b.CourcesStartDate <= aCourcesMaster.CourcesStartDate && aCourcesMaster.CourcesStartDate <= b.CourcesEndDate)).ToList();
+            if (coursesforuser11.Count != 0)
+            {
+                ViewBag.ErrorMessage3 = "لا يمكن ارشفة الدورة لوجود الموظف بدورة اخري بنفس التاريخ   ";
+                return View(aCourcesMaster);
+            }
             var coursesforuser20count1446 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1446).Count();
             var coursesforuser20count1445 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1445).Count();
             var coursesforuser20count1444 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1444).Count();
@@ -590,18 +596,18 @@ namespace Hr.Controllers
                 ViewBag.ErrorMessage3 = "لايمكن تسجيل اكثر من 20 دورة اثرائية بالعام الواحد  ";
                 return View(aCourcesMaster);
             }
-            var coursesforuser2count1446 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1446)).Count();
-            var coursesforuser2count1445 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1445)).Count();
-            var coursesforuser2count1444 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1444)).Count();
-            var coursesforuser2count1443 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1443)).Count();
-            var coursesforuser2count1442 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1442)).Count();
-            var coursesforuser2count1441 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1441)).Count();
-            var coursesforuser2count1440 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1440)).Count();
-            if (coursesforuser2count1446 > 2|| coursesforuser2count1445 > 2 || coursesforuser2count1444 > 2 || coursesforuser2count1443 >2|| coursesforuser2count1442 > 2|| coursesforuser2count1441 > 2|| coursesforuser2count1440 > 2)
-            {
-                ViewBag.ErrorMessage3 = "لايمكن تسجيل اكثر من 2  دورة بدون اختبار  بالعام الواحد  ";
-                return View(aCourcesMaster);
-            }
+            //var coursesforuser2count1446 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1446)).Count();
+            //var coursesforuser2count1445 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1445)).Count();
+            //var coursesforuser2count1444 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1444)).Count();
+            //var coursesforuser2count1443 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1443)).Count();
+            //var coursesforuser2count1442 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1442)).Count();
+            //var coursesforuser2count1441 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1441)).Count();
+            //var coursesforuser2count1440 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1440)).Count();
+            //if (coursesforuser2count1446 > 2|| coursesforuser2count1445 > 2 || coursesforuser2count1444 > 2 || coursesforuser2count1443 >2|| coursesforuser2count1442 > 2|| coursesforuser2count1441 > 2|| coursesforuser2count1440 > 2)
+            //{
+            //    ViewBag.ErrorMessage3 = "لايمكن تسجيل اكثر من 2  دورة بدون اختبار  بالعام الواحد  ";
+            //    return View(aCourcesMaster);
+            //}
             string x = "", y = "",file1="",file2="";
 
             if (aCourcesMaster.Filecer != null && (extension == ".jpeg" || extension == ".jpg" || extension == ".png" || extension == ".gif" || extension == ".jfif" || extension == ".pdf"))
@@ -689,7 +695,7 @@ namespace Hr.Controllers
                 {
                     if (aCourcesMasteritems.CourcesEndDate < aCourcesMasteritems.CourcesStartDate)
                     {
-                        ViewBag.ErrorMessage1 = "تاريخ نهاية الدورة اقل من تاريخ بداية الدورة   ";
+                        ViewBag.ErrorMessage1 = "تاريخ نهاية الدورة قبل  تاريخ بداية الدورة   ";
                         return View(aCourcesMaster);
                     }
                     if (aCourcesMasteritems.CourcesEndDate> objuser1.CEMPLASTUPGRADEHIJRA)
@@ -698,9 +704,18 @@ namespace Hr.Controllers
                         //zz = aCourcesMasteritems.CourcesStartDate.CompareTo(objuser1.Cemplastupgrade);
                         if (aCourcesMaster.CourcesPassRate != null)
                         {
-                            _context.Add(newcourcename);
-                            await _context.SaveChangesAsync();
-                            aCourcesMasteritems.CourcesId = _context.ACourcesNames.Max(u => u.CourcesId);
+                            var newcourcename1 = _context.ACourcesNames.Where(b => b.CourcesName.Contains(aCourcesMaster.CourcesPassRate));
+                            if (newcourcename1 != null)
+                            {
+                                ViewBag.ErrorMessage3 = "اسم الدورة موجود مسبقا ويرجي اختياره من القائمة   ";
+                                return View(aCourcesMaster);
+                            }
+                            else
+                            {
+                                _context.Add(newcourcename);
+                                await _context.SaveChangesAsync();
+                                aCourcesMasteritems.CourcesId = _context.ACourcesNames.Max(u => u.CourcesId);
+                            }
 
                         }
                         _context.Add(aCourcesMasteritems);
@@ -722,13 +737,27 @@ namespace Hr.Controllers
                 }
                 if (objuser1.CEMPLASTUPGRADEHIJRA < objuser1.CEMPHIRINGDATEHIJRA)
                 {
+                    //if (aCourcesMasteritems.CourcesEndDate < aCourcesMasteritems.CourcesStartDate)
+                    //{
+                    //    ViewBag.ErrorMessage1 = "تاريخ نهاية الدورة قبل  تاريخ بداية الدورة   ";
+                    //    return View(aCourcesMaster);
+                    //}
                     if (aCourcesMasteritems.CourcesEndDate > objuser1.CEMPHIRINGDATEHIJRA)
                     {
                         if (aCourcesMaster.CourcesPassRate != null)
                         {
-                            _context.Add(newcourcename);
-                            await _context.SaveChangesAsync();
-                            aCourcesMasteritems.CourcesId = _context.ACourcesNames.Max(u => u.CourcesId);
+                            var newcourcename1 = _context.ACourcesNames.Where(b => b.CourcesName.Contains(aCourcesMaster.CourcesPassRate));
+                            if (newcourcename1 != null)
+                            {
+                                ViewBag.ErrorMessage3 = "اسم الدورة موجود مسبقا ويرجي اختياره من القائمة   ";
+                                return View(aCourcesMaster);
+                            }
+                            else
+                            {
+                                _context.Add(newcourcename);
+                                await _context.SaveChangesAsync();
+                                aCourcesMasteritems.CourcesId = _context.ACourcesNames.Max(u => u.CourcesId);
+                            }
 
                         }
                         _context.Add(aCourcesMasteritems);
@@ -1020,51 +1049,91 @@ namespace Hr.Controllers
             {
                 extension2 = Path.GetExtension(aCourcesMaster.Filehr.FileName);
             }
-
+          
+           
             var objuser1 = _context.Cemps.Where(b => b.Cempid == HttpContext.Session.GetString("empid")).FirstOrDefault();
-            var coursesforuser = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesId == aCourcesMaster.CourcesId && b.CourcesStartDate == aCourcesMaster.CourcesStartDate).FirstOrDefault();
-            if (coursesforuser != null)
+            //var coursesforuser = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesId == aCourcesMaster.CourcesId && b.CourcesStartDate == aCourcesMaster.CourcesStartDate).FirstOrDefault();
+            //if (coursesforuser != null)
+            //{
+            //    ViewBag.ErrorMessage3 = "تم تسجيل الدورة سابقا بنفس تاريخ البداية ";
+            //    return View(aCourcesMaster);
+            //}
+            //var coursesforuser1 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesId == aCourcesMaster.CourcesId && b.CourcesEndDate == aCourcesMaster.CourcesEndDate).FirstOrDefault();
+            //if (coursesforuser1 != null)
+            //{
+            //    ViewBag.ErrorMessage3 = "تم تسجيل الدورة سابقا بنفس تاريخ النهاية ";
+            //    return View(aCourcesMaster);
+            //}
+          
+
+
+            var coursesforuser11 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") /*&& b.CourcesId == aCourcesMaster.CourcesId*/ && (b.CourcesIdType == 1 || b.CourcesIdType == 2 || b.CourcesIdType == 4) && (b.CourcesStartDate <= aCourcesMaster.CourcesStartDate && aCourcesMaster.CourcesStartDate <= b.CourcesEndDate)).ToList();
+            if (coursesforuser11.Count != 0)
             {
-                ViewBag.ErrorMessage3 = "تم تسجيل الدورة سابقا بنفس تاريخ البداية ";
+                ViewBag.ErrorMessage3 = "لا يمكن ارشفة الدورة لوجود الموظف بدورة اخري بنفس التاريخ   ";
                 return View(aCourcesMaster);
             }
+            //var coursesforuser20count1446 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1446).Count();
+            //var coursesforuser20count1445 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1445).Count();
+            //var coursesforuser20count1444 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1444).Count();
+            //var coursesforuser20count1443 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1443).Count();
+            //var coursesforuser20count1442 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1442).Count();
+            //var coursesforuser20count1441 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1441).Count();
+            //var coursesforuser20count1440 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1440).Count();
+            //if (coursesforuser20count1446 > 20 || coursesforuser20count1445 > 20 || coursesforuser20count1444 > 20 || coursesforuser20count1443 > 20 || coursesforuser20count1442 > 20 || coursesforuser20count1441 > 20 || coursesforuser20count1440 > 20)
+            //{
+            //    ViewBag.ErrorMessage3 = "لايمكن تسجيل اكثر من 20 دورة اثرائية بالعام الواحد  ";
+            //    return View(aCourcesMaster);
+            //}
+            //var coursesforuser2count1446 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1446)).Count();
+            //var coursesforuser2count1445 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1445)).Count();
+            //var coursesforuser2count1444 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1444)).Count();
+            //var coursesforuser2count1443 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1443)).Count();
+            //var coursesforuser2count1442 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1442)).Count();
+            //var coursesforuser2count1441 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1441)).Count();
+            //var coursesforuser2count1440 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 && (b.CourcesEndDate.Year == 1440)).Count();
+            //if (coursesforuser2count1446 > 2 || coursesforuser2count1445 > 2 || coursesforuser2count1444 > 2 || coursesforuser2count1443 > 2 || coursesforuser2count1442 > 2 || coursesforuser2count1441 > 2 || coursesforuser2count1440 > 2)
+            //{
+            //    ViewBag.ErrorMessage3 = "لايمكن تسجيل اكثر من 2  دورة بدون اختبار  بالعام الواحد  ";
+            //    return View(aCourcesMaster);
+            //}
             string x = "", y = "", file1 = "", file2 = "";
 
-            if (aCourcesMaster.Filecer != null && (extension == ".jpeg" || extension == ".jpg" || extension == ".png" || extension == ".gif" || extension == ".jfif" || extension == ".pdf"))
-            {
-                file1 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filecer.FileName;
-                string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
-                string fullPath = Path.Combine(uploads, file1);
-                aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
-            }
-            else
-            {
-                ViewBag.ErrorMessage = "يرجي رفع شهادة الدورة (jpeg, jpg, png, gif, jfif,pdf)!";
-                return View(aCourcesMaster);
-                //ModelState.AddModelError("uploadError", "يرجي رفع شهادة الدورة");
-                //return Content("<script language='javascript' type='text/javascript'>alert('يرجي رفع شهادة الدورة!');</script>");
-            }
+            //if (aCourcesMaster.Filecer != null && (extension == ".jpeg" || extension == ".jpg" || extension == ".png" || extension == ".gif" || extension == ".jfif" || extension == ".pdf"))
+            //{
+            //    file1 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filecer.FileName;
+            //    string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+            //    string fullPath = Path.Combine(uploads, file1);
+            //    aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
+            //}
+            //else
+            //{
+            //    ViewBag.ErrorMessage = "يرجي رفع شهادة الدورة (jpeg, jpg, png, gif, jfif,pdf)!";
+            //    return View(aCourcesMaster);
+            //    //ModelState.AddModelError("uploadError", "يرجي رفع شهادة الدورة");
+            //    //return Content("<script language='javascript' type='text/javascript'>alert('يرجي رفع شهادة الدورة!');</script>");
+            //}
 
             //
-            if (aCourcesMaster.Filehr != null && (extension2 == ".jpeg" || extension2 == ".jpg" || extension2 == ".png" || extension2 == ".gif" || extension2 == ".jfif" || extension == ".pdf"))
-            {
-                file2 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filehr.FileName;
-                string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
-                string fullPath2 = Path.Combine(uploads2, file2);
-                aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
-                x = file2;
-            }
-            else
-            {
-                y = "";
-            }
+            //if (aCourcesMaster.Filehr != null && (extension2 == ".jpeg" || extension2 == ".jpg" || extension2 == ".png" || extension2 == ".gif" || extension2 == ".jfif" || extension == ".pdf"))
+            //{
+            //    file2 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filehr.FileName;
+            //    string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
+            //    string fullPath2 = Path.Combine(uploads2, file2);
+            //    aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
+            //    x = file2;
+            //}
+            //else
+            //{
+            //    y = "";
+            //}
             var ac = _context.ACourcesMasters.Find(aCourcesMaster.CourcesIdmaster);
             if (ac == null)
             {
                 return NotFound();
             }
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
                     //string uploads1 = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
@@ -1079,16 +1148,39 @@ namespace Hr.Controllers
                     ac.CourcesIdmaster = aCourcesMaster.CourcesIdmaster;
                     ac.CourcesId = aCourcesMaster.CourcesId;
                     ac.CourcesIdType = aCourcesMaster.CourcesIdType;
-                    ac.CourcesIdDeptin = Convert.ToInt32(HttpContext.Session.GetString("empdepid")) /*aCourcesMaster.CourcesIdDeptin*/;
+                   /* ac.CourcesIdDeptin = Convert.ToInt32(HttpContext.Session.GetString("empdepid"))*/ /*aCourcesMaster.CourcesIdDeptin*/;
                     ac.CourcesIdTraining = aCourcesMaster.CourcesIdTraining;
                     ac.CourcesIdDeptout = aCourcesMaster.CourcesIdDeptout;
                     ac.CourcesIdEstimate = aCourcesMaster.CourcesIdEstimate;
-                    ac.CourcesIdImagecert = file1;
-                    ac.CourcesIdImagehr = x == x ? x : y;
+                    //ac.CourcesIdImagecert = file1;
+                    //ac.CourcesIdImagehr = x == x ? x : y;
+                    if (aCourcesMaster.CourcesStartDateh == Convert.ToDateTime("1/1/0001 12:00:00 AM"))
+                    {
                     ac.CourcesStartDate = aCourcesMaster.CourcesStartDate;
+                    ac.CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays) + 1;
+
+                    }
+                    else
+                    {
+                    ac.CourcesStartDate = aCourcesMaster.CourcesStartDateh;
+                    ac.CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesStartDateh - aCourcesMaster.CourcesStartDateh).TotalDays) + 1;
+
+                    }
+                    if (aCourcesMaster.CourceendDateh ==Convert.ToDateTime("1/1/0001 12:00:00 AM"))
+                    {
                     ac.CourcesEndDate = aCourcesMaster.CourcesEndDate;
                     ac.CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays) + 1;
-                    ac.CourcesPassRate = aCourcesMaster.CourcesPassRate;
+                    }
+                    else
+                    {
+
+                    ac.CourcesEndDate = aCourcesMaster.CourceendDateh;
+                    ac.CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourceendDateh - aCourcesMaster.CourcesStartDateh).TotalDays) + 1;
+
+                    }
+                  
+                    //ac.CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays) + 1;
+                    //ac.CourcesPassRate = aCourcesMaster.CourcesPassRate;
                     ac.COURCES_EXCUTION = aCourcesMaster.COURCES_EXCUTION;
                     //ac.Cempid = HttpContext.Session.GetString("empid");
                     //
@@ -1174,22 +1266,10 @@ namespace Hr.Controllers
                     {
                         throw;
                     }
-                }
+                //}
 
 
-                //logs
-                ACourcesLogs aa = new ACourcesLogs
-                {
-                    requestid = Convert.ToString(aCourcesMaster.CourcesIdmaster),
-                    userr = HttpContext.Session.GetString("empid"),
-                    tt=DateTime.Now
-                };
-
-                _context.ACourcesLogs.Add(aa);//
-                await _context.SaveChangesAsync();
-
-                //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Index", "ViewModelMasterwithother", new { area = "" });
+              
             }
             ViewData["Cempid"] = new SelectList(_context.Cemps, "Cempid", "Cempname", aCourcesMaster.Cempid);
             ViewData["CourcesId"] = new SelectList(_context.ACourcesNames, "CourcesId", "CourcesName", aCourcesMaster.CourcesId);
@@ -1200,7 +1280,19 @@ namespace Hr.Controllers
             ViewData["ACourcesType"] = new SelectList(_context.ACourcesTypes, "CourcesIdType", "CourcesTypeName");
             ViewData["ACourcesTrainingMethod"] = new SelectList(_context.ACourcesTrainingMethods, "CourcesIdTraining", "CourcesNameTraining");
             ViewData["ACourcesEstimate"] = new SelectList(_context.ACourcesEstimates, "CourcesIdEstimate", "CourcesNameEstimate");
+            //logs
+            ACourcesLogs aa = new ACourcesLogs
+            {
+                requestid = Convert.ToString(aCourcesMaster.CourcesIdmaster),
+                userr = HttpContext.Session.GetString("empid"),
+                tt = DateTime.Now
+            };
 
+            _context.ACourcesLogs.Add(aa);//
+            await _context.SaveChangesAsync();
+
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "ViewModelMasterwithother", new { area = "" });
             return View(aCourcesMaster);
         }
 

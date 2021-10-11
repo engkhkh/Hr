@@ -80,14 +80,14 @@
             <span asp-validation-for="CourcesIdDeptin" class="text-danger"></span>
         </div>*@
                 <div class="form-group">
-                    <label class="control-label">حدد نوع التدريب </label>
+                    <label class="control-label">حدد مكان التدريب </label>
                     <select asp-for="CourcesIdTraining" id="chosen-select3" class="form-control chosen-select" data-placeholder="اختيار نوع التدريب  " asp-items="ViewBag.ACourcesTrainingMethod">
                         <option value="">تحديد</option>
                     </select>
                     <span asp-validation-for="CourcesIdTraining" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">جهة الدورة </label>
+                    <label class="control-label">جهة التدريب </label>
                     <select asp-for="CourcesIdDeptout" id="chosen-select4" class="chosen-select form-control" data-placeholder="اختيار مقدم الدورة  " asp-items="ViewBag.ACourcesDeptout">
                         <option value="">تحديد</option>
                     </select>
@@ -177,8 +177,9 @@
     <script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
     <script src="~/js/prism.js"></script>
 <script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
-
-
+<script src="~/lib/globalize/globalize.js"></script>
+<script src="~/lib/globalize/globalize-runtime.js"></script>
+<script src="~/lib/globalize/date.js"></script>
    @*<script type="text/javascript">
        $(document).on("click", ":submit", function (e) {
 
@@ -192,7 +193,8 @@
    </script>*@
 
     <script type="text/javascript">
-
+      
+      
         $('#chosen-select16').append(new Option('اخري', 5));
         /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
         $("#a").css('visibility', 'hidden');
@@ -290,7 +292,7 @@
             $('.disable-date').hijriDatePicker({
 
                 minDate: "2020-01-01",
-                maxDate: "2022-01-01",
+                maxDate: "2023-01-01",
                 viewMode: "years",
                 hijri: true,
                 debug: true,
@@ -305,7 +307,11 @@
 
             $(".hijri-date-input").hijriDatePicker({
                 minDate: "2000-01-01",
-                maxDate: new Date(),
+          /*      maxDate:"2021-10-06",*/
+                maxDate: new Date(new Date().setDate(new Date().getDate())),
+                /*   endDate: new Date(new Date().setDate(new Date().getDate() + 5))*/
+                /*   minDate: new Date(new Date().setDate(new Date().getDate() + 1))*/
+                todayHighlight: true,
                 //disabledDates: [new Date()],
                 locale: "ar-sa",
                 format: "YYYY-MM-DD",
@@ -314,7 +320,8 @@
                 hijriDayViewHeaderFormat: "iMMMM iYYYY",
                 showSwitcher: false,
                 allowInputToggle: true,
-                showTodayButton: false,
+                language: "AR", 
+                /* showTodayButton: false,*/
                 useCurrent: true,
                 isRTL: false,
                 viewMode: 'months',
@@ -324,6 +331,7 @@
                 showClear: true,
                 showTodayButton: true,
                 showClose: true,
+           /*     autoclose: true,*/
 
                
 

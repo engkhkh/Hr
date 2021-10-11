@@ -48,13 +48,14 @@ namespace Hr.Controllers
         {
             var emp = _context.Cemps.Where(x => x.Cempid == from).FirstOrDefault();
             var course = _context.ACourcesMasters.Where(x => x.Cempid == from && x.CourcesIdmaster == id).FirstOrDefault();
+            var coursetypemethod = _context.ACourcesTrainingMethods.Where(x => x.CourcesIdTraining == course.CourcesIdTraining).FirstOrDefault();
 
             MessagesProcess messagesProcess = new MessagesProcess
             {
                 Fromr = HttpContext.Session.GetString("empid"),
                 mestypereqid = id,
                 mestypetopic = "  معالجة ايام الغياب اثناء الدورة  للموظف  " + emp.CEMPNAME + "/ ورقمه الوظيفي  " + emp.Cempid,
-                redesc = "فترة الدورة  " + course.CourcesStartDate.ToString("d") + "  :  " + course.CourcesEndDate.ToString("d"),
+                redesc = "فترة الدورة  " + course.CourcesStartDate.ToString("d") + "  :  " + course.CourcesEndDate.ToString("d")+Environment.NewLine+"وعدد ألايام "+course.CourcesNumberofdays + Environment.NewLine + "ومكان الدورة " + coursetypemethod.CourcesNameTraining,
                 Daterequest = DateTime.Now
 
 
@@ -107,13 +108,14 @@ namespace Hr.Controllers
         {
             var emp = _context.Cemps.Where(x => x.Cempid == from).FirstOrDefault();
             var course = _context.ACourcesMasters.Where(x => x.Cempid == from && x.CourcesIdmaster == id).FirstOrDefault();
+            var coursetypemethod = _context.ACourcesTrainingMethods.Where(x => x.CourcesIdTraining ==course.CourcesIdTraining).FirstOrDefault();
 
             MessagesProcess messagesProcess = new MessagesProcess
             {
                 Fromr = HttpContext.Session.GetString("empid"),
                 mestypereqid = id,
                 mestypetopic = " احتساب الاستحقاقات المالية للدورة للموظف   " + emp.CEMPNAME + "  ورقمه الوظيفي " + emp.Cempid,
-                redesc = "فترة الدورة " + course.CourcesStartDate.ToString("d") + "  :   " + course.CourcesEndDate.ToString("d"),
+                redesc = "فترة الدورة " + course.CourcesStartDate.ToString("d") + "  :   " + course.CourcesEndDate.ToString("d") + Environment.NewLine + "وعدد ألايام " + course.CourcesNumberofdays+ Environment.NewLine + "ومكان الدورة "+ coursetypemethod.CourcesNameTraining,
                 Daterequest = DateTime.Now
 
 

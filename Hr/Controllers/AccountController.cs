@@ -16,8 +16,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-
-
+//using System.DirectoryServices.AccountManagement;
+//using System.DirectoryServices;
+using System.Diagnostics;
+using System.Security.Principal;
+using System.Threading;
+using System.Globalization;
+using Novell.Directory.Ldap;
+using System.DirectoryServices;
 
 namespace Hr.Controllers
 {
@@ -51,7 +57,7 @@ namespace Hr.Controllers
         private readonly IDNTCaptchaValidatorService _validatorService;
         private readonly DNTCaptchaOptions _captchaOptions;
         private readonly hrContext _context;
-        Logger loggerx = LogManager.GetCurrentClassLogger();
+        NLog.Logger loggerx = LogManager.GetCurrentClassLogger();
         //Here can be implemented checking logic from the database  
         ClaimsIdentity identity = null;
         bool isAuthenticated = false;
@@ -59,6 +65,7 @@ namespace Hr.Controllers
         private static int cntAttemps = 0;
 
         private readonly string _connectionString;
+
         public AccountController(hrContext context, IConfiguration _configuratio, IDNTCaptchaValidatorService validatorService, IOptions<DNTCaptchaOptions> options)
         {
             _validatorService = validatorService;
@@ -67,10 +74,10 @@ namespace Hr.Controllers
             _context = context;
         }
 
-      
-
-      
+       
         const string SessionName = "_Name";
+
+
         [Route("")]
         [Route("Show")]
         [Route("~/")]
@@ -79,8 +86,315 @@ namespace Hr.Controllers
             return View();
             //return RedirectToAction("Index", "Account", new { area = "" });
         }
+        private static ILdapConnection _conn;
+        private static ILdapConnection _conn2;
+
+        static ILdapConnection GetConnection()
+        {
+            LdapConnection ldapConn = _conn as LdapConnection;
+
+            if (ldapConn == null)
+            {
+                // Creating an LdapConnection instance 
+                ldapConn = new LdapConnection() /*{ SecureSocketLayer = false }*/;
+
+                //Connect function will create a socket connection to the server - Port 389 for insecure and 3269 for secure    
+                ldapConn.Connect("10.18.1.14", 389);
+
+                //Bind function with null user dn and password value will perform anonymous bind to LDAP server 
+                ldapConn.Bind(@"Qassim\ldap","admin@123");
+
+                //
+
+                // -- Code to get current address of the LDAP----  
+                DirectoryEntry rootDSE = new DirectoryEntry("LDAP://RootDSE");
+                var defaultNamingContext = rootDSE.Properties["defaultNamingContext"].Value;
+
+                //--- Code to use the current address for the LDAP and query it for the user---                  
+                DirectorySearcher dssearch = new DirectorySearcher("LDAP://" + defaultNamingContext);
+                dssearch.Filter = "(sAMAccountName=1442910)";
+                SearchResult sresult = dssearch.FindOne();
+                DirectoryEntry dsresult = sresult.GetDirectoryEntry();
+
+                //--- Code for getting the properties of the logged in user from AD  
+                var FirstName = dsresult.Properties["givenName"][0].ToString();
+                var LastName = dsresult.Properties["sn"][0].ToString();
+                var Email = dsresult.Properties["mail"][0].ToString();
+                var Department = dsresult.Properties["department"][0].ToString();
+                var Manager = dsresult.Properties["manager"][0].ToString();
+
+                //string groupName = "1442910";
+                //var groups = new HashSet<string>();
+                ////CN=خليل ابراهيم لملوم سعداوي,OU=ادارة تطوير التطبيقات الألية-الادارة العامة لتقنية المعلومات,OU=الادارة العامة لتقنية المعلومات,OU=امانة منطقة القصيم,DC=qassim,DC=gov,DC=sa
+
+                //var searchBase = string.Empty;
+                //var filter = $"(&(objectClass=user)(CN=خليل ابراهيم لملوم سعداوي,OU=ادارة تطوير التطبيقات الألية-الادارة العامة لتقنية المعلومات,OU=الادارة العامة لتقنية المعلومات,OU=امانة منطقة القصيم,DC=qassim,DC=gov,DC=sa)";
+                //var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
+                //while (search.HasMore())
+                //{
+                //    var nextEntry = search.Next();
+                //    groups.Add(nextEntry.Dn);
+                //    var childGroups = GetChildren(string.Empty, nextEntry.Dn);
+                //    foreach (var child in childGroups)
+                //    {
+                //        groups.Add(child);
+                //    }
+                //}
 
 
+                //
+                // Searches in the Marketing container and return all child entries
+                //just below this container i.e Single level search
+                //                string searchBase = "ou=development,o=acme";
+                //                int searchScope = LdapConnection.ScopeBase;
+                //                string searchFilter = "(title=engineer)";
+                //                LdapSearchQueue queue = ldapConn.Search(searchBase,
+                //LdapConnection.ScopeOne, searchFilter, null, false, (LdapSearchQueue)
+                //null, (LdapSearchConstraints)null);
+                //                LdapMessage message;
+                //                while ((message = queue.GetResponse()) != null)
+                //                {
+                //                    if (message is LdapSearchResult)
+                //                    {
+                //                        LdapEntry entry = (LdapSearchResult)message.Entry;
+                //                        System.Console.Out.WriteLine("\n" + entry.Dn);
+                //                        System.Console.Out.WriteLine("\tAttributes: ");
+
+                //                        // Get the attribute set of the entry
+                //                        LdapAttributeSet attributeSet = entry.GetAttributeSet();
+                //                        System.Collections.IEnumerator ienum =
+                //              attributeSet.GetEnumerator();
+
+                //                        // Parse through the attribute set to get the attributes and
+                //                        //the corresponding values
+                //                           while (ienum.MoveNext())
+                //                        {
+                //                            LdapAttribute attribute = (LdapAttribute)ienum.Current;
+                //                            string attributeName = attribute.Name;
+                //                            string attributeVal = attribute.StringValue;
+                //                            Console.WriteLine(attributeName + "value:" +
+                //           attributeVal);
+                //                        }
+                //                    }
+                //                }
+
+                //Procced 
+
+                //While all the required entries are parsed, disconnect   
+
+                // Searches in the Marketing container and return all child entries
+                //just below this container i.e.Single level search
+
+                //LdapSearchResults lsc = (LdapSearchResults)ldapConn.Search("ou=امانة منطقة القصيم,o=*", LdapConnection.ScopeOne, "objectClass=*", null, false);
+                //while (lsc.HasMore())
+                //{
+                //    LdapEntry nextEntry = null;
+                //    try
+                //    {
+                //        nextEntry = lsc.Next();
+                //    }
+                //    catch (LdapException e)
+                //    {
+                //        Console.WriteLine("Error: " + e.LdapErrorMessage);
+                //        //Exception is thrown, go for next entry
+                //        continue;
+                //    }
+
+                //    Console.WriteLine("\n" + nextEntry.Dn);
+
+                //    // Get the attribute set of the entry
+                //    LdapAttributeSet attributeSet = nextEntry.GetAttributeSet();
+                //    System.Collections.IEnumerator ienum = attributeSet.GetEnumerator();
+
+                //    // Parse through the attribute set to get the attributes and the
+                //    //corresponding values
+                //  while (ienum.MoveNext())
+                //    {
+                //        LdapAttribute attribute = (LdapAttribute)ienum.Current;
+                //        string attributeName = attribute.Name;
+                //        string attributeVal = attribute.StringValue;
+                //        Console.WriteLine(attributeName + "value:" + attributeVal);
+                //    }
+                //}
+
+                ////Procced 
+
+                ////While all the entries are parsed, disconnect   
+                //ldapConn.Disconnect();
+
+                //     // Searches in the Marketing container and return all child entries
+                //     string searchBase = "ou=development,o=acme";
+                //     int searchScope = LdapConnection.ScopeBase;
+                //     string searchFilter = "(title=engineer)";
+
+                //     LdapSearchQueue queue = ldapConn.Search(searchBase,
+                //              LdapConnection.ScopeOne, searchFilter, null, false, (LdapSearchQueue)
+                //           null, (LdapSearchConstraints)null);
+                //      LdapMessage message;
+                //     while ((message = queue.GetResponse()) != null)
+                //     {
+                //         if (message is LdapSearchResult)
+                //         {
+                //             LdapEntry entry = (LdapSearchResult)message.Entry;
+                //             System.Console.Out.WriteLine("\n" + entry.Dn);
+                //             System.Console.Out.WriteLine("\tAttributes: ");
+
+                //             // Get the attribute set of the entry
+                //             LdapAttributeSet attributeSet = entry.GetAttributeSet();
+                //             System.Collections.IEnumerator ienum =
+                //   attributeSet.GetEnumerator();
+
+                //             // Parse through the attribute set to get the attributes and
+
+                //                while (ienum.MoveNext())
+                //             {
+                //                 LdapAttribute attribute = (LdapAttribute)ienum.Current;
+                //                 string attributeName = attribute.Name;
+                //                 string attributeVal = attribute.StringValue;
+                //                 Console.WriteLine(attributeName + "value:" +
+                //attributeVal);
+                //             }
+                //         }
+                //     }
+
+                //     //Procced 
+
+                //While all the required entries are parsed, disconnect   
+                ldapConn.Disconnect();
+
+
+                //LdapAttributeSet attributeSet = new LdapAttributeSet();
+                //attributeSet.Add(new LdapAttribute("objectclass","user"));
+                //attributeSet.Add(new LdapAttribute("sAMAccountName","myuser"));
+                //attributeSet.Add(new LdapAttribute("userPRincipalName", "myuser"));
+                //attributeSet.Add(new LdapAttribute("userAccountControl", (66080).ToString()));
+                //attributeSet.Add(new LdapAttribute("userPassword", "userPassword"));
+
+                //string dn ="CN=myuser,CN=Users,DC=qassim,DC=gov,DC=com";
+                //LdapEntry newEntry = new LdapEntry(dn, attributeSet);
+                //ldapConn.Add(newEntry);
+
+                //string groupName = "";
+                //var groups = new HashSet<string>();
+
+                //var searchBase = string.Empty;
+                //var filter = $"(&(objectClass=group)(cn={groupName}))";
+                //var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
+                //while (search.HasMore())
+                //{
+                //    var nextEntry = search.Next();
+                //    groups.Add(nextEntry.Dn);
+                //    var childGroups = GetChildren(string.Empty, nextEntry.Dn);
+                //    foreach (var child in childGroups)
+                //    {
+                //        groups.Add(child);
+                //    }
+                //}
+
+                //var users = new HashSet<string>();
+
+                ////string groupFilter = (groups?.Count ?? 0) > 0 ?
+                ////    $"(|{string.Join("", groups.Select(x => $"(memberOf={x})").ToList())})" :
+                ////    string.Empty;
+                //string c = "sudan";
+                //string filter2 ="(&(objectClass=user)(objectCategory=person)(l=" + c.Contains(c) + ")(cn=*))";
+
+                //var searchBase = string.Empty;
+                //string filter = $"(&(objectClass=user)(objectCategory=person)(company=OU=امانة منطقة القصيم,DC=qassim,DC=gov,DC=sa))";
+                //var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter2, null, false);
+
+                //while (search.HasMore())
+                //{
+                //    var nextEntry = search.Next();
+                //    nextEntry.GetAttributeSet();
+                //    users.Add(nextEntry.Dn);
+                //}
+
+
+                //
+                //var groups = new HashSet<string>();
+
+                //var searchBase = string.Empty;
+                //var filter = $"(&(objectClass=person)(OU=امانة منطقة القصيم,DC=qassim,DC=gov,DC=sa))";
+                //var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
+                //while (search.HasMore())
+                //{
+                //    var nextEntry = search.Next();
+                //    groups.Add(nextEntry.Dn);
+                //    var childGroups = GetChildren(string.Empty, nextEntry.Dn);
+                //    foreach (var child in childGroups)
+                //    {
+                //        groups.Add(child);
+                //    }
+                //}
+
+            }
+
+            return ldapConn;
+        }
+        //static HashSet<string> GetChildren(string searchBase, string groupDn, string objectClass = "group")
+        //{
+        //    var ldapConn = GetConnection();
+        //    var listNames = new HashSet<string>();
+
+        //    var filter = $"(&(objectClass={objectClass})(memberOf={groupDn}))";
+        //    var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
+
+        //    while (search.HasMore())
+        //    {
+        //        var nextEntry = search.Next();
+        //        listNames.Add(nextEntry.Dn);
+        //        var children = GetChildren(string.Empty, nextEntry.Dn);
+        //        foreach (var child in children)
+        //        {
+        //            listNames.Add(child);
+        //        }
+        //    }
+
+        //    return listNames;
+        //}
+      
+        static HashSet<string> GetChildren(string searchBase, string groupDn, string objectClass = "group")
+        {
+            var ldapConn = GetConnection();
+            var listNames = new HashSet<string>();
+
+            var filter = $"(&(objectClass={objectClass})(memberOf={groupDn}))";
+            var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
+
+            while (search.HasMore())
+            {
+                var nextEntry = search.Next();
+                listNames.Add(nextEntry.Dn);
+                var children = GetChildren(string.Empty, nextEntry.Dn);
+                foreach (var child in children)
+                {
+                    listNames.Add(child);
+                }
+            }
+
+            return listNames;
+        }
+
+        void SearchForUser(string company, HashSet<string> groups = null)
+        {
+            var ldapConn = GetConnection();
+            var users = new HashSet<string>();
+
+            string groupFilter = (groups?.Count ?? 0) > 0 ?
+                $"(|{string.Join("", groups.Select(x => $"(memberOf={x})").ToList())})" :
+                string.Empty;
+            var searchBase = string.Empty;
+            string filter = $"(&(objectClass=user)(objectCategory=person)(company={company}){groupFilter})";
+            var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
+
+            while (search.HasMore())
+            {
+                var nextEntry = search.Next();
+                nextEntry.GetAttributeSet();
+                users.Add(nextEntry.Dn);
+            }
+        }
         public static string GetClientIPAddress(HttpContext context)
         {
             string ip = string.Empty;
@@ -94,7 +408,7 @@ namespace Hr.Controllers
             }
             return ip;
         }
-
+  
         [Route("login")]
         [HttpPost]
         [ValidateDNTCaptcha(
@@ -103,6 +417,10 @@ namespace Hr.Controllers
             CaptchaGeneratorDisplayMode = DisplayMode.ShowDigits)]
         public IActionResult Login(string username, string password)
         {
+
+            _conn2 = GetConnection();
+            //SearchForUser("ou", "");
+
             string clientIp = GetClientIPAddress(HttpContext);
             var objuser = _context.Cemps.Where(b => b.Cempid == username).FirstOrDefault();
             if(objuser==null)
