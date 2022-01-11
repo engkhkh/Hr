@@ -8,16 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Hr.Services;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MailKit.Security;
+using System.Threading;
+using NLog;
 
 namespace Hr.Controllers
 {
     public class MasterDetailsController : Controller
     {
         private readonly hrContext _context;
+        private readonly IMailService mailService;
+        NLog.Logger loggerx = LogManager.GetCurrentClassLogger();
 
-        public MasterDetailsController(hrContext context)
+        public MasterDetailsController(hrContext context, IMailService mailService)
         {
             _context = context;
+            this.mailService = mailService;
         }
 
         // GET: MasterDetails
@@ -328,6 +337,52 @@ namespace Hr.Controllers
                 _context.Add(mas);
                 _context.Update(MasterRequestTypeIdsMasterRequestTypeIdserial2);
                 await _context.SaveChangesAsync();
+                var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                var emprequestor = _context.Cemps.Where(h => h.Cempid == MasterDetails.MasterRequestFrom).FirstOrDefault();
+                var empapproval1 = _context.Cemps.Where(h => h.Cempid == emprequestor.MANAGERID).FirstOrDefault();
+
+                //WelcomeRequest request = new WelcomeRequest();
+                //request.UserName = empapproval2.CEMPNAME;
+                //request.header = "أرشفة الدورات التدريبية ";
+                //request.Details = "تم اعتماد أرشفة دورة تدريبية ,طلب رقم :" + MasterDetails.COURCES_IDMASTER + "  للموظف  " + emprequestor.CEMPNAME/*+ "بواسطة   : "+ empapproval2.CEMPNAME*/;
+                //request.ToEmail = empapproval2.mail;
+                //try
+                //{
+                //    //await mailService.SendEmailAsync(m);
+                //    await mailService.SendWelcomeEmailAsync(request);
+                //}
+                //catch (Exception ex)
+                //{
+
+                //}
+                //WelcomeRequest request2 = new WelcomeRequest();
+                //request2.UserName = emprequestor.MANAGERNAME;
+                //request2.header = "أرشفة الدورات التدريبية ";
+                //request2.Details = "تم اعتماد أرشفة دورة تدريبية ,طلب رقم :" + MasterDetails.COURCES_IDMASTER + "  للموظف  " + emprequestor.CEMPNAME + "بواسطة  : " + empapproval2.CEMPNAME;
+                //request2.ToEmail = empapproval1.mail;
+                //try
+                //{
+                //    //await mailService.SendEmailAsync(m);
+                //    await mailService.SendWelcomeEmailAsync(request2);
+                //}
+                //catch (Exception ex)
+                //{
+
+                //}
+                WelcomeRequest request3 = new WelcomeRequest();
+                request3.UserName = emprequestor.CEMPNAME;
+                request3.header = "أرشفة الدورات التدريبية ";
+                request3.Details = "تم اعتماد أرشفة دورة تدريبية ,طلب رقم :" + MasterDetails.COURCES_IDMASTER + " بواسطة : " + empapproval2.CEMPNAME;
+                request3.ToEmail = emprequestor.mail;
+                try
+                {
+                    //await mailService.SendEmailAsync(m);
+                    await mailService.SendWelcomeEmailAsync(request3);
+                }
+                catch (Exception ex)
+                {
+                    loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة الارشفة    " + emprequestor.Cempid + "اعتماد دورة ارشفة  " + ex.Message);
+                }
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Index", "ViewModelMasterwithother", new { area = "" });
             }
@@ -400,6 +455,52 @@ namespace Hr.Controllers
                 _context.Add(mas);
                 _context.Update(MasterRequestTypeIdsMasterRequestTypeIdserial2);
                 await _context.SaveChangesAsync();
+                var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                var emprequestor = _context.Cemps.Where(h => h.Cempid == MasterDetails.MasterRequestFrom).FirstOrDefault();
+                var empapproval1 = _context.Cemps.Where(h => h.Cempid == emprequestor.MANAGERID).FirstOrDefault();
+
+                //WelcomeRequest request = new WelcomeRequest();
+                //request.UserName = empapproval2.CEMPNAME;
+                //request.header = "أرشفة الدورات التدريبية ";
+                //request.Details = "تم رفض اعتماد أرشفة دورة تدريبية ,طلب رقم :" + MasterDetails.COURCES_IDMASTER + "  للموظف  " + emprequestor.CEMPNAME /* + " بواسطة    : " + empapproval2.CEMPNAME*/;
+                //request.ToEmail = empapproval2.mail;
+                //try
+                //{
+                //    //await mailService.SendEmailAsync(m);
+                //    await mailService.SendWelcomeEmailAsync(request);
+                //}
+                //catch (Exception ex)
+                //{
+
+                //}
+                //WelcomeRequest request2 = new WelcomeRequest();
+                //request2.UserName = emprequestor.MANAGERNAME;
+                //request2.header = "أرشفة الدورات التدريبية ";
+                //request2.Details = "تم  رفض اعتماد أرشفة دورة تدريبية ,طلب رقم :" + MasterDetails.COURCES_IDMASTER + "  للموظف  " + emprequestor.CEMPNAME  + " بواسطة  : " + empapproval2.CEMPNAME;
+                //request2.ToEmail = empapproval1.mail;
+                //try
+                //{
+                //    //await mailService.SendEmailAsync(m);
+                //    await mailService.SendWelcomeEmailAsync(request2);
+                //}
+                //catch (Exception ex)
+                //{
+
+                //}
+                WelcomeRequest request3 = new WelcomeRequest();
+                request3.UserName = emprequestor.CEMPNAME;
+                request3.header = "أرشفة الدورات التدريبية ";
+                request3.Details = "تم رفض اعتماد أرشفة دورة تدريبية ,طلب رقم :" + MasterDetails.COURCES_IDMASTER + " بواسطة : " + empapproval2.CEMPNAME;
+                request3.ToEmail = emprequestor.mail;
+                try
+                {
+                    //await mailService.SendEmailAsync(m);
+                    await mailService.SendWelcomeEmailAsync(request3);
+                }
+                catch (Exception ex)
+                {
+                    loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة ارشفة الدورات    " + emprequestor.Cempid + "رفض اعتماد دورة ارشفة  " + ex.Message);
+                }
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Index", "ViewModelMasterwithother", new { area = "" });
             }

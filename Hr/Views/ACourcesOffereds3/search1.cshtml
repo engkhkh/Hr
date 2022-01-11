@@ -3,7 +3,7 @@
 *@
 @{
 }
-@model IEnumerable<Hr.Models.ViewModelOfferedwithother>
+@model IEnumerable<Hr.Models.ViewModelMasterwithother>
 
 @{
     ViewData["Title"] = " الاستعلام عن الترشح لدورات الجهات التدريبية ";
@@ -90,18 +90,18 @@
 <table @*style="width: 100%;"*@ id="table" class="table table-responsive-lg table-bordered table-condensed table-striped table-hover  sortable">
     <thead>
         <tr>
-            @*<th>
-
-        </th>*@
+            <th>
+                رقم الطلب 
+        </th>
             <th>
                 الموظف
             </th>
             <th>
-                الرقم الوظيفي
+                السجل
             </th>
-            <th>
+            @*<th>
                 المسمي الوظيفي
-            </th>
+            </th>*@
             <th>
                 القسم
             </th>
@@ -118,10 +118,16 @@
                 البرنامج الاول
             </th>
             <th>
+                مكان الدورة
+            </th>
+            <th>
                 تاريخ التنفيذ
             </th>
             <th>
                 البرنامج الثاني
+            </th>
+            <th>
+                مكان الدورة
             </th>
             <th>
                 تاريخ التنفيذ
@@ -132,6 +138,9 @@
 
             </th>
             <th>
+                مكان الدورة
+            </th>
+            <th>
                 تاريخ التنفيذ
 
             </th>
@@ -139,7 +148,9 @@
                 البرنامج الرابع
 
             </th>
-
+            <th>
+                مكان الدورة
+            </th>
             <th>
                 تاريخ التنفيذ
             </th>
@@ -147,7 +158,9 @@
                 البرنامج الخامس
 
             </th>
-
+            <th>
+                مكان الدورة
+            </th>
             <th>
                 تاريخ التنفيذ
             </th>
@@ -155,7 +168,9 @@
                 البرنامج السادس
 
             </th>
-
+            <th>
+                مكان الدورة
+            </th>
             <th>
                 تاريخ التنفيذ
             </th>
@@ -163,15 +178,19 @@
                 البرنامج السابع
 
             </th>
-
+            <th>
+                مكان الدورة
+            </th>
             <th>
                 تاريخ التنفيذ
             </th>
             <th>
-                البرنامج الثامن 
+                البرنامج الثامن
 
             </th>
-
+            <th>
+                مكان الدورة
+            </th>
             <th>
                 تاريخ التنفيذ
             </th>
@@ -195,6 +214,9 @@
             @foreach (var item in Model)
             {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesOfferedId)
+            </td>
             <!--<td>-->
             @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
         <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
@@ -205,11 +227,11 @@
                 @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cemps.Cempid)
+                @Html.DisplayFor(modelItem => item.Cemps.CEMPPASSWRD)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Cemps.CEMPJOBNAME)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Cemps.DEP_NAME)
             </td>
@@ -224,65 +246,84 @@
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
+                @Html.DisplayFor(modelItem => item.ACourcesPrograms.CourcesName)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.ACoursesLocation.name)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate1)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames2.CourcesName)
+                @Html.DisplayFor(modelItem => item.ACourcesPrograms2.CourcesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACoursesLocation2.name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate2)
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames3.CourcesName)
+                @Html.DisplayFor(modelItem => item.ACourcesPrograms3.CourcesName)
                 @*@Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDateh)*@
                 @*@item.ACourcesOffered.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
 
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.ACoursesLocation3.name)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate3)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames4.CourcesName)
+                @Html.DisplayFor(modelItem => item.ACourcesPrograms4.CourcesName)
 
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.ACoursesLocation4.name)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate4)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames5.CourcesName)
+                @Html.DisplayFor(modelItem => item.ACourcesPrograms5.CourcesName)
 
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.ACoursesLocation5.name)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate5)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames6.CourcesName)
+                @Html.DisplayFor(modelItem => item.ACourcesPrograms6.CourcesName)
 
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.ACoursesLocation6.name)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate6)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames7.CourcesName)
+                @Html.DisplayFor(modelItem => item.ACourcesPrograms7.CourcesName)
 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACoursesLocation7.name)
             </td>
 
             <td>
                 @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate7)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames8.CourcesName)
+                @Html.DisplayFor(modelItem => item.ACourcesPrograms8.CourcesName)
 
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.ACoursesLocation8.name)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate8)
             </td>

@@ -8,16 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Hr.Services;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MailKit.Security;
+using System.Threading;
+using NLog;
 
 namespace Hr.Controllers
 {
     public class SupportDetailsController : Controller
     {
         private readonly hrContext _context;
+        private readonly IMailService mailService;
+        NLog.Logger loggerx = LogManager.GetCurrentClassLogger();
 
-        public SupportDetailsController(hrContext context)
+        public SupportDetailsController(hrContext context, IMailService mailService)
         {
             _context = context;
+            this.mailService = mailService;
         }
 
         // GET: MasterDetails
@@ -162,6 +171,26 @@ namespace Hr.Controllers
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
                     _context.SaveChangesAsync();
+
+                    var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                    var empapproval1 = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestTo).FirstOrDefault();
+                    var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+
+                   
+                    WelcomeRequest request3 = new WelcomeRequest();
+                    request3.UserName = emprequestor.CEMPNAME;
+                    request3.header = "الدعم الفني والاقتراحات  ";
+                    request3.Details = "تم الرد علي  ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME +"   .....  "+ offerComments.Offerdetailscomment;
+                    request3.ToEmail = emprequestor.mail;
+                    try
+                    {
+                        //await mailService.SendEmailAsync(m);
+                        await mailService.SendWelcomeEmailAsync(request3);
+                    }
+                    catch (Exception ex)
+                    {
+                        loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة الدعم الفني والاقتراحات    " + emprequestor.Cempid + "الدعم الفني والاقتراحات  " + ex.Message);
+                    }
 
                     return RedirectToAction("IndexOffered3","Support", new { area = "" });
 
@@ -411,7 +440,27 @@ namespace Hr.Controllers
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
                     _context.SaveChanges();
-                        return RedirectToAction("IndexOffered3", "Support", new { area = "" });
+
+                    var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                    var empapproval1 = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestTo).FirstOrDefault();
+                    var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+
+
+                    WelcomeRequest request3 = new WelcomeRequest();
+                    request3.UserName = emprequestor.CEMPNAME;
+                    request3.header = "الدعم الفني والاقتراحات  ";
+                    request3.Details = "تم الرد علي  ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME + "   .....  " + offerComments.Offerdetailscomment;
+                    request3.ToEmail = emprequestor.mail;
+                    try
+                    {
+                        //await mailService.SendEmailAsync(m);
+                        await mailService.SendWelcomeEmailAsync(request3);
+                    }
+                    catch (Exception ex)
+                    {
+                        loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة الدعم الفني والاقتراحات    " + emprequestor.Cempid + "الدعم الفني والاقتراحات  " + ex.Message);
+                    }
+                    return RedirectToAction("IndexOffered3", "Support", new { area = "" });
 
 
                     }

@@ -49,6 +49,9 @@
 
             </th>
             <th>
+                رقم الموظف
+            </th>
+            <th>
                 الموظف
             </th>
             <th>
@@ -61,7 +64,7 @@
                 نوع الدورة
             </th>
             <th>
-                طريقة الدورة
+                مكان الدورة
             </th>
             <th>
                 التقدير
@@ -101,8 +104,11 @@
                 <td>
                     <a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-success">موافق</a>
                     <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-danger">رفض</a>
-                    <a asp-controller="ACourcesMasters" asp-action="Edit" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-warning">تعديل </a>
+                    <a asp-controller="ACourcesMasters" asp-action="Edit" asp-route-id="@item.ACourcesMasters.EncryptedIdd" class="btn btn-warning">تعديل </a>
 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.Cempid)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)

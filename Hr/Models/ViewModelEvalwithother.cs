@@ -29,6 +29,7 @@ namespace Hr.Models
         public EvalRequestTypeId2 evalRequestTypeId2 { get; set; }
         public Evalcomment2 evalcomment2 { get; set; }
 
-
+        //
+        public Cemp cemp { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hr.Controllers
 {
@@ -143,7 +144,7 @@ namespace Hr.Controllers
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
             return View(aCourcesType);
         }
-
+        [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
         // GET: ACourcesTypes/Create
         public IActionResult ticket()
         {

@@ -27,6 +27,7 @@ namespace Hr.Models
         public virtual DbSet<EvalDetail2> EvalDetailss2 { get; set; }
         public virtual DbSet<Evalcomment2> EvalComments2 { get; set; }
         public virtual DbSet<Aevallog> Aevallogs { get; set; }
+        public virtual DbSet<Aeval2log> Aeval2logs { get; set; }
         public virtual DbSet<SupportDetail> SupportDetails { get; set; }
         public virtual DbSet<SupportProcess> SupportProcesses { get; set; }
         public virtual DbSet<SupportRequestTypeId> SupportRequestTypeIds { get; set; }
@@ -138,6 +139,26 @@ namespace Hr.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+            //
+            modelBuilder.Entity<Aeval2log>(entity =>
+            {
+                entity.ToTable("AEVAL2LOGS");
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Editdate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("editdate");
+
+                entity.Property(e => e.Evid)
+                    .HasMaxLength(250)
+                    .HasColumnName("evid");
+
+                entity.Property(e => e.Useredit)
+                    .HasMaxLength(50)
+                    .HasColumnName("useredit");
+            });
             //
             modelBuilder.Entity<Aevallog>(entity =>
             {
@@ -477,6 +498,7 @@ namespace Hr.Models
                 entity.Property(e => e.EvaluationOutputCompetency).HasColumnName("EVALUATION_OUTPUT_COMPETENCY");
 
                 entity.Property(e => e.EvaluationResults).HasColumnName("EVALUATION_RESULTS");
+                entity.Property(e => e.EvaluationResults2).HasColumnName("EVALUATION_RESULTS2");
 
                 entity.Property(e => e.EvaluationTotal).HasColumnName("EVALUATION_TOTAL");
             });
@@ -533,6 +555,7 @@ namespace Hr.Models
                     .HasColumnName("DEP_NAME");
 
                 entity.Property(e => e.EmpIdEnter).HasColumnName("EMP_ID_ENTER");
+                entity.Property(e => e.year).HasColumnName("year");
 
                 entity.Property(e => e.Empname)
                     .HasMaxLength(250)
@@ -573,6 +596,8 @@ namespace Hr.Models
                 entity.Property(e => e.TypeNo)
                     .HasColumnName("TYPE_NO")
                     .HasDefaultValueSql("((1))");
+                entity.Property(e => e.comment1).HasColumnName("comment1");
+                entity.Property(e => e.comment2).HasColumnName("comment2");
             });
 
             modelBuilder.Entity<AEvaluationEmpLog>(entity =>
@@ -650,7 +675,6 @@ namespace Hr.Models
 
                 entity.Property(e => e.TypeNo).HasColumnName("TYPE_NO");
             });
-
             modelBuilder.Entity<AEvaluationGoal>(entity =>
             {
                 entity.HasKey(e => e.Idd4);
@@ -761,6 +785,7 @@ namespace Hr.Models
 
                 entity.Property(e => e.Offerdetailsid).HasColumnName("offerdetailsid");
                 entity.Property(e => e.id).HasColumnName("id");
+                entity.Property(e => e.dtapproved).HasColumnName("dtapproved");
             });
 
 
@@ -821,6 +846,7 @@ namespace Hr.Models
 
                 entity.Property(e => e.Offerdetailsid).HasColumnName("offerdetailsid");
                 entity.Property(e => e.id).HasColumnName("id");
+                entity.Property(e => e.dtapproved).HasColumnName("dtapproved");
             });
 
 
@@ -1041,6 +1067,24 @@ namespace Hr.Models
                 entity.Property(e => e.CourcesId6).HasColumnName("COURCES_ID6");
                 entity.Property(e => e.CourcesId7).HasColumnName("COURCES_ID7");
                 entity.Property(e => e.CourcesId8).HasColumnName("COURCES_ID8");
+
+                entity.Property(e => e.CourcesId01).HasColumnName("COURCES_ID01");
+                entity.Property(e => e.CourcesId02).HasColumnName("COURCES_ID02");
+                entity.Property(e => e.CourcesId03).HasColumnName("COURCES_ID03");
+                entity.Property(e => e.CourcesId04).HasColumnName("COURCES_ID04");
+                entity.Property(e => e.CourcesId05).HasColumnName("COURCES_ID05");
+                entity.Property(e => e.CourcesId06).HasColumnName("COURCES_ID06");
+                entity.Property(e => e.CourcesId07).HasColumnName("COURCES_ID07");
+                entity.Property(e => e.CourcesId08).HasColumnName("COURCES_ID08");
+
+                entity.Property(e => e.CourcesPassRate1).HasColumnName("CourcesPassRate1");
+                entity.Property(e => e.CourcesPassRate2).HasColumnName("CourcesPassRate2");
+                entity.Property(e => e.CourcesPassRate3).HasColumnName("CourcesPassRate3");
+                entity.Property(e => e.CourcesPassRate4).HasColumnName("CourcesPassRate4");
+                entity.Property(e => e.CourcesPassRate5).HasColumnName("CourcesPassRate5");
+                entity.Property(e => e.CourcesPassRate6).HasColumnName("CourcesPassRate6");
+                entity.Property(e => e.CourcesPassRate7).HasColumnName("CourcesPassRate7");
+                entity.Property(e => e.CourcesPassRate8).HasColumnName("CourcesPassRate8");
 
                 entity.Property(e => e.CourcesIdDeptout).HasColumnName("COURCES_ID_DEPTOUT");
 
@@ -1268,7 +1312,8 @@ namespace Hr.Models
                 entity.Property(e => e.dtimelogin).HasColumnName("dttimelogin");
                 entity.Property(e => e.dtimelogout).HasColumnName("dtimelogout");
                 entity.Property(e => e.ip).HasColumnName("userlastip");
-             
+                entity.Property(e => e.comment).HasColumnName("comment");
+
 
 
             });
@@ -1587,6 +1632,9 @@ namespace Hr.Models
                 entity.Property(e => e.MasterRequestFrom) .HasColumnName("MasterRequestFrom");
                 entity.Property(e => e.MasterRequestTo).HasColumnName("MasterRequestTo");
                 entity.Property(e => e.MasterRequestTo2).HasColumnName("MasterRequestTo2");
+                entity.Property(e => e.MasterRequestTo3).HasColumnName("MasterRequestTo3");
+                entity.Property(e => e.MasterRequestTo4).HasColumnName("MasterRequestTo4");
+                entity.Property(e => e.MasterRequestTo5).HasColumnName("MasterRequestTo5");
                 entity.Property(e => e.MasterRequestTypeSatus).HasColumnName("MasterRequestTypeSatus");
                 entity.Property(e => e.MasterRequestNotes).HasColumnName("MasterRequestNotes");
 
@@ -1778,9 +1826,13 @@ namespace Hr.Models
                     .IsRequired()
                     .HasMaxLength(250)
                     .HasColumnName("CEMPPASSWRD");
+                entity.Property(e => e.CEMPPASSWRD1)
+                    //.IsRequired()
+                    .HasMaxLength(250)
+                    .HasColumnName("CEMPPASSWRD2");
 
                 entity.Property(e => e.Cemphiringdate)
-                    .HasColumnType("date")
+                    .HasColumnType("datetime")
                     .HasColumnName("CEMPHIRINGDATE");
                 entity.Property(e => e.CEMPHIRINGDATEHIJRA)
                    .HasColumnType("date")
@@ -1799,7 +1851,7 @@ namespace Hr.Models
                     .HasColumnName("CEMPNO");
 
                 entity.Property(e => e.Cemplastupgrade)
-                    .HasColumnType("date")
+                    .HasColumnType("datetime")
                     .HasColumnName("CEMPLASTUPGRADE");
 
                 entity.Property(e => e.CEMPLASTUPGRADEHIJRA)
@@ -1831,10 +1883,30 @@ namespace Hr.Models
                     .IsRequired()
                     .HasMaxLength(250)
                     .HasColumnName("CLSSNO");
+                entity.Property(e => e.grade)
+                    //.IsRequired()
+                    .HasMaxLength(250)
+                    .HasColumnName("grade");
+                entity.Property(e => e.mobileno)
+                   //.IsRequired()
+                   .HasMaxLength(50)
+                   .HasColumnName("mobileno");
+                entity.Property(e => e.mail)
+                //.IsRequired()
+                .HasMaxLength(50)
+                .HasColumnName("mail");
                 entity.Property(e => e.MANAGERID)
                    .IsRequired()
                    .HasMaxLength(250)
                    .HasColumnName("MANAGERID");
+                entity.Property(e => e.MANAGERID2)
+                .IsRequired()
+                .HasMaxLength(250)
+                .HasColumnName("MANAGERID2");
+                entity.Property(e => e.MANAGERID2id)
+               //.IsRequired()
+               .HasMaxLength(250)
+               .HasColumnName("MANAGERID2id");
                 entity.Property(e => e.MANAGERNAME)
                  .IsRequired()
                  .HasMaxLength(250)

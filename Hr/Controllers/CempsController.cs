@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace Hr.Controllers
 {
@@ -18,10 +19,13 @@ namespace Hr.Controllers
     {
         private readonly hrContext _context;
         private readonly IHostingEnvironment _hosting;
-        public CempsController(hrContext context, IHostingEnvironment hosting)
+        IDataProtector _protector;
+      
+        public CempsController(hrContext context, IHostingEnvironment hosting, IDataProtectionProvider provider)
         {
             _context = context;
             _hosting = hosting;
+            _protector = provider.CreateProtector(GetType().FullName);
         }
         [Authorize(Roles = "Admin")]
         // GET: Cemps
@@ -46,11 +50,13 @@ namespace Hr.Controllers
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+
             return View(await _context.Cemps.ToListAsync());
         }
         // Get MyInfo
         //[Authorize(Roles = "Admin, User")]
         //[Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
         public async Task<IActionResult> MyInfo()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -78,10 +84,12 @@ namespace Hr.Controllers
             {
                 return NotFound();
             }
-            List<Cemp> _Cemps = _context.Cemps.Where(x => x.CEMPADPRTNO ==HttpContext.Session.GetString("empdepid")).Select(x => new Cemp
+            List<Cemp> _Cemps = _context.Cemps.Where(x => x.CEMPADPRTNO ==HttpContext.Session.GetString("empdepid") && x.MANAGERID == HttpContext.Session.GetString("username")).Select(x => new Cemp
             {
                Cempid=x.Cempid,
-               CEMPNAME=x.CEMPNAME
+               CEMPNAME=x.CEMPNAME,
+               Cemphiringdate=x.Cemphiringdate,
+               Cemplastupgrade=x.Cemplastupgrade
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -91,6 +99,7 @@ namespace Hr.Controllers
         }
 
         // GET: Cemps/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(string id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -246,6 +255,7 @@ namespace Hr.Controllers
         }
 
         // GET: Cemps/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -275,6 +285,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Cempid,CEMPUSERNO,CEMPPASSWRD,CEMPNO,CEMPNAME,CEMPJOBNAME,CEMPADPRTNO,DEP_NAME,CLSSNO,MANAGERID,MANAGERNAME,PARENTID,Cemphiringdate,Cemplastupgrade,PARENTNAME,CROLEID")] Cemp cemp)
         {
             if (ModelState.IsValid)
@@ -299,6 +310,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Role([Bind("Cempid,CEMPUSERNO,CEMPPASSWRD,CEMPNO,CEMPNAME,CEMPJOBNAME,CEMPADPRTNO,DEP_NAME,CLSSNO,MANAGERID,MANAGERNAME,PARENTID,Cemphiringdate,Cemplastupgrade,PARENTNAME,CROLEID")] Cemp cemp)
         {
             if (ModelState.IsValid)
@@ -318,6 +330,7 @@ namespace Hr.Controllers
             return View(cemp);
         }
         //role 1
+         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Role1(string id)
         {
             if (id == null)
@@ -338,6 +351,7 @@ namespace Hr.Controllers
         // POST: Cemps/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Role1(string id, [Bind("Cempid,CEMPUSERNO,CEMPPASSWRD,CEMPNO,CEMPNAME,CEMPJOBNAME,CEMPADPRTNO,DEP_NAME,CLSSNO,MANAGERID,MANAGERNAME,PARENTID,Cemphiringdate,Cemplastupgrade,PARENTNAME,CROLEID")] Cemp cemp)
@@ -409,6 +423,7 @@ namespace Hr.Controllers
         // POST: Cemps/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Cempid,CEMPUSERNO,CEMPPASSWRD,CEMPNO,CEMPNAME,CEMPJOBNAME,CEMPADPRTNO,DEP_NAME,CLSSNO,MANAGERID,MANAGERNAME,PARENTID,Cemphiringdate,Cemplastupgrade,PARENTNAME,CROLEID")] Cemp cemp)
@@ -449,6 +464,7 @@ namespace Hr.Controllers
             }
             return View(cemp);
         }
+        [Authorize(Roles = "Admin")]
         // edit password 
         public async Task<IActionResult> Edit1(string id)
         {
@@ -488,6 +504,7 @@ namespace Hr.Controllers
         // POST: Cemps/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit1(string id, [Bind("Cempid,CEMPUSERNO,CEMPPASSWRD,CEMPNO,CEMPNAME,CEMPJOBNAME,CEMPADPRTNO,DEP_NAME,CLSSNO,MANAGERID,MANAGERNAME,PARENTID,Cemphiringdate,Cemplastupgrade,PARENTNAME,CROLEID")] Cemp cemp)
@@ -496,6 +513,11 @@ namespace Hr.Controllers
             {
                 return NotFound();
             }
+            if (cemp.CEMPPASSWRD==null)
+            {
+                ViewBag.ErrorMessage = "ضع بيانات داخل خانة تغيير الرقم السري ";
+            }
+
 
             if (ModelState.IsValid)
             {
@@ -530,11 +552,11 @@ namespace Hr.Controllers
             return View(cemp);
 
         }
-       
-        
-        
-        
-        public async Task<IActionResult> Edit3(string id)
+
+
+
+        [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
+        public async Task<IActionResult> Edit3()
         {
             if (HttpContext.Session.GetString("username") == null)
             {
@@ -555,12 +577,9 @@ namespace Hr.Controllers
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
-            if (id == null)
-            {
-                return NotFound();
-            }
+         
 
-            var cemp = _context.Cemps.Where(b => b.CEMPNAME == id).FirstOrDefault();
+            var cemp = _context.Cemps.Where(b => b.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
             if (cemp == null)
             {
                 return NotFound();
@@ -571,21 +590,34 @@ namespace Hr.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
-        public async Task<IActionResult> Edit3(string id, [Bind("Cempid,CEMPUSERNO,CEMPPASSWRD,CEMPNO,CEMPNAME,CEMPJOBNAME,CEMPADPRTNO,DEP_NAME,CLSSNO,MANAGERID,MANAGERNAME,PARENTID,Cemphiringdate,Cemplastupgrade,PARENTNAME,CROLEID")] Cemp cemp)
-        {
-            if (id != cemp.CEMPNAME)
-            {
-                return NotFound();
-            }
 
+        
+        public async Task<IActionResult> Edit3(string id, [Bind("Cempid,CEMPUSERNO,CEMPPASSWRD,CEMPNO,CEMPNAME,CEMPJOBNAME,CEMPADPRTNO,DEP_NAME,CLSSNO,grade,MANAGERID,MANAGERNAME,PARENTID,Cemphiringdate,CEMPHIRINGDATEHIJRA,Cemplastupgrade,PARENTNAME,CROLEID,imagepath,Fileimagepath")] Cemp cemp)
+        {
+            //if (id != cemp.CEMPNAME)
+            //{
+            //    return NotFound();
+            //}
+            string extension = Path.GetExtension(cemp.Fileimagepath.FileName);
             if (ModelState.IsValid)
             {
                 try
                 {
                     var emp2 = _context.Cemps.Where(b => b.CEMPNAME == cemp.CEMPNAME).FirstOrDefault();
                     var emp22 = _context.Cemps.Where(b => b.Cempid == cemp.Cempid).FirstOrDefault();
-                    TransferProcess TransferProcess = new TransferProcess
+                    if (cemp.Fileimagepath != null && (extension == ".jpeg" || extension == ".jpg" || extension == ".png" || extension == ".gif" || extension == ".jfif" || extension == ".pdf"))
+                    {
+                        string uploads = Path.Combine(_hosting.WebRootPath, @"img\empsd");
+                        string fullPath = Path.Combine(uploads, DateTime.Now.ToString("ddMMMyyhhmmsstt") + cemp.Fileimagepath.FileName);
+                        cemp.Fileimagepath.CopyTo(new FileStream(fullPath, FileMode.Create));
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "*يرجي  ارفاق القرار (jpeg, jpg, png, gif, jfif,pdf)!";
+                        return View(emp2);
+                    }
+
+                        TransferProcess TransferProcess = new TransferProcess
                     {
                         Olddepid=Convert.ToInt32(emp2.CEMPADPRTNO),
                         Olddepname=emp2.DEP_NAME,
@@ -596,9 +628,13 @@ namespace Hr.Controllers
                         Managernewid=Convert.ToInt32( emp22.MANAGERID),
                         Managernewname=emp22.MANAGERNAME,
                         Daterequest=DateTime.Now,
-                        fromr= HttpContext.Session.GetString("username")
+                        fromr= HttpContext.Session.GetString("username"),
+                        //
+                        decisionid=cemp.grade,
+                        decisiondate= cemp.CEMPHIRINGDATEHIJRA,
+                        decisionpath= DateTime.Now.ToString("ddMMMyyhhmmsstt") + cemp.Fileimagepath.FileName
 
-                    };
+                        };
 
                     _context.Add(TransferProcess);
                     _context.SaveChanges();
@@ -664,9 +700,9 @@ namespace Hr.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
         // edit image 
-        public async Task<IActionResult> Edit2(string id)
+        public async Task<IActionResult> Edit2()
         {
             if (HttpContext.Session.GetString("username") == null)
             {
@@ -687,12 +723,12 @@ namespace Hr.Controllers
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var cemp = await _context.Cemps.FindAsync(id);
+            var cemp = await _context.Cemps.FindAsync(HttpContext.Session.GetString("username"));
             if (cemp == null)
             {
                 return NotFound();
@@ -709,10 +745,10 @@ namespace Hr.Controllers
         public async Task<IActionResult> Edit2(string id, [Bind("Cempid,CEMPUSERNO,CEMPPASSWRD,CEMPNO,CEMPNAME,CEMPJOBNAME,CEMPADPRTNO,DEP_NAME,CLSSNO,MANAGERID,MANAGERNAME,PARENTID,Cemphiringdate,Cemplastupgrade,PARENTNAME,CROLEID,imagepath,Fileimagepath")] Cemp cemp)
         {
             string extension = Path.GetExtension(cemp.Fileimagepath.FileName);
-            if (id != cemp.Cempid)
-            {
-                return NotFound();
-            }
+            //if (id != cemp.Cempid)
+            //{
+            //    return NotFound();
+            //}
 
             if (ModelState.IsValid)
             {

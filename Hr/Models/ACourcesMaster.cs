@@ -30,11 +30,13 @@ namespace Hr.Models
         //[Required]
         public string CourcesIdImagehr { get; set; }
         //[DisplayFormat(DataFormatString = "{dd-MMM-yyyy}")]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Required(ErrorMessage = "ادخل تاريخ البداية   ")]
         public DateTime CourcesStartDate { get; set; }
         //[DisplayFormat(DataFormatString = "{dd-MMM-yyyy}")]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Required(ErrorMessage = "ادخل تاريخ النهاية    ")]
         public DateTime CourcesEndDate { get; set; }
         [Required]
@@ -55,7 +57,11 @@ namespace Hr.Models
 
 
 
+        [NotMapped]
+        public string EncryptedIdd { get; set; }
 
+        [NotMapped]
+        public double gradetocourse { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime CourcesStartDateh { get; set; }

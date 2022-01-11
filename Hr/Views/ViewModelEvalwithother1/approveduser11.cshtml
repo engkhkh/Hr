@@ -6,7 +6,7 @@
 @model IEnumerable<Hr.Models.ViewModelEvalwithother>
 
 @{
-    ViewData["Title"] = "الاستعلام عن الطلبات";
+    ViewData["Title"] = "تقييم الاداء";
     //Layout = "~/Views/Shared/_Layout - Copy - Copy.cshtml";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -92,29 +92,44 @@
 <table @*style="width: 100%;"*@ id="table" class="table table-responsive-lg table-bordered table-condensed table-striped table-hover  sortable">
     <thead>
         <tr>
-            @*<th>
+            <th>
 
-        </th>*@
+            </th>
+            <th>
+                الرقم الوظيفي 
+            </th>
             <th>
                 الموظف
             </th>
             <th>
-                رقم الطلب
+                الطلب
             </th>
             <th>
-                الوظيفة 
+                 السجل
             </th>
             <th>
-                الأدارة 
+                الوظيفة
+            </th>
+            <th>
+                الأدارة
             </th>
             <th>
                 القسم
             </th>
             <th>
-                المدير 
+                المدير
             </th>
             <th>
-                تاريخ الطلب 
+                الدرجة 
+            </th>
+            <th>
+                التقييم
+            </th>
+            <th>
+                تاريخ ألاعتماد 
+            </th>
+            <th>
+                سنة 
             </th>
 
         </tr>
@@ -130,27 +145,47 @@
 
             <!--</td>-->
             <td>
+                <a asp-controller="ViewModelEvalwithother1" asp-action="Detail111111" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">عرض  </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cemp.CEMPNO)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.AEvaluationEmp.Empname)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AEvaluationEmp.Idd)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AEvaluationEmp.Jobname)
+                @Html.DisplayFor(modelItem => item.cemp.CEMPPASSWRD)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AEvaluationEmp.DepName)
+                @Html.DisplayFor(modelItem => item.cemp.CEMPJOBNAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AEvaluationEmp.SubDepName)
+                @Html.DisplayFor(modelItem => item.cemp.DEP_NAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AEvaluationEmp.ManagerName)
+                @Html.DisplayFor(modelItem => item.cemp.PARENTNAME)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AEvaluationEmp.CovenantDate)
+                @Html.DisplayFor(modelItem => item.cemp.MANAGERNAME)
             </td>
+            <td>
+                     @TempData["GRADE"].ToString()
 
+            </td>
+            <td>
+                    @TempData["GRADEN"].ToString()
+                </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.evalcomment2.dtapproved)*@
+                @TempData["GRADEN1"].ToString()
+            </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.evalcomment2.dtapproved.Value.Year)*@
+            @TempData["GRADE1"].ToString()
+        </td>
         </tr>
         }
     </tbody>

@@ -3,6 +3,7 @@
 *@
 @{
 }
+
 @model IEnumerable<Hr.Models.ViewModelEvalwithother>
 
 @{
@@ -28,8 +29,8 @@
                 <p>
                     @using (@Html.BeginForm())
                     {
-                        <button type="submit" name="1" value="1" class="=btn btn-success" asp-action="approveduser1" asp-controller="ViewModelEvalwithother1" formmethod="post">تم الموافقة عليها </button>
-                        <button type="submit" name="2" value="2" class="=btn btn-success" asp-action="canceluser1" asp-controller="ViewModelEvalwithother1" formmethod="post">تم رفضها  </button>
+                        <button type="submit" name="1" value="1" class="=btn btn-success" asp-action="approveduser1E" asp-controller="ViewModelEvalwithother1" formmethod="post">تم الموافقة عليها </button>
+                        <button type="submit" name="2" value="2" class="=btn btn-success" asp-action="canceluser1E" asp-controller="ViewModelEvalwithother1" formmethod="post">تم رفضها  </button>
 
                         @*@Html.TextBox("search", "", new { placeholder = "بحث بالدورة", @class = "" })*@
 
@@ -90,7 +91,7 @@
         <tr>
             <th>
 
-        </th>
+            </th>
             <th>
                 الموظف
             </th>
@@ -98,19 +99,25 @@
                 رقم الطلب
             </th>
             <th>
-                الوظيفة 
+                الوظيفة
             </th>
             <th>
-                الأدارة 
+                الأدارة
             </th>
             <th>
                 القسم
             </th>
             <th>
-                المدير 
+                المدير
             </th>
             <th>
-                تاريخ الطلب 
+                المدير المباشر -اول اعتماد
+            </th>
+            <th>
+                المدير المعتمد -تاني اعتماد
+            </th>
+            <th>
+                تاريخ الطلب
             </th>
 
         </tr>
@@ -120,9 +127,23 @@
         {
         <tr>
             <td>
-                <a asp-controller="ViewModelEvalwithother1" asp-action="Edit" asp-route-id="@item.AEvaluationEmp.Idd" class="btn btn-success">الطلب </a>
-                <a asp-controller="EvalDetails" asp-action="Create" asp-route-id="@item.AEvaluationEmp.Idd" asp-route-from="@item.AEvaluationEmp.Empno" class="btn btn-success">موافقة</a>
-                <a asp-controller="EvalDetails" asp-action="Create2" asp-route-id="@item.AEvaluationEmp.Idd" asp-route-from="@item.AEvaluationEmp.Empno" class="btn btn-success">رفض</a>
+
+
+                @if (TempData["user"].ToString() == TempData["eval2emp"].ToString())
+                {
+                    <a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل  </a>
+                }
+              
+
+                @if (TempData["user"].ToString() == item.evalDetail2.OfferedRequestTo.ToString())
+                {
+                    <a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل  </a>
+                }
+
+                @*<a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل  </a>*@
+                <a asp-controller="ViewModelEvalwithother1" asp-action="Detail11111" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">استعراض  </a>
+                <a asp-controller="EvalDetails2" asp-action="Create" asp-route-id="@item.AEvaluationEmp.Idd" asp-route-from="@item.AEvaluationEmp.Empno" class="btn btn-success">موافقة</a>
+                <a asp-controller="EvalDetails2" asp-action="Create2" asp-route-id="@item.AEvaluationEmp.Idd" asp-route-from="@item.AEvaluationEmp.Empno" class="btn btn-success">رفض</a>
                 @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
             </td>
@@ -143,6 +164,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AEvaluationEmp.ManagerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.evalDetail2.OfferedRequestTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.evalDetail2.OfferedRequestTo2)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AEvaluationEmp.CovenantDate)

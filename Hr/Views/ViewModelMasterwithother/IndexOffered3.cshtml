@@ -4,62 +4,70 @@
     ViewData["Title"] = "الموافقة علي الترشح للجهات التدريبية ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div>
+    @if (TempData["user"].ToString() == "4431001"|| TempData["user"].ToString() == "4321031"|| TempData["user"].ToString() == "4411013"|| TempData["user"].ToString() == "4291237"|| TempData["user"].ToString() == "4411011")
+    {
+        <a asp-action="IndexOffered33" class="btn btn-success">الترشيح للدورات التدريبة   </a>
+    }
+</div>
 <table>
-<thead>
-    <tr>
-        <th>
+    <thead>
+        <tr>
+            <th>
 
-        </th>
-        <th>
+            </th>
+            <th>
 
-        </th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>
-            <p>
-                @using (@Html.BeginForm())
-                {
-                    <button type="submit" name="1" value="1" class="=btn btn-success" asp-action="approvedoffered3" asp-controller="ViewModelMasterwithother" formmethod="post" >تم الموافقة عليها </button>
-                    <button type="submit" name="2" value="2" class="=btn btn-success" asp-action="canceloffered3" formmethod="post" >تم رفضها  </button>
-                    
-                    @*@Html.TextBox("search", "", new { placeholder = "بحث بالدورة", @class = "" })*@
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @*<td>
+
+                </td>*@
+            <td>
+                <p>
+                    @using (@Html.BeginForm())
+                    {
+                        <button type="submit" name="1" value="1" class="=btn btn-success" asp-action="approvedoffered3" asp-controller="ViewModelMasterwithother" formmethod="post">تم الموافقة عليها </button>
+                        <button type="submit" name="2" value="2" class="=btn btn-success" asp-action="canceloffered3" formmethod="post">تم رفضها  </button>
+
+                        @*@Html.TextBox("search", "", new { placeholder = "بحث بالدورة", @class = "" })*@
 
 
 
-                }
-            </p>
-        </td>
-        <td>
+                    }
+                </p>
+            </td>
+            <td>
+            </td>
+        </tr>
 
-        </td>
-    </tr>
-
-</tbody>
+    </tbody>
 </table>
 
 @*<div id="sortMsg" style="text-align: center; color: Red;">
-</div>*@
+    </div>*@
 @*<div class="row" style="float:right; width:100%">*@
 <table id="table" @*style="width: 100%;"*@ class="table table-bordered table-condensed table-striped table-hover table-responsive-lg sortable">
     <thead>
         <tr>
-            @*<th>
-
-                </th>*@
             <th>
 
+                </th>
+            <th>
+                رقم الطلب 
             </th>
             <th>
                 الموظف
             </th>
             <th>
-                الرقم الوظيفي
+                السجل
             </th>
-            <th>
-                المسمي الوظيفي
-            </th>
+            @*<th>
+                    المسمي الوظيفي
+                </th>*@
             <th>
                 القسم
             </th>
@@ -76,10 +84,16 @@
                 البرنامج الاول
             </th>
             <th>
+                مكان الدورة
+            </th>
+            <th>
                 تاريخ التنفيذ
             </th>
             <th>
                 البرنامج الثاني
+            </th>
+            <th>
+                مكان الدورة
             </th>
             <th>
                 تاريخ التنفيذ
@@ -90,6 +104,9 @@
 
             </th>
             <th>
+                مكان الدورة
+            </th>
+            <th>
                 تاريخ التنفيذ
 
             </th>
@@ -97,7 +114,9 @@
                 البرنامج الرابع
 
             </th>
-
+            <th>
+                مكان الدورة
+            </th>
             <th>
                 تاريخ التنفيذ
             </th>
@@ -105,7 +124,9 @@
                 البرنامج الخامس
 
             </th>
-
+            <th>
+                مكان الدورة
+            </th>
             <th>
                 تاريخ التنفيذ
             </th>
@@ -113,7 +134,9 @@
                 البرنامج السادس
 
             </th>
-
+            <th>
+                مكان الدورة
+            </th>
             <th>
                 تاريخ التنفيذ
             </th>
@@ -121,7 +144,9 @@
                 البرنامج السابع
 
             </th>
-
+            <th>
+                مكان الدورة
+            </th>
             <th>
                 تاريخ التنفيذ
             </th>
@@ -129,10 +154,13 @@
                 البرنامج الثامن
 
             </th>
-
+            <th>
+                مكان الدورة
+            </th>
             <th>
                 تاريخ التنفيذ
             </th>
+
 
             @*<th>
                     نسبة الانجاز %
@@ -151,100 +179,122 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                <a asp-controller="OfferDetails3" asp-action="Create" asp-route-id="@item.OfferedDetails3.COURCES_IDOffered" asp-route-from="@item.OfferedDetails3.OfferedRequestFrom" class="btn btn-success">موافق</a>
-                <a asp-controller="OfferDetails3" asp-action="Create2" asp-route-id="@item.OfferedDetails3.COURCES_IDOffered" asp-route-from="@item.OfferedDetails3.OfferedRequestFrom" class="btn btn-danger">رفض</a>
-                @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
+            <tr>
+                <td>
+                    <a asp-controller="OfferDetails3" asp-action="Create" asp-route-id="@item.OfferedDetails3.COURCES_IDOffered" asp-route-from="@item.OfferedDetails3.OfferedRequestFrom" class="btn btn-success">موافق</a>
+                    <a asp-controller="OfferDetails3" asp-action="Create2" asp-route-id="@item.OfferedDetails3.COURCES_IDOffered" asp-route-from="@item.OfferedDetails3.OfferedRequestFrom" class="btn btn-danger">رفض</a>
+                    @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cemps.Cempid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cemps.CEMPJOBNAME)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cemps.DEP_NAME)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cemps.PARENTNAME)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesOffered3.workdue)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
-            </td>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesOfferedId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.CEMPPASSWRD)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Cemps.CEMPJOBNAME)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.DEP_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.PARENTNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesOffered3.workdue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesPrograms.CourcesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACoursesLocation.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesPrograms2.CourcesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACoursesLocation2.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate2)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames2.CourcesName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate2)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesPrograms3.CourcesName)
+                    @*@Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDateh)*@
+                    @*@item.ACourcesOffered.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
 
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames3.CourcesName)
-                @*@Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDateh)*@
-                @*@item.ACourcesOffered.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACoursesLocation3.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesPrograms4.CourcesName)
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate3)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames4.CourcesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACoursesLocation4.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesPrograms5.CourcesName)
 
-            </td>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACoursesLocation5.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate5)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesPrograms6.CourcesName)
 
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate4)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames5.CourcesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACoursesLocation6.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate6)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesPrograms7.CourcesName)
 
-            </td>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACoursesLocation7.name)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate5)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames6.CourcesName)
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate7)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesPrograms8.CourcesName)
 
-            </td>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACoursesLocation8.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate8)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate6)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames7.CourcesName)
-
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate7)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesNames8.CourcesName)
-
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.ACourcesOffered3.CourcesStartDate8)
-            </td>
-
-        </tr>
+            </tr>
         }
     </tbody>
 </table>
@@ -299,7 +349,7 @@
         $('#table').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                /*'copy', 'csv', 'excel', 'pdf',*/ 'print','excel'
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",

@@ -26,6 +26,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 
 
+
+
 namespace Hr
 {
     public class Startup
@@ -41,8 +43,12 @@ namespace Hr
         public void ConfigureServices(IServiceCollection services)
         {
 
-         
-         
+
+            //services.ConfigureDataProtection(dp =>
+            //{
+            //    dp.PersistKeysToFileSystem(new DirectoryInfo(@"c:\keys"));
+            //    dp.SetDefaultKeyLifetime(TimeSpan.FromDays(14));
+            //});
             //services.AddAuthentication("CookieAuthentication")
             //    .AddCookie("CookieAuthentication", config =>
             //    {
@@ -62,7 +68,8 @@ namespace Hr
             //services.AddAuthentication(options =>
             //{
             //    options.DefaultAuthenticateScheme = "Bearer";
-
+            services.AddTransient<Services.IMailService, Services.MailService>();
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
             //});
             //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
@@ -84,7 +91,7 @@ namespace Hr
             services.AddMemoryCache();
             services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-         
+
 
 
             //        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -134,7 +141,12 @@ namespace Hr
             //    options.IdleTimeout = TimeSpan.FromMinutes(1);//You can set Time   
             //});
 
+        //    services.AddDataProtection()
+        //.PersistKeysToFileSystem(new DirectoryInfo(@"bin\debug\configuration"))
+        //.ProtectKeysWithDpapi()
+        //.SetDefaultKeyLifetime(TimeSpan.FromDays(10));
 
+            services.AddDataProtection();
             services.AddControllersWithViews();
             services.AddSession();
             services.AddDbContext<hrContext>(Options =>
@@ -144,8 +156,11 @@ namespace Hr
                 //Options.UseOracle(Configuration.GetConnectionString("ora"));
 
 
-            }
+            },ServiceLifetime.Transient
             );
+            //services.AddDbContext<hrContext>(options =>
+            //           options.UseSqlServer(Configuration.GetConnectionString("hr")),
+            //ServiceLifetime.Transient);
             //services.ConfigureApplicationCookie(options =>
             //{
             //    options.LoginPath = "/Identity/Account/Login";
