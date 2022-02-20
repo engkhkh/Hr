@@ -1,0 +1,279 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*@model IEnumerable<Hr.Models.ViewModelEvalwithother>*@
+@model Hr.Models.Cemp
+@{
+    ViewData["Title"] = "تحميل درجة المقابلات الشخصية ";
+    //Layout = "~/Views/Shared/_Layout - Copy - Copy.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">*@
+    <link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <form id="studenteForm" asp-controller="ViewModelEvalwithother1" asp-action="Uploadm" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="control-label"> تحديد اسم الموظف  </label>
+            <select asp-for="Cempid" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.Cempid">
+                <option value="55">تحديد</option>
+            </select>
+
+        </div>
+        <br />
+        <br /> <br /> <br /> <br /> <br /> <br />
+        <input asp-for="DEP_NAME" type="text" placeholder="الدرحة " id="id12" />
+
+        <input type="submit" class="btn btn-primary" value="حفظ" />
+        @*<button type="button" class="btn btn-primary" onclick="submitStudent()">حفظ</button>*@
+    </form>
+    <hr />
+    <hr />
+
+
+
+    <script type="text/javascript">
+        function submitStudent() {
+            var data = $("#studenteForm").serialize();
+            console.log(data);
+            alert(data);
+            $.ajax({
+                type: 'POST',
+                url: '/ViewModelEvalwithother1/Uploadm',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8', // when we use .serialize() this generates the data in query string format. this needs the default contentType (default content type is: contentType: 'application/x-www-form-urlencoded; charset=UTF-8') so it is optional, you can remove it
+                data: data,
+                success: function (result) {
+                    alert('Successfully received Data ');
+                    console.log(result);
+                },
+                error: function () {
+                    alert('Failed to receive the Data');
+                    console.log('Failed ');
+                }
+            })
+        }
+
+    </script>
+
+
+    <link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+    <link href="~/js/chosen.css" rel="stylesheet" />
+    <link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+    <link href="~/js/prism.css" rel="stylesheet" />
+    <script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+    <script src="~/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+    <script src="~/js/prism.js"></script>
+    <script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
+    <script src="~/lib/globalize/globalize.js"></script>
+    <script src="~/lib/globalize/globalize-runtime.js"></script>
+    <script src="~/lib/globalize/date.js"></script>
+    @*<script type="text/javascript">
+            $(document).on("click", ":submit", function (e) {
+
+                if (!$('#f1').val()) {
+                    e.preventDefault();
+                    alert('يرجي ارفاق شهادة الدورة ');
+                }
+
+            }
+
+        </script>*@
+
+    <script type="text/javascript">
+
+
+        $('#chosen-select16').append(new Option('آخري', 5));
+        /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
+        $("#a").css('visibility', 'hidden');
+
+        //function m() {
+        //    if (document.getElementById("f1").files.length == 0) {
+        //        console.log("لم يتم ارفاق شهادة الدورة ");
+        //        alert("لم يتم ارفاق شهادة الدورة ");
+        //    }
+
+        //}
+
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" }//,
+            //'.chosen-search': {disable_search: false}
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+        $("select.chosen11").change(function () {
+
+            var selectedCountry11 = $(this).children("option:selected").val();
+            /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+            if (selectedCountry11 == 2 || selectedCountry11 == 4) {
+                alert("  يرجي اختيار التقدير  - ");
+                $("#a").css('visibility', 'visible');
+                var hiddenBox = $("#respond-2");
+                hiddenBox.show();
+
+
+
+            }
+            else {
+                $("#a").css('visibility', 'hidden');
+                var hiddenBox = $("#respond-2");
+                hiddenBox.hide();
+
+            }
+        });
+
+        $("select.chosen1").change(function () {
+            var selectedCountry = $(this).children("option:selected").val();
+            /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+            if (selectedCountry == 5) {
+                alert("  يرجي ادخال اسم الدورة الجديد باالاسفل - ");
+
+                var hiddenBox = $("#respond-1");
+                hiddenBox.show();
+
+
+
+            }
+            else {
+                var hiddenBox = $("#respond-1");
+                hiddenBox.hide();
+
+            }
+        });
+        $("select").change(function () {
+            var selected5 = $(this).children("option:selected").val();
+            /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+            if (selected5 == 0) {
+                alert("لايتم اختيار هذا العنصر  - ");
+
+            }
+        });
+    </script>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            try {
+                $("input[type='text']").each(function () {
+                    $(this).attr("autocomplete", "off");
+                });
+            }
+            catch (e) { }
+        });
+
+    </script>
+
+
+
+    <script type="text/javascript">
+
+
+        $(function () {
+
+            initHijrDatePicker();
+
+            initHijrDatePickerDefault();
+
+            $('.disable-date').hijriDatePicker({
+
+                minDate: "2020-01-01",
+                maxDate: "2023-01-01",
+                viewMode: "years",
+                hijri: true,
+                debug: true,
+
+
+            });
+
+        });
+
+
+        function initHijrDatePicker() {
+
+            $(".hijri-date-input").hijriDatePicker({
+                minDate: "2000-01-01",
+                /*      maxDate:"2021-10-06",*/
+                maxDate: new Date(new Date().setDate(new Date().getDate())),
+                /*   endDate: new Date(new Date().setDate(new Date().getDate() + 5))*/
+                /*   minDate: new Date(new Date().setDate(new Date().getDate() + 1))*/
+                todayHighlight: true,
+                //disabledDates: [new Date()],
+                locale: "ar-sa",
+                format: "YYYY-MM-DD",
+                hijriFormat: "iYYYY-iMM-iDD",
+                dayViewHeaderFormat: "MMMM YYYY",
+                hijriDayViewHeaderFormat: "iMMMM iYYYY",
+                showSwitcher: false,
+                allowInputToggle: true,
+                language: "AR",
+                /* showTodayButton: false,*/
+                useCurrent: true,
+                isRTL: false,
+                viewMode: 'months',
+                keepOpen: false,
+                hijri: true,
+                debug: true,
+                showClear: true,
+                showTodayButton: true,
+                showClose: true,
+                /*     autoclose: true,*/
+
+
+
+
+            });
+        }
+
+        function initHijrDatePickerDefault() {
+
+            $(".hijri-date-default").hijriDatePicker();
+        }
+
+    </script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+    <script>
+        try {
+            fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function (response) {
+                return true;
+            }).catch(function (e) {
+                var carbonScript = document.createElement("script");
+                carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+                carbonScript.id = "_carbonads_js";
+                document.getElementById("carbon-block").appendChild(carbonScript);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

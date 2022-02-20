@@ -37,7 +37,9 @@ namespace Hr.Models
         public string ? notes { get; set; }
 
         public int ? available { get; set; }
+        public string passrate { get; set; }
+        public string levelt { get; set; }
 
-   
+
     }
 }

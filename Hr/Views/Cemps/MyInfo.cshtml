@@ -41,7 +41,7 @@
 
                 </div>
                 <div>
-                    <label>الرقم السري</label>
+                    <label>السجل</label>
 
                     @Html.DisplayFor(model => model.CEMPPASSWRD)
                 </div>
@@ -65,7 +65,7 @@
                     @Html.DisplayFor(model => model.MANAGERID)
                 </div>
                 <div>
-                    <label>اسم المدير</label>
+                    <label>المدير المباشر</label>
 
                     @Html.DisplayFor(model => model.MANAGERNAME)
 
@@ -74,20 +74,29 @@
             <div class="col-md-4">
 
 
-                @*<div>
-                        تاريخ المباشرة
+                <div>
+                    أخر بصمة دخول
 
-                        @Html.DisplayFor(model => model.Cemphiringdate)
-                    </div>
-                    <div>
-                        اخر ترقية
+                    @Html.DisplayFor(model => model.Cemphiringdate)
+                </div>
+                <div>
+                    أخر بصمة خروج
 
-                        @Html.DisplayFor(model => model.Cemplastupgrade)
-                    </div>*@
+                    @Html.DisplayFor(model => model.Cemplastupgrade)
+                </div>
 
                 <div>
                     <label>الادارة</label>
                     @Html.DisplayFor(model => model.PARENTNAME)
+                </div>
+                <div>
+                    <label>المدير المعتمد</label>
+                    @if(@Model.MANAGERID2=="محمد بن مبارك عبدالله ال مجلي")
+                    {
+                    }
+                    else {
+                    @Html.DisplayFor(model => model.MANAGERID2)
+                    }
                 </div>
                 <div>
                     <label>الصلاحية علي النظام</label>
@@ -119,37 +128,47 @@
             <div class="col-md-4">
 
 
-                <div>
-                    @*<label>اول تعيين بالدولة -ميلادي</label>
 
-                    @Html.DisplayFor(model => model.Cemphiringdate)*@
-                </div>
 
                 <div>
                     <label>اول تعيين بالدولة -هجري</label>
 
                     @Html.DisplayFor(model => model.CEMPHIRINGDATEHIJRA)
                 </div>
-                <div>
-                    @*<label> اخر ترقية -ميلادي </label>
 
-                    @Html.DisplayFor(model => model.Cemplastupgrade)*@
-                </div>
                 <div>
                     <label> اخر ترقية -هجري </label>
 
                     @Html.DisplayFor(model => model.CEMPLASTUPGRADEHIJRA)
                 </div>
+                <div>
+                    <label> الدرجة </label>
 
+                    @Html.DisplayFor(model => model.grade)
+                </div>
+                <div>
+                    <label>المرتبة </label>
+
+                    @Html.DisplayFor(model => model.CLSSNO)
+                </div>
 
             </div>
             <div class="col-md-4">
-               
+                <div>
+                    <label>رقم الهاتف</label>
+
+                    @Html.DisplayFor(model => model.mobileno)
+                </div>
+                <div>
+                    <label>الايميل </label>
+
+                    @Html.DisplayFor(model => model.mail)
+                </div>
 
             </div>
             <div class="col-md-4">
                 <label>
-                    الموظفين بالقسم
+                    @*الموظفين بالقسم*@
                 </label>
                 
                 @Html.Partial("_emplist")
@@ -252,8 +271,10 @@
         </dl>*@
 
 <div>
-    <a asp-action="Edit1" asp-route-id="@Model.Cempid" disabled tabindex="-1"  class="btn btn-success">تغيير الرقم السري </a> -
-    <a asp-action="Edit2" asp-route-id="@Model.Cempid" class="btn btn-success">ارفاق صورة</a>
-    <a asp-action="Edit3" asp-route-id="@Model.CEMPNAME" disabled tabindex="-1" class="btn btn-success">تحديث بيانات المدير </a>
-    @*<a asp-action="Index">Back to List</a>*@
+    @*<a asp-action="Edit1" asp-route-id="@Model.Cempid" disabled tabindex="-1" class="btn btn-success">تغيير الرقم السري </a> -*@
+    <a asp-action="Edit2" class="btn btn-success">ارفاق صورة</a>
+    <a asp-action="Edit3" class="btn btn-success">تحديث بيانات المدير </a>
+    @*<a asp-action="Print" class="btn btn-success" target="_blank">طباعة  </a>*@
+    <a asp-action="Print1" class="btn btn-success" target="_blank">طباعة  </a>
+    @*<a disabled tabindex="-1" asp-action="Index">Back to List</a>*@
 </div>

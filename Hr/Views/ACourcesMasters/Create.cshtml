@@ -29,22 +29,23 @@
     <h4>تسجيل الدورات  التدريبية </h4>
     <p>
         عزيزي الموظف/ـة<br />
-        * يمكن فقط أرشفة الدورات التدريبية التي حصلت عليها من بعد تاريخ آخر ترقية أو التعيين في حال لم يسبق له الترقية.
+        إشارة إلى نشرة إجراءات طريقة إحتساب معايير وعناصر مفاضلة الترقيات المصاحبة للتعميم وكيل وزارة الخدمة المدنية -سابقاً- لإدارة رأس المال البشري رقم 29611 بتاريخ 17-12-1440هـ بشأن ضوابط الترقيات وتعميم مدير عام الموارد البشرية رقم4200271315 وتاريخ 1442/4/4هـ بشأن أنواع البرامج التدريبية المعتمدة بالترقية وتعميم رقم 4300092841 وتاريخ 1443/2/1هـ بشأن التنسيق مع الإدارة العامة للموارد البشرية قبل ترشيح الموظفين للتدريب، يكون قبول أرشفة شهادات البرامج والدورات التدريبية المعتمدة بالترقية على النحو التالي:.
         <br />
-        * لا تقبل الشهادات التي ذكر فيها التالي: ورشة عمل، مؤتمر، ملتقى، ندوة، محاضرة ..إلخ
+        1- يمكن فقط أرشفة الدورات التدريبية التي حصل عليها الموظف من بعد تاريخ آخر ترقية أو التعيين في حال لم يسبق له الترقية.
         <br />
-        * لا تقبل الشهادات التدريبية التي لم تتم بترشيح من الإدارة العامة للموارد البشرية.
+        2- لا تقبل الشهادات التي ذكر فيها التالي: ورشة عمل، مؤتمر، ملتقى، ندوة، محاضرة ..إلخ.
         <br />
-        * في حال حصل الموظف لشهادتي حضور واجتياز لدورة تدريبية واحدة، ترفق فقط الشهادة التي تضمنت ما يفيد الاجتياز.
+        3- لا تقبل الشهادات التدريبية التي لم تتم بترشيح من الإدارة العامة للموارد البشرية.
         <br />
 
-        نوع الدورة:
+        4- في حال حصل الموظف لشهادتي حضور واجتياز لدورة تدريبية واحدة، يجب ارفاق الشهادة التي تضمنت ما يفيد الاجتياز لاحتساب الدرجة الصحيحة، وفي حال لم ترفق يتحمل الموظف صحة رفع الوثائق.
+        ويتم احتساب درجة نقاط التدريب وفق ما ورد في النشرة المصاحبة لتعميم وكيل وزارة الخدمة المدنية -سابقاً- لإدارة رأس المال البشري رقم 29611 بتاريخ 17-12-1440هـ:
         <br />
-        * دورة لا تتضمن اختبار اجتياز: دورة تدريبية حصل عليها الموظف دون اشتراط دخوله اختبار اجتياز.
+       
+        <img src="~/img/courses.jpg" alt="شرح للكورسات المعتمدة" width="750" height="225" />
+       
         <br />
-        * دورة تتضمن اختبار اجتياز: دورة تدريبية حصل عليها الموظف بعد اجتيازه اختبار اجتياز وتم النص على ذلك بالشهادة.
-        <br />
-        * دورة اثرائية: الدورة التي حصل عليها الموظف من موقع اثرائي التابع لمعهد الإدارة العامة للموارد البشرية بما لايزيد عن 20 دورة بالعام.
+       
     </p>
     <hr />
     <div class="row" @*style="float:right; width:40%"*@>
@@ -95,7 +96,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">جهة تنفيذ التدريب </label>
-                    <select asp-for="COURCES_EXCUTION" id="chosen-select4" class="chosen-select form-control" data-placeholder="اختيار جهة تنفيذ التدريب  ">
+                    <select asp-for="COURCES_EXCUTION" id="chosen-select44" class="chosen-select form-control" data-placeholder="اختيار جهة تنفيذ التدريب  ">
                         <option value="">تحديد</option>
                         <option value="جهة تدريب دولية">جهة تدريب دولية</option>
                         <option value="جهة تدريب حكومية">جهة تدريب حكومية</option>
@@ -119,7 +120,7 @@
                     <p style="color:red">@ViewBag.ErrorMessage</p>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">ارفاق ملف اعتماد الموارد البشرية <label style="color:red;">"(jpeg,jpg,png,gif,jfif,pdf) !"</label> </label>
+                    <label class="control-label">ارفاق  اعتماد الموارد البشرية <label style="color:red;">"(jpeg,jpg,png,gif,jfif,pdf) !"</label> </label>
                     <input type="file" asp-for="Filehr" class="form-control" asp-items="ViewBag.ACourcesCertImagehr" />
                     <span asp-validation-for="CourcesIdImagehr" class="text-danger"></span>
                 </div>
@@ -195,7 +196,7 @@
     <script type="text/javascript">
       
       
-        $('#chosen-select16').append(new Option('اخري', 5));
+        $('#chosen-select16').append(new Option('آخري', 5));
         /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
         $("#a").css('visibility', 'hidden');
 
@@ -237,6 +238,23 @@
                 hiddenBox.hide();
 
             }
+            //if (selectedCountry11 == 1 || selectedCountry11 == 3) {
+
+            //    var select = document.getElementById('chosen-select44')
+            //    /*select.removeChild(select.options['جهة تدريب بالقطاع الخاص'])*/
+            //    select.removeChild(getOptionByValue(select, 'جهة تدريب بالقطاع الخاص'))
+
+            //    function getOptionByValue(select, value) {
+            //        var options = select.options;
+            //        for (var i = 0; i < options.length; i++) {
+            //            if (options[i].value === value) {
+            //                return options[i]
+            //            }
+            //        }
+            //        return null
+            //    }
+            //}
+            
         });
 
         $("select.chosen1").change(function () {

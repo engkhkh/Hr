@@ -8,16 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Hr.Services;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MailKit.Security;
+using System.Threading;
+using NLog;
 
 namespace Hr.Controllers
 {
     public class EvalDetailsController : Controller
     {
         private readonly hrContext _context;
+        private readonly IMailService mailService;
+        NLog.Logger loggerx = LogManager.GetCurrentClassLogger();
 
-        public EvalDetailsController(hrContext context)
+        public EvalDetailsController(hrContext context, IMailService mailService)
         {
             _context = context;
+            this.mailService = mailService;
         }
 
         // GET: MasterDetails
@@ -139,74 +148,221 @@ namespace Hr.Controllers
            .SingleOrDefault();
 
 
-                if (OfferDetailssss.OfferedRequestTo == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo3 == "0")
+                if (OfferDetailssss.OfferedRequestTo == "4419011")
                 {
+
                     OfferDetailssss.OfferedRequestTo3 = "1";
-                    OfferDetailssss.OfferedRequestTo4 = "0";
-                    OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
-                    _context.Update(OfferDetailssss);
-                    _context.SaveChangesAsync();
-                    Evalcomment offerComments = new Evalcomment
-                    {
-                        Offerdetailsid = OfferDetails.OfferedDetailsSerial,
-                        Offerapproval = HttpContext.Session.GetString("empid"),
-                        Offerdetailscomment = OfferDetails.OfferedRequestNotes
-                    };
-                   
-                    _context.Add(offerComments);
-                    _context.SaveChangesAsync();
-                    return RedirectToAction("IndexOffered3", "ViewModelEvalwithother1", new { area = "" });
-
-
-                }
-               else if (OfferDetailssss.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo4 == "0")
-                {
-                    //OfferDetailssss.OfferedRequestTo3 = "1";
-                    OfferDetailssss.OfferedRequestTo4 = "1";
-                    OfferDetailssss.OfferedRequestTo5 = "0";
-                    OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
-                    _context.Update(OfferDetailssss);
-                    _context.SaveChangesAsync();
-
-                    Evalcomment offerComments = new Evalcomment
-                    {
-                        Offerdetailsid = OfferDetails.OfferedDetailsSerial,
-                        Offerapproval = HttpContext.Session.GetString("empid"),
-                        Offerdetailscomment = OfferDetails.OfferedRequestNotes
-                    };
-
-                    _context.Add(offerComments);
-                    _context.SaveChangesAsync();
-                    return RedirectToAction("IndexOffered3", "ViewModelEvalwithother1", new { area = "" });
-
-                }
-                else if (OfferDetailssss.Offeredoption == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo5 == "0")
-                {
                     OfferDetailssss.OfferedRequestTo4 = "1";
                     OfferDetailssss.OfferedRequestTo5 = "1";
                     OfferDetailssss.OfferedRequestTypeSatus = 1;
-                    OfferDetailssss.OfferedRequestNotes = OfferDetails.OfferedRequestNotes;
                     OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
                     _context.Update(OfferDetailssss);
-                    _context.SaveChangesAsync();
-
+                    await _context.SaveChangesAsync();
                     Evalcomment offerComments = new Evalcomment
                     {
                         Offerdetailsid = OfferDetails.OfferedDetailsSerial,
                         Offerapproval = HttpContext.Session.GetString("empid"),
-                        Offerdetailscomment = OfferDetails.OfferedRequestNotes
+                        Offerdetailscomment = OfferDetails.OfferedRequestNotes,
+                        dtapproved = DateTime.Now.Date
                     };
-                    _context.Add(offerComments);
-                    _context.SaveChangesAsync();
 
+                    _context.Add(offerComments);
                     var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.EvalRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 1;
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
-                    _context.SaveChangesAsync();
-                    return RedirectToAction("IndexOffered3", "ViewModelEvalwithother1", new { area = "" });
+                    await _context.SaveChangesAsync();
+                    var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                    var empapproval1 = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestTo).FirstOrDefault();
+                    var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+
+                    WelcomeRequest request3 = new WelcomeRequest();
+                    request3.UserName = emprequestor.CEMPNAME;
+                    request3.header = "ألاداء الوظيفي وميثاق ألاداء ";
+                    request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2022 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+                    request3.ToEmail = emprequestor.mail;
+                    try
+                    {
+                        //await mailService.SendEmailAsync(m);
+                        await mailService.SendWelcomeEmailAsync(request3);
+                    }
+                    catch (Exception ex)
+                    {
+                        loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة ميثاق  الاداء   " + emprequestor.Cempid + "اعتماد ميثاق الاداء " + ex.Message);
+                    }
+
+
+
+                    return RedirectToAction("IndexOffered4", "ViewModelEvalwithother1", new { area = "" });
+
+
+
 
                 }
+
+                else
+                {
+                    if (OfferDetailssss.OfferedRequestTo == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo3 == "0")
+                    {
+                        OfferDetailssss.OfferedRequestTo3 = "1";
+                        OfferDetailssss.OfferedRequestTo4 = "0";
+                        OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
+                        _context.Update(OfferDetailssss);
+                        _context.SaveChangesAsync();
+                        Evalcomment offerComments = new Evalcomment
+                        {
+                            Offerdetailsid = OfferDetails.OfferedDetailsSerial,
+                            Offerapproval = HttpContext.Session.GetString("empid"),
+                            Offerdetailscomment = OfferDetails.OfferedRequestNotes,
+                            dtapproved = DateTime.Now.Date
+                        };
+
+                        _context.Add(offerComments);
+                        _context.SaveChangesAsync();
+
+
+                        if (OfferDetailssss.OfferedRequestTo2 == "4419011" && OfferDetailssss.OfferedRequestTo4 == "0")
+                        {
+                            OfferDetailssss.OfferedRequestTo4 = "1";
+                            OfferDetailssss.OfferedRequestTo5 = "1";
+                            OfferDetailssss.OfferedRequestTypeSatus = 1;
+                            OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
+                            _context.Update(OfferDetailssss);
+                            await _context.SaveChangesAsync();
+
+                            var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.EvalRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+                            OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 1;
+                            OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
+                            _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
+                            await _context.SaveChangesAsync();
+                            var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                            var empapproval1 = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestTo).FirstOrDefault();
+                            var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+
+
+                            WelcomeRequest request3 = new WelcomeRequest();
+                            request3.UserName = emprequestor.CEMPNAME;
+                            request3.header = "ألاداء الوظيفي ميثاق ألاداء ";
+                            request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2021 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+                            request3.ToEmail = emprequestor.mail;
+                            try
+                            {
+                                //await mailService.SendEmailAsync(m);
+                                await mailService.SendWelcomeEmailAsync(request3);
+                            }
+                            catch (Exception ex)
+                            {
+                                loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة ميثاق الاداء   " + emprequestor.Cempid + "اعتماد ميثاق الاداء " + ex.Message);
+                            }
+
+                        }
+
+                        return RedirectToAction("IndexOffered3", "ViewModelEvalwithother1", new { area = "" });
+
+
+                    }
+                    else if (OfferDetailssss.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo4 == "0")
+                    {
+
+                        //OfferDetailssss.OfferedRequestTo3 = "1";
+                        OfferDetailssss.OfferedRequestTo4 = "1";
+                        OfferDetailssss.OfferedRequestTo5 = "1";
+                        OfferDetailssss.OfferedRequestTypeSatus = 1;
+                        OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
+                        _context.Update(OfferDetailssss);
+                        await _context.SaveChangesAsync();
+
+                        Evalcomment offerComments = new Evalcomment
+                        {
+                            Offerdetailsid = OfferDetails.OfferedDetailsSerial,
+                            Offerapproval = HttpContext.Session.GetString("empid"),
+                            Offerdetailscomment = OfferDetails.OfferedRequestNotes,
+                            dtapproved = DateTime.Now.Date
+
+                        };
+                        _context.Add(offerComments);
+                        var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.EvalRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+                        OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 1;
+                        OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
+                        _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
+                        await _context.SaveChangesAsync();
+                        var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                        var empapproval1 = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestTo).FirstOrDefault();
+                        var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+
+                        //WelcomeRequest request = new WelcomeRequest();
+                        //request.UserName = empapproval2.CEMPNAME;
+                        //request.header = "ألاداء الوظيفي وتقييم ألاداء ";
+                        //request.Details = "تم اعتماد تقييم ألاداء لعام 1443 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered+" للموظف    : "+ emprequestor.CEMPNAME;
+                        //request.ToEmail = empapproval2.mail;
+                        //try
+                        //{
+                        //    //await mailService.SendEmailAsync(m);
+                        //    await mailService.SendWelcomeEmailAsync(request);
+                        //}
+                        //catch (Exception ex)
+                        //{
+
+                        //}
+                        //WelcomeRequest request2 = new WelcomeRequest();
+                        //request2.UserName = empapproval1.CEMPNAME;
+                        //request2.header = "ألاداء الوظيفي وتقييم ألاداء ";
+                        //request2.Details = "تم اعتماد تقييم ألاداء لعام 1443 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered +" للموظف "+emprequestor.CEMPNAME+ " بواسطة   : " + empapproval2.CEMPNAME;
+                        //request2.ToEmail = empapproval1.mail;
+                        //try
+                        //{
+                        //    //await mailService.SendEmailAsync(m);
+                        //    await mailService.SendWelcomeEmailAsync(request2);
+                        //}
+                        //catch (Exception ex)
+                        //{
+
+                        //}
+                        WelcomeRequest request3 = new WelcomeRequest();
+                        request3.UserName = emprequestor.CEMPNAME;
+                        request3.header = "ألاداء الوظيفي ميثاق ألاداء ";
+                        request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2021 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+                        request3.ToEmail = emprequestor.mail;
+                        try
+                        {
+                            //await mailService.SendEmailAsync(m);
+                            await mailService.SendWelcomeEmailAsync(request3);
+                        }
+                        catch (Exception ex)
+                        {
+                            loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة ميثاق الاداء   " + emprequestor.Cempid + "اعتماد ميثاق " + ex.Message);
+                        }
+                        return RedirectToAction("IndexOffered4", "ViewModelEvalwithother1", new { area = "" });
+
+                    }
+                }
+                //else if (OfferDetailssss.Offeredoption == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo5 == "0")
+                //{
+                //    OfferDetailssss.OfferedRequestTo4 = "1";
+                //    OfferDetailssss.OfferedRequestTo5 = "1";
+                //    OfferDetailssss.OfferedRequestTypeSatus = 1;
+                //    OfferDetailssss.OfferedRequestNotes = OfferDetails.OfferedRequestNotes;
+                //    OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
+                //    _context.Update(OfferDetailssss);
+                //    _context.SaveChangesAsync();
+
+                //    Evalcomment offerComments = new Evalcomment
+                //    {
+                //        Offerdetailsid = OfferDetails.OfferedDetailsSerial,
+                //        Offerapproval = HttpContext.Session.GetString("empid"),
+                //        Offerdetailscomment = OfferDetails.OfferedRequestNotes
+                //    };
+                //    _context.Add(offerComments);
+                //    _context.SaveChangesAsync();
+
+                //    var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.EvalRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+                //    OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 1;
+                //    OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
+                //    _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
+                //    _context.SaveChangesAsync();
+                //    return RedirectToAction("IndexOffered3", "ViewModelEvalwithother1", new { area = "" });
+
+                //}
                 //if (OfferDetails.OfferedRequestTo4 ==Convert.ToString(0))
                 //{
                 //    var off = new OfferedDetails
@@ -345,9 +501,9 @@ namespace Hr.Controllers
 
                     if (OfferDetailssss.OfferedRequestTo == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo3 == "0")
                     {
-                        OfferDetailssss.OfferedRequestTo3 = "2";
+                        OfferDetailssss.OfferedRequestTo3 = "0";
                         //OfferDetailssss.OfferedRequestTo4 = "2";
-                        OfferDetailssss.OfferedRequestTypeSatus = 2;
+                        OfferDetailssss.OfferedRequestTypeSatus = 0;
                         OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
                     _context.Update(OfferDetailssss);
                     _context.SaveChanges();
@@ -362,7 +518,7 @@ namespace Hr.Controllers
                     _context.SaveChanges();
 
                     var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.EvalRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
-                    OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
+                    OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 0;
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
                     _context.SaveChanges();
@@ -372,10 +528,10 @@ namespace Hr.Controllers
                     }
                     else if (OfferDetailssss.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo4 == "0")
                     {
-                        //OfferDetailssss.OfferedRequestTo3 = "1";
-                        OfferDetailssss.OfferedRequestTo4 = "2";
-                        //OfferDetailssss.OfferedRequestTo5 = "2";
-                        OfferDetailssss.OfferedRequestTypeSatus = 2;
+                        OfferDetailssss.OfferedRequestTo3 = "0";
+                        OfferDetailssss.OfferedRequestTo4 = "1";
+                        OfferDetailssss.OfferedRequestTo5 = "1";
+                        OfferDetailssss.OfferedRequestTypeSatus = 0;
                         OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
                     _context.Update(OfferDetailssss);
                     _context.SaveChanges();
@@ -390,46 +546,46 @@ namespace Hr.Controllers
                     _context.SaveChanges();
 
                     var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.EvalRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
-                    OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
+                    OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 0;
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
                     
                    
                     _context.SaveChanges();
-                        return RedirectToAction("IndexOffered", "ViewModelMasterwithother", new { area = "" });
+                        return RedirectToAction("IndexOffered4", "ViewModelMasterwithother", new { area = "" });
 
                     }
-                    else if (OfferDetailssss.Offeredoption == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo5 == "0")
-                    {
-                        //OfferDetailssss.OfferedRequestTo4 = "2";
-                        OfferDetailssss.OfferedRequestTo5 = "2";
-                        OfferDetailssss.OfferedRequestTypeSatus = 2;
-                        OfferDetailssss.OfferedRequestNotes = OfferDetails.OfferedRequestNotes;
-                        OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
-                    _context.Update(OfferDetailssss);
-                    _context.SaveChanges();
+                    //else if (OfferDetailssss.Offeredoption == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo5 == "0")
+                    //{
+                    //    //OfferDetailssss.OfferedRequestTo4 = "2";
+                    //    OfferDetailssss.OfferedRequestTo5 = "2";
+                    //    OfferDetailssss.OfferedRequestTypeSatus = 2;
+                    //    OfferDetailssss.OfferedRequestNotes = OfferDetails.OfferedRequestNotes;
+                    //    OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
+                    //_context.Update(OfferDetailssss);
+                    //_context.SaveChanges();
 
 
-                    Evalcomment offerComments = new Evalcomment
-                    {
-                        Offerdetailsid = OfferDetails.OfferedDetailsSerial,
-                        Offerapproval = HttpContext.Session.GetString("empid"),
-                        Offerdetailscomment = OfferDetails.OfferedRequestNotes
-                    };
-                    _context.Add(offerComments);
-                    _context.SaveChanges();
+                    //Evalcomment offerComments = new Evalcomment
+                    //{
+                    //    Offerdetailsid = OfferDetails.OfferedDetailsSerial,
+                    //    Offerapproval = HttpContext.Session.GetString("empid"),
+                    //    Offerdetailscomment = OfferDetails.OfferedRequestNotes
+                    //};
+                    //_context.Add(offerComments);
+                    //_context.SaveChanges();
 
 
-                    var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.EvalRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom== OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
-                        OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
-                        OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
-                        _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
+                    //var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.EvalRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom== OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+                    //    OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
+                    //    OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
+                    //    _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
                     
                     
-                    _context.SaveChanges();
-                        return RedirectToAction("IndexOffered3", "ViewModelEvalwithother1", new { area = "" });
+                    //_context.SaveChanges();
+                    //    return RedirectToAction("IndexOffered3", "ViewModelEvalwithother1", new { area = "" });
 
-                    }
+                    //}
                     //if (OfferDetails.OfferedRequestTo4 ==Convert.ToString(0))
                     //{
                     //    var off = new OfferedDetails
