@@ -12,10 +12,13 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
+<<<<<<< HEAD
 using System.Data;
 using AspNetCore.Reporting;
 using jsreport.Types;
 using jsreport.AspNetCore;
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 
 namespace Hr.Controllers
 {
@@ -24,14 +27,21 @@ namespace Hr.Controllers
         public IJsReportMVCService JsReportMVCService { get; }
         private readonly hrContext _context;
         private readonly IHostingEnvironment _hosting;
+<<<<<<< HEAD
         //private readonly IWebHostEnvironment _webHostEnvironment;
         IDataProtector _protector;
       
         public CempsController(hrContext context, IHostingEnvironment hosting, IDataProtectionProvider provider, IJsReportMVCService jsReportMVCService)
+=======
+        IDataProtector _protector;
+      
+        public CempsController(hrContext context, IHostingEnvironment hosting, IDataProtectionProvider provider)
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
         {
             _context = context;
             _hosting = hosting;
             _protector = provider.CreateProtector(GetType().FullName);
+<<<<<<< HEAD
             JsReportMVCService = jsReportMVCService;
 
         }
@@ -114,6 +124,8 @@ namespace Hr.Controllers
             //}
 
             return dt;
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
         }
 
         [Authorize(Roles = "Admin")]
@@ -173,12 +185,17 @@ namespace Hr.Controllers
             {
                 return NotFound();
             }
+<<<<<<< HEAD
             List<Cemp> _Cemps = _context.Cemps.Where(x => x.CEMPADPRTNO ==HttpContext.Session.GetString("empdepid") && x.MANAGERID == HttpContext.Session.GetString("username") && x.CEMPPASSWRD.Length == 10 && x.CEMPPASSWRD1 != null && x.CEMPPASSWRD1 != "").Select(x => new Cemp
+=======
+            List<Cemp> _Cemps = _context.Cemps.Where(x => x.CEMPADPRTNO ==HttpContext.Session.GetString("empdepid") && x.MANAGERID == HttpContext.Session.GetString("username")).Select(x => new Cemp
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
             {
                Cempid=x.Cempid,
                CEMPNAME=x.CEMPNAME,
                Cemphiringdate=x.Cemphiringdate,
                Cemplastupgrade=x.Cemplastupgrade
+<<<<<<< HEAD
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -236,6 +253,8 @@ namespace Hr.Controllers
                 CEMPNAME = x.CEMPNAME,
                 Cemphiringdate = x.Cemphiringdate,
                 Cemplastupgrade = x.Cemplastupgrade
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;

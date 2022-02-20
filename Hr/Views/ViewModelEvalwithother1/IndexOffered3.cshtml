@@ -121,17 +121,29 @@
         <tr>
             <td>
                 @*<a asp-controller="ViewModelEvalwithother1" asp-action="Detail" class="btn btn-success">عرض  الطلب </a>|*@
+<<<<<<< HEAD
                 <a asp-controller="ViewModelEvalwithother1" asp-action="Details" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" target="_blank" class="btn btn-success"> الطلب  </a>
+=======
+                <a asp-controller="ViewModelEvalwithother1" asp-action="Details" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success"> الطلب  </a>
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 
                 @if (TempData["user"].ToString() == TempData["eval2emp"].ToString())
                 {
                     @*<a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل  </a>*@
+<<<<<<< HEAD
                     <a asp-controller="ViewModelEvalwithother1" asp-action="Edit1" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" target="_blank"  class="btn btn-success">تعديل الطلب  </a>
+=======
+                    <a asp-controller="ViewModelEvalwithother1" asp-action="Edit1" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل الطلب  </a>
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
                 }
                 @if (TempData["user"].ToString() == item.evalDetail.OfferedRequestTo.ToString())
                 {
                     @*<a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل  </a>*@
+<<<<<<< HEAD
                     <a asp-controller="ViewModelEvalwithother1" asp-action="Edit1" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" target="_blank" class="btn btn-success">تعديل الطلب  </a>
+=======
+                    <a asp-controller="ViewModelEvalwithother1" asp-action="Edit1" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل الطلب  </a>
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
                 }
                 @*<a asp-controller="ViewModelEvalwithother1" asp-action="Edit1" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">الطلب </a>*@
                 <a asp-controller="EvalDetails" asp-action="Create" asp-route-id="@item.AEvaluationEmp.Idd" asp-route-from="@item.AEvaluationEmp.Empno" class="btn btn-success">موافقة</a>

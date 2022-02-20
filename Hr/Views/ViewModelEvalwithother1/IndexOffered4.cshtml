@@ -131,17 +131,29 @@
 
                 @if (TempData["user"].ToString() == TempData["eval2emp"].ToString())
                 {
+<<<<<<< HEAD
                     <a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" target="_blank" class="btn btn-success">تعديل  </a>
+=======
+                    <a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل  </a>
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
                 }
               
 
                 @if (TempData["user"].ToString() == item.evalDetail2.OfferedRequestTo.ToString())
                 {
+<<<<<<< HEAD
                     <a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" target="_blank" class="btn btn-success">تعديل  </a>
                 }
 
                 @*<a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل  </a>*@
                 <a asp-controller="ViewModelEvalwithother1" asp-action="Detail11111" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" target="_blank" class="btn btn-success">استعراض  </a>
+=======
+                    <a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل  </a>
+                }
+
+                @*<a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل  </a>*@
+                <a asp-controller="ViewModelEvalwithother1" asp-action="Detail11111" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">استعراض  </a>
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
                 <a asp-controller="EvalDetails2" asp-action="Create" asp-route-id="@item.AEvaluationEmp.Idd" asp-route-from="@item.AEvaluationEmp.Empno" class="btn btn-success">موافقة</a>
                 <a asp-controller="EvalDetails2" asp-action="Create2" asp-route-id="@item.AEvaluationEmp.Idd" asp-route-from="@item.AEvaluationEmp.Empno" class="btn btn-success">رفض</a>
                 @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@

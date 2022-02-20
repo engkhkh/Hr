@@ -192,6 +192,26 @@ namespace Hr.Controllers
                         loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة الدعم الفني والاقتراحات    " + emprequestor.Cempid + "الدعم الفني والاقتراحات  " + ex.Message);
                     }
 
+                    var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                    var empapproval1 = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestTo).FirstOrDefault();
+                    var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+
+                   
+                    WelcomeRequest request3 = new WelcomeRequest();
+                    request3.UserName = emprequestor.CEMPNAME;
+                    request3.header = "الدعم الفني والاقتراحات  ";
+                    request3.Details = "تم الرد علي  ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME +"   .....  "+ offerComments.Offerdetailscomment;
+                    request3.ToEmail = emprequestor.mail;
+                    try
+                    {
+                        //await mailService.SendEmailAsync(m);
+                        await mailService.SendWelcomeEmailAsync(request3);
+                    }
+                    catch (Exception ex)
+                    {
+                        loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة الدعم الفني والاقتراحات    " + emprequestor.Cempid + "الدعم الفني والاقتراحات  " + ex.Message);
+                    }
+
                     return RedirectToAction("IndexOffered3","Support", new { area = "" });
 
 
@@ -439,7 +459,11 @@ namespace Hr.Controllers
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
+<<<<<<< HEAD
                     await _context.SaveChangesAsync();
+=======
+                    _context.SaveChanges();
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 
                     var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
                     var empapproval1 = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestTo).FirstOrDefault();

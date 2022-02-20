@@ -31,6 +31,8 @@ using jsreport.Local;
 
 
 
+
+
 namespace Hr
 {
     public class Startup
@@ -50,6 +52,7 @@ namespace Hr
             var tempPath = @"C:\Safe\Location\";
             // On linux /tmp is a good choice
 
+<<<<<<< HEAD
             Environment.SetEnvironmentVariable("TEMP", tempPath);
             Environment.SetEnvironmentVariable("TMP", tempPath);
             services.AddJsReport(new LocalReporting().Configure(cfg =>
@@ -58,6 +61,9 @@ namespace Hr
                 cfg.TempDirectory = tempPath;
                 return cfg;
             }).UseBinary(JsReportBinary.GetBinary()).KillRunningJsReportProcesses().AsUtility().Create());
+=======
+
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
             //services.ConfigureDataProtection(dp =>
             //{
             //    dp.PersistKeysToFileSystem(new DirectoryInfo(@"c:\keys"));

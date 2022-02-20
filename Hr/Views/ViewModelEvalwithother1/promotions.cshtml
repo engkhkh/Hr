@@ -123,13 +123,21 @@
     <h3> اجمالي درجات الدورات  <span style="color: #ff0000">@TempData["sumgrade"].ToString()</span> </h3>
 </table>
 
+<<<<<<< HEAD
 <!--<table id="table"--> @*style="width: 100%;"*@ <!--class="table table-bordered table-condensed table-striped table-hover table-responsive-lg sortable">
+=======
+<table id="table" @*style="width: 100%;"*@ class="table table-bordered table-condensed table-striped table-hover table-responsive-lg sortable">
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
     <tr>
         <td>
             اجمالي نقاط برامج التطوير والتدريب من والي :
         </td>
         <td>
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
             <div class="form-group">
                 <label class="control-label">فترة بداية الدورات   </label>
                 <div class="input-group" style="float: left">
@@ -139,7 +147,11 @@
             </div>
         </td>
         <td>
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
             <div class="form-group">
                 <label class="control-label">فترة نهاية  الدورات   </label>
                 <div class="input-group" style="float: left">
@@ -149,11 +161,16 @@
             </div>
         </td>
         <td>
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
             @Html.ActionLink(" احسب ", "editxt2", "ViewModelEvalwithother1", new { }, new { @class = "AddSection", onclick = "return AreYouSureFunction(this);" })
         </td>
         <td>
             يساوي
+<<<<<<< HEAD
             @TempData["sumgrade1"].ToString()
         </td>
     </tr>
@@ -173,6 +190,13 @@
 اجمالي النقاط :درجة معيار الاداء الوظيفي +التطوير والتدريب +المقابلة الشخصية
 
 <hr />
+=======
+       @TempData["sumgrade1"].ToString()
+        </td>
+    </tr>
+</table>
+<br />
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 @*<div id="pager" class="pager">
         <br />
         <img src="~/Content/first.png" />
@@ -263,6 +287,7 @@
 
 </script>
 @*<script language="javascript" type="text/javascript">
+<<<<<<< HEAD
         $(document).ready(function () {
 
             $("#p1").hide();
@@ -273,6 +298,18 @@
 
         });
     </script>*@
+=======
+    $(document).ready(function () {
+
+        $("#p1").hide();
+        $("#cc2").click(function () {
+            $("#p1").show();
+            $("#cc1").hide();
+        });
+
+    });
+</script>*@
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
         try {

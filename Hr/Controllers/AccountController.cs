@@ -195,9 +195,15 @@ namespace Hr.Controllers
                 DirectoryEntry de = new DirectoryEntry("LDAP://" + domainName, userName, password);
                 DirectorySearcher dsearch = new DirectorySearcher(de);
                 SearchResult results = null;
+<<<<<<< HEAD
 
                 results = dsearch.FindOne();
 
+=======
+
+                results = dsearch.FindOne();
+
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
                 ret = true;
             }
             catch
@@ -402,10 +408,80 @@ namespace Hr.Controllers
                     datelastupgrading = date1.ToString("yyyy-MM-dd");
 
                 }
+<<<<<<< HEAD
+
+                Con.Close();
+                Con.Dispose();
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 
                 Con.Close();
                 Con.Dispose();
 
+
+                // 
+                if (username == "4431001")
+                {
+                    SqlConnection connection = new SqlConnection(hader);
+                    connection.Open();
+                    DataTable tab2 = new DataTable();
+                    DataTable tab3 = new DataTable();
+                    SqlDataAdapter da2 = new SqlDataAdapter(" SELECT TOP 1 * FROM [HadirDB].[dbo].[Transaction]  where [EmployeeID]='2430713111' and [Type]='OUT' ORDER BY [DateTime] DESC ", connection);
+                    SqlDataAdapter da3 = new SqlDataAdapter(" SELECT TOP 1 * FROM [HadirDB].[dbo].[Transaction]  where [EmployeeID]='2430713111' and [Type]='IN' ORDER BY [DateTime] DESC ", connection);
+                    SqlDataAdapter da4 = new SqlDataAdapter(" SELECT * FROM [HadirDB].[dbo].[Transaction] where [EmployeeID]='2430713111'   ORDER BY [DateTime] DESC ", connection);
+                    da2.Fill(tab2);
+                    da3.Fill(tab3);
+                    DataRow[] dr2 = tab2.Select("EmployeeID=2430713111");
+                    checkout = Convert.ToDateTime(dr2[0]["DateTime"].ToString());
+
+                    DataRow[] dr3 = tab3.Select("EmployeeID=2430713111");
+                    checkin = Convert.ToDateTime(dr3[0]["DateTime"].ToString());
+                    connection.Close();
+                    connection.Dispose();
+
+
+                }
+                else
+                {
+                    try
+                    {
+                        SqlConnection connection = new SqlConnection(hader);
+                        connection.Open();
+                        DataTable tab2 = new DataTable();
+                        DataTable tab3 = new DataTable();
+                        SqlDataAdapter da2 = new SqlDataAdapter(" SELECT TOP 1 * FROM [HadirDB].[dbo].[Transaction]  where [EmployeeID]='" + username + "' and [Type]='OUT' ORDER BY [DateTime] DESC ", connection);
+                        SqlDataAdapter da3 = new SqlDataAdapter(" SELECT TOP 1 * FROM [HadirDB].[dbo].[Transaction]  where [EmployeeID]='" + username + "' and [Type]='IN' ORDER BY [DateTime] DESC ", connection);
+                        SqlDataAdapter da4 = new SqlDataAdapter(" SELECT * FROM [HadirDB].[dbo].[Transaction] where [EmployeeID]='" + username + "'   ORDER BY [DateTime] DESC ", connection);
+                        da2.Fill(tab2);
+                        da3.Fill(tab3);
+                        DataRow[] dr2 = tab2.Select("EmployeeID=" + username + "");
+                        checkout = Convert.ToDateTime(dr2[0]["DateTime"].ToString());
+
+                        DataRow[] dr3 = tab3.Select("EmployeeID=" + username + "");
+                        checkin = Convert.ToDateTime(dr3[0]["DateTime"].ToString());
+                        connection.Close();
+                        connection.Dispose();
+                    }
+                    catch (Exception ex)
+                    {
+                        loggerx.Error("حاضر لايرجع بيانات للموظف   "+username);
+                    }
+                   
+                      
+                    
+                   
+                }
+
+                //
+                //OracleConnection Con2 = new OracleConnection(TNS2);
+                //Con2.Open();
+                //DataTable tab4 = new DataTable();
+                //OracleDataAdapter da5 = new OracleDataAdapter("select * from QASIM_BRANCH_MV@MOMMRA_GSERV_NEW", Con2);
+                //da5.Fill(tab4);
+
+                //
+                _conn2 = GetConnection(username);
+                HttpContext.Session.SetString("mail", userPrincipalName);
 
                 // 
                 if (username == "4431001")
@@ -760,7 +836,11 @@ namespace Hr.Controllers
                            where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
                            join hh in EvalRequestTypeId on e.CourcesIdoffered equals hh.CourcesIdoffered into table5h
                            from hh in table5h.ToList()
+<<<<<<< HEAD
                            where hh.OfferedRequestType == 1 && m.OfferedRequestTypeSatus!=2022
+=======
+                           where hh.OfferedRequestType == 1
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
                            select (e.CourcesIdoffered).ToString();
                 TempData["OfferedRequestTypeId10"] = xx10.ToList().Count();
 

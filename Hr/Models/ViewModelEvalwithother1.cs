@@ -324,13 +324,21 @@ namespace Hr.Models
         public double? AEvaluationCompetenciesDEvaluationResults222 { get; set; }
         public double? AEvaluationCompetenciesDEvaluationResults123 { get; set; }
         public double? AEvaluationCompetenciesDEvaluationResults223 { get; set; }
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 
 
 
         //
+<<<<<<< HEAD
         public string FIRSTAPPROVAL { get; set; }
         public string SECONDAPPROVALID { get; set; }
         public string SECONDAPPROVAL { get; set; }
+=======
+
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
     }
 }
