@@ -9,7 +9,7 @@ namespace Hr.Models
     [Keyless]
     public class ViewModelOfferedwithother
     {
-        public ACoursesLocation ACoursesLocation { get; set; }
+        //public ACoursesLocation ACoursesLocation { get; set; }
         public Cemp Cemps { get; set; }
         public ACourcesIdManagement ACourcesIdManagement { get; set; }
         public ACourcesOffered ACourcesOffered { get; set; }
@@ -17,7 +17,7 @@ namespace Hr.Models
         public ACourcesNeeded1 ACourcesNeeded1 { get; set; }
 
         public AJobsNames AJobsNames { get; set; }
-        public ACourcesPrograms ACourcesPrograms { get; set; }
+        
         public ACourcesPrograms1 ACourcesPrograms1 { get; set; }
 
         public ACourcesOffered2 ACourcesOffered2 { get; set; }
@@ -39,6 +39,25 @@ namespace Hr.Models
         public ACourcesName ACourcesNames6 { get; set; }
         public ACourcesName ACourcesNames7 { get; set; }
         public ACourcesName ACourcesNames8 { get; set; }
+
+
+        public ACourcesPrograms ACourcesPrograms { get; set; }
+        public ACourcesPrograms ACourcesPrograms2 { get; set; }
+        public ACourcesPrograms ACourcesPrograms3 { get; set; }
+        public ACourcesPrograms ACourcesPrograms4 { get; set; }
+        public ACourcesPrograms ACourcesPrograms5 { get; set; }
+        public ACourcesPrograms ACourcesPrograms6 { get; set; }
+        public ACourcesPrograms ACourcesPrograms7 { get; set; }
+        public ACourcesPrograms ACourcesPrograms8 { get; set; }
+
+        public ACoursesLocation ACoursesLocation { get; set; }
+        public ACoursesLocation ACoursesLocation2 { get; set; }
+        public ACoursesLocation ACoursesLocation3 { get; set; }
+        public ACoursesLocation ACoursesLocation4 { get; set; }
+        public ACoursesLocation ACoursesLocation5 { get; set; }
+        public ACoursesLocation ACoursesLocation6 { get; set; }
+        public ACoursesLocation ACoursesLocation7 { get; set; }
+        public ACoursesLocation ACoursesLocation8 { get; set; }
 
         public ACourcesOptions ACourcesOptions { get; set; }
 

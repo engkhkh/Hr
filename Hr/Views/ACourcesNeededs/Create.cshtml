@@ -24,8 +24,13 @@
                     @*<option value="00">كورس غير مدرج -اخر </option>*@
                 </select>
                 <span asp-validation-for="CourcesId" class="text-danger"></span>
+                <p style="color:red">@ViewBag.ErrorMessage3</p>
             </div>
-
+            <div class="form-group response" id="respond-1" style="display:none;">
+                <label class="control-label">اسم البرنامج    </label>
+                <input asp-for="passrate" class="form-control" />
+                <span asp-validation-for="passrate" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 @*<label asp-for="CourcesId" class="control-label"></label>*@
                 وصف البرنامج التدريبي
@@ -38,7 +43,7 @@
             </div>
             <div class="form-group">
                 @*<label asp-for="CourcesIdLocation" class="control-label"></label>*@
-                الوظيفة الفعلية المستهدفة بالتدريب 
+                الوظيفة الفعلية المستهدفة بالتدريب
                 @*<input asp-for="CourcesIdLocation" class="form-control" />*@
                 <select asp-for="jobsid" id="chosen-select4" class="chosen-select form-control" data-placeholder=" " asp-items="ViewBag.CourcesJobsId">
                     <option value="">تحديد</option>
@@ -47,7 +52,19 @@
             </div>
             <div class="form-group">
                 @*<label asp-for="CourcesIdDeptout" class="control-label"></label>*@
-                الوحدة الادارية 
+                مستوي الدورة 
+                @*<input asp-for="CourcesIdDeptout" class="form-control" />*@
+                <select asp-for="levelt" id="chosen-select44" class="chosen-select form-control" data-placeholder="">
+                    <option value="">تحديد</option>
+                    <option value="مبتدئ">مبتدئ</option>
+                    <option value="متوسط">متوسط</option>
+                    <option value="متقدم">متقدم</option>
+                </select>
+                <span asp-validation-for="levelt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourcesIdDeptout" class="control-label"></label>*@
+                الوحدة الادارية
                 @*<input asp-for="CourcesIdDeptout" class="form-control" />*@
                 <select asp-for="CourcesIdDeptin" id="chosen-select4" class="chosen-select form-control" data-placeholder="" asp-items="ViewBag.ACourcesDeptin">
                     <option value="">تحديد</option>
@@ -57,7 +74,7 @@
 
             <div class="form-group">
                 @*<label asp-for="CourcesIdManagement" class="control-label"></label>*@
-                الوكالة او الادارة العامة 
+                الوكالة او الادارة العامة
                 @*<input asp-for="CourcesIdManagement" class="form-control" />*@
                 <select asp-for="CourcesIdManagement" id="chosen-select4" class="chosen-select form-control" data-placeholder="اختيار الادارة " asp-items="ViewBag.ACourcesIdManagement">
                     <option value="">تحديد</option>
@@ -76,20 +93,20 @@
             </div>
             <div class="form-group">
                 @*<label asp-for="CourcesIdperiodbydays" class="control-label"></label>*@
-                عدد الموظفين المستهدفين 
+                عدد الموظفين المستهدفين
                 <input asp-for="available" class="form-control" />
                 <span asp-validation-for="available" class="text-danger"></span>
             </div>
 
             <br />
-           
+
             <div class="form-group">
-                ملاحظات 
-                <textarea asp-for="notes" class="form-control" ></textarea>
+                ملاحظات
+                <textarea asp-for="notes" class="form-control"></textarea>
                 <span asp-validation-for="notes" class="text-danger"></span>
             </div>
 
-           
+
             <br />
 
             @*<div class="form-group">
@@ -140,6 +157,7 @@
 
 
 <script type="text/javascript">
+    $('#chosen-select16').append(new Option('آخري', 5));
     /*  $('#chosen-select16').append(new Option('كورس غير مدرج -اخر', 5));*/
     /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
     /* $("#a").css('visibility', 'hidden');*/
@@ -174,25 +192,24 @@
 
     //    }
     //});
+    $("select.chosen1").change(function () {
+        var selectedCountry = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+        if (selectedCountry == 5) {
+            alert("  يرجي ادخال اسم البرنامج الجديد باالاسفل - ");
 
-    //$("select.chosen1").change(function () {
-    //    var selectedCountry = $(this).children("option:selected").val();
-    //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
-    //    if (selectedCountry == 5) {
-    //        alert("  يرجي ادخال اسم الكورس الجديد باالاسفل - ");
-
-    //        var hiddenBox = $("#respond-1");
-    //        hiddenBox.show();
-
+            var hiddenBox = $("#respond-1");
+            hiddenBox.show();
 
 
-    //    }
-    //    else {
-    //        var hiddenBox = $("#respond-1");
-    //        hiddenBox.hide();
 
-    //    }
-    //});
+        }
+        else {
+            var hiddenBox = $("#respond-1");
+            hiddenBox.hide();
+
+        }
+    });
     //$("select").change(function () {
     //    var selected5 = $(this).children("option:selected").val();
     //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/

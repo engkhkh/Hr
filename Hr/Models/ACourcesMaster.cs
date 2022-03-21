@@ -30,11 +30,13 @@ namespace Hr.Models
         //[Required]
         public string CourcesIdImagehr { get; set; }
         //[DisplayFormat(DataFormatString = "{dd-MMM-yyyy}")]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Required(ErrorMessage = "ادخل تاريخ البداية   ")]
         public DateTime CourcesStartDate { get; set; }
         //[DisplayFormat(DataFormatString = "{dd-MMM-yyyy}")]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Required(ErrorMessage = "ادخل تاريخ النهاية    ")]
         public DateTime CourcesEndDate { get; set; }
         [Required]
@@ -54,20 +56,31 @@ namespace Hr.Models
         public virtual ACourcesName Cources { get; set; }
 
 
+        //public virtual MasterDetails MasterDetails { get; set; }
+        //public virtual MasterRequestTypeId MasterRequestTypeId { get; set; }
 
+
+
+        [NotMapped]
+        public string EncryptedIdd { get; set; }
+
+        [NotMapped]
+        public double gradetocourse { get; set; }
+        [NotMapped]
+        public double gradetocourset { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public string CourcesStartDateh { get; set; }
 
 
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime CourcesStartDateh { get; set; }
-
-
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime CourceendDateh { get; set; }
+        public string CourceendDateh { get; set; }
 
 
         [Required(ErrorMessage = " اختر جهة  تنفيذ التدريب ")]
         public string COURCES_EXCUTION { get; set; }
 
+        //public List<Project> Projects { get; set; }
 
     }
 }

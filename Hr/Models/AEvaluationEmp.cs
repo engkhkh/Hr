@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -28,5 +29,18 @@ namespace Hr.Models
         public int? TypeNo { get; set; }
         public string EvaEmpnoNameOut1 { get; set; }
         public int? EmpIdEnter { get; set; }
+        public string year { get; set; }
+        public string comment1 { get; set; }
+        public string comment2 { get; set; }
+        [NotMapped]
+        public string EncryptedIdd { get; set; }
+        [NotMapped]
+        public string tot1 { get; set; }
+        [NotMapped]
+        public string tot2 { get; set; }
+        [NotMapped]
+        public string tot3 { get; set; }
+        [NotMapped]
+        public string tot4 { get; set; }
     }
 }

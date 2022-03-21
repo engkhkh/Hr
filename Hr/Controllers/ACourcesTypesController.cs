@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hr.Controllers
 {
@@ -21,6 +22,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesTypes
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Index()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -44,6 +46,7 @@ namespace Hr.Controllers
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
             return View(await _context.ACourcesTypes.ToListAsync());
         }
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> IndexWithout()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -69,6 +72,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesTypes/Details/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -103,6 +107,7 @@ namespace Hr.Controllers
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
             return View(aCourcesType);
         }
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> DetailsWithout(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -139,6 +144,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesTypes/Create
+        [Authorize(Roles = "Admin,HR-Admin")]
         public IActionResult Create()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -168,6 +174,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Create([Bind("CourcesIdType,CourcesTypeName")] ACourcesType aCourcesType)
         {
             if (ModelState.IsValid)
@@ -180,6 +187,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesTypes/Edit/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -219,6 +227,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("CourcesIdType,CourcesTypeName")] ACourcesType aCourcesType)
         {
             if (id != aCourcesType.CourcesIdType)
@@ -250,6 +259,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesTypes/Delete/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -288,6 +298,7 @@ namespace Hr.Controllers
         // POST: ACourcesTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var aCourcesType = await _context.ACourcesTypes.FindAsync(id);

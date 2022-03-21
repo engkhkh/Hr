@@ -100,6 +100,9 @@
                 رقم التذكرة
             </th>
             <th>
+                الرقم الوظيفي 
+            </th>
+            <th>
                 الموظف المرسل
             </th>
             <th>
@@ -133,13 +136,16 @@
                 @*<a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
                 @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
                 @*<a asp-controller="MessagesDetails" asp-action="Create" asp-route-id="@item.SupportProcess.Id" asp-route-from="@item.SupportProcess.Fromr" class="btn btn-success">تم الاستلام</a>
-        <a asp-controller="MessagesDetails" asp-action="Create2" asp-route-id="@item.SupportProcess.Id" asp-route-from="@item.SupportProcess.Fromr" class="btn btn-success">رفض الاستلام </a>*@
+            <a asp-controller="MessagesDetails" asp-action="Create2" asp-route-id="@item.SupportProcess.Id" asp-route-from="@item.SupportProcess.Fromr" class="btn btn-success">رفض الاستلام </a>*@
                 <a asp-controller="SupportDetails" asp-action="Create" asp-route-id="@item.SupportProcess.Id" asp-route-from="@item.SupportProcess.Fromr" class="btn btn-success">أعتماد</a>
                 <a asp-controller="SupportDetails" asp-action="Create2" asp-route-id="@item.SupportProcess.Id" asp-route-from="@item.SupportProcess.Fromr" class="btn btn-success">رفض</a>
 
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SupportProcess.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cemp.Cempid)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.cemp.CEMPNAME)

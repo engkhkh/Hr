@@ -119,12 +119,12 @@ $(document).ready(function () {
     });
 
     // Uniform
-    var checkBox = $("input[type=checkbox]:not(.switchery), input[type=radio]:not(.no-uniform)");
-    if (checkBox.size() > 0) {
-        checkBox.each(function () {
-            $(this).uniform();
-        });
-    };
+    //var checkBox = $("input[type=checkbox]:not(.switchery), input[type=radio]:not(.no-uniform)");
+    //if (checkBox.size() > 0) {
+    //    checkBox.each(function () {
+    //        $(this).uniform();
+    //    });
+    //};
 
     // .toggleAttr() Function
     $.fn.toggleAttr = function (a, b) {
@@ -477,9 +477,9 @@ $(document).ready(function () {
 
  
 
-    closeRight2.onclick = function () {
-        classie.toggle(menuRight2, 'cbp-spmenu-open');
-    };
+    //closeRight2.onclick = function () {
+    //    classie.toggle(menuRight2, 'cbp-spmenu-open');
+    //};
 
     $('.showRight2').click(function () {
         classie.toggle(menuRight2, 'cbp-spmenu-open');

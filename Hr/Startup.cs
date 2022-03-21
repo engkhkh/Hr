@@ -24,7 +24,15 @@ using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
-
+using jsreport.AspNetCore;
+using jsreport.Binary;
+using jsreport.Local;
+using AutoMapper;
+using Hr.Mapper;
+using Hr.IRepository;
+using Hr.Repository;
+using Hr.Interfaces;
+using Hr.UnitOfWork;
 
 namespace Hr
 {
@@ -37,12 +45,39 @@ namespace Hr
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //unit if work 
+            services.AddScoped(typeof(IunitOfWork<>), typeof(UnitOfWork<>));
+            //
+            services.AddScoped<IAGoalLogsRepository, AGoalLogsRepository>();
+            // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
 
-         
-         
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            // Set Application scope Temp Path
+            var tempPath = @"C:\Safe\Location\";
+            // On linux /tmp is a good choice
+
+            Environment.SetEnvironmentVariable("TEMP", tempPath);
+            Environment.SetEnvironmentVariable("TMP", tempPath);
+            services.AddJsReport(new LocalReporting().Configure(cfg =>
+            {
+                cfg.BaseUrlAsWorkingDirectory();
+                cfg.TempDirectory = tempPath;
+                return cfg;
+            }).UseBinary(JsReportBinary.GetBinary()).KillRunningJsReportProcesses().AsUtility().Create());
+            //services.ConfigureDataProtection(dp =>
+            //{
+            //    dp.PersistKeysToFileSystem(new DirectoryInfo(@"c:\keys"));
+            //    dp.SetDefaultKeyLifetime(TimeSpan.FromDays(14));
+            //});
             //services.AddAuthentication("CookieAuthentication")
             //    .AddCookie("CookieAuthentication", config =>
             //    {
@@ -62,7 +97,8 @@ namespace Hr
             //services.AddAuthentication(options =>
             //{
             //    options.DefaultAuthenticateScheme = "Bearer";
-
+            services.AddTransient<Services.IMailService, Services.MailService>();
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
 
             //});
             //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
@@ -84,7 +120,7 @@ namespace Hr
             services.AddMemoryCache();
             services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-         
+
 
 
             //        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -134,7 +170,12 @@ namespace Hr
             //    options.IdleTimeout = TimeSpan.FromMinutes(1);//You can set Time   
             //});
 
+        //    services.AddDataProtection()
+        //.PersistKeysToFileSystem(new DirectoryInfo(@"bin\debug\configuration"))
+        //.ProtectKeysWithDpapi()
+        //.SetDefaultKeyLifetime(TimeSpan.FromDays(10));
 
+            services.AddDataProtection();
             services.AddControllersWithViews();
             services.AddSession();
             services.AddDbContext<hrContext>(Options =>
@@ -144,8 +185,11 @@ namespace Hr
                 //Options.UseOracle(Configuration.GetConnectionString("ora"));
 
 
-            }
+            },ServiceLifetime.Transient
             );
+            //services.AddDbContext<hrContext>(options =>
+            //           options.UseSqlServer(Configuration.GetConnectionString("hr")),
+            //ServiceLifetime.Transient);
             //services.ConfigureApplicationCookie(options =>
             //{
             //    options.LoginPath = "/Identity/Account/Login";

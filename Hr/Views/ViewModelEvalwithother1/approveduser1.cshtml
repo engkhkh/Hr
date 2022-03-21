@@ -92,9 +92,9 @@
 <table @*style="width: 100%;"*@ id="table" class="table table-responsive-lg table-bordered table-condensed table-striped table-hover  sortable">
     <thead>
         <tr>
-            @*<th>
+            <th>
 
-        </th>*@
+        </th>
             <th>
                 الموظف
             </th>
@@ -123,12 +123,14 @@
         @foreach (var item in Model)
         {
         <tr>
-            <!--<td>-->
-            @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
-        <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
-            @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
+            
+            <td>
+                <a asp-controller="ViewModelEvalwithother1" asp-action="Details" target="_blank" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">عرض  الطلب </a>|
+                @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
+        <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>
+            <a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
-            <!--</td>-->
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AEvaluationEmp.Empname)
             </td>
