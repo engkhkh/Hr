@@ -144,6 +144,10 @@ namespace Hr.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
             //
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             modelBuilder.Entity<PersnolEmpGrade>(entity =>
             {
                 entity.ToTable("PersonalEmpGrade");
@@ -163,11 +167,18 @@ namespace Hr.Models
                 entity.Property(e => e.empgrade)
                       .HasMaxLength(250)
                       .HasColumnName("empgrade");
+<<<<<<< HEAD
                 entity.Property(e => e.empdate)
                       //.HasMaxLength(250)
                       .HasColumnName("empdate");
             });
             //
+=======
+            });
+            //
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             modelBuilder.Entity<Aeval2log>(entity =>
             {
                 entity.ToTable("AEVAL2LOGS");

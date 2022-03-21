@@ -12,10 +12,19 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 using System.Data;
 using AspNetCore.Reporting;
 using jsreport.Types;
 using jsreport.AspNetCore;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 
 namespace Hr.Controllers
 {
@@ -24,14 +33,30 @@ namespace Hr.Controllers
         public IJsReportMVCService JsReportMVCService { get; }
         private readonly hrContext _context;
         private readonly IHostingEnvironment _hosting;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
         //private readonly IWebHostEnvironment _webHostEnvironment;
         IDataProtector _protector;
       
         public CempsController(hrContext context, IHostingEnvironment hosting, IDataProtectionProvider provider, IJsReportMVCService jsReportMVCService)
+<<<<<<< HEAD
+=======
+=======
+        IDataProtector _protector;
+      
+        public CempsController(hrContext context, IHostingEnvironment hosting, IDataProtectionProvider provider)
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
         {
             _context = context;
             _hosting = hosting;
             _protector = provider.CreateProtector(GetType().FullName);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             JsReportMVCService = jsReportMVCService;
 
         }
@@ -114,6 +139,11 @@ namespace Hr.Controllers
             //}
 
             return dt;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
         }
 
         [Authorize(Roles = "Admin")]
@@ -173,12 +203,24 @@ namespace Hr.Controllers
             {
                 return NotFound();
             }
+<<<<<<< HEAD
             List<Cemp> _Cemps = _context.Cemps.Where(x => x.CEMPADPRTNO ==HttpContext.Session.GetString("empdepid") && x.MANAGERID == HttpContext.Session.GetString("username") && x.CEMPPASSWRD.Length == 10 && x.CEMPPASSWRD1 != null && x.CEMPPASSWRD1 != "").Select(x => new Cemp
+=======
+<<<<<<< HEAD
+            List<Cemp> _Cemps = _context.Cemps.Where(x => x.CEMPADPRTNO ==HttpContext.Session.GetString("empdepid") && x.MANAGERID == HttpContext.Session.GetString("username") && x.CEMPPASSWRD.Length == 10 && x.CEMPPASSWRD1 != null && x.CEMPPASSWRD1 != "").Select(x => new Cemp
+=======
+            List<Cemp> _Cemps = _context.Cemps.Where(x => x.CEMPADPRTNO ==HttpContext.Session.GetString("empdepid") && x.MANAGERID == HttpContext.Session.GetString("username")).Select(x => new Cemp
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             {
                Cempid=x.Cempid,
                CEMPNAME=x.CEMPNAME,
                Cemphiringdate=x.Cemphiringdate,
                Cemplastupgrade=x.Cemplastupgrade
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -236,6 +278,11 @@ namespace Hr.Controllers
                 CEMPNAME = x.CEMPNAME,
                 Cemphiringdate = x.Cemphiringdate,
                 Cemplastupgrade = x.Cemplastupgrade
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;

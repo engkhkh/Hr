@@ -1355,20 +1355,53 @@ namespace Hr.Controllers
             //ViewBag.MenuMaster = _menus;
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
 
+<<<<<<< HEAD
 
             List<AJobsNames> AJobsNames = _context.AJobsNames.ToList();
             List<Cemp> Cemps = _context.Cemps.ToList();
             List<ACourcesIdManagement> ACourcesIdManagement = _context.ACourcesIdManagement.ToList();
             List<ACourcesNeeded1> ACourcesNeeded = _context.ACourcesNeeded1.ToList();
+=======
+            List<Cemp> Cemps = _context.Cemps.ToList();
+            List<ACourcesOffered3> ACourcesOffereds3 = _context.ACourcesOffered3.ToList();
+            List<OfferedDetails3> OfferedDetails3 = _context.OfferedDetails3.ToList();
+            List<OfferedRequestTypeId3> OfferedRequestTypeId3 = _context.OfferedRequestTypeId3.ToList();
+
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
             List<ACourcesDeptin> ACourcesDeptins = _context.ACourcesDeptins.ToList();
             List<Needed1RequestTypeId> Needed1RequestTypeId = _context.Needed1RequestTypeId.ToList();
             List<Needed1Details> Needed1Details = _context.Needed1Details.ToList();
             List<ACourcesDeptout> ACourcesDeptouts = _context.ACourcesDeptouts.ToList();
+<<<<<<< HEAD
             List<ACourcesTrainingMethod> ACourcesTrainingMethods = _context.ACourcesTrainingMethods.ToList();
             List<ACourcesPrograms1> ACourcesPrograms1 = _context.ACourcesPrograms1.ToList();
             var Records = from e in ACourcesNeeded
                           join d in ACourcesPrograms1 on e.CourcesId equals d.CourcesId into table1
                           from d in table1.ToList()
+=======
+            List<ACourcesPrograms> ACourcesPrograms = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms2 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms3 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms4 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms5 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms6 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms7 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms8 = _context.ACourcesPrograms.ToList();
+
+            List<ACoursesLocation> ACoursesLocation = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation2 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation3 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation4 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation5 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation6 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation7 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation8 = _context.ACoursesLocation.ToList();
+
+
+            var Records = from e in ACourcesOffereds3
+                              //join d in ACoursesLocations on e.CourcesIdLocation equals d.id into table1
+                              //from d in table1.ToList()
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
                           join i in Cemps on e.Cempid equals i.Cempid into table2
                           from i in table2.ToList()
                           //where i.Cempid == HttpContext.Session.GetString("empid")
@@ -1376,6 +1409,563 @@ namespace Hr.Controllers
                           //from j in table3.ToList()
                           //join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
                           //from f in table4.ToList()
+<<<<<<< HEAD
+                          //    //join h in ACourcesDeptouts on e.CourcesIdDeptout equals h.CourcesIdDeptout into table5
+                          //    //from h in table5.ToList()
+                          //join n in ACourcesTrainingMethods on e.CourcesIdTraining equals n.CourcesIdTraining into table6
+                          //from n in table6.ToList()
+                          join x in Needed1RequestTypeId on e.CourcesNeededId equals x.COURCES_IDOffered into table7
+                          from x in table7.ToList()
+                          where x.OfferedRequestType == 1
+                          join y in Needed1Details on e.CourcesNeededId equals y.COURCES_IDOffered into table8
+                          from y in table8.Distinct().ToList()
+                          where y.OfferedRequestTypeSatus == 1
+                          where (y.OfferedRequestTo == HttpContext.Session.GetString("empid")) || (y.OfferedRequestTo2 == HttpContext.Session.GetString("empid")) || (y.OfferedRequestTo3 == HttpContext.Session.GetString("empid")) || (y.OfferedRequestTo4 == HttpContext.Session.GetString("empid")) || (y.OfferedRequestTo5 == HttpContext.Session.GetString("empid"))
+                          //where y.MasterRequestTo == HttpContext.Session.GetString("empid") || y.MasterRequestTo2 == HttpContext.Session.GetString("empid")
+
+=======
+                          //join q in ACourcesOptions on e.Option equals q.id into table44
+                          //from q in table44.ToList()
+                          join h in ACourcesDeptouts on e.CourcesIdDeptout equals h.CourcesIdDeptout into table5
+                          from h in table5.ToList()
+                          join x in OfferedRequestTypeId3 on e.CourcesOfferedId equals x.COURCES_IDOffered into table7
+                          from x in table7.ToList()
+                          where x.OfferedRequestType == 1
+                          join y in OfferedDetails3 on e.CourcesOfferedId equals y.COURCES_IDOffered into table8
+                          from y in table8.ToList()
+                          where y.OfferedRequestTypeSatus == 1
+                          where (y.OfferedRequestTo == HttpContext.Session.GetString("empid") && y.OfferedRequestTo3 == "1") /*|| (y.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && y.OfferedRequestTo4 == "0") || (y.Offeredoption == HttpContext.Session.GetString("empid") && y.OfferedRequestTo5 == "0")*/
+
+                          //join n in ACourcesTrainingMethods on e.CourcesIdTraining equals n.CourcesIdTraining into table6
+                          //from n in table6.ToList()
+                          //join x in MasterRequestTypeIds on e.CourcesIdmaster equals x.COURCES_IDMASTER into table7
+                          //from x in table7.ToList()
+                          //where x.MasterRequestType != 0
+                          //join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
+                          //from y in table8.ToList()
+                          join z in ACourcesPrograms on e.CourcesId equals z.CourcesId into table9
+                          from z in table9.ToList()
+                          join z2 in ACourcesPrograms2 on e.CourcesId2 equals z2.CourcesId into table9z2
+                          from z2 in table9z2.ToList()
+                          join z3 in ACourcesPrograms3 on e.CourcesId3 equals z3.CourcesId into table9z3
+                          from z3 in table9z3.ToList()
+                          join z4 in ACourcesPrograms4 on e.CourcesId4 equals z4.CourcesId into table9z4
+                          from z4 in table9z4.ToList()
+                          join z5 in ACourcesPrograms5 on e.CourcesId5 equals z5.CourcesId into table9z5
+                          from z5 in table9z5.ToList()
+                          join z6 in ACourcesPrograms6 on e.CourcesId6 equals z6.CourcesId into table9z6
+                          from z6 in table9z6.ToList()
+                          join z7 in ACourcesPrograms7 on e.CourcesId7 equals z7.CourcesId into table9z7
+                          from z7 in table9z7.ToList()
+                          join z8 in ACourcesPrograms8 on e.CourcesId8 equals z8.CourcesId into table9z8
+                          from z8 in table9z8.ToList()
+                          join z00 in ACoursesLocation on e.CourcesId01 equals z00.id into table900
+                          from z00 in table900.ToList()
+                          join z200 in ACoursesLocation2 on e.CourcesId02 equals z200.id into table9z200
+                          from z200 in table9z200.ToList()
+                          join z300 in ACoursesLocation3 on e.CourcesId03 equals z300.id into table9z300
+                          from z300 in table9z300.ToList()
+                          join z400 in ACoursesLocation4 on e.CourcesId04 equals z400.id into table9z400
+                          from z400 in table9z400.ToList()
+                          join z500 in ACoursesLocation5 on e.CourcesId05 equals z500.id into table9z500
+                          from z500 in table9z500.ToList()
+                          join z600 in ACoursesLocation6 on e.CourcesId06 equals z600.id into table9z600
+                          from z600 in table9z600.ToList()
+                          join z700 in ACoursesLocation7 on e.CourcesId07 equals z700.id into table9z700
+                          from z700 in table9z700.ToList()
+                          join z800 in ACoursesLocation8 on e.CourcesId08 equals z800.id into table9z800
+                          from z800 in table9z800.ToList()
+
+                          select new ViewModelMasterwithother
+                          {
+                              ACourcesOffered3 = e,
+                              //ACoursesLocation = d,
+                              Cemps = i,
+                              OfferedRequestTypeId3 = x,
+                              OfferedDetails3 = y,
+                              //ACourcesIdManagement = j,
+                              //ACourcesOptions=q,
+                              //ACourcesDeptins = f,
+                              ACourcesDeptouts = h,
+                              //ACourcesTrainingMethods = n,
+                              //MasterRequestTypeIds = x,
+                              //MasterDetails = y,
+                              ACourcesPrograms = z,
+                              ACourcesPrograms2 = z2,
+                              ACourcesPrograms3 = z3,
+                              ACourcesPrograms4 = z4,
+                              ACourcesPrograms5 = z5,
+                              ACourcesPrograms6 = z6,
+                              ACourcesPrograms7 = z7,
+                              ACourcesPrograms8 = z8,
+                              ACoursesLocation = z00,
+                              ACoursesLocation2 = z200,
+                              ACoursesLocation3 = z300,
+                              ACoursesLocation4 = z400,
+                              ACoursesLocation5 = z500,
+                              ACoursesLocation6 = z600,
+                              ACoursesLocation7 = z700,
+                              ACoursesLocation8 = z800
+                          };
+<<<<<<< HEAD
+            return View(Records);
+
+
+        }
+
+
+        public ActionResult approvedoffered3()
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+
+            List<Cemp> Cemps = _context.Cemps.ToList();
+            List<ACourcesOffered3> ACourcesOffereds3 = _context.ACourcesOffered3.ToList();
+            List<OfferedDetails3> OfferedDetails3 = _context.OfferedDetails3.ToList();
+            List<OfferedRequestTypeId3> OfferedRequestTypeId3 = _context.OfferedRequestTypeId3.ToList();
+
+            List<ACourcesDeptin> ACourcesDeptins = _context.ACourcesDeptins.ToList();
+            List<ACourcesDeptout> ACourcesDeptouts = _context.ACourcesDeptouts.ToList();
+            List<ACourcesPrograms> ACourcesPrograms = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms2 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms3 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms4 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms5 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms6 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms7 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms8 = _context.ACourcesPrograms.ToList();
+
+            List<ACoursesLocation> ACoursesLocation = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation2 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation3 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation4 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation5 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation6 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation7 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation8 = _context.ACoursesLocation.ToList();
+
+
+            var Records = from e in ACourcesOffereds3
+                              //join d in ACoursesLocations on e.CourcesIdLocation equals d.id into table1
+                              //from d in table1.ToList()
+                          join i in Cemps on e.Cempid equals i.Cempid into table2
+                          from i in table2.ToList()
+                          where i.Cempid == HttpContext.Session.GetString("empid")
+                          //join j in ACourcesIdManagements on e.CourcesIdManagement equals j.id into table3
+                          //from j in table3.ToList()
+                          //join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
+                          //from f in table4.ToList()
+                          //join q in ACourcesOptions on e.Option equals q.id into table44
+                          //from q in table44.ToList()
+                          join h in ACourcesDeptouts on e.CourcesIdDeptout equals h.CourcesIdDeptout into table5
+                          from h in table5.ToList()
+                          join x in OfferedRequestTypeId3 on e.CourcesOfferedId equals x.COURCES_IDOffered into table7
+                          from x in table7.ToList()
+                          where x.OfferedRequestType == 1
+                          join y in OfferedDetails3 on e.CourcesOfferedId equals y.COURCES_IDOffered into table8
+                          from y in table8.ToList()
+                          where y.OfferedRequestTypeSatus == 1
+                          where (y.OfferedRequestTo == HttpContext.Session.GetString("empid") && y.OfferedRequestTo3 == "1") /*|| (y.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && y.OfferedRequestTo4 == "0") || (y.Offeredoption == HttpContext.Session.GetString("empid") && y.OfferedRequestTo5 == "0")*/
+
+                          //join n in ACourcesTrainingMethods on e.CourcesIdTraining equals n.CourcesIdTraining into table6
+                          //from n in table6.ToList()
+                          //join x in MasterRequestTypeIds on e.CourcesIdmaster equals x.COURCES_IDMASTER into table7
+                          //from x in table7.ToList()
+                          //where x.MasterRequestType != 0
+                          //join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
+                          //from y in table8.ToList()
+                          join z in ACourcesPrograms on e.CourcesId equals z.CourcesId into table9
+                          from z in table9.ToList()
+                          join z2 in ACourcesPrograms2 on e.CourcesId2 equals z2.CourcesId into table9z2
+                          from z2 in table9z2.ToList()
+                          join z3 in ACourcesPrograms3 on e.CourcesId3 equals z3.CourcesId into table9z3
+                          from z3 in table9z3.ToList()
+                          join z4 in ACourcesPrograms4 on e.CourcesId4 equals z4.CourcesId into table9z4
+                          from z4 in table9z4.ToList()
+                          join z5 in ACourcesPrograms5 on e.CourcesId5 equals z5.CourcesId into table9z5
+                          from z5 in table9z5.ToList()
+                          join z6 in ACourcesPrograms6 on e.CourcesId6 equals z6.CourcesId into table9z6
+                          from z6 in table9z6.ToList()
+                          join z7 in ACourcesPrograms7 on e.CourcesId7 equals z7.CourcesId into table9z7
+                          from z7 in table9z7.ToList()
+                          join z8 in ACourcesPrograms8 on e.CourcesId8 equals z8.CourcesId into table9z8
+                          from z8 in table9z8.ToList()
+                          join z00 in ACoursesLocation on e.CourcesId01 equals z00.id into table900
+                          from z00 in table900.ToList()
+                          join z200 in ACoursesLocation2 on e.CourcesId02 equals z200.id into table9z200
+                          from z200 in table9z200.ToList()
+                          join z300 in ACoursesLocation3 on e.CourcesId03 equals z300.id into table9z300
+                          from z300 in table9z300.ToList()
+                          join z400 in ACoursesLocation4 on e.CourcesId04 equals z400.id into table9z400
+                          from z400 in table9z400.ToList()
+                          join z500 in ACoursesLocation5 on e.CourcesId05 equals z500.id into table9z500
+                          from z500 in table9z500.ToList()
+                          join z600 in ACoursesLocation6 on e.CourcesId06 equals z600.id into table9z600
+                          from z600 in table9z600.ToList()
+                          join z700 in ACoursesLocation7 on e.CourcesId07 equals z700.id into table9z700
+                          from z700 in table9z700.ToList()
+                          join z800 in ACoursesLocation8 on e.CourcesId08 equals z800.id into table9z800
+                          from z800 in table9z800.ToList()
+
+                          select new ViewModelMasterwithother
+                          {
+                              ACourcesOffered3 = e,
+                              //ACoursesLocation = d,
+                              Cemps = i,
+                              OfferedRequestTypeId3 = x,
+                              OfferedDetails3 = y,
+                              //ACourcesIdManagement = j,
+                              //ACourcesOptions=q,
+                              //ACourcesDeptins = f,
+                              ACourcesDeptouts = h,
+                              //ACourcesTrainingMethods = n,
+                              //MasterRequestTypeIds = x,
+                              //MasterDetails = y,
+                              ACourcesPrograms = z,
+                              ACourcesPrograms2 = z2,
+                              ACourcesPrograms3 = z3,
+                              ACourcesPrograms4 = z4,
+                              ACourcesPrograms5 = z5,
+                              ACourcesPrograms6 = z6,
+                              ACourcesPrograms7 = z7,
+                              ACourcesPrograms8 = z8,
+                              ACoursesLocation = z00,
+                              ACoursesLocation2 = z200,
+                              ACoursesLocation3 = z300,
+                              ACoursesLocation4 = z400,
+                              ACoursesLocation5 = z500,
+                              ACoursesLocation6 = z600,
+                              ACoursesLocation7 = z700,
+                              ACoursesLocation8 = z800
+                          };
+
+            return View(Records);
+
+        }
+
+        public ActionResult approvedoffered33()
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+
+            List<Cemp> Cemps = _context.Cemps.ToList();
+            List<ACourcesOffered3> ACourcesOffereds3 = _context.ACourcesOffered3.ToList();
+            List<OfferedDetails3> OfferedDetails3 = _context.OfferedDetails3.ToList();
+            List<OfferedRequestTypeId3> OfferedRequestTypeId3 = _context.OfferedRequestTypeId3.ToList();
+
+            List<ACourcesDeptin> ACourcesDeptins = _context.ACourcesDeptins.ToList();
+            List<ACourcesDeptout> ACourcesDeptouts = _context.ACourcesDeptouts.ToList();
+            List<ACourcesPrograms> ACourcesPrograms = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms2 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms3 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms4 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms5 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms6 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms7 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms8 = _context.ACourcesPrograms.ToList();
+
+            List<ACoursesLocation> ACoursesLocation = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation2 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation3 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation4 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation5 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation6 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation7 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation8 = _context.ACoursesLocation.ToList();
+
+
+            var Records = from e in ACourcesOffereds3
+                              //join d in ACoursesLocations on e.CourcesIdLocation equals d.id into table1
+                              //from d in table1.ToList()
+                          join i in Cemps on e.Cempid equals i.Cempid into table2
+                          from i in table2.ToList()
+                          where i.Cempid == HttpContext.Session.GetString("empid")
+                          //join j in ACourcesIdManagements on e.CourcesIdManagement equals j.id into table3
+                          //from j in table3.ToList()
+                          //join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
+                          //from f in table4.ToList()
+                          //join q in ACourcesOptions on e.Option equals q.id into table44
+                          //from q in table44.ToList()
+                          join h in ACourcesDeptouts on e.CourcesIdDeptout equals h.CourcesIdDeptout into table5
+                          from h in table5.ToList()
+                          join x in OfferedRequestTypeId3 on e.CourcesOfferedId equals x.COURCES_IDOffered into table7
+                          from x in table7.ToList()
+                          where x.OfferedRequestType == 1
+                          join y in OfferedDetails3 on e.CourcesOfferedId equals y.COURCES_IDOffered into table8
+                          from y in table8.ToList()
+                          where y.OfferedRequestTypeSatus == 1
+                          where (y.OfferedRequestTo == HttpContext.Session.GetString("empid") && y.OfferedRequestTo3 == "1") && (y.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && y.OfferedRequestTo4 == "1") /*|| (y.Offeredoption == HttpContext.Session.GetString("empid") && y.OfferedRequestTo5 == "0")*/
+
+                          //join n in ACourcesTrainingMethods on e.CourcesIdTraining equals n.CourcesIdTraining into table6
+                          //from n in table6.ToList()
+                          //join x in MasterRequestTypeIds on e.CourcesIdmaster equals x.COURCES_IDMASTER into table7
+                          //from x in table7.ToList()
+                          //where x.MasterRequestType != 0
+                          //join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
+                          //from y in table8.ToList()
+                          join z in ACourcesPrograms on e.CourcesId equals z.CourcesId into table9
+                          from z in table9.ToList()
+                          join z2 in ACourcesPrograms2 on e.CourcesId2 equals z2.CourcesId into table9z2
+                          from z2 in table9z2.ToList()
+                          join z3 in ACourcesPrograms3 on e.CourcesId3 equals z3.CourcesId into table9z3
+                          from z3 in table9z3.ToList()
+                          join z4 in ACourcesPrograms4 on e.CourcesId4 equals z4.CourcesId into table9z4
+                          from z4 in table9z4.ToList()
+                          join z5 in ACourcesPrograms5 on e.CourcesId5 equals z5.CourcesId into table9z5
+                          from z5 in table9z5.ToList()
+                          join z6 in ACourcesPrograms6 on e.CourcesId6 equals z6.CourcesId into table9z6
+                          from z6 in table9z6.ToList()
+                          join z7 in ACourcesPrograms7 on e.CourcesId7 equals z7.CourcesId into table9z7
+                          from z7 in table9z7.ToList()
+                          join z8 in ACourcesPrograms8 on e.CourcesId8 equals z8.CourcesId into table9z8
+                          from z8 in table9z8.ToList()
+                          join z00 in ACoursesLocation on e.CourcesId01 equals z00.id into table900
+                          from z00 in table900.ToList()
+                          join z200 in ACoursesLocation2 on e.CourcesId02 equals z200.id into table9z200
+                          from z200 in table9z200.ToList()
+                          join z300 in ACoursesLocation3 on e.CourcesId03 equals z300.id into table9z300
+                          from z300 in table9z300.ToList()
+                          join z400 in ACoursesLocation4 on e.CourcesId04 equals z400.id into table9z400
+                          from z400 in table9z400.ToList()
+                          join z500 in ACoursesLocation5 on e.CourcesId05 equals z500.id into table9z500
+                          from z500 in table9z500.ToList()
+                          join z600 in ACoursesLocation6 on e.CourcesId06 equals z600.id into table9z600
+                          from z600 in table9z600.ToList()
+                          join z700 in ACoursesLocation7 on e.CourcesId07 equals z700.id into table9z700
+                          from z700 in table9z700.ToList()
+                          join z800 in ACoursesLocation8 on e.CourcesId08 equals z800.id into table9z800
+                          from z800 in table9z800.ToList()
+
+                          select new ViewModelMasterwithother
+                          {
+                              ACourcesOffered3 = e,
+                              //ACoursesLocation = d,
+                              Cemps = i,
+                              OfferedRequestTypeId3 = x,
+                              OfferedDetails3 = y,
+                              //ACourcesIdManagement = j,
+                              //ACourcesOptions=q,
+                              //ACourcesDeptins = f,
+                              ACourcesDeptouts = h,
+                              //ACourcesTrainingMethods = n,
+                              //MasterRequestTypeIds = x,
+                              //MasterDetails = y,
+                              ACourcesPrograms = z,
+                              ACourcesPrograms2 = z2,
+                              ACourcesPrograms3 = z3,
+                              ACourcesPrograms4 = z4,
+                              ACourcesPrograms5 = z5,
+                              ACourcesPrograms6 = z6,
+                              ACourcesPrograms7 = z7,
+                              ACourcesPrograms8 = z8,
+                              ACoursesLocation = z00,
+                              ACoursesLocation2 = z200,
+                              ACoursesLocation3 = z300,
+                              ACoursesLocation4 = z400,
+                              ACoursesLocation5 = z500,
+                              ACoursesLocation6 = z600,
+                              ACoursesLocation7 = z700,
+                              ACoursesLocation8 = z800
+                          };
+
+            return View(Records);
+
+        }
+
+        public ActionResult approvedoffered4()
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+
+
+            List<AJobsNames> AJobsNames = _context.AJobsNames.ToList();
+            List<Cemp> Cemps = _context.Cemps.ToList();
+            List<ACourcesIdManagement> ACourcesIdManagement = _context.ACourcesIdManagement.ToList();
+            List<ACourcesNeeded> ACourcesNeeded = _context.ACourcesNeeded.ToList();
+            List<ACourcesDeptin> ACourcesDeptins = _context.ACourcesDeptins.ToList();
+            List<NeededRequestTypeId> NeededRequestTypeId = _context.NeededRequestTypeId.ToList();
+            List<NeededDetails> NeededDetails = _context.NeededDetails.ToList();
+            List<ACourcesDeptout> ACourcesDeptouts = _context.ACourcesDeptouts.ToList();
+            List<ACourcesTrainingMethod> ACourcesTrainingMethods = _context.ACourcesTrainingMethods.ToList();
+            List<ACourcesPrograms> ACourcesPrograms = _context.ACourcesPrograms.ToList();
+            var Records = from e in ACourcesNeeded
+                          join d in AJobsNames on e.jobsid equals d.CourcesId into table1
+                          from d in table1.ToList()
+                          join i in Cemps on e.Cempid equals i.Cempid into table2
+                          from i in table2.ToList()
+                          //where i.Cempid == HttpContext.Session.GetString("empid")
+                          join j in ACourcesIdManagement on e.CourcesIdManagement equals j.id into table3
+                          from j in table3.ToList()
+                          join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
+                          from f in table4.ToList()
+                              //join h in ACourcesDeptouts on e.CourcesIdDeptout equals h.CourcesIdDeptout into table5
+                              //from h in table5.ToList()
+                          join n in ACourcesTrainingMethods on e.CourcesIdTraining equals n.CourcesIdTraining into table6
+                          from n in table6.ToList()
+                          join x in NeededRequestTypeId on e.CourcesNeededId equals x.COURCES_IDOffered into table7
+                          from x in table7.ToList()
+                          where x.OfferedRequestType == 1
+                          join y in NeededDetails on e.CourcesNeededId equals y.COURCES_IDOffered into table8
+                          from y in table8.Distinct().ToList()
+                          where y.OfferedRequestTypeSatus == 1
+                          where (y.OfferedRequestTo == HttpContext.Session.GetString("empid")) || (y.OfferedRequestTo2 == HttpContext.Session.GetString("empid") ) || (y.OfferedRequestTo3 == HttpContext.Session.GetString("empid")) || (y.OfferedRequestTo4 == HttpContext.Session.GetString("empid")) || (y.OfferedRequestTo5 == HttpContext.Session.GetString("empid"))
+                          //where y.MasterRequestTo == HttpContext.Session.GetString("empid") || y.MasterRequestTo2 == HttpContext.Session.GetString("empid")
+                          join z in ACourcesPrograms on e.CourcesId equals z.CourcesId into table9
+                          from z in table9.ToList()
+
+
+                          select new ViewModelMasterwithother
+                          {
+                              ACourcesNeeded = e,
+                              AJobsNames = d,
+                              Cemps = i,
+                              ACourcesIdManagement = j,
+                              ACourcesDeptins = f,
+                              //ACourcesDeptouts = h,
+                              ACourcesTrainingMethods = n,
+                              NeededRequestTypeIds = x,
+                              NeededDetails = y,
+                              ACourcesPrograms = z
+                          };
+            return View(Records);
+        }
+
+        public ActionResult approvedoffered5()
+=======
+
+            return View(Records);
+
+        }
+
+        public ActionResult approvedoffered33()
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+
+<<<<<<< HEAD
+
+            List<AJobsNames> AJobsNames = _context.AJobsNames.ToList();
+            List<Cemp> Cemps = _context.Cemps.ToList();
+            List<ACourcesIdManagement> ACourcesIdManagement = _context.ACourcesIdManagement.ToList();
+            List<ACourcesNeeded1> ACourcesNeeded = _context.ACourcesNeeded1.ToList();
+=======
+            List<Cemp> Cemps = _context.Cemps.ToList();
+            List<ACourcesOffered3> ACourcesOffereds3 = _context.ACourcesOffered3.ToList();
+            List<OfferedDetails3> OfferedDetails3 = _context.OfferedDetails3.ToList();
+            List<OfferedRequestTypeId3> OfferedRequestTypeId3 = _context.OfferedRequestTypeId3.ToList();
+
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+            List<ACourcesDeptin> ACourcesDeptins = _context.ACourcesDeptins.ToList();
+            List<Needed1RequestTypeId> Needed1RequestTypeId = _context.Needed1RequestTypeId.ToList();
+            List<Needed1Details> Needed1Details = _context.Needed1Details.ToList();
+            List<ACourcesDeptout> ACourcesDeptouts = _context.ACourcesDeptouts.ToList();
+<<<<<<< HEAD
+            List<ACourcesTrainingMethod> ACourcesTrainingMethods = _context.ACourcesTrainingMethods.ToList();
+            List<ACourcesPrograms1> ACourcesPrograms1 = _context.ACourcesPrograms1.ToList();
+            var Records = from e in ACourcesNeeded
+                          join d in ACourcesPrograms1 on e.CourcesId equals d.CourcesId into table1
+                          from d in table1.ToList()
+=======
+            List<ACourcesPrograms> ACourcesPrograms = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms2 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms3 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms4 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms5 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms6 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms7 = _context.ACourcesPrograms.ToList();
+            List<ACourcesPrograms> ACourcesPrograms8 = _context.ACourcesPrograms.ToList();
+
+            List<ACoursesLocation> ACoursesLocation = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation2 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation3 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation4 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation5 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation6 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation7 = _context.ACoursesLocation.ToList();
+            List<ACoursesLocation> ACoursesLocation8 = _context.ACoursesLocation.ToList();
+
+
+            var Records = from e in ACourcesOffereds3
+                              //join d in ACoursesLocations on e.CourcesIdLocation equals d.id into table1
+                              //from d in table1.ToList()
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+                          join i in Cemps on e.Cempid equals i.Cempid into table2
+                          from i in table2.ToList()
+                          //where i.Cempid == HttpContext.Session.GetString("empid")
+                          //join j in ACourcesIdManagement on e.CourcesIdManagement equals j.id into table3
+                          //from j in table3.ToList()
+                          //join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
+                          //from f in table4.ToList()
+<<<<<<< HEAD
                           //    //join h in ACourcesDeptouts on e.CourcesIdDeptout equals h.CourcesIdDeptout into table5
                           //    //from h in table5.ToList()
                           //join n in ACourcesTrainingMethods on e.CourcesIdTraining equals n.CourcesIdTraining into table6
@@ -1390,6 +1980,60 @@ namespace Hr.Controllers
                           //where y.MasterRequestTo == HttpContext.Session.GetString("empid") || y.MasterRequestTo2 == HttpContext.Session.GetString("empid")
 
 
+=======
+                          //join q in ACourcesOptions on e.Option equals q.id into table44
+                          //from q in table44.ToList()
+                          join h in ACourcesDeptouts on e.CourcesIdDeptout equals h.CourcesIdDeptout into table5
+                          from h in table5.ToList()
+                          join x in OfferedRequestTypeId3 on e.CourcesOfferedId equals x.COURCES_IDOffered into table7
+                          from x in table7.ToList()
+                          where x.OfferedRequestType == 1
+                          join y in OfferedDetails3 on e.CourcesOfferedId equals y.COURCES_IDOffered into table8
+                          from y in table8.ToList()
+                          where y.OfferedRequestTypeSatus == 1
+                          where (y.OfferedRequestTo == HttpContext.Session.GetString("empid") && y.OfferedRequestTo3 == "1") && (y.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && y.OfferedRequestTo4 == "1") /*|| (y.Offeredoption == HttpContext.Session.GetString("empid") && y.OfferedRequestTo5 == "0")*/
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+
+                          //join n in ACourcesTrainingMethods on e.CourcesIdTraining equals n.CourcesIdTraining into table6
+                          //from n in table6.ToList()
+                          //join x in MasterRequestTypeIds on e.CourcesIdmaster equals x.COURCES_IDMASTER into table7
+                          //from x in table7.ToList()
+                          //where x.MasterRequestType != 0
+                          //join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
+                          //from y in table8.ToList()
+                          join z in ACourcesPrograms on e.CourcesId equals z.CourcesId into table9
+                          from z in table9.ToList()
+                          join z2 in ACourcesPrograms2 on e.CourcesId2 equals z2.CourcesId into table9z2
+                          from z2 in table9z2.ToList()
+                          join z3 in ACourcesPrograms3 on e.CourcesId3 equals z3.CourcesId into table9z3
+                          from z3 in table9z3.ToList()
+                          join z4 in ACourcesPrograms4 on e.CourcesId4 equals z4.CourcesId into table9z4
+                          from z4 in table9z4.ToList()
+                          join z5 in ACourcesPrograms5 on e.CourcesId5 equals z5.CourcesId into table9z5
+                          from z5 in table9z5.ToList()
+                          join z6 in ACourcesPrograms6 on e.CourcesId6 equals z6.CourcesId into table9z6
+                          from z6 in table9z6.ToList()
+                          join z7 in ACourcesPrograms7 on e.CourcesId7 equals z7.CourcesId into table9z7
+                          from z7 in table9z7.ToList()
+                          join z8 in ACourcesPrograms8 on e.CourcesId8 equals z8.CourcesId into table9z8
+                          from z8 in table9z8.ToList()
+                          join z00 in ACoursesLocation on e.CourcesId01 equals z00.id into table900
+                          from z00 in table900.ToList()
+                          join z200 in ACoursesLocation2 on e.CourcesId02 equals z200.id into table9z200
+                          from z200 in table9z200.ToList()
+                          join z300 in ACoursesLocation3 on e.CourcesId03 equals z300.id into table9z300
+                          from z300 in table9z300.ToList()
+                          join z400 in ACoursesLocation4 on e.CourcesId04 equals z400.id into table9z400
+                          from z400 in table9z400.ToList()
+                          join z500 in ACoursesLocation5 on e.CourcesId05 equals z500.id into table9z500
+                          from z500 in table9z500.ToList()
+                          join z600 in ACoursesLocation6 on e.CourcesId06 equals z600.id into table9z600
+                          from z600 in table9z600.ToList()
+                          join z700 in ACoursesLocation7 on e.CourcesId07 equals z700.id into table9z700
+                          from z700 in table9z700.ToList()
+                          join z800 in ACoursesLocation8 on e.CourcesId08 equals z800.id into table9z800
+                          from z800 in table9z800.ToList()
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 
                           select new ViewModelMasterwithother
                           {
@@ -1400,9 +2044,36 @@ namespace Hr.Controllers
                               //ACourcesDeptins = f,
                               //ACourcesDeptouts = h,
                               //ACourcesTrainingMethods = n,
+<<<<<<< HEAD
                               Needed1RequestTypeIds = x,
                               Needed1Details = y,
                               ACourcesPrograms1 = d
+=======
+<<<<<<< HEAD
+                              Needed1RequestTypeIds = x,
+                              Needed1Details = y,
+                              ACourcesPrograms1 = d
+=======
+                              //MasterRequestTypeIds = x,
+                              //MasterDetails = y,
+                              ACourcesPrograms = z,
+                              ACourcesPrograms2 = z2,
+                              ACourcesPrograms3 = z3,
+                              ACourcesPrograms4 = z4,
+                              ACourcesPrograms5 = z5,
+                              ACourcesPrograms6 = z6,
+                              ACourcesPrograms7 = z7,
+                              ACourcesPrograms8 = z8,
+                              ACoursesLocation = z00,
+                              ACoursesLocation2 = z200,
+                              ACoursesLocation3 = z300,
+                              ACoursesLocation4 = z400,
+                              ACoursesLocation5 = z500,
+                              ACoursesLocation6 = z600,
+                              ACoursesLocation7 = z700,
+                              ACoursesLocation8 = z800
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                           };
             return View(Records);
         }
@@ -2336,7 +3007,15 @@ namespace Hr.Controllers
                       where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
                        join hh in EvalRequestTypeId on e.CourcesIdoffered equals hh.CourcesIdoffered into table5h
                        from hh in table5h.ToList()
+<<<<<<< HEAD
                        where hh.OfferedRequestType == 1 && m.OfferedRequestTypeSatus != 2022
+=======
+<<<<<<< HEAD
+                       where hh.OfferedRequestType == 1 && m.OfferedRequestTypeSatus != 2022
+=======
+                       where hh.OfferedRequestType == 1
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                        select (e.CourcesIdoffered).ToString();
             TempData["OfferedRequestTypeId10"] = xx10.ToList().Count();
 

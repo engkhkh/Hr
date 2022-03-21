@@ -123,14 +123,30 @@
     <h3> اجمالي درجات الدورات  <span style="color: #ff0000">@TempData["sumgrade"].ToString()</span> </h3>
 </table>
 
+<<<<<<< HEAD
 <!--<table id="table"--> @*style="width: 100%;"*@
 <!--class="table table-bordered table-condensed table-striped table-hover table-responsive-lg sortable">
+=======
+<<<<<<< HEAD
+<!--<table id="table"--> @*style="width: 100%;"*@ <!--class="table table-bordered table-condensed table-striped table-hover table-responsive-lg sortable">
+=======
+<table id="table" @*style="width: 100%;"*@ class="table table-bordered table-condensed table-striped table-hover table-responsive-lg sortable">
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
     <tr>
         <td>
             اجمالي نقاط برامج التطوير والتدريب من والي :
         </td>
         <td>
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+            
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             <div class="form-group">
                 <label class="control-label">فترة بداية الدورات   </label>
                 <div class="input-group" style="float: left">
@@ -140,7 +156,15 @@
             </div>
         </td>
         <td>
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+            
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             <div class="form-group">
                 <label class="control-label">فترة نهاية  الدورات   </label>
                 <div class="input-group" style="float: left">
@@ -150,11 +174,23 @@
             </div>
         </td>
         <td>
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+            
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             @Html.ActionLink(" احسب ", "editxt2", "ViewModelEvalwithother1", new { }, new { @class = "AddSection", onclick = "return AreYouSureFunction(this);" })
         </td>
         <td>
             يساوي
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             @TempData["sumgrade1"].ToString()
         </td>
     </tr>
@@ -164,6 +200,7 @@
 
 <hr />
 <h1 style="text-align: center; background-color: #FFF5D7;">بيانات درجة المقابلة الشخصية للموظف    </h1>
+<<<<<<< HEAD
 <h2>
     الدرجة <span style="color: #ff0000">@TempData["mygrade"].ToString()</span>   التاريخ <span style="color: #ff0000">@TempData["mygradedate"].ToString()</span>
 </h2>
@@ -173,12 +210,28 @@
     الدرجة <span style="color: #ff0000">@TempData["mygrade1"].ToString()</span>
 </h2>
 
+=======
+ الدرجة <span style="color: #ff0000">@TempData["mygrade"].ToString()</span>
+<hr />
+<h1 style="text-align: center; background-color: #FFF5D7;">درجة معايير الترقية    </h1>
+ الدرجة <span style="color: #ff0000">@TempData["mygrade1"].ToString()</span>
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 <br />
  درجة معيار الاداء الوظيفي بوزن 30% درجة معيار التطوير والتدريب بوزن  30%  درجة معيار المقابة الشخصية بوزن 40%
 <br />
 اجمالي النقاط :درجة معيار الاداء الوظيفي +التطوير والتدريب +المقابلة الشخصية
 
 <hr />
+<<<<<<< HEAD
+=======
+=======
+       @TempData["sumgrade1"].ToString()
+        </td>
+    </tr>
+</table>
+<br />
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 @*<div id="pager" class="pager">
         <br />
         <img src="~/Content/first.png" />
@@ -269,6 +322,10 @@
 
 </script>
 @*<script language="javascript" type="text/javascript">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
         $(document).ready(function () {
 
             $("#p1").hide();
@@ -279,6 +336,21 @@
 
         });
     </script>*@
+<<<<<<< HEAD
+=======
+=======
+    $(document).ready(function () {
+
+        $("#p1").hide();
+        $("#cc2").click(function () {
+            $("#p1").show();
+            $("#cc1").hide();
+        });
+
+    });
+</script>*@
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
         try {

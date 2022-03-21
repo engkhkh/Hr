@@ -27,12 +27,20 @@ using System.Threading.Tasks;
 using jsreport.AspNetCore;
 using jsreport.Binary;
 using jsreport.Local;
+<<<<<<< HEAD
 using AutoMapper;
 using Hr.Mapper;
 using Hr.IRepository;
 using Hr.Repository;
 using Hr.Interfaces;
 using Hr.UnitOfWork;
+=======
+
+
+
+
+
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 
 namespace Hr
 {
@@ -49,6 +57,7 @@ namespace Hr
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+<<<<<<< HEAD
             //unit if work 
             services.AddScoped(typeof(IunitOfWork<>), typeof(UnitOfWork<>));
             //
@@ -61,10 +70,16 @@ namespace Hr
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+=======
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             // Set Application scope Temp Path
             var tempPath = @"C:\Safe\Location\";
             // On linux /tmp is a good choice
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             Environment.SetEnvironmentVariable("TEMP", tempPath);
             Environment.SetEnvironmentVariable("TMP", tempPath);
             services.AddJsReport(new LocalReporting().Configure(cfg =>
@@ -73,6 +88,12 @@ namespace Hr
                 cfg.TempDirectory = tempPath;
                 return cfg;
             }).UseBinary(JsReportBinary.GetBinary()).KillRunningJsReportProcesses().AsUtility().Create());
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             //services.ConfigureDataProtection(dp =>
             //{
             //    dp.PersistKeysToFileSystem(new DirectoryInfo(@"c:\keys"));

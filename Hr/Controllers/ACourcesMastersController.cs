@@ -110,6 +110,10 @@ namespace Hr.Controllers
                                   MasterDetails = y,
                                   ACourcesNames = z
                               };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 foreach (var course in Records.ToList())
                 {
                     var stringId = course.ACourcesMasters.CourcesIdmaster.ToString();
@@ -171,6 +175,7 @@ namespace Hr.Controllers
                     }
                 }
             }
+<<<<<<< HEAD
                 return View(Records);
             
 
@@ -281,6 +286,13 @@ namespace Hr.Controllers
                     var stringId = course.ACourcesMasters.CourcesIdmaster.ToString();
                     course.ACourcesMasters.EncryptedIdd = _protector.Protect(stringId);
                     //var emppro = _context.Cemps.Where(x => x.Cempid == course.ACourcesMasters.Cempid).FirstOrDefault();
+=======
+=======
+                foreach (var emp in Records.ToList())
+                {
+                    var stringId = emp.ACourcesMasters.CourcesIdmaster.ToString();
+                    emp.ACourcesMasters.EncryptedIdd = _protector.Protect(stringId);
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                     //emp.AEvaluationGoal.EncryptedCovenantId= _protector.Protect(stringId);
                     //emp.AEvaluationCompetenciesM.EncryptedCovenantId= _protector.Protect(stringId);
                     //emp.AEvaluationCompetenciesD.EncryptedCovenantId= _protector.Protect(stringId);
@@ -292,6 +304,7 @@ namespace Hr.Controllers
                     //var timedUnprotectedData = timeLimitedProtector.Unprotect(timeLimitedData);
                     //Thread.Sleep(3000);
                     //var anotherTimedUnprotectTry = timeLimitedProtector.Unprotect(timeLimitedData);
+<<<<<<< HEAD
                     if (course.ACourcesMasters.CourcesIdType == 1)
                     {
                         if (course.ACourcesMasters.CourcesIdType == 1 && course.ACourcesMasters.COURCES_EXCUTION.Equals("جهة تدريب دولية"))
@@ -363,6 +376,15 @@ namespace Hr.Controllers
            
               
 
+=======
+                }
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+                return View(Records);
+            
+
+
+           
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 
 
 
@@ -1060,6 +1082,7 @@ namespace Hr.Controllers
                 var coursesforuser20count1438 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 3 && b.CourcesEndDate.Year == 1438).Count();
                 if (coursesforuser20count1446 > 20 || coursesforuser20count1445 > 20 || coursesforuser20count1444 > 20 || coursesforuser20count1443 > 20 || coursesforuser20count1442 > 20 || coursesforuser20count1441 > 20 || coursesforuser20count1440 > 20|| coursesforuser20count1439>20|| coursesforuser20count1438>20)
                 {
+<<<<<<< HEAD
                     if (aCourcesMaster.CourcesStartDate.Year == 1446)
                     {
                         if(yy1446.ToList().Count >= 20)
@@ -1146,6 +1169,13 @@ namespace Hr.Controllers
                     //    ViewBag.ErrorMessage3 = "لايمكن تسجيل اكثر من 20 دورة اثرائية بالعام الواحد  ";
                     //    return View(aCourcesMaster);
                     //}
+=======
+                    if (yy1446.ToList().Count >= 20 || yy1445.ToList().Count >= 20 || yy1444.ToList().Count >= 20 || yy1443.ToList().Count >= 20 || yy1442.ToList().Count >= 20 || yy1441.ToList().Count >= 20 || yy1440.ToList().Count >= 20 || yy1439.ToList().Count >= 20 || yy1438.ToList().Count >= 20)
+                    {
+                        ViewBag.ErrorMessage3 = "لايمكن تسجيل اكثر من 20 دورة اثرائية بالعام الواحد  ";
+                        return View(aCourcesMaster);
+                    }
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 }
             }
             if (aCourcesMaster.CourcesIdType == 1)
@@ -1217,6 +1247,7 @@ namespace Hr.Controllers
                 var coursesforuser20count1438 = _context.ACourcesMasters.Where(b => b.Cempid == HttpContext.Session.GetString("empid") && b.CourcesIdType == 1 &&(b.CourcesEndDate.Year == 1438)).Count();
                 if (coursesforuser2count1446 > 2 || coursesforuser2count1445 > 2 || coursesforuser2count1444 > 2 || coursesforuser2count1443 > 2 || coursesforuser2count1442 > 2 || coursesforuser2count1441 > 2 || coursesforuser2count1440 > 2 || coursesforuser20count1439 > 2 || coursesforuser20count1438 > 2)
                 {
+<<<<<<< HEAD
                     if (aCourcesMaster.CourcesStartDate.Year == 1446)
                     {
                         if (yy1446.ToList().Count >= 2)
@@ -1303,6 +1334,13 @@ namespace Hr.Controllers
                     //    ViewBag.ErrorMessage3 = "لايمكن تسجيل اكثر من 2  دورة بدون اختبار  بالعام الواحد  ";
                     //    return View(aCourcesMaster);
                     //}
+=======
+                    if (yy1446.ToList().Count >= 2 || yy1445.ToList().Count >= 2 || yy1444.ToList().Count >= 2 || yy1443.ToList().Count >= 2 || yy1442.ToList().Count >= 2 || yy1441.ToList().Count >= 2 || yy1440.ToList().Count >= 2 || yy1439.ToList().Count >= 2 || yy1438.ToList().Count >= 2)
+                    {
+                        ViewBag.ErrorMessage3 = "لايمكن تسجيل اكثر من 2  دورة بدون اختبار  بالعام الواحد  ";
+                        return View(aCourcesMaster);
+                    }
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 }
             }
             string x = "", y = "",file1="",file2="";
@@ -1375,7 +1413,15 @@ namespace Hr.Controllers
                     MasterRequestTo= "4321031",
                     MasterRequestTo2= "4411013",
                     MasterRequestTo3 = "4321038",
+<<<<<<< HEAD
                     MasterRequestTo4 = "123",
+=======
+<<<<<<< HEAD
+                    MasterRequestTo4 = "123",
+=======
+                    MasterRequestTo4 = "4291237",
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                     MasterRequestTo5 = "4411011",
                     MasterRequestTypeSatus =0,
                     MasterRequestNotes=""
@@ -1750,12 +1796,18 @@ namespace Hr.Controllers
             //{
             //    return NotFound();
             //}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             if (aCourcesMaster.CourcesIdType == 0 || aCourcesMaster.CourcesIdDeptout == 0 || aCourcesMaster.CourcesIdTraining == 0)
             {
                 ViewBag.ErrorMessage3 = "يرجي أخيار نوع ومكان وجهة الدورة من القائمة بشكل صحيح ولا يتم اختيار العنصر -تحديد-!!   ";
                 return View(aCourcesMaster);
 
             }
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
             if (aCourcesMaster.Filecer != null)
             {
                  extension = Path.GetExtension(aCourcesMaster.Filecer.FileName);
@@ -1871,25 +1923,58 @@ namespace Hr.Controllers
                     //ac.CourcesIdImagehr = x == x ? x : y;
                     if (aCourcesMaster.CourcesStartDate == Convert.ToDateTime("1/1/0001 12:00:00 AM"))
                     {
+<<<<<<< HEAD
                     ac.CourcesStartDate = Convert.ToDateTime(aCourcesMaster.CourcesStartDateh);
+=======
+<<<<<<< HEAD
+                    ac.CourcesStartDate = Convert.ToDateTime(aCourcesMaster.CourcesStartDateh);
+=======
+                    ac.CourcesStartDate = aCourcesMaster.CourcesStartDateh;
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                     //ac.CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays) + 1;
 
                     }
                     else
                 {
+<<<<<<< HEAD
                     ac.CourcesStartDate = Convert.ToDateTime(aCourcesMaster.CourcesStartDateh);
+=======
+<<<<<<< HEAD
+                    ac.CourcesStartDate = Convert.ToDateTime(aCourcesMaster.CourcesStartDateh);
+=======
+                    ac.CourcesStartDate = aCourcesMaster.CourcesStartDateh;
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 }
 
                 if (aCourcesMaster.CourcesEndDate == Convert.ToDateTime("1/1/0001 12:00:00 AM"))
                 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                     ac.CourcesEndDate = Convert.ToDateTime(aCourcesMaster.CourceendDateh);
 
                 }
                 else {
                     ac.CourcesEndDate = Convert.ToDateTime(aCourcesMaster.CourceendDateh);
+<<<<<<< HEAD
                 }
                 ac.CourcesNumberofdays = Convert.ToInt32((ac.CourcesEndDate - ac.CourcesStartDate).TotalDays) + 1;
 
+=======
+=======
+                    ac.CourcesEndDate = aCourcesMaster.CourceendDateh;
+
+                }
+                else {
+                    ac.CourcesEndDate = aCourcesMaster.CourceendDateh;
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+                }
+                ac.CourcesNumberofdays = Convert.ToInt32((ac.CourcesEndDate - ac.CourcesStartDate).TotalDays) + 1;
+
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 //ac.CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays) + 1;
                 //ac.CourcesPassRate = aCourcesMaster.CourcesPassRate;
                 ac.COURCES_EXCUTION = aCourcesMaster.COURCES_EXCUTION;
@@ -1935,9 +2020,15 @@ namespace Hr.Controllers
 
                     }
                     if (objuser1.CEMPLASTUPGRADEHIJRA <= objuser1.CEMPHIRINGDATEHIJRA)
+<<<<<<< HEAD
                     {
                     if (ac.CourcesEndDate < ac.CourcesStartDate)
                     {
+=======
+                    {
+                    if (ac.CourcesEndDate < ac.CourcesStartDate)
+                    {
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                         ViewBag.ErrorMessage1 = "تاريخ نهاية الدورة اقل من تاريخ بداية الدورة   ";
                         return View(aCourcesMaster);
                     }
@@ -2078,12 +2169,21 @@ namespace Hr.Controllers
             //{
             //    return NotFound();
             //}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             if (aCourcesMaster.CourcesIdType == 0 || aCourcesMaster.CourcesIdDeptout == 0 || aCourcesMaster.CourcesIdTraining == 0)
             {
                 ViewBag.ErrorMessage3 = "يرجي أخيار نوع ومكان وجهة الدورة من القائمة بشكل صحيح ولا يتم اختيار العنصر -تحديد-!!   ";
                 return View(aCourcesMaster);
 
             }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             if (aCourcesMaster.Filecer != null)
             {
                 extension = Path.GetExtension(aCourcesMaster.Filecer.FileName);
@@ -2142,6 +2242,10 @@ namespace Hr.Controllers
             //}
             string x = "", y = "", file1 = "", file2 = "";
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             if (aCourcesMaster.Filecer != null && (extension == ".jpeg" || extension == ".jpg" || extension == ".png" || extension == ".gif" || extension == ".jfif" || extension == ".pdf"))
             {
                 file1 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filecer.FileName;
@@ -2170,6 +2274,39 @@ namespace Hr.Controllers
             {
                 y = "";
             }
+<<<<<<< HEAD
+=======
+=======
+            //if (aCourcesMaster.Filecer != null && (extension == ".jpeg" || extension == ".jpg" || extension == ".png" || extension == ".gif" || extension == ".jfif" || extension == ".pdf"))
+            //{
+            //    file1 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filecer.FileName;
+            //    string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
+            //    string fullPath = Path.Combine(uploads, file1);
+            //    aCourcesMaster.Filecer.CopyTo(new FileStream(fullPath, FileMode.Create));
+            //}
+            //else
+            //{
+            //    ViewBag.ErrorMessage = "يرجي رفع شهادة الدورة (jpeg, jpg, png, gif, jfif,pdf)!";
+            //    return View(aCourcesMaster);
+            //    //ModelState.AddModelError("uploadError", "يرجي رفع شهادة الدورة");
+            //    //return Content("<script language='javascript' type='text/javascript'>alert('يرجي رفع شهادة الدورة!');</script>");
+            //}
+
+            //
+            //if (aCourcesMaster.Filehr != null && (extension2 == ".jpeg" || extension2 == ".jpg" || extension2 == ".png" || extension2 == ".gif" || extension2 == ".jfif" || extension == ".pdf"))
+            //{
+            //    file2 = DateTime.Now.ToString("ddMMMyyhhmmsstt") + aCourcesMaster.Filehr.FileName;
+            //    string uploads2 = Path.Combine(_hosting.WebRootPath, @"img\portfoliohr");
+            //    string fullPath2 = Path.Combine(uploads2, file2);
+            //    aCourcesMaster.Filehr.CopyTo(new FileStream(fullPath2, FileMode.Create));
+            //    x = file2;
+            //}
+            //else
+            //{
+            //    y = "";
+            //}
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             var ac = _context.ACourcesMasters.Find(aCourcesMaster.CourcesIdmaster);
             if (ac == null)
             {
@@ -2196,27 +2333,65 @@ namespace Hr.Controllers
                 ac.CourcesIdTraining = aCourcesMaster.CourcesIdTraining;
                 ac.CourcesIdDeptout = aCourcesMaster.CourcesIdDeptout;
                 ac.CourcesIdEstimate = aCourcesMaster.CourcesIdEstimate;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 ac.CourcesIdImagecert = file1;
                 ac.CourcesIdImagehr = x == x ? x : y;
                 if (aCourcesMaster.CourcesStartDate == Convert.ToDateTime("1/1/0001 12:00:00 AM"))
                 {
                     ac.CourcesStartDate =Convert.ToDateTime( aCourcesMaster.CourcesStartDateh);
+<<<<<<< HEAD
+=======
+=======
+                //ac.CourcesIdImagecert = file1;
+                //ac.CourcesIdImagehr = x == x ? x : y;
+                if (aCourcesMaster.CourcesStartDate == Convert.ToDateTime("1/1/0001 12:00:00 AM"))
+                {
+                    ac.CourcesStartDate = aCourcesMaster.CourcesStartDateh;
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                     //ac.CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays) + 1;
 
                 }
                 else
                 {
+<<<<<<< HEAD
                     ac.CourcesStartDate = Convert.ToDateTime(aCourcesMaster.CourcesStartDateh);
+=======
+<<<<<<< HEAD
+                    ac.CourcesStartDate = Convert.ToDateTime(aCourcesMaster.CourcesStartDateh);
+=======
+                    ac.CourcesStartDate = aCourcesMaster.CourcesStartDateh;
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 }
 
                 if (aCourcesMaster.CourcesEndDate == Convert.ToDateTime("1/1/0001 12:00:00 AM"))
                 {
+<<<<<<< HEAD
                     ac.CourcesEndDate = Convert.ToDateTime(aCourcesMaster.CourceendDateh);
+=======
+<<<<<<< HEAD
+                    ac.CourcesEndDate = Convert.ToDateTime(aCourcesMaster.CourceendDateh);
+=======
+                    ac.CourcesEndDate = aCourcesMaster.CourceendDateh;
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 
                 }
                 else
                 {
+<<<<<<< HEAD
                     ac.CourcesEndDate = Convert.ToDateTime(aCourcesMaster.CourceendDateh);
+=======
+<<<<<<< HEAD
+                    ac.CourcesEndDate = Convert.ToDateTime(aCourcesMaster.CourceendDateh);
+=======
+                    ac.CourcesEndDate = aCourcesMaster.CourceendDateh;
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 }
                 ac.CourcesNumberofdays = Convert.ToInt32((ac.CourcesEndDate - ac.CourcesStartDate).TotalDays) + 1;
 
@@ -2410,12 +2585,21 @@ namespace Hr.Controllers
             //{
             //    return NotFound();
             //}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             if (aCourcesMaster.CourcesIdType == 0 || aCourcesMaster.CourcesIdDeptout == 0 || aCourcesMaster.CourcesIdTraining == 0)
             {
                 ViewBag.ErrorMessage3 = "يرجي أخيار نوع ومكان وجهة الدورة من القائمة بشكل صحيح ولا يتم اختيار العنصر -تحديد-!!   ";
                 return View(aCourcesMaster);
 
             }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             if (aCourcesMaster.Filecer != null)
             {
                 extension = Path.GetExtension(aCourcesMaster.Filecer.FileName);
@@ -2532,23 +2716,55 @@ namespace Hr.Controllers
                 //ac.CourcesIdImagehr = x == x ? x : y;
                 if (aCourcesMaster.CourcesStartDate == Convert.ToDateTime("1/1/0001 12:00:00 AM"))
                 {
+<<<<<<< HEAD
                     ac.CourcesStartDate = Convert.ToDateTime(aCourcesMaster.CourcesStartDateh);
+=======
+<<<<<<< HEAD
+                    ac.CourcesStartDate = Convert.ToDateTime(aCourcesMaster.CourcesStartDateh);
+=======
+                    ac.CourcesStartDate = aCourcesMaster.CourcesStartDateh;
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                     //ac.CourcesNumberofdays = Convert.ToInt32((aCourcesMaster.CourcesEndDate - aCourcesMaster.CourcesStartDate).TotalDays) + 1;
 
                 }
                 else
                 {
+<<<<<<< HEAD
                     ac.CourcesStartDate = Convert.ToDateTime(aCourcesMaster.CourcesStartDateh);
+=======
+<<<<<<< HEAD
+                    ac.CourcesStartDate = Convert.ToDateTime(aCourcesMaster.CourcesStartDateh);
+=======
+                    ac.CourcesStartDate = aCourcesMaster.CourcesStartDateh;
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 }
 
                 if (aCourcesMaster.CourcesEndDate == Convert.ToDateTime("1/1/0001 12:00:00 AM"))
                 {
+<<<<<<< HEAD
                     ac.CourcesEndDate = Convert.ToDateTime(aCourcesMaster.CourceendDateh);
+=======
+<<<<<<< HEAD
+                    ac.CourcesEndDate = Convert.ToDateTime(aCourcesMaster.CourceendDateh);
+=======
+                    ac.CourcesEndDate = aCourcesMaster.CourceendDateh;
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 
                 }
                 else
                 {
+<<<<<<< HEAD
                     ac.CourcesEndDate = Convert.ToDateTime(aCourcesMaster.CourceendDateh);
+=======
+<<<<<<< HEAD
+                    ac.CourcesEndDate = Convert.ToDateTime(aCourcesMaster.CourceendDateh);
+=======
+                    ac.CourcesEndDate = aCourcesMaster.CourceendDateh;
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 }
                 ac.CourcesNumberofdays = Convert.ToInt32((ac.CourcesEndDate - ac.CourcesStartDate).TotalDays) + 1;
 

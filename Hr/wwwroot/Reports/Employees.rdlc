@@ -903,14 +903,20 @@
             <DataSetName>dsEmployee</DataSetName>
             <Top>0.52583in</Top>
             <Left>0.05523in</Left>
+<<<<<<< HEAD
             <Height>0.78334in</Height>
             <Width>7.17221in</Width>
+=======
+            <Height>0.78333in</Height>
+            <Width>7.17223in</Width>
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Tablix>
+<<<<<<< HEAD
           <Textbox Name="ExecutionTime">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -971,6 +977,8 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+=======
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
         </ReportItems>
         <Height>1.73958in</Height>
         <Style />
@@ -982,18 +990,115 @@
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
+<<<<<<< HEAD
             <Image Name="Image1">
               <Source>Embedded</Source>
               <Value>Header</Value>
               <Sizing>Fit</Sizing>
               <Height>0.9675in</Height>
               <Width>7.22744in</Width>
+=======
+            <Textbox Name="Textbox9">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value> الموظفين</Value>
+                      <Style>
+                        <FontSize>14pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                        <TextDecoration>Underline</TextDecoration>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox9</rd:DefaultName>
+              <Top>0.28625in</Top>
+              <Left>1.6293in</Left>
+              <Height>0.31111in</Height>
+              <Width>3.49167in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="ExecutionTime">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!ExecutionTime</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>ExecutionTime</rd:DefaultName>
+              <Top>0.34737in</Top>
+              <Left>0.23879in</Left>
+              <Height>0.25in</Height>
+              <Width>1.10417in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox2">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!prm.Value</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.73611in</Top>
+              <Left>0.43in</Left>
+              <Height>0.25in</Height>
+              <Width>3.225in</Width>
+              <ZIndex>2</ZIndex>
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+<<<<<<< HEAD
               </Style>
             </Image>
+=======
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
           </ReportItems>
           <Style>
             <Border>
@@ -1002,6 +1107,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
+<<<<<<< HEAD
           <Height>0.74181in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
@@ -1013,12 +1119,46 @@
               <Top>0.05556in</Top>
               <Height>0.68625in</Height>
               <Width>7.22744in</Width>
+=======
+          <Height>0.55208in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="PageNumber">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!PageNumber</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>PageNumber</rd:DefaultName>
+              <Top>0.25222in</Top>
+              <Left>0.43in</Left>
+              <Height>0.25in</Height>
+              <Width>1in</Width>
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+<<<<<<< HEAD
               </Style>
             </Image>
+=======
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
           </ReportItems>
           <Style>
             <Border>
@@ -1028,10 +1168,17 @@
         </PageFooter>
         <PageHeight>11.69in</PageHeight>
         <PageWidth>8.27in</PageWidth>
+<<<<<<< HEAD
         <LeftMargin>0.25in</LeftMargin>
         <RightMargin>0.25in</RightMargin>
         <TopMargin>0.25in</TopMargin>
         <BottomMargin>0.75in</BottomMargin>
+=======
+        <LeftMargin>0.5in</LeftMargin>
+        <RightMargin>0.5in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
         <Style />
       </Page>
     </ReportSection>
@@ -1057,6 +1204,7 @@
       </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
+<<<<<<< HEAD
   <EmbeddedImages>
     <EmbeddedImage Name="Header">
       <MIMEType>image/jpeg</MIMEType>
@@ -1626,6 +1774,8 @@ aP3Zt4llFJpqM3qB+Ff2ZPzNPLoO7tefVXGhD2JgfM+Z/wAg+X29GK9inoq697917r3v3Xuve/de6979
 r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r3v3Xuve/de697917r/9k=</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
+=======
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>5ca34261-1881-4510-8350-1355990b7237</rd:ReportID>
 </Report>
