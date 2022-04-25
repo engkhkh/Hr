@@ -49,6 +49,9 @@
 
             </th>
             <th>
+                رقم الموظف
+            </th>
+            <th>
                 الموظف
             </th>
             <th>
@@ -61,7 +64,7 @@
                 نوع الدورة
             </th>
             <th>
-                طريقة الدورة
+                مكان الدورة
             </th>
             <th>
                 التقدير
@@ -74,19 +77,22 @@
             </th>
             <th>
                 بداية الدورة <br />
-                نهاية الدورة 
+                نهاية الدورة
             </th>
             @*<th>
-                    نهاية الدورة
-                </th>*@
+            نهاية الدورة
+        </th>*@
             <th>
                 عدد ايام  الدورة
             </th>
             @*<th>
-                نسبة الانجاز %
-            </th>*@
+            نسبة الانجاز %
+        </th>*@
             <th>
                 جهة الدورة
+            </th>
+            <th>
+                جهة تنفيذ التدريب
             </th>
             <th>
                 قسم الموظف
@@ -97,61 +103,67 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-success">موافق</a>
-                    <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-danger">رفض</a>
-                    <a asp-controller="ACourcesMasters" asp-action="Edit" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-warning">تعديل </a>
+        <tr>
+            <td>
+                <a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-success">موافق</a>
+                <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-danger">رفض</a>
+                <a asp-controller="ACourcesMasters" asp-action="Edit" asp-route-id="@item.ACourcesMasters.EncryptedIdd" class="btn btn-warning">تعديل </a>
 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesIdmaster)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesTypes.CourcesTypeName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesEstimates.CourcesNameEstimate)
-                </td>
-                <td>
-                    <a href="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" target="_blank" class="btn btn-link">تحميل </a> @*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="50" height="50" />*@
-                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
-                </td>
-                <td>
-                    <a href="~/img/portfoliohr/@item.ACourcesMasters.CourcesIdImagehr" target="_blank" class="btn btn-link">تحميل</a>@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="50" height="50" />*@
-                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
-                    @*@item.ACourcesMasters.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
-                </td>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cemps.Cempid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesIdmaster)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesTypes.CourcesTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesEstimates.CourcesNameEstimate)
+            </td>
+            <td>
+                <a href="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" target="_blank" class="btn btn-link">تحميل </a> @*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="50" height="50" />*@
+                @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
+            </td>
+            <td>
+                <a href="~/img/portfoliohr/@item.ACourcesMasters.CourcesIdImagehr" target="_blank" class="btn btn-link">تحميل</a>@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="50" height="50" />*@
+                @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
+                @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
+                @*@item.ACourcesMasters.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesMasters.COURCES_EXCUTION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
+            </td>
 
-            </tr>
+        </tr>
         }
     </tbody>
 </table>

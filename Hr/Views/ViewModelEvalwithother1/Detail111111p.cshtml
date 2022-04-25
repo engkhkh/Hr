@@ -1,0 +1,2311 @@
+﻿@model Hr.Models.ViewModelEvalwithother1
+
+@{
+    ViewData["Title"] = "عرض الطلب  ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<style>
+    .table td, .table th {
+        font-size: 10px;
+    }
+</style>*@
+<link href="~/css/invoice.css" type="text/css" rel="stylesheet" />
+
+@*<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">*@
+<link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+@*<div>
+        <a asp-action="search1" class="btn btn-success">عودة  </a>
+    </div>*@
+<h1> تقييم الاداء </h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AEvaluationEmpIdd" />
+            <input type="hidden" asp-for="AEvaluationGoalCovenantId" />
+
+
+
+            <h1 style="text-align: center; background-color: #FFF5D7;">الموظف  </h1>
+            <table id="table" class="table table-bordered table-condensed table-striped table-hover sortable table-responsive">
+                <thead>
+
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td><label> اسم الموظف </label></td>
+                        <td>
+                            @*<select asp-for="AEvaluationEmpEmpno" id="chosen-select1" class="chosen-select form-control" data-placeholder="" asp-items="ViewBag.Cempid">
+                            <option value="">--اختيار الموظف -- </option>
+
+                        </select><br /><br />*@
+                            <input type="text" readonly asp-for="AEvaluationEmpEmpname" />
+                            @*<span asp-validation-for="AEvaluationEmpEmpno" class="text-danger"></span>*@
+                            <span asp-validation-for="AEvaluationEmpEmpname" class="text-danger"></span>
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+
+            <h1 style="text-align: center; background-color: #FFF5D7;">اولا : الاهداف </h1>
+            <table id="table" class="table table-bordered table-condensed table-striped table-hover sortable table-responsive">
+                <thead>
+                    <tr>
+
+                        <th>#</th>
+                        <th>الهدف </th>
+                        <th>معيار القياس</th>
+                        <th>الوزن النسبي  	</th>
+                        <th>الناتج المستهدف   	</th>
+                        <th>الناتج الفعلي   	</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <label class="form-control">1</label><br /><br />
+                            @*<label class="form-control">2</label><br />
+                        <label class="form-control">3</label><br /><br />
+                        <label class="form-control">4</label><br />
+                        <label class="form-control">5</label><br /><br />
+                        <label class="form-control">6</label>*@
+
+                        </td>
+                        <td>
+                            <textarea asp-for="AEvaluationGoalCovenantGoalsName1" readonly class="form-control"></textarea><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantGoalsName1" class="text-danger"></span>
+
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria1" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantMeasurementCriteria1" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <select asp-for="AEvaluationGoalCovenantPercentageWeight1" id="chosen-select1" class=" form-control chosen1" data-placeholder="ب  ">
+                                <option value="">--تحديد الوزن النسبي-- </option>
+                                <option value="15">15%</option>
+                                <option value="20">20%</option>
+                                <option value="25">25%</option>
+                                <option value="30">30%</option>
+                                <option value="35">35%</option>
+                                <option value="40">40%</option>
+                                <option value="45">45%</option>
+
+                            </select><br /><br />
+                            <span asp-validation-for="AEvaluationGoalCovenantPercentageWeight1" class="text-danger"></span>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select>*@
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput1" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantTargetedOutput1" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationGoalEvaluationActualOutput" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalEvaluationActualOutput" class="text-danger"></span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<label class="form-control">1</label><br /><br />*@
+                            <label class="form-control">2</label><br />
+                            @*<label class="form-control">3</label><br /><br />
+                        <label class="form-control">4</label><br />
+                        <label class="form-control">5</label><br /><br />
+                        <label class="form-control">6</label>*@
+
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <textarea asp-for="AEvaluationGoalCovenantGoalsName2" readonly class="form-control"></textarea><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantGoalsName2" class="text-danger"></span>
+
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria2" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantMeasurementCriteria2" class="text-danger"></span>
+                        </td>
+                        <td>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            <select asp-for="AEvaluationGoalCovenantPercentageWeight2" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                                <option value="">--تحديد الوزن النسبي-- </option>
+                                <option value="15">15%</option>
+                                <option value="20">20%</option>
+                                <option value="25">25%</option>
+                                <option value="30">30%</option>
+                                <option value="35">35%</option>
+                                <option value="40">40%</option>
+                                <option value="45">45%</option>
+
+                            </select><br /><br />
+                            <span asp-validation-for="AEvaluationGoalCovenantPercentageWeight2" class="text-danger"></span>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select>*@
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput2" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantTargetedOutput2" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationGoalEvaluationActualOutput2" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalEvaluationActualOutput2" class="text-danger"></span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<label class="form-control">1</label><br /><br />*@
+                            @*<label class="form-control">2</label><br />*@
+                            <label class="form-control">3</label><br /><br />
+                            @*<label class="form-control">4</label><br />
+                        <label class="form-control">5</label><br /><br />
+                        <label class="form-control">6</label>*@
+
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <textarea asp-for="AEvaluationGoalCovenantGoalsName3" readonly class="form-control"></textarea><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantGoalsName3" class="text-danger"></span>
+
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria3" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantMeasurementCriteria3" class="text-danger"></span>
+                        </td>
+                        <td>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            <select asp-for="AEvaluationGoalCovenantPercentageWeight3" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                                <option value="">--تحديد الوزن النسبي-- </option>
+                                <option value="15">15%</option>
+                                <option value="20">20%</option>
+                                <option value="25">25%</option>
+                                <option value="30">30%</option>
+                                <option value="35">35%</option>
+                                <option value="40">40%</option>
+                                <option value="45">45%</option>
+
+                            </select><br /><br />
+                            <span asp-validation-for="AEvaluationGoalCovenantPercentageWeight3" class="text-danger"></span>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select>*@
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput3" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantTargetedOutput3" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationGoalEvaluationActualOutput3" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalEvaluationActualOutput2" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<label class="form-control">1</label><br /><br />*@
+                            @*<label class="form-control">2</label><br />*@
+                            @*<label class="form-control">3</label><br /><br />*@
+                            <label class="form-control">4</label><br />
+                            @*<label class="form-control">5</label><br /><br />
+                        <label class="form-control">6</label>*@
+
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <textarea asp-for="AEvaluationGoalCovenantGoalsName4" readonly class="form-control"></textarea><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantGoalsName4" class="text-danger"></span>
+
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria4" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantMeasurementCriteria4" class="text-danger"></span>
+                        </td>
+                        <td>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            <select asp-for="AEvaluationGoalCovenantPercentageWeight4" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                                <option value="">--تحديد الوزن النسبي-- </option>
+                                <option value="15">15%</option>
+                                <option value="20">20%</option>
+                                <option value="25">25%</option>
+                                <option value="30">30%</option>
+                                <option value="35">35%</option>
+                                <option value="40">40%</option>
+                                <option value="45">45%</option>
+
+                            </select><br /><br />
+                            <span asp-validation-for="AEvaluationGoalCovenantPercentageWeight4" class="text-danger"></span>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select>*@
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput4" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalCovenantTargetedOutput4" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationGoalEvaluationActualOutput4" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalEvaluationActualOutput2" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<label class="form-control">1</label><br /><br />*@
+                            @*<label class="form-control">2</label><br />*@
+                            @*<label class="form-control">3</label><br /><br />*@
+                            @*<label class="form-control">4</label><br />*@
+                            <label class="form-control">5</label><br /><br />
+                            @*<label class="form-control">6</label>*@
+
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <textarea asp-for="AEvaluationGoalCovenantGoalsName5" readonly class="form-control"></textarea><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria5" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                        </td>
+                        <td>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            <select asp-for="AEvaluationGoalCovenantPercentageWeight5" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                                <option value="">--تحديد الوزن النسبي-- </option>
+                                <option value="15">15%</option>
+                                <option value="20">20%</option>
+                                <option value="25">25%</option>
+                                <option value="30">30%</option>
+                                <option value="35">35%</option>
+                                <option value="40">40%</option>
+                                <option value="45">45%</option>
+
+                            </select><br /><br />
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select>*@
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput5" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationGoalEvaluationActualOutput5" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalEvaluationActualOutput2" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<label class="form-control">1</label><br /><br />*@
+                            @*<label class="form-control">2</label><br />*@
+                            @*<label class="form-control">3</label><br /><br />*@
+                            @*<label class="form-control">4</label><br />*@
+                            @*<label class="form-control">5</label><br /><br />*@
+                            <label class="form-control">6</label>
+
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <textarea asp-for="AEvaluationGoalCovenantGoalsName6" readonly class="form-control"></textarea>
+
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <input asp-for="AEvaluationGoalCovenantMeasurementCriteria6" readonly class="form-control" />
+                        </td>
+                        <td>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="45">45%</option>
+
+                        </select><br /><br />*@
+
+                            <select asp-for="AEvaluationGoalCovenantPercentageWeight6" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                                <option value="">--تحديد الوزن النسبي-- </option>
+                                <option value="15">15%</option>
+                                <option value="20">20%</option>
+                                <option value="25">25%</option>
+                                <option value="30">30%</option>
+                                <option value="35">35%</option>
+                                <option value="40">40%</option>
+                                <option value="45">45%</option>
+
+                            </select>
+                        </td>
+                        <td>
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />*@
+                            <input asp-for="AEvaluationGoalCovenantTargetedOutput6" readonly class="form-control" />
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationGoalEvaluationActualOutput6" readonly class="form-control" /><br />
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <span asp-validation-for="AEvaluationGoalEvaluationActualOutput2" class="text-danger"></span>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <br />
+            <h1 style="text-align: center; background-color: #FFF5D7;">ثانيا:الجدارات  </h1>
+            <table id="table" class="table table-bordered table-condensed table-striped table-hover sortable table-responsive">
+                <thead>
+                    <tr>
+
+                        <th>#</th>
+                        <th>الجدارة  </th>
+                        <th>الوزن النسبي </th>
+                        <th>الوصف السلوكي للجدارات   	</th>
+                        <th>  الجدارة المطلوبة    	</th>
+                        <th> الجدارة الفعلية    	</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <label class="form-control">1</label><br /><br /><br /><br />
+                            @*<label class="form-control">2</label><br />
+                        <label class="form-control">3</label><br /><br />
+                        <label class="form-control">4</label><br />
+                        <label class="form-control">5</label><br /><br />
+                        <label class="form-control">6</label>
+                        <label class="form-control">7</label><br /><br />*@
+
+                        </td>
+                        <td>
+                            <input readonly value="حس المسؤولية" class="form-control" /><br /><br /><br /><br />
+                            @*<input readonly value="التعاون" class="form-control" /><br /><br />
+                        <input readonly value="التواصل" class="form-control" /><br /><br />
+                        <input readonly value="تحقيق النتائج" class="form-control" /><br />
+                        <input readonly value="التطوير " class="form-control" /><br /><br />
+                        <input readonly value="الارتباط الوظيفي" class="form-control" /><br />
+                        <input readonly value="القيادة" class="form-control" /><br /><br />*@
+
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesMCovenantWeight1" readonly class="form-control" />
+                            @*<select asp-for="AEvaluationCompetenciesMCovenantWeight1" id="chosen-select1" class=" form-control chosen2" data-placeholder="">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select>*@<br /><br /><br /><br />
+                            <span asp-validation-for="AEvaluationCompetenciesMCovenantWeight1" class="text-danger"></span>
+
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select>
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+
+                        </select>*@
+
+                        </td>
+                        <td>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يتحمل مسؤولية أعماله و قراراته، ولا يلقى اللوم على الآخرين.</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يفهم دوره، و كيفية ارتباطه بالأهداف العامة لجهة عمله.</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يفصح عن ما يواجهة من تحديات بشفافية.</textarea>
+
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel1" class=" form-control " />
+                            @*<select asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel1" id="chosen-select6" class=" form-control " data-placeholder="ب  ">
+                            <option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+
+
+                        </select>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel2" class=" form-control " />
+                            @*<select asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel2" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+
+                        </select>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel3" class=" form-control " />
+                            @*<select asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel3" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+
+
+                        </select>*@
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel01" class=" form-control " />
+                            @*<select asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel1" id="chosen-select6" class=" form-control " data-placeholder="ب  ">
+                            <option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+
+
+                        </select>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel02" class=" form-control " />
+                            @*<select asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel2" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+
+                        </select>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel03" class=" form-control " />
+                            @*<select asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel3" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+
+
+                        </select>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<label class="form-control">1</label><br /><br /><br /><br />*@
+                            <label class="form-control">2</label><br />
+                            @*<label class="form-control">3</label><br /><br />
+                        <label class="form-control">4</label><br />
+                        <label class="form-control">5</label><br /><br />
+                        <label class="form-control">6</label>
+                        <label class="form-control">7</label><br /><br />*@
+
+                        </td>
+                        <td>
+                            @*<input readonly value="حس المسؤولية" class="form-control" /><br /><br /><br /><br />*@
+                            <input readonly value="التعاون" class="form-control" /><br /><br />
+                            @* <input readonly value="التواصل" class="form-control" /><br /><br />
+                        <input readonly value="تحقيق النتائج" class="form-control" /><br />
+                        <input readonly value="التطوير " class="form-control" /><br /><br />
+                        <input readonly value="الارتباط الوظيفي" class="form-control" /><br />
+                        <input readonly value="القيادة" class="form-control" /><br /><br />*@
+
+                        </td>
+                        <td>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br /><br /><br />*@
+                            <input asp-for="AEvaluationCompetenciesMCovenantWeight2" id="chosen-select2" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--تحديد الوزن النسبي-- </option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                        <option value="20">20%</option>*@
+
+
+                            <br /><br />
+                            <span asp-validation-for="AEvaluationCompetenciesMCovenantWeight2" class="text-danger"></span>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select>
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+
+                        </select>*@
+
+                        </td>
+                        <td>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يشارك المعلومات بانفتاح وفق متطلبات العمل.</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يسعى الى الاستفادة من اراء الأخرين من خارج ادارته ،و تهيئة الأخرين لدعم الأعمال التي يقوم بها من خلال بناء علاقات داعمة معهم  .</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يستجيب لطلبات الدعم و المساندة من الوحدات التنظيمية في جهة عمله.</textarea>
+
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel4" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel5" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel6" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel04" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel05" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel06" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<label class="form-control">1</label><br /><br /><br /><br />*@
+                            @*<label class="form-control">2</label><br />*@
+                            <label class="form-control">3</label><br /><br />
+                            @*<label class="form-control">4</label><br />
+                        <label class="form-control">5</label><br /><br />
+                        <label class="form-control">6</label>
+                        <label class="form-control">7</label><br /><br />*@
+
+                        </td>
+                        <td>
+                            @*<input readonly value="حس المسؤولية" class="form-control" /><br /><br /><br /><br />*@
+                            @*<input readonly value="التعاون" class="form-control" /><br /><br />*@
+                            <input readonly value="التواصل" class="form-control" /><br /><br />
+                            @*<input readonly value="تحقيق النتائج" class="form-control" /><br />
+                        <input readonly value="التطوير " class="form-control" /><br /><br />
+                        <input readonly value="الارتباط الوظيفي" class="form-control" /><br />
+                        <input readonly value="القيادة" class="form-control" /><br /><br />*@
+
+                        </td>
+                        <td>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br /><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            <input asp-for="AEvaluationCompetenciesMCovenantWeight3" id="chosen-select3" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--تحديد الوزن النسبي-- </option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                        <option value="20">20%</option>*@
+
+
+                            <br /><br />
+                            <span asp-validation-for="AEvaluationCompetenciesMCovenantWeight3" class="text-danger"></span>
+                            @* <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select>
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+
+                        </select>*@
+
+                        </td>
+                        <td>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يستخدم التواصل المكتوب الواضح والفعال.</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يستخدم التواصل الشفهي الواضح والفعال.</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">ينصت للآخرين بعناية .</textarea>
+
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel7" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel8" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel9" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel07" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel08" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel09" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<label class="form-control">1</label><br /><br /><br /><br />*@
+                            @*<label class="form-control">2</label><br />*@
+                            @*<label class="form-control">3</label><br /><br />*@
+                            <label class="form-control">4</label><br />
+                            @*<label class="form-control">5</label><br /><br />
+                        <label class="form-control">6</label>
+                        <label class="form-control">7</label><br /><br />*@
+
+                        </td>
+                        <td>
+                            @*<input readonly value="حس المسؤولية" class="form-control" /><br /><br /><br /><br />*@
+                            @*<input readonly value="التعاون" class="form-control" /><br /><br />*@
+                            @*<input readonly value="التواصل" class="form-control" /><br /><br />*@
+                            <input readonly value="تحقيق النتائج" class="form-control" /><br />
+                            @*<input readonly value="التطوير " class="form-control" /><br /><br />
+                        <input readonly value="الارتباط الوظيفي" class="form-control" /><br />
+                        <input readonly value="القيادة" class="form-control" /><br /><br />*@
+
+                        </td>
+                        <td>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br /><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            <input asp-for="AEvaluationCompetenciesMCovenantWeight4" id="chosen-select4" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--تحديد الوزن النسبي-- </option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                        <option value="20">20%</option>*@
+
+
+                            <br /><br />
+                            <span asp-validation-for="AEvaluationCompetenciesMCovenantWeight4" class="text-danger"></span>
+                            @* <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br />
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select>
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+
+                        </select>*@
+
+                        </td>
+                        <td>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يستطيع القيام بمهام متعددة و تحديد أولوياتها  حسب اهميتها النسبية.</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value=" " class="form-control">يمكن الاعتماد عليه , وينفذ مهامه في وقتها بمستوى عال من الجودة</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">مبادر ويعمل بدون توجيه من رئيسه عند تنفيذه لمهامه.</textarea>
+
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel10" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel11" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel12" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel010" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel011" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel012" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<label class="form-control">1</label><br /><br /><br /><br />*@
+                            @*<label class="form-control">2</label><br />*@
+                            @*<label class="form-control">3</label><br /><br />*@
+                            @*<label class="form-control">4</label><br />*@
+                            <label class="form-control">5</label><br /><br />
+                            @*<label class="form-control">6</label>
+                        <label class="form-control">7</label><br /><br />*@
+
+                        </td>
+                        <td>
+                            @*<input readonly value="حس المسؤولية" class="form-control" /><br /><br /><br /><br />*@
+                            @*<input readonly value="التعاون" class="form-control" /><br /><br />*@
+                            @*<input readonly value="التواصل" class="form-control" /><br /><br />*@
+                            @*<input readonly value="تحقيق النتائج" class="form-control" /><br />*@
+                            <input readonly value="التطوير " class="form-control" /><br /><br />
+                            @*<input readonly value="الارتباط الوظيفي" class="form-control" /><br />
+                        <input readonly value="القيادة" class="form-control" /><br /><br />*@
+
+                        </td>
+                        <td>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br /><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            <input asp-for="AEvaluationCompetenciesMCovenantWeight5" id="chosen-select5" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--تحديد الوزن النسبي-- </option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                        <option value="20">20%</option>*@
+
+                            @*</input>*@<br /><br />
+                            <span asp-validation-for="AEvaluationCompetenciesMCovenantWeight5" class="text-danger"></span>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select>
+                        <select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+
+                        </select>*@
+
+                        </td>
+                        <td>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يسعى إلى التعلم وتطوير </textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يساعد الأخرين على تطوير انفسهم </textarea>
+                            @*<input style="width:539px;" readonly value="مبادر ويعمل بدون توجيه من رئيسه عند تنفيذه لمهامه." class="form-control" />*@
+
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel13" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel14" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+
+
+                        </select>*@
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel013" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel014" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+
+
+                        </select>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<label class="form-control">1</label><br /><br /><br /><br />*@
+                            @*<label class="form-control">2</label><br />*@
+                            @*<label class="form-control">3</label><br /><br />*@
+                            @*<label class="form-control">4</label><br />*@
+                            @*<label class="form-control">5</label><br /><br />*@
+                            <label class="form-control">6</label>
+                            @*<label class="form-control">7</label><br /><br />*@
+
+                        </td>
+                        <td>
+                            @*<input readonly value="حس المسؤولية" class="form-control" /><br /><br /><br /><br />*@
+                            @*<input readonly value="التعاون" class="form-control" /><br /><br />*@
+                            @*<input readonly value="التواصل" class="form-control" /><br /><br />*@
+                            @*<input readonly value="تحقيق النتائج" class="form-control" /><br />*@
+                            @*<input readonly value="التطوير " class="form-control" /><br /><br />*@
+                            <input readonly value="الارتباط الوظيفي" class="form-control" /><br />
+                            @* <input readonly value="القيادة" class="form-control" /><br /><br />*@
+
+                        </td>
+                        <td>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br /><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br />*@
+                            <input asp-for="AEvaluationCompetenciesMCovenantWeight6" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--تحديد الوزن النسبي-- </option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                        <option value="20">20%</option>*@
+
+                            @*</input>*@
+                            <span asp-validation-for="AEvaluationCompetenciesMCovenantWeight6" class="text-danger"></span>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+
+                        </select>*@
+
+                        </td>
+                        <td>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">لدية الاستعداد لمواجهة تحديات العمل .</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يتطلُّع إلى مستوى أعلى من الإنجاز والابتكار عند تنفيذ العمل.</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يلتزم بمواعيد العمل و يكون متواجدا عند الحاجة اليه .</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يركز على خدمة العملاء عند تنفيذ اعماله</textarea>
+
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel15" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel16" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel17" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel18" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel015" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel016" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel017" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel018" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<label class="form-control">1</label><br /><br /><br /><br />*@
+                            @*<label class="form-control">2</label><br />*@
+                            @*<label class="form-control">3</label><br /><br />*@
+                            @*<label class="form-control">4</label><br />*@
+                            @*<label class="form-control">5</label><br /><br />*@
+                            @*<label class="form-control">6</label>*@
+                            <label class="form-control">7</label><br /><br />
+
+                        </td>
+                        <td>
+                            @*<input readonly value="حس المسؤولية" class="form-control" /><br /><br /><br /><br />*@
+                            @*<input readonly value="التعاون" class="form-control" /><br /><br />*@
+                            @*<input readonly value="التواصل" class="form-control" /><br /><br />*@
+                            @*<input readonly value="تحقيق النتائج" class="form-control" /><br />*@
+                            @*<input readonly value="التطوير " class="form-control" /><br /><br />*@
+                            @*<input readonly value="الارتباط الوظيفي" class="form-control" /><br />*@
+                            <input readonly value="القيادة" class="form-control" /><br /><br />
+
+                        </td>
+                        <td>
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select1" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br /><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select2" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select3" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select4" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select5" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select><br /><br />*@
+                            @*<select asp-for="AEvaluationGoalCovenantPercentageWeight" id="chosen-select6" class=" form-control" data-placeholder="ب  ">
+                            <option value="">--تحديد الوزن النسبي-- </option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+
+                        </select>*@
+                            <input asp-for="AEvaluationCompetenciesMCovenantWeight7" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--تحديد الوزن النسبي-- </option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                        <option value="20">20%</option>
+                        <option value="25">25%</option>
+                        <option value="30">30%</option>
+                        <option value="35">35%</option>
+                        <option value="40">40%</option>*@
+
+                            @*</input>*@
+
+                        </td>
+                        <td>
+                            <textarea @*style="width:539px;"*@ readonly value=" " class="form-control">مرن وقادر على تنفيذ أعمال هامة فى ظروف تنطوى على قدر كبير من المخاطرة وعدم اليقين</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يدعم و يشجع فريقه على تحقيق اهدافه، حتى في الظروف الصعبة  .</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يفكر بمنطقية و ابداع دون التأثر بتحيزاته الشخصية.</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يفوض الصلاحيات و يتابع النتائج  .</textarea>
+                            <textarea @*style="width:539px;"*@ readonly value="" class="form-control">يوفر ويدعم فرص تطوير المرؤوسين.</textarea>
+
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel19" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel20" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel21" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel22" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel23" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                        </td>
+                        <td>
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel019" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">--اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel020" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel021" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel022" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                            <input asp-for="AEvaluationCompetenciesDCovenantCompetenciecDLevel023" id="chosen-select6" class=" form-control" data-placeholder="ب  " />
+                            @*<option value="">----اختر مستوي الجدارة المطلوبة-- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>*@
+
+
+                            @*</input>*@
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <br />
+            <h1 style="text-align: center; background-color: #FFF5D7;">ثالثا:النتيجة  </h1>
+            <table id="table" class="table table-bordered table-condensed table-striped table-hover sortable table-responsive">
+                <thead>
+                    <tr>
+
+                        <th>#</th>
+                        <th> الدرجة  </th>
+                        <th>  التقييم</th>
+                        @*<th>الوزن النسبي  	</th>
+                    <th>الناتج المستهدف   	</th>*@
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <label class="form-control"></label><br /><br />
+                            @*<label class="form-control">2</label><br />
+                        <label class="form-control">3</label><br /><br />
+                        <label class="form-control">4</label><br />
+                        <label class="form-control">5</label><br /><br />
+                        <label class="form-control">6</label>*@
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.AEvaluationCompetenciesDEvaluationTotal11)
+                            <!--<textarea asp-for="FIRSTAPPROVAL" readonly class="form-control"></textarea><br />-->
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <!--<span asp-validation-for="FIRSTAPPROVAL" class="text-danger"></span>-->
+
+                        </td>
+
+                        <td>
+                           
+                                @Html.DisplayFor(model => model.AEvaluationCompetenciesDEvaluationTotal111)
+                            
+
+                        </td>
+
+
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+            @*<br />*@
+            <h1 style="text-align: center; background-color: #FFF5D7;">رابعا:الاعتمادات  </h1>
+            <table id="table" class="table table-bordered table-condensed table-striped table-hover sortable table-responsive">
+                <thead>
+                    <tr>
+
+                        <th>#</th>
+                        <th>المدير المباشر  </th>
+                        <th> المدير المعتمد</th>
+                        @*<th>الوزن النسبي  	</th>
+                    <th>الناتج المستهدف   	</th>*@
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <label class="form-control"></label><br /><br />
+                            @*<label class="form-control">2</label><br />
+                        <label class="form-control">3</label><br /><br />
+                        <label class="form-control">4</label><br />
+                        <label class="form-control">5</label><br /><br />
+                        <label class="form-control">6</label>*@
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.FIRSTAPPROVAL)
+                            <!--<textarea asp-for="FIRSTAPPROVAL" readonly class="form-control"></textarea><br />-->
+                            @*<input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" /><br />
+                        <input asp-for="AEvaluEmpTypeName" class="form-control" />*@
+                            <!--<span asp-validation-for="FIRSTAPPROVAL" class="text-danger"></span>-->
+
+                        </td>
+
+                        <td>
+                            @if (@Model.SECONDAPPROVALID == "4419011")
+                            {
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => model.SECONDAPPROVAL)
+                            }
+
+                        </td>
+
+
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <div class="form-group">
+                @*<input type="submit" value="حفظ" class="btn btn-success" />*@
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+<link href="~/js/chosen.css" rel="stylesheet" />
+<link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+<link href="~/js/prism.css" rel="stylesheet" />
+<script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+<script src="~/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+<script src="~/js/prism.js"></script>
+<script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
+
+
+@*<script type="text/javascript">
+        $(document).on("click", ":submit", function (e) {
+
+            if (!$('#f1').val()) {
+                e.preventDefault();
+                alert('يرجي ارفاق شهادة الدورة ');
+            }
+
+        }
+
+    </script>*@
+
+<script type="text/javascript">
+
+    $('#chosen-select16').append(new Option('اخري', 5));
+    /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
+    $("#a").css('visibility', 'hidden');
+
+    //function m() {
+    //    if (document.getElementById("f1").files.length == 0) {
+    //        console.log("لم يتم ارفاق شهادة الدورة ");
+    //        alert("لم يتم ارفاق شهادة الدورة ");
+    //    }
+
+    //}
+
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" }//,
+        //'.chosen-search': {disable_search: false}
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+    $("select.chosen11").change(function () {
+
+        var selectedCountry11 = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+        if (selectedCountry11 == 2) {
+            alert("  يرجي اختيار التقدير  - ");
+            $("#a").css('visibility', 'visible');
+            var hiddenBox = $("#respond-2");
+            hiddenBox.show();
+
+
+
+        }
+        else {
+            $("#a").css('visibility', 'hidden');
+            var hiddenBox = $("#respond-2");
+            hiddenBox.hide();
+
+        }
+    });
+
+    $("select.chosen1").change(function () {
+        var selectedCountry = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+        if (selectedCountry == 200) {
+            alert("  يرجي ادخال اسم الدورة الجديد باالاسفل - ");
+
+            var hiddenBox = $("#respond-1");
+            hiddenBox.show();
+
+
+
+        }
+        else {
+            var hiddenBox = $("#respond-1");
+            hiddenBox.hide();
+
+        }
+    });
+    $("select").change(function () {
+        var selected5 = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+        if (selected5 == 0) {
+            alert("لايتم اختيار هذا العنصر  - ");
+
+        }
+    });
+
+    $("select.chosen1").change(function () {
+        var selected5 = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+
+        alert("يجب ان يكون مجموع الوزن النسبي 100%  - ");
+
+
+    });
+    $("select.chosen2").change(function () {
+        var selected5 = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+
+        alert("يجب ان يكون مجموع الوزن النسبي 100%  - ");
+
+
+    });
+
+
+</script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+        }
+        catch (e) { }
+    });
+
+</script>
+
+
+
+<script type="text/javascript">
+
+
+    $(function () {
+
+        initHijrDatePicker();
+
+        initHijrDatePickerDefault();
+
+        $('.disable-date').hijriDatePicker({
+
+            minDate: "2020-01-01",
+            maxDate: "2021-01-01",
+            viewMode: "years",
+            hijri: true,
+            debug: true
+        });
+
+    });
+
+
+    function initHijrDatePicker() {
+
+        $(".hijri-date-input").hijriDatePicker({
+            locale: "ar-sa",
+            format: "YYYY-MM-DD",
+            hijriFormat: "iYYYY-iMM-iDD",
+            dayViewHeaderFormat: "MMMM YYYY",
+            hijriDayViewHeaderFormat: "iMMMM iYYYY",
+            showSwitcher: false,
+            allowInputToggle: true,
+            showTodayButton: false,
+            useCurrent: true,
+            isRTL: false,
+            viewMode: 'months',
+            keepOpen: false,
+            hijri: true,
+            debug: true,
+            showClear: true,
+            showTodayButton: true,
+            showClose: true
+        });
+    }
+
+    function initHijrDatePickerDefault() {
+
+        $(".hijri-date-default").hijriDatePicker();
+    }
+
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+<script>
+    try {
+        fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function (response) {
+            return true;
+        }).catch(function (e) {
+            var carbonScript = document.createElement("script");
+            carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+            carbonScript.id = "_carbonads_js";
+            document.getElementById("carbon-block").appendChild(carbonScript);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+</script>
+
+@*<div class="form-group">
+        <label>التسلسل </label>
+        <label>الهدف</label>
+        <label>معيار القياس </label>
+        <label>الوزن النسبي </label>
+        <label>الناتج المستهدف </label>
+
+    </div>
+    <div class="form-group">
+        1
+        <input asp-for="AEvaluationGoalCovenantGoalsName" class="form-control" /><input asp-for="AEvaluationGoalCovenantMeasurementCriteria" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantPercentageWeight" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantTargetedOutput" class="form-control" />
+
+
+        <span asp-validation-for="AEvaluationGoalCovenantGoalsName" class="text-danger"></span>
+        <span asp-validation-for="AEvaluationGoalCovenantMeasurementCriteria" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        2
+        <input asp-for="AEvaluationGoalCovenantGoalsName" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantMeasurementCriteria" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantPercentageWeight" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantTargetedOutput" class="form-control" />
+
+        <span asp-validation-for="AEvaluationGoalCovenantGoalsName" class="text-danger"></span>
+        <span asp-validation-for="AEvaluationGoalCovenantMeasurementCriteria" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        3
+        <input asp-for="AEvaluationGoalCovenantGoalsName" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantMeasurementCriteria" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantPercentageWeight" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantTargetedOutput" class="form-control" />
+
+        <span asp-validation-for="AEvaluationGoalCovenantGoalsName" class="text-danger"></span>
+        <span asp-validation-for="AEvaluationGoalCovenantMeasurementCriteria" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        4
+        <input asp-for="AEvaluationGoalCovenantGoalsName" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantMeasurementCriteria" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantPercentageWeight" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantTargetedOutput" class="form-control" />
+
+        <span asp-validation-for="AEvaluationGoalCovenantGoalsName" class="text-danger"></span>
+        <span asp-validation-for="AEvaluationGoalCovenantMeasurementCriteria" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        5
+        <input asp-for="AEvaluationGoalCovenantGoalsName" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantMeasurementCriteria" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantPercentageWeight" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantTargetedOutput" class="form-control" />
+
+        <span asp-validation-for="AEvaluationGoalCovenantGoalsName" class="text-danger"></span>
+        <span asp-validation-for="AEvaluationGoalCovenantMeasurementCriteria" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        6
+        <input asp-for="AEvaluationGoalCovenantGoalsName" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantMeasurementCriteria" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantPercentageWeight" class="form-control" />
+        <input asp-for="AEvaluationGoalCovenantTargetedOutput" class="form-control" />
+
+        <span asp-validation-for="AEvaluationGoalCovenantGoalsName" class="text-danger"></span>
+        <span asp-validation-for="AEvaluationGoalCovenantMeasurementCriteria" class="text-danger"></span>
+    </div>*@
+

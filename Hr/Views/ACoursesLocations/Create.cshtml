@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "اضافة";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>اضافة</h1>
@@ -24,9 +25,9 @@
     </div>
 </div>
 
-@*<div>
-        <a asp-action="Index">عودة الي الرئيسية</a>
-    </div>*@
+<div>
+        <a asp-action="Index" class="btn btn-success">عودة الي الرئيسية</a>
+    </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -1,0 +1,62 @@
+﻿@model Hr.Models.Cemp
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Cemp</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">طباعة</button>
+        <form method="post" asp-action="Print" asp-controller="ViewModelEvalwithother1">
+            <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">طباعة مختصر تقييم ألاداء </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>الرقم الوظيفي:</label>
+                                <input type="text" name="Id" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>العام:</label>
+                                <select name="Year" class="form-control">
+                                    <option value="">Please select</option>
+                                    <option value="2021">2021</option>
+                                    @*<option value="China">China</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="France">France</option>
+                                    <option value="Unites States">Unites States</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Canada">Canada</option>*@
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">طباعة</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">أغلاق</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
