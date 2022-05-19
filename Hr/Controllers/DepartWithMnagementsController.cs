@@ -20,7 +20,7 @@ namespace Hr.Controllers
         {
             _context = context;
         }
-       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+        [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
         // GET: DepartWithMnagements
         public async Task<IActionResult> Index()
         {

@@ -50,58 +50,6 @@ namespace Hr.ReportDataset
 {
 }
 
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
-namespace Hr.ReportDataset
-{
-}
-
 namespace CoreRDLCReport.ReportDataset
 {
 }

@@ -27,7 +27,7 @@ namespace Hr.Controllers
         {
             _context = context;
         }
-       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+        [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
         public IActionResult Index()
         {
             List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels

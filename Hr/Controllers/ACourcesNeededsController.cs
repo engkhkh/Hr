@@ -21,7 +21,7 @@ namespace Hr.Controllers
         {
             _context = context;
         }
-       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+        [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
         // GET: ACourcesOffereds
         public async Task<IActionResult> Index()
         {
@@ -403,7 +403,7 @@ namespace Hr.Controllers
 
             return View(aCourcesOffered);
         }
-       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+        [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
         // GET: ACourcesOffereds/Create
         public IActionResult Create()
         {

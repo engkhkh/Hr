@@ -24,11 +24,16 @@
     <form id="studenteForm" asp-controller="ViewModelEvalwithother1" asp-action="Uploadm" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label class="control-label"> تحديد اسم الموظف  </label>
+<<<<<<< HEAD
             <select asp-for="Cempid" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.Cempid" required>
+=======
+            <select asp-for="Cempid" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.Cempid">
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 <option value="55">تحديد</option>
             </select>
 
         </div>
+<<<<<<< HEAD
 
         <br />
         <br /> <br />
@@ -48,6 +53,13 @@
         <br /> <br />
         <input type="submit" class="btn btn-primary" value="حفظ" />
         <p style="color:red">@ViewBag.Message2</p>
+=======
+        <br />
+        <br /> <br /> <br /> <br /> <br /> <br />
+        <input asp-for="DEP_NAME" type="text" placeholder="الدرحة " id="id12" />
+
+        <input type="submit" class="btn btn-primary" value="حفظ" />
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
         @*<button type="button" class="btn btn-primary" onclick="submitStudent()">حفظ</button>*@
     </form>
     <hr />
