@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hr.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hr.Controllers
 {
@@ -19,12 +20,14 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesEstimates1
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.ACourcesEstimates.ToListAsync());
         }
 
         // GET: ACourcesEstimates1/Details/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,6 +46,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesEstimates1/Create
+        [Authorize(Roles = "Admin,HR-Admin")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +57,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Create([Bind("CourcesIdEstimate,CourcesNameEstimate")] ACourcesEstimate aCourcesEstimate)
         {
             if (ModelState.IsValid)
@@ -65,6 +70,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesEstimates1/Edit/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,6 +91,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("CourcesIdEstimate,CourcesNameEstimate")] ACourcesEstimate aCourcesEstimate)
         {
             if (id != aCourcesEstimate.CourcesIdEstimate)
@@ -136,6 +143,7 @@ namespace Hr.Controllers
         // POST: ACourcesEstimates1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var aCourcesEstimate = await _context.ACourcesEstimates.FindAsync(id);

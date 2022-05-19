@@ -11,7 +11,7 @@
     <div class="col-md-4">
         <form asp-action="Create" asp-controller="Needed1Details">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+            <input type="hidden" asp-for="OfferedRequestFrom" />
             <div class="form-group">
                 تسلسل 
                 <input asp-for="OfferedDetailsSerial" readonly class="form-control" />

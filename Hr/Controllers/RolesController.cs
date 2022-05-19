@@ -47,6 +47,7 @@ namespace Hr.Controllers
         }
 
         // GET: Roles/Details/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -83,7 +84,8 @@ namespace Hr.Controllers
             return View(roles);
         }
 
-        [Authorize(Roles = "Admin")]
+      
+        [Authorize(Roles = "Admin,HR-Admin")]
         // GET: Roles/Create
         public IActionResult Create()
         {
@@ -114,6 +116,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Create([Bind("roleid,rolename")] Roles roles)
         {
             if (ModelState.IsValid)
@@ -126,6 +129,7 @@ namespace Hr.Controllers
         }
 
         // GET: Roles/Edit/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -146,6 +150,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("roleid,rolename")] Roles roles)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -196,6 +201,7 @@ namespace Hr.Controllers
         }
 
         // GET: Roles/Delete/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -216,6 +222,7 @@ namespace Hr.Controllers
         // POST: Roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var roles = await _context.roless.FindAsync(id);

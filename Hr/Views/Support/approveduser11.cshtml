@@ -124,7 +124,9 @@
             <th>
                 المرفق
             </th>
-
+            <th>
+                تعليق
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -136,7 +138,7 @@
                 @*<a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
                 @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
                 @*<a asp-controller="MessagesDetails" asp-action="Create" asp-route-id="@item.SupportProcess.Id" asp-route-from="@item.SupportProcess.Fromr" class="btn btn-success">تم الاستلام</a>
-                <a asp-controller="MessagesDetails" asp-action="Create2" asp-route-id="@item.SupportProcess.Id" asp-route-from="@item.SupportProcess.Fromr" class="btn btn-success">رفض الاستلام </a>*@
+            <a asp-controller="MessagesDetails" asp-action="Create2" asp-route-id="@item.SupportProcess.Id" asp-route-from="@item.SupportProcess.Fromr" class="btn btn-success">رفض الاستلام </a>*@
 
             </td>
             <td>
@@ -165,7 +167,9 @@
                 <a href="~/img/ticket/@item.SupportProcess.Mestypereqidp" target="_blank" class="btn btn-link">@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="20" height="20" />*@تحميل</a>
 
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.Supportscomment.Offerdetailscomment)
+            </td>
         </tr>
         }
     </tbody>

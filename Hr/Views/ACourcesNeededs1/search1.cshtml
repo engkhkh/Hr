@@ -93,6 +93,9 @@
 
         </th>*@
                 <th>
+                    رقم الطلب 
+                </th>
+                <th>
                     الموظف
                 </th>
                 <th>
@@ -117,24 +120,24 @@
                     التخصص العلمي  التدريبي
                 </th>
                 <th>
-                    عدد الطلاب /الطالبات 
+                    عدد الطلاب /الطالبات
                 </th>
 
                 <th>
-                   عنوان البحث 
+                    عنوان البحث
                 </th>
 
                 <th>
-                    عنوان مشروع التخرج 
+                    عنوان مشروع التخرج
 
                 </th>
                 <th>
-                    امكانية عدد استيعاب الادارة للمتدربين دفعة واحدة 
+                    امكانية عدد استيعاب الادارة للمتدربين دفعة واحدة
 
                 </th>
                 @*<th>
-                    طريقة التدريب
-                </th>*@
+            طريقة التدريب
+        </th>*@
                 <th>
                     ملاحظات
 
@@ -166,11 +169,14 @@
                 {
             <tr>
                 <!--<td>
-                <a asp-controller="NeededDetails" asp-action="Create" asp-route-id="@item.ACourcesNeeded1.CourcesNeededId">موافق</a> |
-        <a asp-controller="NeededDetails" asp-action="Create2" asp-route-id="@item.ACourcesNeeded1.CourcesNeededId">رفض</a>-->
+            <a asp-controller="NeededDetails" asp-action="Create" asp-route-id="@item.ACourcesNeeded1.CourcesNeededId">موافق</a> |
+    <a asp-controller="NeededDetails" asp-action="Create2" asp-route-id="@item.ACourcesNeeded1.CourcesNeededId">رفض</a>-->
                 @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
                 <!--</td>-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesNeeded1.CourcesNeededId)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
                 </td>
@@ -217,8 +223,8 @@
                     @*@Html.DisplayFor(modelItem => item.ACourcesOffered.CourcesIdTime)*@
                 </td>
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
-                </td>*@
+            @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
+        </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.ACourcesNeeded1.notes)
                     @*@Html.DisplayFor(modelItem => item.ACourcesOffered.timefrom)

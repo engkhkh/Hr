@@ -120,7 +120,20 @@
         {
         <tr>
             <td>
-                <a asp-controller="ViewModelEvalwithother1" asp-action="Edit" asp-route-id="@item.AEvaluationEmp.Idd" class="btn btn-success">الطلب </a>
+                @*<a asp-controller="ViewModelEvalwithother1" asp-action="Detail" class="btn btn-success">عرض  الطلب </a>|*@
+                <a asp-controller="ViewModelEvalwithother1" asp-action="Details" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" target="_blank" class="btn btn-success"> الطلب  </a>
+
+                @if (TempData["user"].ToString() == TempData["eval2emp"].ToString())
+                {
+                    @*<a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل  </a>*@
+                    <a asp-controller="ViewModelEvalwithother1" asp-action="Edit1" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" target="_blank"  class="btn btn-success">تعديل الطلب  </a>
+                }
+                @if (TempData["user"].ToString() == item.evalDetail.OfferedRequestTo.ToString())
+                {
+                    @*<a asp-controller="ViewModelEvalwithother1" asp-action="Edit11m" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">تعديل  </a>*@
+                    <a asp-controller="ViewModelEvalwithother1" asp-action="Edit1" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" target="_blank" class="btn btn-success">تعديل الطلب  </a>
+                }
+                @*<a asp-controller="ViewModelEvalwithother1" asp-action="Edit1" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">الطلب </a>*@
                 <a asp-controller="EvalDetails" asp-action="Create" asp-route-id="@item.AEvaluationEmp.Idd" asp-route-from="@item.AEvaluationEmp.Empno" class="btn btn-success">موافقة</a>
                 <a asp-controller="EvalDetails" asp-action="Create2" asp-route-id="@item.AEvaluationEmp.Idd" asp-route-from="@item.AEvaluationEmp.Empno" class="btn btn-success">رفض</a>
                 @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
