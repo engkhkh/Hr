@@ -80,7 +80,15 @@
         <tr>
             @*<th>
 
+<<<<<<< HEAD
         </th>*@
+=======
+<<<<<<< HEAD
+        </th>*@
+=======
+                </th>*@
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             <th>
 
             </th>
@@ -113,7 +121,15 @@
             </th>
             <th>
                 بداية الدورة
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+                
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             </th>
             <th>
                 الحالة
@@ -122,12 +138,26 @@
                 عدد ايام  الدورة
             </th>
             @*<th>
+<<<<<<< HEAD
             نسبة الانجاز %
         </th>*@
+=======
+<<<<<<< HEAD
+            نسبة الانجاز %
+        </th>*@
+=======
+                    نسبة الانجاز %
+                </th>*@
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
             <th>
                 جهة الدورة
             </th>
             <th>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
                 جهة تنفيذ التدريب
             </th>
             <th>
@@ -136,12 +166,23 @@
             <th>
                 الدرجة
             </th>
+<<<<<<< HEAD
+=======
+=======
+                قسم الموظف
+            </th>
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
         <tr>
             <!--<td>-->
             @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
@@ -226,6 +267,90 @@
                 @Html.DisplayFor(modelItem => item.ACourcesMasters.gradetocourse)
             </td>
         </tr>
+<<<<<<< HEAD
+=======
+=======
+            <tr>
+                <!--<td>-->
+                @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
+                    <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
+                @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
+
+                <!--</td>-->
+                <td>
+                    <a asp-controller="ACourcesMasters" asp-action="Edit111" asp-route-id="@item.ACourcesMasters.EncryptedIdd" class="btn btn-warning">تعديل </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.Cempid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesIdmaster)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesTypes.CourcesTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesEstimates.CourcesNameEstimate)
+                </td>
+                <td>
+                    <a href="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="btn btn-link">@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="20" height="20" />*@تحميل</a>
+                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
+                </td>
+                <td>
+                    <a href="~/img/portfoliohr/@item.ACourcesMasters.CourcesIdImagehr" class="btn btn-link">@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="20" height="20" />*@تحميل</a>
+                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
+                    @*@Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDateh)*@
+                    @*@item.ACourcesMasters.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
+
+                </td>
+                <td>
+                    @if (item.MasterDetails.MasterRequestTypeSatus == 1)
+                    {
+                        <label style="background-color:limegreen">موافقة :</label>
+                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
+                    }
+                    else if (item.MasterDetails.MasterRequestTypeSatus == 2)
+                    {
+                        <label style="background-color:red">رفض  :</label>
+                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
+
+                    }
+                    else
+                    {
+                        <label style="background-color:yellow">انتظار :</label>
+                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
+
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
+                </td>
+
+            </tr>
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+>>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
         }
     </tbody>
 </table>

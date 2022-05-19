@@ -60,6 +60,29 @@ namespace Hr.Models
         //public virtual MasterRequestTypeId MasterRequestTypeId { get; set; }
 
 
+        [NotMapped]
+        public string EncryptedIdd { get; set; }
+
+        [NotMapped]
+<<<<<<< HEAD
+        public string EncryptedIdd { get; set; }
+
+        [NotMapped]
+=======
+>>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
+        public double gradetocourse { get; set; }
+
+        [NotMapped]
+        public string EncryptedIdd { get; set; }
+
+        [NotMapped]
+        public double gradetocourse { get; set; }
+        [NotMapped]
+        public double gradetocourset { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public string CourcesStartDateh { get; set; }
+
 
         [NotMapped]
         public string EncryptedIdd { get; set; }
