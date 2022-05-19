@@ -1,4 +1,4 @@
-﻿using Devart.Data.Oracle;
+﻿//using Devart.Data.Oracle;
 using DNTCaptcha.Core;
 using Hr.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -24,6 +24,9 @@ using System.Threading;
 using System.Globalization;
 using Novell.Directory.Ldap;
 using System.DirectoryServices;
+using Oracle.ManagedDataAccess.Client;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Hr.Controllers
 {
@@ -52,6 +55,40 @@ namespace Hr.Controllers
     [Route("account")]
     public class AccountController : Controller
     {
+       // string TNS = "Data Source=(DESCRIPTION =" +
+       //"(ADDRESS = (PROTOCOL = TCP)(HOST = 10.18.1.140)(PORT = 1521))" +
+       //"(CONNECT_DATA =" +
+       //"(SERVER = DEDICATED)" +
+       //"(SERVICE_NAME = ORCL)));" +
+       //"User Id= hr;Password=hr";
+        string TNS1 = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.18.1.140)(PORT=1521)))(CONNECT_DATA=(SID=qassim)));User ID=MADCAP;Password=dba1435sjg*;";
+        string TNS2 = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.18.1.101)(PORT=1521)))(CONNECT_DATA= (SID=QSMSYS)));User ID=MORASLAT2;Password=MORASLAT2;";
+        string hader = "Data Source=QSMMPV-HADIR01;Initial Catalog=HadirDB;Integrated Security=False;User Id=erp;Password=Kh123456789$;MultipleActiveResultSets=True;";
+        //string TNS3 = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.18.1.13)(PORT=1521)))(CONNECT_DATA=(SID=sadad)));User ID=eservice;Password=eltizam_sjg";
+        string USRNO = "1442910c";
+        string EMPNAME ="test";
+        string JOBNAME= "tester1";
+        string ADPRTNO= "422150200";
+        string DEP_NAME= "ادارة تطوير التطبيقات الالية";
+        string CLSSNO;
+        string MANAGERID= "4281001";
+        string MANAGERID2 = "4431001";
+        string MANAGERNAME= "باسل بن عبدالرحمن سليمان الحميضي";
+        string MANAGERNAME2 = " test";
+        string PARENTID= "422150000";
+        string PARENTNAME= "الادارة العامة لتقنية المعلومات";
+        string PASWRD ="00";
+        string role ="3";
+        string datehiring = "1442-01-01";
+        string datelastupgrading = "1443-01-01";
+        string NIDNO = "00000";
+        DateTime checkin = DateTime.Now;
+        DateTime checkout = DateTime.Now;
+        string classe = "";
+        string grade = "";
+        string mobileno = "";
+
+        OracleConnection Con;
 
 
         private readonly IDNTCaptchaValidatorService _validatorService;
@@ -77,10 +114,13 @@ namespace Hr.Controllers
        
         const string SessionName = "_Name";
 
-
+       
         [Route("")]
         [Route("Show")]
+        [Route("login")]
         [Route("~/")]
+        //[Route("~/account/index")]
+        //[Route("/account")]
         public IActionResult Show()
         {
             return View();
@@ -89,7 +129,9 @@ namespace Hr.Controllers
         private static ILdapConnection _conn;
         private static ILdapConnection _conn2;
 
-        static ILdapConnection GetConnection()
+        public static string userPrincipalName { get; private set; }
+
+        static ILdapConnection GetConnection(string username)
         {
             LdapConnection ldapConn = _conn as LdapConnection;
 
@@ -99,10 +141,10 @@ namespace Hr.Controllers
                 ldapConn = new LdapConnection() /*{ SecureSocketLayer = false }*/;
 
                 //Connect function will create a socket connection to the server - Port 389 for insecure and 3269 for secure    
-                ldapConn.Connect("10.18.1.14", 389);
+                //ldapConn.Connect("10.18.1.14", 389);
 
-                //Bind function with null user dn and password value will perform anonymous bind to LDAP server 
-                ldapConn.Bind(@"Qassim\ldap","admin@123");
+                ////Bind function with null user dn and password value will perform anonymous bind to LDAP server 
+                //ldapConn.Bind(@"Qassim\ldap","admin@123");
 
                 //
 
@@ -112,289 +154,62 @@ namespace Hr.Controllers
 
                 //--- Code to use the current address for the LDAP and query it for the user---                  
                 DirectorySearcher dssearch = new DirectorySearcher("LDAP://" + defaultNamingContext);
-                dssearch.Filter = "(sAMAccountName=1442910)";
+                dssearch.Filter = "(sAMAccountName="+username+")";
                 SearchResult sresult = dssearch.FindOne();
+                //
                 DirectoryEntry dsresult = sresult.GetDirectoryEntry();
 
                 //--- Code for getting the properties of the logged in user from AD  
-                var FirstName = dsresult.Properties["givenName"][0].ToString();
-                var LastName = dsresult.Properties["sn"][0].ToString();
-                var Email = dsresult.Properties["mail"][0].ToString();
-                var Department = dsresult.Properties["department"][0].ToString();
-                var Manager = dsresult.Properties["manager"][0].ToString();
-
-                //string groupName = "1442910";
-                //var groups = new HashSet<string>();
-                ////CN=خليل ابراهيم لملوم سعداوي,OU=ادارة تطوير التطبيقات الألية-الادارة العامة لتقنية المعلومات,OU=الادارة العامة لتقنية المعلومات,OU=امانة منطقة القصيم,DC=qassim,DC=gov,DC=sa
-
-                //var searchBase = string.Empty;
-                //var filter = $"(&(objectClass=user)(CN=خليل ابراهيم لملوم سعداوي,OU=ادارة تطوير التطبيقات الألية-الادارة العامة لتقنية المعلومات,OU=الادارة العامة لتقنية المعلومات,OU=امانة منطقة القصيم,DC=qassim,DC=gov,DC=sa)";
-                //var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
-                //while (search.HasMore())
-                //{
-                //    var nextEntry = search.Next();
-                //    groups.Add(nextEntry.Dn);
-                //    var childGroups = GetChildren(string.Empty, nextEntry.Dn);
-                //    foreach (var child in childGroups)
-                //    {
-                //        groups.Add(child);
-                //    }
-                //}
+                //var FirstName = dsresult.Properties["givenName"][0].ToString();
+                //var LastName = dsresult.Properties["sn"][0].ToString();
+                //var displayName = dsresult.Properties["displayName"][0].ToString();
+               
+               
+                //var CN= dsresult.Properties["CN"][0].ToString();
+                 userPrincipalName= dsresult.Properties["userPrincipalName"][0].ToString();
+            
+                //var sAMAccountName = dsresult.Properties["sAMAccountName"][0].ToString();
+                //var badpwdcount = dsresult.Properties["badpwdcount"][0].ToString();
 
 
-                //
-                // Searches in the Marketing container and return all child entries
-                //just below this container i.e Single level search
-                //                string searchBase = "ou=development,o=acme";
-                //                int searchScope = LdapConnection.ScopeBase;
-                //                string searchFilter = "(title=engineer)";
-                //                LdapSearchQueue queue = ldapConn.Search(searchBase,
-                //LdapConnection.ScopeOne, searchFilter, null, false, (LdapSearchQueue)
-                //null, (LdapSearchConstraints)null);
-                //                LdapMessage message;
-                //                while ((message = queue.GetResponse()) != null)
-                //                {
-                //                    if (message is LdapSearchResult)
-                //                    {
-                //                        LdapEntry entry = (LdapSearchResult)message.Entry;
-                //                        System.Console.Out.WriteLine("\n" + entry.Dn);
-                //                        System.Console.Out.WriteLine("\tAttributes: ");
-
-                //                        // Get the attribute set of the entry
-                //                        LdapAttributeSet attributeSet = entry.GetAttributeSet();
-                //                        System.Collections.IEnumerator ienum =
-                //              attributeSet.GetEnumerator();
-
-                //                        // Parse through the attribute set to get the attributes and
-                //                        //the corresponding values
-                //                           while (ienum.MoveNext())
-                //                        {
-                //                            LdapAttribute attribute = (LdapAttribute)ienum.Current;
-                //                            string attributeName = attribute.Name;
-                //                            string attributeVal = attribute.StringValue;
-                //                            Console.WriteLine(attributeName + "value:" +
-                //           attributeVal);
-                //                        }
-                //                    }
-                //                }
-
-                //Procced 
-
-                //While all the required entries are parsed, disconnect   
-
-                // Searches in the Marketing container and return all child entries
-                //just below this container i.e.Single level search
-
-                //LdapSearchResults lsc = (LdapSearchResults)ldapConn.Search("ou=امانة منطقة القصيم,o=*", LdapConnection.ScopeOne, "objectClass=*", null, false);
-                //while (lsc.HasMore())
-                //{
-                //    LdapEntry nextEntry = null;
-                //    try
-                //    {
-                //        nextEntry = lsc.Next();
-                //    }
-                //    catch (LdapException e)
-                //    {
-                //        Console.WriteLine("Error: " + e.LdapErrorMessage);
-                //        //Exception is thrown, go for next entry
-                //        continue;
-                //    }
-
-                //    Console.WriteLine("\n" + nextEntry.Dn);
-
-                //    // Get the attribute set of the entry
-                //    LdapAttributeSet attributeSet = nextEntry.GetAttributeSet();
-                //    System.Collections.IEnumerator ienum = attributeSet.GetEnumerator();
-
-                //    // Parse through the attribute set to get the attributes and the
-                //    //corresponding values
-                //  while (ienum.MoveNext())
-                //    {
-                //        LdapAttribute attribute = (LdapAttribute)ienum.Current;
-                //        string attributeName = attribute.Name;
-                //        string attributeVal = attribute.StringValue;
-                //        Console.WriteLine(attributeName + "value:" + attributeVal);
-                //    }
-                //}
-
-                ////Procced 
-
-                ////While all the entries are parsed, disconnect   
-                //ldapConn.Disconnect();
-
-                //     // Searches in the Marketing container and return all child entries
-                //     string searchBase = "ou=development,o=acme";
-                //     int searchScope = LdapConnection.ScopeBase;
-                //     string searchFilter = "(title=engineer)";
-
-                //     LdapSearchQueue queue = ldapConn.Search(searchBase,
-                //              LdapConnection.ScopeOne, searchFilter, null, false, (LdapSearchQueue)
-                //           null, (LdapSearchConstraints)null);
-                //      LdapMessage message;
-                //     while ((message = queue.GetResponse()) != null)
-                //     {
-                //         if (message is LdapSearchResult)
-                //         {
-                //             LdapEntry entry = (LdapSearchResult)message.Entry;
-                //             System.Console.Out.WriteLine("\n" + entry.Dn);
-                //             System.Console.Out.WriteLine("\tAttributes: ");
-
-                //             // Get the attribute set of the entry
-                //             LdapAttributeSet attributeSet = entry.GetAttributeSet();
-                //             System.Collections.IEnumerator ienum =
-                //   attributeSet.GetEnumerator();
-
-                //             // Parse through the attribute set to get the attributes and
-
-                //                while (ienum.MoveNext())
-                //             {
-                //                 LdapAttribute attribute = (LdapAttribute)ienum.Current;
-                //                 string attributeName = attribute.Name;
-                //                 string attributeVal = attribute.StringValue;
-                //                 Console.WriteLine(attributeName + "value:" +
-                //attributeVal);
-                //             }
-                //         }
-                //     }
-
-                //     //Procced 
-
-                //While all the required entries are parsed, disconnect   
-                ldapConn.Disconnect();
 
 
-                //LdapAttributeSet attributeSet = new LdapAttributeSet();
-                //attributeSet.Add(new LdapAttribute("objectclass","user"));
-                //attributeSet.Add(new LdapAttribute("sAMAccountName","myuser"));
-                //attributeSet.Add(new LdapAttribute("userPRincipalName", "myuser"));
-                //attributeSet.Add(new LdapAttribute("userAccountControl", (66080).ToString()));
-                //attributeSet.Add(new LdapAttribute("userPassword", "userPassword"));
 
-                //string dn ="CN=myuser,CN=Users,DC=qassim,DC=gov,DC=com";
-                //LdapEntry newEntry = new LdapEntry(dn, attributeSet);
-                //ldapConn.Add(newEntry);
-
-                //string groupName = "";
-                //var groups = new HashSet<string>();
-
-                //var searchBase = string.Empty;
-                //var filter = $"(&(objectClass=group)(cn={groupName}))";
-                //var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
-                //while (search.HasMore())
-                //{
-                //    var nextEntry = search.Next();
-                //    groups.Add(nextEntry.Dn);
-                //    var childGroups = GetChildren(string.Empty, nextEntry.Dn);
-                //    foreach (var child in childGroups)
-                //    {
-                //        groups.Add(child);
-                //    }
-                //}
-
-                //var users = new HashSet<string>();
-
-                ////string groupFilter = (groups?.Count ?? 0) > 0 ?
-                ////    $"(|{string.Join("", groups.Select(x => $"(memberOf={x})").ToList())})" :
-                ////    string.Empty;
-                //string c = "sudan";
-                //string filter2 ="(&(objectClass=user)(objectCategory=person)(l=" + c.Contains(c) + ")(cn=*))";
-
-                //var searchBase = string.Empty;
-                //string filter = $"(&(objectClass=user)(objectCategory=person)(company=OU=امانة منطقة القصيم,DC=qassim,DC=gov,DC=sa))";
-                //var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter2, null, false);
-
-                //while (search.HasMore())
-                //{
-                //    var nextEntry = search.Next();
-                //    nextEntry.GetAttributeSet();
-                //    users.Add(nextEntry.Dn);
-                //}
+                //  ldapConn.Disconnect();
 
 
-                //
-                //var groups = new HashSet<string>();
 
-                //var searchBase = string.Empty;
-                //var filter = $"(&(objectClass=person)(OU=امانة منطقة القصيم,DC=qassim,DC=gov,DC=sa))";
-                //var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
-                //while (search.HasMore())
-                //{
-                //    var nextEntry = search.Next();
-                //    groups.Add(nextEntry.Dn);
-                //    var childGroups = GetChildren(string.Empty, nextEntry.Dn);
-                //    foreach (var child in childGroups)
-                //    {
-                //        groups.Add(child);
-                //    }
-                //}
 
             }
 
             return ldapConn;
         }
-        //static HashSet<string> GetChildren(string searchBase, string groupDn, string objectClass = "group")
-        //{
-        //    var ldapConn = GetConnection();
-        //    var listNames = new HashSet<string>();
-
-        //    var filter = $"(&(objectClass={objectClass})(memberOf={groupDn}))";
-        //    var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
-
-        //    while (search.HasMore())
-        //    {
-        //        var nextEntry = search.Next();
-        //        listNames.Add(nextEntry.Dn);
-        //        var children = GetChildren(string.Empty, nextEntry.Dn);
-        //        foreach (var child in children)
-        //        {
-        //            listNames.Add(child);
-        //        }
-        //    }
-
-        //    return listNames;
-        //}
-      
-        static HashSet<string> GetChildren(string searchBase, string groupDn, string objectClass = "group")
+        [Route("AuthenticateUser")]
+        public bool AuthenticateUser(string domainName, string userName, string password)
         {
-            var ldapConn = GetConnection();
-            var listNames = new HashSet<string>();
+            bool ret = false;
 
-            var filter = $"(&(objectClass={objectClass})(memberOf={groupDn}))";
-            var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
-
-            while (search.HasMore())
+            try
             {
-                var nextEntry = search.Next();
-                listNames.Add(nextEntry.Dn);
-                var children = GetChildren(string.Empty, nextEntry.Dn);
-                foreach (var child in children)
-                {
-                    listNames.Add(child);
-                }
+              
+               
+                DirectoryEntry de = new DirectoryEntry("LDAP://" + domainName, userName, password);
+                DirectorySearcher dsearch = new DirectorySearcher(de);
+                SearchResult results = null;
+
+                results = dsearch.FindOne();
+
+                ret = true;
+            }
+            catch
+            {
+                ret = false;
             }
 
-            return listNames;
+            return ret;
         }
+       
 
-        void SearchForUser(string company, HashSet<string> groups = null)
-        {
-            var ldapConn = GetConnection();
-            var users = new HashSet<string>();
-
-            string groupFilter = (groups?.Count ?? 0) > 0 ?
-                $"(|{string.Join("", groups.Select(x => $"(memberOf={x})").ToList())})" :
-                string.Empty;
-            var searchBase = string.Empty;
-            string filter = $"(&(objectClass=user)(objectCategory=person)(company={company}){groupFilter})";
-            var search = ldapConn.Search(searchBase, LdapConnection.ScopeSub, filter, null, false);
-
-            while (search.HasMore())
-            {
-                var nextEntry = search.Next();
-                nextEntry.GetAttributeSet();
-                users.Add(nextEntry.Dn);
-            }
-        }
         public static string GetClientIPAddress(HttpContext context)
         {
             string ip = string.Empty;
@@ -418,8 +233,11 @@ namespace Hr.Controllers
         public IActionResult Login(string username, string password)
         {
 
-            _conn2 = GetConnection();
-            //SearchForUser("ou", "");
+            
+            string domain = "qassim.gov.sa";
+            
+            
+
 
             string clientIp = GetClientIPAddress(HttpContext);
             var objuser = _context.Cemps.Where(b => b.Cempid == username).FirstOrDefault();
@@ -435,9 +253,12 @@ namespace Hr.Controllers
                 _context.Add(loginc);
                 _context.SaveChanges();
                 ViewBag.error = "خطيء برقم المستخدم ";
-                loggerx.Error("خطيء برقم المستخدم ");
+                loggerx.Error("خطيء برقم المستخدم "+ username);
                 return View("Show");
             }
+
+         
+
             if (!ModelState.IsValid) // If `ValidateDNTCaptcha` fails, it will set a `ModelState.AddModelError`.
             {
                 //TODO: Save data
@@ -452,10 +273,14 @@ namespace Hr.Controllers
                 _context.Add(loginc);
                 _context.SaveChanges();
                // loggerx.ErrorException("Error occured in Login controller");
-                loggerx.Error("غير مطابق كمابالصورة ");
+                loggerx.Error("غير مطابق كمابالصورة "+ username);
                 return View("Show");
             }
-          
+            
+            bool d = AuthenticateUser(domain, username, password);
+
+         
+
             //if (cntAttemps == 3)
             //{
             //    ViewBag.error = "باقي لك 2 محاولة  ";
@@ -472,18 +297,7 @@ namespace Hr.Controllers
             //}
 
 
-            // saved sesssions here 
-            HttpContext.Session.SetString("empid", objuser.Cempid);
-            HttpContext.Session.SetString("empidpass", objuser.CEMPPASSWRD);
-            HttpContext.Session.SetString("empname", objuser.CEMPNAME);
-            HttpContext.Session.SetString("empjobname", objuser.CEMPJOBNAME);
-            HttpContext.Session.SetString("empdepid", objuser.CEMPADPRTNO);
-            HttpContext.Session.SetString("empdepname", objuser.DEP_NAME);
-            HttpContext.Session.SetString("empmanagerid", objuser.MANAGERID);
-            HttpContext.Session.SetString("empmanagername", objuser.MANAGERNAME);
-            HttpContext.Session.SetString("manageid", objuser.PARENTID);
-            HttpContext.Session.SetString("pname", objuser.PARENTNAME);
-            HttpContext.Session.SetInt32("emprole",objuser.CROLEID);
+
             List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
             {
                 MainMenuId = x.MainMenuId,
@@ -510,13 +324,166 @@ namespace Hr.Controllers
             //var str2 = HttpContext.Session.GetString("MenuMaster");
             //var obj2 = JsonConvert.DeserializeObject<MenuModels>(str2);
             // Code for validating the CAPTCHA  
-         
+            //OracleConnection Con5 = new OracleConnection(TNS3);
+            //Con5.Open();
+            //DataTable tab5 = new DataTable();
+            //OracleDataAdapter da5 = new OracleDataAdapter("select * from MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO", Con);
+            //da5.Fill(tab5);
+
+            //OracleConnection Con5 = new OracleConnection(TNS3);
+            //Con5.Open();
+            //OracleCommand cmd = new OracleCommand();
+            //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('2430713111', '4431001','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '60', 1) ";
+            ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+            //cmd.Connection = Con5;
+            //cmd.ExecuteNonQuery();
+            //Con5.Close();
             // admin
-            if (username != null && password != null && username.Equals(objuser.Cempid) && password.Equals(objuser.CEMPPASSWRD))
+            if (username != null && password != null && d==true /*username.Equals(objuser.Cempid) && password.Equals(objuser.CEMPPASSWRD)*/)
             {
 
-                HttpContext.Session.SetString("username", username);
+                OracleConnection Con = new OracleConnection(TNS1);
+                Con.Open();
+                DataTable tab = new DataTable();
+                OracleDataAdapter da = new OracleDataAdapter("select * from MADCAP.AV_GETPASS where USRNO=" + username + " ", Con);
+                da.Fill(tab);
+                DataRow[] dr = tab.Select("USRNO=" + username + "");
+                if (dr.Count() > 0)
+                {
 
+                    USRNO = dr[0]["USRNO"].ToString();
+                    EMPNAME = dr[0]["EMPNAME"].ToString();
+                    JOBNAME = dr[0]["JOBNAME"].ToString();
+                    ADPRTNO = dr[0]["ADPRTNO"].ToString();
+                    DEP_NAME = dr[0]["DEP_NAME"].ToString();
+                    CLSSNO = dr[0]["CLSSNO"].ToString();
+                    MANAGERID = dr[0]["MANAGERID"].ToString();
+                    MANAGERNAME = dr[0]["MANAGERNAME"].ToString();
+                    PARENTID = dr[0]["PARENTID"].ToString();
+                    PARENTNAME = dr[0]["PARENTNAME"].ToString();
+                    PASWRD = dr[0]["PASWRD"].ToString();
+
+
+                }
+                Con.Close();
+
+                //
+                Con.Open();
+                DataTable tab0 = new DataTable();
+                OracleDataAdapter da0 = new OracleDataAdapter("select * from MADCAP.AV_GETPASS where USRNO = " + MANAGERID + " ", Con);
+                da0.Fill(tab0);
+                DataRow[] dr0 = tab0.Select("USRNO=" + MANAGERID + "");
+                if (dr0.Count() > 0)
+                {
+
+                    //USRNO = dr[0]["USRNO"].ToString();
+                    //EMPNAME = dr[0]["EMPNAME"].ToString();
+                    //JOBNAME = dr[0]["JOBNAME"].ToString();
+                    //ADPRTNO = dr[0]["ADPRTNO"].ToString();
+                    //DEP_NAME = dr[0]["DEP_NAME"].ToString();
+                    //CLSSNO = dr[0]["CLSSNO"].ToString();
+                    MANAGERID2 = dr0[0]["MANAGERID"].ToString();
+                    MANAGERNAME2 = dr0[0]["MANAGERNAME"].ToString();
+                    //PARENTID = dr[0]["PARENTID"].ToString();
+                    //PARENTNAME = dr[0]["PARENTNAME"].ToString();
+                    //PASWRD = dr[0]["PASWRD"].ToString();
+
+
+                }
+                Con.Close();
+                Con.Open();
+                //
+                DataTable tab1 = new DataTable();
+                OracleDataAdapter da1 = new OracleDataAdapter("select * from MADCAP.A_VGET_EMP_DATA where EMPNO=" + username + " ", Con);
+                da1.Fill(tab1);
+                DataRow[] dr1 = tab1.Select("EMPNO=" + username + "");
+                if (dr1.Count() > 0)
+                {
+                    var hiringdate = dr1[0]["FAPPLDAT"].ToString()==""?"1442-01-01": dr1[0]["FAPPLDAT"].ToString();
+                    var lastupgradingdate = dr1[0]["CLASS_DATE"].ToString()==""?"14430101": dr1[0]["CLASS_DATE"].ToString();
+                    //var grade = dr1[0]["GRADE"].ToString();
+                    NIDNO= dr1[0]["NIDNO"].ToString();
+                    classe= dr1[0]["CLSSNO"].ToString();
+                    grade= dr1[0]["GRADE"].ToString();
+                    mobileno = dr1[0]["MOBILE_NO"].ToString();
+                    role = dr1[0]["MANAGER"].ToString() == "1" ? "2" : "3";
+                    var date = Convert.ToDateTime(hiringdate.Substring(0,4)+"-"+hiringdate.Substring(4,2)+"-"+hiringdate.Substring(6,2));
+                    var date1 = Convert.ToDateTime(lastupgradingdate.Substring(0, 4) + "-" + lastupgradingdate.Substring(4, 2) + "-" + lastupgradingdate.Substring(6, 2));
+
+                    //date.ToString("dd/MM - MMMM d"); // 28/06 - June 28
+                    //date.ToString("dd/MM/yyyy"); // 28/06/2013
+                    datehiring = date.ToString("yyyy-MM-dd");
+                    datelastupgrading = date1.ToString("yyyy-MM-dd");
+
+                }
+
+                Con.Close();
+                Con.Dispose();
+
+
+                // 
+                if (username == "4431001")
+                {
+                    SqlConnection connection = new SqlConnection(hader);
+                    connection.Open();
+                    DataTable tab2 = new DataTable();
+                    DataTable tab3 = new DataTable();
+                    SqlDataAdapter da2 = new SqlDataAdapter(" SELECT TOP 1 * FROM [HadirDB].[dbo].[Transaction]  where [EmployeeID]='2430713111' and [Type]='OUT' ORDER BY [DateTime] DESC ", connection);
+                    SqlDataAdapter da3 = new SqlDataAdapter(" SELECT TOP 1 * FROM [HadirDB].[dbo].[Transaction]  where [EmployeeID]='2430713111' and [Type]='IN' ORDER BY [DateTime] DESC ", connection);
+                    SqlDataAdapter da4 = new SqlDataAdapter(" SELECT * FROM [HadirDB].[dbo].[Transaction] where [EmployeeID]='2430713111'   ORDER BY [DateTime] DESC ", connection);
+                    da2.Fill(tab2);
+                    da3.Fill(tab3);
+                    DataRow[] dr2 = tab2.Select("EmployeeID=2430713111");
+                    checkout = Convert.ToDateTime(dr2[0]["DateTime"].ToString());
+
+                    DataRow[] dr3 = tab3.Select("EmployeeID=2430713111");
+                    checkin = Convert.ToDateTime(dr3[0]["DateTime"].ToString());
+                    connection.Close();
+                    connection.Dispose();
+
+
+                }
+                else
+                {
+                    try
+                    {
+                        SqlConnection connection = new SqlConnection(hader);
+                        connection.Open();
+                        DataTable tab2 = new DataTable();
+                        DataTable tab3 = new DataTable();
+                        SqlDataAdapter da2 = new SqlDataAdapter(" SELECT TOP 1 * FROM [HadirDB].[dbo].[Transaction]  where [EmployeeID]='" + username + "' and [Type]='OUT' ORDER BY [DateTime] DESC ", connection);
+                        SqlDataAdapter da3 = new SqlDataAdapter(" SELECT TOP 1 * FROM [HadirDB].[dbo].[Transaction]  where [EmployeeID]='" + username + "' and [Type]='IN' ORDER BY [DateTime] DESC ", connection);
+                        SqlDataAdapter da4 = new SqlDataAdapter(" SELECT * FROM [HadirDB].[dbo].[Transaction] where [EmployeeID]='" + username + "'   ORDER BY [DateTime] DESC ", connection);
+                        da2.Fill(tab2);
+                        da3.Fill(tab3);
+                        DataRow[] dr2 = tab2.Select("EmployeeID=" + username + "");
+                        checkout = Convert.ToDateTime(dr2[0]["DateTime"].ToString());
+
+                        DataRow[] dr3 = tab3.Select("EmployeeID=" + username + "");
+                        checkin = Convert.ToDateTime(dr3[0]["DateTime"].ToString());
+                        connection.Close();
+                        connection.Dispose();
+                    }
+                    catch (Exception ex)
+                    {
+                        loggerx.Error("حاضر لايرجع بيانات للموظف   "+username);
+                    }
+                   
+                      
+                    
+                   
+                }
+
+                //
+                //OracleConnection Con2 = new OracleConnection(TNS2);
+                //Con2.Open();
+                //DataTable tab4 = new DataTable();
+                //OracleDataAdapter da5 = new OracleDataAdapter("select * from QASIM_BRANCH_MV@MOMMRA_GSERV_NEW", Con2);
+                //da5.Fill(tab4);
+
+                //
+                _conn2 = GetConnection(username);
+                HttpContext.Session.SetString("mail", userPrincipalName);
 
                 var claims = new List<Claim>
             {
@@ -563,35 +530,97 @@ namespace Hr.Controllers
                     isAuthenticated = true;
 
                 }
-                else 
+                else if (objuser.CROLEID == 5)
                 {
                     //Create the identity for the user  
                     identity = new ClaimsIdentity(new[] {
                     new Claim(ClaimTypes.Name, username),
-                    new Claim(ClaimTypes.Role, "Else")
+                    new Claim(ClaimTypes.Role, "HR-Admin")
                 }, "Sys Identity");
 
                     isAuthenticated = true;
 
                 }
 
+                else if (objuser.CROLEID == 7)
+                {
+                    //Create the identity for the user  
+                    identity = new ClaimsIdentity(new[] {
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Role, "HR-Operation")
+                }, "Sys Identity");
 
+                    isAuthenticated = true;
+
+                }
 
                 try
                 {
                     // savelogin time and ip 
                     logind logind = new logind();
-                    logind.userid = HttpContext.Session.GetString("empid");
+                    logind.userid = username;
                     logind.dtimelogin = DateTime.Now;
                     logind.dtimelogout = null;
                     logind.ip = clientIp.ToString();
+                    logind.comment = "Sucessful Login to HR Gate By //"+username + "//" +"browser"+ Request.Headers["User-Agent"].ToString();
+                    HttpContext.Session.SetString("username", username);
+                    // saved sesssions here 
+                    HttpContext.Session.SetString("empid", objuser.Cempid);
+                    HttpContext.Session.SetString("empidpass", objuser.CEMPPASSWRD);
+                    HttpContext.Session.SetString("empname", objuser.CEMPNAME);
+                    HttpContext.Session.SetString("empjobname", objuser.CEMPJOBNAME);
+                    HttpContext.Session.SetString("empdepid", objuser.CEMPADPRTNO);
+                    HttpContext.Session.SetString("empdepname", objuser.DEP_NAME);
+                    HttpContext.Session.SetString("empmanagerid", objuser.MANAGERID);
+                    HttpContext.Session.SetString("empmanagerid2", objuser.MANAGERID2id);
+                    HttpContext.Session.SetString("empmanagername", objuser.MANAGERNAME);
+                    HttpContext.Session.SetString("manageid", objuser.PARENTID);
+                    HttpContext.Session.SetString("pname", objuser.PARENTNAME);
+                    HttpContext.Session.SetInt32("emprole", objuser.CROLEID);
 
-                    objuser.Cempid = HttpContext.Session.GetString("empid");
+                    objuser.Cempid = username;
                     objuser.login = '1';
+                    objuser.cbrowser = Request.Headers["User-Agent"].ToString();
+                    objuser.cip= clientIp.ToString(); 
+                    objuser.CEMPNAME = EMPNAME;
+                    objuser.CEMPJOBNAME = JOBNAME;
+                    objuser.CEMPPASSWRD = NIDNO;
+                    objuser.CEMPPASSWRD1 = password;
+                    objuser.CLSSNO = CLSSNO;
+                    objuser.grade = grade;
+                    objuser.mobileno = mobileno;
+                    objuser.mail = userPrincipalName;
+                    objuser.MANAGERNAME = MANAGERNAME;
+                    objuser.CEMPADPRTNO = ADPRTNO;
+                    objuser.DEP_NAME = DEP_NAME;
+                    objuser.MANAGERID = MANAGERID;
+                    objuser.MANAGERID2id = MANAGERID2;
+                    objuser.MANAGERID2 = MANAGERNAME2;
+                    objuser.MANAGERNAME = MANAGERNAME;
+                    objuser.PARENTID = PARENTID;
+                    objuser.PARENTNAME = PARENTNAME;
+                    objuser.Cemphiringdate = checkin;
+                    objuser.Cemplastupgrade = checkout;
+                    objuser.CEMPHIRINGDATEHIJRA = Convert.ToDateTime(datehiring);
+                    objuser.CEMPLASTUPGRADEHIJRA = Convert.ToDateTime(datelastupgrading);
+                    objuser.CROLEID = objuser.CROLEID==2?Convert.ToInt32(role):objuser.CROLEID == 3 ? Convert.ToInt32(role) : objuser.CROLEID == 5 ? 5 : objuser.CROLEID == 7 ? 7 : objuser.CROLEID == 1 ? 1 : 3;
+                    
+                    var reqevalfor = _context.EvalDetailss2.Where(h => h.OfferedRequestFrom == HttpContext.Session.GetString("username")).FirstOrDefault();
+                    if(reqevalfor != null)
+                    {
+                        reqevalfor.OfferedRequestTo = MANAGERID;
+                        reqevalfor.OfferedRequestTo2 = MANAGERID2;
 
-
+                        _context.Update(reqevalfor);
+                    }
+                  
+                    else
+                    {
+                        loggerx.Error("ليس له طلب ميثاق او تقييم  للموظف   " + username);
+                    }
                     _context.Update(objuser);
                     _context.Add(logind);
+
 
                     _context.SaveChanges();
 
@@ -604,9 +633,12 @@ namespace Hr.Controllers
                 {
 
                 }
+                TempData["user"] = HttpContext.Session.GetString("username");
+                //TempData["eval2emp"] = "0";
                 ViewData["MenuItemActive"] = "disabled";
                 ViewBag.ContentCssClass = "disabled";
-               
+
+
                 ViewData["ContentCssClass"] = "disabled";
 
                 List<MasterDetails> masterdeatails = _context.MasterDetailss.ToList();
@@ -668,7 +700,7 @@ namespace Hr.Controllers
                 var yy = from x in MasterRequestTypeIds
                          join n in masterdeatails on x.COURCES_IDMASTER equals n.COURCES_IDMASTER into table88
                          from n in table88.ToList().Distinct()
-                         where (n.MasterRequestTo == HttpContext.Session.GetString("empid") || n.MasterRequestTo2 == HttpContext.Session.GetString("empid")) && x.MasterRequestType == 0 && n.MasterRequestTypeSatus == 0
+                         where (n.MasterRequestTo == HttpContext.Session.GetString("empid") || n.MasterRequestTo2 == HttpContext.Session.GetString("empid") || n.MasterRequestTo3 == HttpContext.Session.GetString("empid") || n.MasterRequestTo4 == HttpContext.Session.GetString("empid") || n.MasterRequestTo5 == HttpContext.Session.GetString("empid")) && x.MasterRequestType == 0 && n.MasterRequestTypeSatus == 0
                          select (x.COURCES_IDMASTER).ToString();
                 TempData["MasterRequestTypeIds1"] = yy.ToList().Count();
 
@@ -693,7 +725,7 @@ namespace Hr.Controllers
                 var xx3 = from e in OfferedRequestTypeId3
                           join m in OfferedDetails3 on e.COURCES_IDOffered equals m.COURCES_IDOffered into table77
                           from m in table77.ToList().Distinct()
-                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") /*|| (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0")*/ && e.OfferedRequestType == 0
                           select (e.COURCES_IDOffered).ToString();
                 TempData["OfferedRequestTypeId3"] = xx3.ToList().Count();
 
@@ -703,7 +735,7 @@ namespace Hr.Controllers
                 var xx4 = from e in NeededRequestTypeId
                           join m in NeededDetails on e.COURCES_IDOffered equals m.COURCES_IDOffered into table77
                           from m in table77.ToList().Distinct()
-                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") || m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") || m.OfferedRequestTo3 == HttpContext.Session.GetString("empid") || m.OfferedRequestTo4 == HttpContext.Session.GetString("empid") || m.OfferedRequestTo5 == HttpContext.Session.GetString("empid")) && e.OfferedRequestType == 0 && m.OfferedRequestTypeSatus == 0
                           select (e.COURCES_IDOffered).ToString();
                 TempData["OfferedRequestTypeId4"] = xx4.ToList().Count();
 
@@ -711,7 +743,7 @@ namespace Hr.Controllers
                 var xx5 = from e in Needed1RequestTypeId
                           join m in Needed1Details on e.COURCES_IDOffered equals m.COURCES_IDOffered into table77
                           from m in table77.ToList().Distinct()
-                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                          where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") || m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") || m.OfferedRequestTo3 == HttpContext.Session.GetString("empid") || m.OfferedRequestTo4 == HttpContext.Session.GetString("empid") || m.OfferedRequestTo5 == HttpContext.Session.GetString("empid")) && e.OfferedRequestType == 0 && m.OfferedRequestTypeSatus == 0
                           select (e.COURCES_IDOffered).ToString();
                 TempData["OfferedRequestTypeId5"] = xx5.ToList().Count();
                 //
@@ -753,6 +785,9 @@ namespace Hr.Controllers
                            join m in EvalDetails2 on e.CourcesIdoffered equals m.CourcesIdoffered into table77
                            from m in table77.ToList().Distinct()
                            where (m.OfferedRequestTo == HttpContext.Session.GetString("empid") && m.OfferedRequestTo3 == "0") || (m.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && m.OfferedRequestTo4 == "0") || (m.Offeredoption == HttpContext.Session.GetString("empid") && m.OfferedRequestTo5 == "0") && e.OfferedRequestType == 0
+                           join hh in EvalRequestTypeId on e.CourcesIdoffered equals hh.CourcesIdoffered into table5h
+                           from hh in table5h.ToList()
+                           where hh.OfferedRequestType == 1 && m.OfferedRequestTypeSatus!=2022
                            select (e.CourcesIdoffered).ToString();
                 TempData["OfferedRequestTypeId10"] = xx10.ToList().Count();
 
@@ -805,7 +840,7 @@ namespace Hr.Controllers
 
                 //ViewData["MenuItemActive"] = "";
                 ViewBag.error = "خطيء بكلمة السر";
-                loggerx.Error("خطيء بكلمة السر ");
+                loggerx.Error("خطيء بكلمة السر "+ username);
                 return View("Show");
                 //return RedirectToAction("Index", "Account", new { area = "" });
             }

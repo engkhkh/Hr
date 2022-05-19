@@ -1,0 +1,83 @@
+﻿@model Hr.Models.Cemp
+
+@{
+    ViewData["Title"] = "طباعة تعريف الراتب  ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h1>Create</h1>
+
+    <h4>Cemp</h4>*@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">طباعة</button>
+        <form method="post" asp-controller="ViewModelEvalwithother1">
+            <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">طباعة تعريف الراتب </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @*<div class="form-group">
+                                    <label>الموظف:</label>
+                                    <input type="text" asp-for="CEMPNAME" name="Id" readonly autocomplete="off" class="form-control" />
+                                </div>*@
+                            <div class="form-group">
+                                <label> الموظف:</label>
+                                @*<input type="text" name="Id" autocomplete="off" class="form-control" />*@
+                                <select name="Id" asp-for="CEMPNO" class="chosen-select form-control" asp-items="ViewBag.Cempid">
+                                    <option value="">-- الموظف -- </option>
+                                </select>
+                            </div>
+                            <!--<div class="form-group">
+                            <label>العام:</label>
+                            <select name="Year" class="form-control">
+                                <option value="">Please select</option>
+                                <option value="2021">2021</option>-->
+                            @*<option value="2022">2022</option>*@
+                            @*<option value="China">China</option>
+                                <option value="Australia">Australia</option>
+                                <option value="France">France</option>
+                                <option value="Unites States">Unites States</option>
+                                <option value="Russia">Russia</option>
+                                <option value="Canada">Canada</option>*@
+                            <!--</select>
+                            </div>-->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">طباعة</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">أغلاق</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+<link href="~/js/chosen.css" rel="stylesheet" />
+<link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+<link href="~/js/prism.css" rel="stylesheet" />
+<script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+<script src="~/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+<script src="~/js/prism.js"></script>
+<script type="text/javascript">
+    $('#exampleModal').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>

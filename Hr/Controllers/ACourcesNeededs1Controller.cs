@@ -445,7 +445,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CourcesNeededId,CourcesId,CourcesIdDegree,CourcesIdNOOFSTUDENT,CourcesIdSEARCHTITLE,GRADUATIONTITLE,Cempid,available,notes")] ACourcesNeeded1 ACourcesNeeded)
+        public async Task<IActionResult> Create([Bind("CourcesNeededId,CourcesId,CourcesIdDegree,CourcesIdNOOFSTUDENT,CourcesIdSEARCHTITLE,GRADUATIONTITLE,Cempid,available,notes,passrate")] ACourcesNeeded1 ACourcesNeeded)
         {
 
 
@@ -453,17 +453,35 @@ namespace Hr.Controllers
             if (ModelState.IsValid)
             {
 
+                if (ACourcesNeeded.passrate != null)
+                {
+                    ACourcesPrograms1 aCourcesPrograms = new ACourcesPrograms1();
+                    aCourcesPrograms.CourcesName = ACourcesNeeded.passrate;
+                    var newcourcename1 = _context.ACourcesPrograms1.Where(b => b.CourcesName.Equals(ACourcesNeeded.passrate)).FirstOrDefault();
+                    if (newcourcename1 != null)
+                    {
+                        ViewBag.ErrorMessage3 = "اسم المجال موجود مسبقا ويرجي اختياره من القائمة   ";
+                        return View(ACourcesNeeded);
+                    }
+                    else
+                    {
+                        _context.Add(aCourcesPrograms);
+                        await _context.SaveChangesAsync();
+                        ACourcesNeeded.CourcesId = _context.ACourcesPrograms1.Max(u => u.CourcesId);
+                    }
+
+                }
                 ACourcesNeeded.Cempid = HttpContext.Session.GetString("username");
-               
+
                 _context.Add(ACourcesNeeded);
                 await _context.SaveChangesAsync();
 
                 //
 
-                var depwithmangforemp = _context.DepartWithMnagement.FirstOrDefault(m => m.CEMPADPRTNO == HttpContext.Session.GetString("empdepid"));
+                //var depwithmangforemp = _context.DepartWithMnagement.FirstOrDefault(m => m.CEMPADPRTNO == HttpContext.Session.GetString("empdepid"));
                 //int count = depwithmangforemps.Count;
                 //int count = 1;
-                if (depwithmangforemp != null)
+                if (HttpContext.Session.GetString("empid")! != null)
                 {
                     //var depwithmangforemp = _context.DepartWithMnagement.FirstOrDefaultAsync(m => m.CEMPADPRTNO == HttpContext.Session.GetString("empdepid"));
 
@@ -471,11 +489,11 @@ namespace Hr.Controllers
                     {
                         COURCES_IDOffered = ACourcesNeeded.CourcesNeededId/*_context.ACourcesOffered.Max(u => u.CourcesOfferedId) + 1*/,
                         OfferedRequestFrom = HttpContext.Session.GetString("empid"),
-                        OfferedRequestTo = depwithmangforemp.MANAGERID,// status in offerrequestto3
-                        OfferedRequestTo2 = depwithmangforemp.PARENTMANAGERID,// status in offerrequestto4
-                        OfferedRequestTo3 = "0",
-                        OfferedRequestTo4 = "1",
-                        OfferedRequestTo5 = "1",// status for  hrpersonapproval
+                        OfferedRequestTo = "4321031",// status in offerrequestto3
+                        OfferedRequestTo2 = "4411013",// status in offerrequestto4
+                        OfferedRequestTo3 = "4321038",
+                        OfferedRequestTo4 = "4411011",
+                        OfferedRequestTo5 = "123",// status for  hrpersonapproval
                         OfferedRequestTypeSatus = 0,
                         OfferedRequestNotes = "",
                         Offeredoption = "4321031"   // will srore hr person

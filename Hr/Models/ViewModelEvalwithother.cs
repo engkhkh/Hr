@@ -15,6 +15,7 @@ namespace Hr.Models
 
         public AEvaluEmpType AEvaluEmpType { get; set; }
         public AEvaluationGoal AEvaluationGoal { get; set; }
+        public AEvaluationGoal1 AEvaluationGoal1 { get; set; }
         public AEvaluationEmpLog AEvaluationEmpLog { get; set; }
         public AEvaluationEmp AEvaluationEmp { get; set; }
         public AEvaluationCompetenciesM AEvaluationCompetenciesM { get; set; }
@@ -29,6 +30,7 @@ namespace Hr.Models
         public EvalRequestTypeId2 evalRequestTypeId2 { get; set; }
         public Evalcomment2 evalcomment2 { get; set; }
 
-
+        //
+        public Cemp cemp { get; set; }
     }
 }
