@@ -14,10 +14,14 @@ using MimeKit;
 using MailKit.Security;
 using System.Threading;
 using NLog;
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 using Devart.Data.Oracle;
 =======
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+using Devart.Data.Oracle;
+>>>>>>> Stashed changes
 
 namespace Hr.Controllers
 {
@@ -26,15 +30,21 @@ namespace Hr.Controllers
         private readonly hrContext _context;
         private readonly IMailService mailService;
         NLog.Logger loggerx = LogManager.GetCurrentClassLogger();
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
         AEvaluationGoal av1, av2, av3, av4, av5, av6;
         AEvaluationCompetenciesM am1, am2, am3, am4, am5, am6, am7;
         AEvaluationCompetenciesD ad1, ad2, ad3, ad4, ad5, ad6, ad7,
             ad8, ad9, ad10, ad11, ad12, ad13, ad14, ad15, ad16, ad17, ad18, ad19,
             ad20, ad21, ad22, ad23;
         string TNS1 = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.18.1.13)(PORT=1521)))(CONNECT_DATA=(SID=sadad)));User ID=eservice;Password=eltizam_sjg";
+<<<<<<< Updated upstream
 =======
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+>>>>>>> Stashed changes
 
         public EvalDetails2Controller(hrContext context, IMailService mailService)
         {
@@ -171,7 +181,10 @@ namespace Hr.Controllers
                 ViewBag.msg = " الجدارات  بالطلب لم يتم تقييمها   ";
                 return View();
             }
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 
             List<AEvaluationGoal> vAEvaluationGoals = _context.AEvaluationGoals.Where(d => d.CovenantId == OfferDetails.CourcesIdoffered).OrderBy(d => d.CovenantGoalsSeq).ToList();
             av1 = vAEvaluationGoals[0];
@@ -229,8 +242,11 @@ namespace Hr.Controllers
                 ad23 = vAEvaluationCompetenciesDs[22];
             }
 
+<<<<<<< Updated upstream
 =======
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+>>>>>>> Stashed changes
             if (ModelState.IsValid)
             {
                 var OfferDetailssss = _context.EvalDetailss2
@@ -282,7 +298,10 @@ namespace Hr.Controllers
                             loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة تقييم الاداء   " + emprequestor.Cempid + "اعتماد التقييم " + ex.Message);
                         }
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
                     if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 5)
                     {
                         // calculation 
@@ -548,11 +567,14 @@ namespace Hr.Controllers
 
 
                     return RedirectToAction("IndexOffered4", "ViewModelEvalwithother1", new { area = "" });
+<<<<<<< Updated upstream
 =======
 
 
                         return RedirectToAction("IndexOffered4", "ViewModelEvalwithother1", new { area = "" });
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+>>>>>>> Stashed changes
 
 
                    
@@ -614,7 +636,10 @@ namespace Hr.Controllers
                                 loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة تقييم الاداء   " + emprequestor.Cempid + "اعتماد التقييم " + ex.Message);
                             }
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
                             if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 5)
                             {
                                 // calculation 
@@ -877,8 +902,11 @@ namespace Hr.Controllers
                                 //return View(Records);
                             }
 
+<<<<<<< Updated upstream
 =======
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+>>>>>>> Stashed changes
                         }
 
                             return RedirectToAction("IndexOffered4", "ViewModelEvalwithother1", new { area = "" });
@@ -956,7 +984,10 @@ namespace Hr.Controllers
                         {
                             loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة تقييم الاداء   " + emprequestor.Cempid + "اعتماد التقييم " + ex.Message);
                         }
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
                         if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 5)
                         {
                             // calculation 
@@ -1219,8 +1250,11 @@ namespace Hr.Controllers
                             //return View(Records);
                         }
 
+<<<<<<< Updated upstream
 =======
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+>>>>>>> Stashed changes
                         return RedirectToAction("IndexOffered4", "ViewModelEvalwithother1", new { area = "" });
 
                     }

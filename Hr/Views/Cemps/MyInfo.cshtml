@@ -143,13 +143,17 @@
                 </div>
                 <div>
                     <label> الدرجة </label>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 
                     @Html.DisplayFor(model => model.grade)
                 </div>
                 <div>
                     <label>المرتبة </label>
 
+<<<<<<< Updated upstream
 =======
 
                     @Html.DisplayFor(model => model.grade)
@@ -158,6 +162,8 @@
                     <label>المرتبة </label>
 
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+>>>>>>> Stashed changes
                     @Html.DisplayFor(model => model.CLSSNO)
                 </div>
 
@@ -165,6 +171,7 @@
             <div class="col-md-4">
                 <div>
                     <label>رقم الهاتف</label>
+<<<<<<< Updated upstream
 
                     @Html.DisplayFor(model => model.mobileno)
                 </div>
@@ -177,6 +184,14 @@
                 </div>
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
 
+=======
+
+                    @Html.DisplayFor(model => model.mobileno)
+                </div>
+                <div>
+                    <label>الايميل </label>
+
+>>>>>>> Stashed changes
                     @Html.DisplayFor(model => model.mail)
                 </div>
                 <div>
@@ -297,14 +312,18 @@
 
 <div>
     @*<a asp-action="Edit1" asp-route-id="@Model.Cempid" disabled tabindex="-1" class="btn btn-success">تغيير الرقم السري </a> -*@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+>>>>>>> Stashed changes
     <a asp-action="Edit2" class="btn btn-success">ارفاق صورة</a>
     <a asp-action="Edit3" class="btn btn-success">تحديث بيانات المدير </a>
     @*<a asp-action="Print" class="btn btn-success" target="_blank">طباعة  </a>*@
     <a asp-action="Print1" class="btn btn-success" target="_blank">طباعة  </a>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 =======
@@ -313,4 +332,18 @@
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
     @*<a disabled tabindex="-1" asp-action="Index">Back to List</a>*@
+=======
+    @*<a disabled tabindex="-1" asp-action="Index">Back to List</a>*@
+    @*<a href="http://docuware/DocuWare/Platform/WebClient/Client/Result?fc=50459f62-6097-4be1-ab8d-d84d0bedb241&q=%5BID%5D%3D1028652160&displayOneDoc=False&orgId=1&_auth=4C853ABD8334EC8719FCEB9FE1AF8DD9FB3F25010CEFA7062DD4181DCD8DC83DF6CE68AA4607BBDE50D457EFBA6931A6C5DC9AF420F0DC4173F2A2F1E1A67EAF6D7B680C74977B18ECFFBA3144758D063E86F554A0CAA329E9C3283B91E5344DCCE86579C2BE2D119517E4A1D3F1152D420527E5AFBE8C147454E86D0CFDD39FEA633ECE6DCBBE69C26795A832C49A917207A5B6E204A04B4A9DF7AF6F4BDB759FDB9AE5BA00C4CE8EE4FDFA994E6EAB6FC6AACE44317FE222D91056C65769FF2672A7CBD5FF0E581308CE77F0B38049B9B183481403733ACC16C91EFC1B4819" target="_blank">طباعة من docuware</a>*@
+
+   
+    @{ 
+
+        var url = "http://docuware/DocuWare/Platform/WebClient/1/Integration?lc=VXNlcj1ocl91cmxcblB3ZD0xMjM1&p=RLV&fc=50459f62-6097-4be1-ab8d-d84d0bedb241&q=" + @TempData["q"].ToString();
+        if (Model.Cempid == "4281001" || Model.Cempid == "4331021")
+        {
+          <a href="@url" class="btn btn-success" target="_blank"> طباعة من docuware</a>
+        }
+        }
+>>>>>>> Stashed changes
 </div>

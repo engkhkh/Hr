@@ -58,6 +58,7 @@ namespace Hr.Models
 
         //public virtual MasterDetails MasterDetails { get; set; }
         //public virtual MasterRequestTypeId MasterRequestTypeId { get; set; }
+<<<<<<< Updated upstream
 
 
         [NotMapped]
@@ -94,7 +95,17 @@ namespace Hr.Models
 
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public string CourcesStartDateh { get; set; }
+=======
+>>>>>>> Stashed changes
 
+
+        [NotMapped]
+        public string EncryptedIdd { get; set; }
+
+        [NotMapped]
+        public double gradetocourse { get; set; }
+        [NotMapped]
+        public double gradetocourset { get; set; }
 
         [NotMapped]
         public string EncryptedIdd { get; set; }

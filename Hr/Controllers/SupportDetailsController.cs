@@ -191,6 +191,7 @@ namespace Hr.Controllers
                     {
                         loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة الدعم الفني والاقتراحات    " + emprequestor.Cempid + "الدعم الفني والاقتراحات  " + ex.Message);
                     }
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 
@@ -214,6 +215,8 @@ namespace Hr.Controllers
                         loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة الدعم الفني والاقتراحات    " + emprequestor.Cempid + "الدعم الفني والاقتراحات  " + ex.Message);
                     }
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+>>>>>>> Stashed changes
 
                     return RedirectToAction("IndexOffered3","Support", new { area = "" });
 
@@ -462,6 +465,7 @@ namespace Hr.Controllers
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
+<<<<<<< Updated upstream
 <<<<<<< HEAD
                     await _context.SaveChangesAsync();
 =======
@@ -471,6 +475,9 @@ namespace Hr.Controllers
                     _context.SaveChanges();
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+                    await _context.SaveChangesAsync();
+>>>>>>> Stashed changes
 
                     var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
                     var empapproval1 = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestTo).FirstOrDefault();

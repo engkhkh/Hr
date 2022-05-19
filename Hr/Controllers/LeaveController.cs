@@ -27,7 +27,11 @@ namespace Hr.Controllers
         {
             _context = context;
         }
+<<<<<<< Updated upstream
         [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
+=======
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+>>>>>>> Stashed changes
         public IActionResult Index()
         {
             List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels

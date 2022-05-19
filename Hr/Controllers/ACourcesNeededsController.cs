@@ -21,7 +21,11 @@ namespace Hr.Controllers
         {
             _context = context;
         }
+<<<<<<< Updated upstream
         [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
+=======
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+>>>>>>> Stashed changes
         // GET: ACourcesOffereds
         public async Task<IActionResult> Index()
         {
@@ -403,7 +407,11 @@ namespace Hr.Controllers
 
             return View(aCourcesOffered);
         }
+<<<<<<< Updated upstream
         [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
+=======
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+>>>>>>> Stashed changes
         // GET: ACourcesOffereds/Create
         public IActionResult Create()
         {

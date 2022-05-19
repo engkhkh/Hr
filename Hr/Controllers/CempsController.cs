@@ -12,6 +12,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -25,6 +26,15 @@ using jsreport.AspNetCore;
 =======
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+using System.Data;
+//using AspNetCore.Reporting;
+using jsreport.Types;
+using jsreport.AspNetCore;
+using Microsoft.Reporting.NETCore;
+using System.Text;
+using System.Web;
+>>>>>>> Stashed changes
 
 namespace Hr.Controllers
 {
@@ -33,6 +43,7 @@ namespace Hr.Controllers
         public IJsReportMVCService JsReportMVCService { get; }
         private readonly hrContext _context;
         private readonly IHostingEnvironment _hosting;
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -49,10 +60,22 @@ namespace Hr.Controllers
         public CempsController(hrContext context, IHostingEnvironment hosting, IDataProtectionProvider provider)
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+        //private readonly IWebHostEnvironment _webHostEnvironment;
+        IDataProtector _protector;
+        AEvaluationGoal av1, av2, av3, av4, av5, av6;
+        AEvaluationCompetenciesM am1, am2, am3, am4, am5, am6, am7;
+        AEvaluationCompetenciesD ad1, ad2, ad3, ad4, ad5, ad6, ad7,
+            ad8, ad9, ad10, ad11, ad12, ad13, ad14, ad15, ad16, ad17, ad18, ad19,
+            ad20, ad21, ad22, ad23;
+
+        public CempsController(hrContext context, IHostingEnvironment hosting, IDataProtectionProvider provider, IJsReportMVCService jsReportMVCService)
+>>>>>>> Stashed changes
         {
             _context = context;
             _hosting = hosting;
             _protector = provider.CreateProtector(GetType().FullName);
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -73,6 +96,30 @@ namespace Hr.Controllers
         lr.AddDataSource("dsEmployee", dt);
             var result = lr.Execute(RenderType.Pdf, extension, parameters, mimetype);
             return File(result.MainStream,"application/pdf");
+=======
+            JsReportMVCService = jsReportMVCService;
+
+        }
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+        public ActionResult Print() {
+            var dt = new DataTable();
+        dt = GetEmployeeList();
+        string mimetype = "application/pdf";
+        string extension = "pdf";
+            string renderformat = "pdf";
+        
+        //Dictionary<string, string> parameters = new Dictionary<string, string>();
+        //parameters.Add("prm", "  ");
+         LocalReport lr = new LocalReport();
+        lr.DataSources.Add(new ReportDataSource("dsEmployee", dt));
+        var parameters = new[] { new ReportParameter("prm"," ")};
+        lr.ReportPath = $"{this._hosting.WebRootPath}\\Reports\\Employees.rdlc";
+        lr.SetParameters(parameters);
+        var pdf = lr.Render(renderformat);
+         return File(pdf,mimetype,"Report."+extension);
+            //var result = lr.Execute(RenderType.Pdf, extension, parameters, mimetype);
+            //return File(result.MainStream,"application/pdf");
+>>>>>>> Stashed changes
 
                                    }
         private DataTable GetEmployeeList()
@@ -139,11 +186,38 @@ namespace Hr.Controllers
             //}
 
             return dt;
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 =======
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+        }
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+        public IActionResult Cr()
+        {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToAction("Show", "Account", new { area = "" });
+            }
+            List<MenuModels> _menus = _context.menuemodelss.Where(x => x.RoleId == HttpContext.Session.GetInt32("emprole")).Select(x => new MenuModels
+            {
+                MainMenuId = x.MainMenuId,
+                SubMenuNamear = x.SubMenuNamear,
+                id = x.id,
+                SubMenuNameen = x.SubMenuNameen,
+                ControllerName = x.ControllerName,
+                ActionName = x.ActionName,
+                RoleId = x.RoleId,
+                mmodule = x.mmodule,
+                treeroot = x.treeroot
+                //RoleName = x.tblRole.Roles
+            }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
+            //ViewBag.MenuMaster = _menus;
+            TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+            return View();
+>>>>>>> Stashed changes
         }
 
         [Authorize(Roles = "Admin")]
@@ -175,7 +249,11 @@ namespace Hr.Controllers
         // Get MyInfo
         //[Authorize(Roles = "Admin, User")]
         //[Authorize(Roles ="Admin")]
+<<<<<<< Updated upstream
         [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
+=======
+        [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+>>>>>>> Stashed changes
         public async Task<IActionResult> MyInfo()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -203,6 +281,7 @@ namespace Hr.Controllers
             {
                 return NotFound();
             }
+<<<<<<< Updated upstream
 <<<<<<< HEAD
             List<Cemp> _Cemps = _context.Cemps.Where(x => x.CEMPADPRTNO ==HttpContext.Session.GetString("empdepid") && x.MANAGERID == HttpContext.Session.GetString("username") && x.CEMPPASSWRD.Length == 10 && x.CEMPPASSWRD1 != null && x.CEMPPASSWRD1 != "").Select(x => new Cemp
 =======
@@ -212,19 +291,32 @@ namespace Hr.Controllers
             List<Cemp> _Cemps = _context.Cemps.Where(x => x.CEMPADPRTNO ==HttpContext.Session.GetString("empdepid") && x.MANAGERID == HttpContext.Session.GetString("username")).Select(x => new Cemp
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+            List<Cemp> _Cemps = _context.Cemps.Where(x => x.CEMPADPRTNO ==HttpContext.Session.GetString("empdepid") && x.MANAGERID == HttpContext.Session.GetString("username") && x.CEMPPASSWRD.Length == 10 && x.CEMPPASSWRD1 != null && x.CEMPPASSWRD1 != "").Select(x => new Cemp
+>>>>>>> Stashed changes
             {
                Cempid=x.Cempid,
                CEMPNAME=x.CEMPNAME,
                Cemphiringdate=x.Cemphiringdate,
                Cemplastupgrade=x.Cemplastupgrade
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+>>>>>>> Stashed changes
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
             TempData["Cemps"] = JsonConvert.SerializeObject(_Cemps);
+<<<<<<< Updated upstream
+=======
+            var empnat = _context.Cemps.Where(x => x.CEMPNO == HttpContext.Session.GetString("username")).FirstOrDefault();
+            string idc = "[ID]=" + empnat.CEMPPASSWRD;
+            TempData["q"] = Convert.ToBase64String(Encoding.UTF8.GetBytes(idc));
+            //TempData["q"] = HttpUtility.UrlEncode(idc);
+>>>>>>> Stashed changes
 
             return View(cemp);
         }
@@ -242,7 +334,11 @@ namespace Hr.Controllers
         //    var result = lr.Execute(RenderType.Excel, extension, parameters, mimetype);
         //    return File(result.MainStream, "application/msexcel", "Export.xls");
         //}
+<<<<<<< Updated upstream
         [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
+=======
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+>>>>>>> Stashed changes
         [MiddlewareFilter(typeof(JsReportPipeline))]
         public async Task<IActionResult> Print1()
         {
@@ -278,11 +374,14 @@ namespace Hr.Controllers
                 CEMPNAME = x.CEMPNAME,
                 Cemphiringdate = x.Cemphiringdate,
                 Cemplastupgrade = x.Cemplastupgrade
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 =======
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+>>>>>>> Stashed changes
                 //RoleName = x.tblRole.Roles
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
@@ -748,7 +847,11 @@ namespace Hr.Controllers
 
 
 
+<<<<<<< Updated upstream
         [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
+=======
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+>>>>>>> Stashed changes
         public async Task<IActionResult> Edit3()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -893,7 +996,11 @@ namespace Hr.Controllers
 
 
 
+<<<<<<< Updated upstream
         [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
+=======
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+>>>>>>> Stashed changes
         // edit image 
         public async Task<IActionResult> Edit2()
         {

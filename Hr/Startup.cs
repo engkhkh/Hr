@@ -27,15 +27,21 @@ using System.Threading.Tasks;
 using jsreport.AspNetCore;
 using jsreport.Binary;
 using jsreport.Local;
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 using AutoMapper;
 using Hr.Mapper;
 using Hr.IRepository;
 using Hr.Repository;
 using Hr.Interfaces;
 using Hr.UnitOfWork;
+<<<<<<< Updated upstream
 =======
 
+=======
+>>>>>>> Stashed changes
 
 
 
@@ -57,7 +63,10 @@ namespace Hr
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
             //unit if work 
             services.AddScoped(typeof(IunitOfWork<>), typeof(UnitOfWork<>));
             //
@@ -67,6 +76,7 @@ namespace Hr
             {
                 mc.AddProfile(new MappingProfile());
             });
+<<<<<<< Updated upstream
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
@@ -80,6 +90,15 @@ namespace Hr
 =======
 <<<<<<< HEAD
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            // Set Application scope Temp Path
+            var tempPath = @"C:\Safe\Location\";
+            // On linux /tmp is a good choice
+
+>>>>>>> Stashed changes
             Environment.SetEnvironmentVariable("TEMP", tempPath);
             Environment.SetEnvironmentVariable("TMP", tempPath);
             services.AddJsReport(new LocalReporting().Configure(cfg =>
@@ -88,12 +107,15 @@ namespace Hr
                 cfg.TempDirectory = tempPath;
                 return cfg;
             }).UseBinary(JsReportBinary.GetBinary()).KillRunningJsReportProcesses().AsUtility().Create());
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 =======
 
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+>>>>>>> Stashed changes
             //services.ConfigureDataProtection(dp =>
             //{
             //    dp.PersistKeysToFileSystem(new DirectoryInfo(@"c:\keys"));

@@ -179,6 +179,7 @@ namespace Hr.Controllers
                     WelcomeRequest request3 = new WelcomeRequest();
                     request3.UserName = emprequestor.CEMPNAME;
                     request3.header = "ألاداء الوظيفي وميثاق ألاداء ";
+<<<<<<< Updated upstream
 <<<<<<< HEAD
                     request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2022 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
 =======
@@ -188,6 +189,9 @@ namespace Hr.Controllers
                     request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2021 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+                    request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2022 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+>>>>>>> Stashed changes
                     request3.ToEmail = emprequestor.mail;
                     try
                     {
@@ -264,6 +268,7 @@ namespace Hr.Controllers
                             }
 
                         }
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 
                         return RedirectToAction("IndexOffered3", "ViewModelEvalwithother1", new { area = "" });
@@ -279,6 +284,11 @@ namespace Hr.Controllers
 
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+
+                        return RedirectToAction("IndexOffered3", "ViewModelEvalwithother1", new { area = "" });
+
+>>>>>>> Stashed changes
 
                     }
                     else if (OfferDetailssss.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo4 == "0")
@@ -352,11 +362,15 @@ namespace Hr.Controllers
                         {
                             loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة ميثاق الاداء   " + emprequestor.Cempid + "اعتماد ميثاق " + ex.Message);
                         }
+<<<<<<< Updated upstream
 <<<<<<< HEAD
                         return RedirectToAction("IndexOffered3", "ViewModelEvalwithother1", new { area = "" });
 =======
                         return RedirectToAction("IndexOffered4", "ViewModelEvalwithother1", new { area = "" });
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+                        return RedirectToAction("IndexOffered3", "ViewModelEvalwithother1", new { area = "" });
+>>>>>>> Stashed changes
 
                     }
                 }

@@ -23,6 +23,11 @@ namespace Hr.Models
             //this.Database.SetCommandTimeout(3 * 60);
 
         }
+<<<<<<< Updated upstream
+=======
+        public virtual DbSet<Payrollr2> Payrollrs2 { get; set; }
+        public virtual DbSet<Payrollr> Payrollrs { get; set; }
+>>>>>>> Stashed changes
         public virtual DbSet<PersnolEmpGrade> PersnolEmpGrade { get; set; }
         public virtual DbSet<EvalRequestTypeId2> EvalRequestTypeIds2 { get; set; }
         public virtual DbSet<EvalDetail2> EvalDetailss2 { get; set; }
@@ -143,6 +148,154 @@ namespace Hr.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            //
+            modelBuilder.Entity<Payrollr2>(entity =>
+            {
+                entity.ToTable("payrollr2");
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("reqid");
+                entity.Property(e => e.requestor)
+                    .HasColumnName("requestor");
+                entity.Property(e => e.EmpName)
+                  .HasColumnName("EmpName");
+
+                entity.Property(e => e.grade)
+                  .HasColumnName("grade");
+
+                entity.Property(e => e.classs)
+               .HasColumnName("class");
+                entity.Property(e => e.hiring)
+               .HasColumnName("hiring");
+
+                entity.Property(e => e.BirthDate)
+              .HasColumnName("BirthDate");
+
+                entity.Property(e => e.Department)
+            .HasColumnName("Department");
+
+                entity.Property(e => e.phone)
+           .HasColumnName("phone");
+
+                entity.Property(e => e.parent)
+           .HasColumnName("parent");
+
+                entity.Property(e => e.Parm1)
+           .HasColumnName("Parm1");
+
+                entity.Property(e => e.Parm2)
+          .HasColumnName("Parm2");
+
+                entity.Property(e => e.Parm3)
+          .HasColumnName("Parm3");
+
+                entity.Property(e => e.Parm4)
+          .HasColumnName("Parm4");
+                entity.Property(e => e.Parm5)
+          .HasColumnName("Parm5");
+                entity.Property(e => e.Parm6)
+          .HasColumnName("Parm6");
+                entity.Property(e => e.Parm7)
+          .HasColumnName("Parm7");
+
+            });
+            //
+            modelBuilder.Entity<Payrollr>(entity =>
+            {
+                entity.ToTable("payrollr");
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("reqid");
+                entity.Property(e => e.requestor)
+                    .HasColumnName("requestor");
+                entity.Property(e => e.EmpName)
+                  .HasColumnName("EmpName");
+
+                entity.Property(e => e.grade)
+                  .HasColumnName("grade");
+
+                entity.Property(e => e.classs)
+               .HasColumnName("class");
+                entity.Property(e => e.hiring)
+               .HasColumnName("hiring");
+
+                entity.Property(e => e.BirthDate)
+              .HasColumnName("BirthDate");
+
+                entity.Property(e => e.Department)
+            .HasColumnName("Department");
+
+                entity.Property(e => e.phone)
+           .HasColumnName("phone");
+
+                entity.Property(e => e.parent)
+           .HasColumnName("parent");
+
+                entity.Property(e => e.Parm1)
+           .HasColumnName("Parm1");
+
+                entity.Property(e => e.Parm2)
+          .HasColumnName("Parm2");
+
+                entity.Property(e => e.Parm3)
+          .HasColumnName("Parm3");
+
+                entity.Property(e => e.Parm4)
+          .HasColumnName("Parm4");
+                entity.Property(e => e.Parm5)
+          .HasColumnName("Parm5");
+                entity.Property(e => e.Parm6)
+          .HasColumnName("Parm6");
+                entity.Property(e => e.Parm7)
+          .HasColumnName("Parm7");
+
+            });
+
+            //
+            modelBuilder.Entity<PersnolEmpGrade>(entity =>
+            {
+                entity.ToTable("PersonalEmpGrade");
+                entity.HasKey(e => e.seriad);
+
+                entity.Property(e => e.seriad).HasColumnName("seriad");
+
+
+                entity.Property(e => e.empnational)
+                    .HasMaxLength(250)
+                    .HasColumnName("empnational");
+
+                entity.Property(e => e.empname)
+                    .HasMaxLength(250)
+                    .HasColumnName("empname");
+
+                entity.Property(e => e.empgrade)
+                      .HasMaxLength(250)
+                      .HasColumnName("empgrade");
+                entity.Property(e => e.empdate)
+                      //.HasMaxLength(250)
+                      .HasColumnName("empdate");
+            });
+            //
+            modelBuilder.Entity<Aeval2log>(entity =>
+            {
+                entity.ToTable("AEVAL2LOGS");
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Editdate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("editdate");
+
+                entity.Property(e => e.Evid)
+                    .HasMaxLength(250)
+                    .HasColumnName("evid");
+
+                entity.Property(e => e.Useredit)
+                    .HasMaxLength(50)
+                    .HasColumnName("useredit");
+            });
             //
 <<<<<<< HEAD
 =======
@@ -397,7 +550,38 @@ namespace Hr.Models
                 entity.Property(e => e.requestid).HasColumnName("REUESTID");
                 entity.Property(e => e.userr).HasColumnName("USERr");
                 entity.Property(e => e.tt).HasColumnName("tt");
+<<<<<<< Updated upstream
 
+
+            });
+            //
+            modelBuilder.Entity<APersonalEmpLogsf>(entity =>
+            {
+                entity.ToTable("A_PersonalEmp_LOGSF");
+                entity.HasKey(e => e.id)
+                    .HasName("id");
+
+                entity.Property(e => e.requestid).HasColumnName("REUESTID");
+                entity.Property(e => e.userr).HasColumnName("USERr");
+                entity.Property(e => e.tt).HasColumnName("tt");
+
+
+            });
+            //
+            modelBuilder.Entity<APersonalEmpLogs>(entity =>
+            {
+                entity.ToTable("A_PersonalEmp_LOGS");
+                entity.HasKey(e => e.id)
+                    .HasName("id");
+=======
+>>>>>>> Stashed changes
+
+                entity.Property(e => e.requestid).HasColumnName("REUESTID");
+                entity.Property(e => e.userr).HasColumnName("USERr");
+                entity.Property(e => e.tt).HasColumnName("tt");
+
+
+            });
 
             });
             //
@@ -1980,9 +2164,15 @@ namespace Hr.Models
                 entity.Property(e => e.cip)
 
                  .HasColumnName("cip");
+<<<<<<< Updated upstream
 
                 entity.Property(e => e.cbrowser)
 
+=======
+
+                entity.Property(e => e.cbrowser)
+
+>>>>>>> Stashed changes
                  .HasColumnName("cbrowser");
 
                 entity.Property(e => e.CEMPNO)

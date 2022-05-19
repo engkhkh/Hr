@@ -194,6 +194,7 @@ namespace Hr.Models
 
         [Required(ErrorMessage = "*")]
         public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel5 { get; set; }
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         [Required(ErrorMessage = "*")]
         public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel6 { get; set; }
@@ -247,6 +248,33 @@ namespace Hr.Models
         public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel17 { get; set; }
         [Required(ErrorMessage = "*")]
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel6 { get; set; }
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel7 { get; set; }
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel8 { get; set; }
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel9 { get; set; }
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel10 { get; set; }
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel11 { get; set; }
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel12 { get; set; }
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel13 { get; set; }
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel14 { get; set; }
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel15 { get; set; }
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel16 { get; set; }
+        [Required(ErrorMessage = "*")]
+        public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel17 { get; set; }
+        [Required(ErrorMessage = "*")]
+>>>>>>> Stashed changes
         public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel18 { get; set; }
         //[Required(ErrorMessage = "*")]
         public double? AEvaluationCompetenciesDCovenantCompetenciecDLevel19 { get; set; }
@@ -352,6 +380,7 @@ namespace Hr.Models
         public double? AEvaluationCompetenciesDEvaluationResults222 { get; set; }
         public double? AEvaluationCompetenciesDEvaluationResults123 { get; set; }
         public double? AEvaluationCompetenciesDEvaluationResults223 { get; set; }
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 
 =======
@@ -361,10 +390,14 @@ namespace Hr.Models
        
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+
+>>>>>>> Stashed changes
 
 
 
         //
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         public string FIRSTAPPROVAL { get; set; }
         public string SECONDAPPROVALID { get; set; }
@@ -378,5 +411,10 @@ namespace Hr.Models
 
 >>>>>>> ce52c410987e6716070bd52aa571f39c0ecc22a4
 >>>>>>> 45d78e3ca66fb8f490d9ad386017ee5c2f9d479e
+=======
+        public string FIRSTAPPROVAL { get; set; }
+        public string SECONDAPPROVALID { get; set; }
+        public string SECONDAPPROVAL { get; set; }
+>>>>>>> Stashed changes
     }
 }

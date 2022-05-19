@@ -20,7 +20,11 @@ namespace Hr.Controllers
         {
             _context = context;
         }
+<<<<<<< Updated upstream
         [Authorize(Roles = "Admin,Manager,User,HR-Admin")]
+=======
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+>>>>>>> Stashed changes
         // GET: DepartWithMnagements
         public async Task<IActionResult> Index()
         {
