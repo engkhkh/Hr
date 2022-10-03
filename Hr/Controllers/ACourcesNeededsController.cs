@@ -9,6 +9,7 @@ using Hr.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hr.Controllers
 {
@@ -20,7 +21,7 @@ namespace Hr.Controllers
         {
             _context = context;
         }
-
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
         // GET: ACourcesOffereds
         public async Task<IActionResult> Index()
         {
@@ -402,7 +403,7 @@ namespace Hr.Controllers
 
             return View(aCourcesOffered);
         }
-
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
         // GET: ACourcesOffereds/Create
         public IActionResult Create()
         {
@@ -445,7 +446,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CourcesNeededId,CourcesId,CourcesIdDescription,CourcesIdDeptin,CourcesIdManagement,jobsid,CourcesIdTraining,Cempid,available,notes")] ACourcesNeeded ACourcesNeeded)
+        public async Task<IActionResult> Create([Bind("CourcesNeededId,CourcesId,CourcesIdDescription,CourcesIdDeptin,CourcesIdManagement,jobsid,CourcesIdTraining,Cempid,available,notes,passrate,levelt")] ACourcesNeeded ACourcesNeeded)
         {
 
 
@@ -453,17 +454,35 @@ namespace Hr.Controllers
             if (ModelState.IsValid)
             {
 
-                ACourcesNeeded.Cempid = HttpContext.Session.GetString("username");
                
+                if (ACourcesNeeded.passrate != null)
+                {
+                    ACourcesPrograms aCourcesPrograms = new ACourcesPrograms();
+                    aCourcesPrograms.CourcesName = ACourcesNeeded.passrate;
+                    var newcourcename1 = _context.ACourcesPrograms.Where(b => b.CourcesName.Equals(ACourcesNeeded.passrate)).FirstOrDefault();
+                    if (newcourcename1 != null)
+                    {
+                        ViewBag.ErrorMessage3 = "اسم البرنامج موجود مسبقا ويرجي اختياره من القائمة   ";
+                        return View(ACourcesNeeded);
+                    }
+                    else
+                    {
+                        _context.Add(aCourcesPrograms);
+                        await _context.SaveChangesAsync();
+                        ACourcesNeeded.CourcesId = _context.ACourcesPrograms.Max(u => u.CourcesId);
+                    }
+                   
+                }
+                ACourcesNeeded.Cempid = HttpContext.Session.GetString("username");
+
                 _context.Add(ACourcesNeeded);
                 await _context.SaveChangesAsync();
-
                 //
 
-                var depwithmangforemp = _context.DepartWithMnagement.FirstOrDefault(m => m.CEMPADPRTNO == HttpContext.Session.GetString("empdepid"));
+                //var depwithmangforemp = _context.DepartWithMnagement.FirstOrDefault(m => m.CEMPADPRTNO == HttpContext.Session.GetString("empdepid"));
                 //int count = depwithmangforemps.Count;
                 //int count = 1;
-                if (depwithmangforemp != null)
+                if (HttpContext.Session.GetString("empid") != null)
                 {
                     //var depwithmangforemp = _context.DepartWithMnagement.FirstOrDefaultAsync(m => m.CEMPADPRTNO == HttpContext.Session.GetString("empdepid"));
 
@@ -471,18 +490,18 @@ namespace Hr.Controllers
                     {
                         COURCES_IDOffered = ACourcesNeeded.CourcesNeededId/*_context.ACourcesOffered.Max(u => u.CourcesOfferedId) + 1*/,
                         OfferedRequestFrom = HttpContext.Session.GetString("empid"),
-                        OfferedRequestTo = depwithmangforemp.MANAGERID,// status in offerrequestto3
-                        OfferedRequestTo2 = depwithmangforemp.PARENTMANAGERID,// status in offerrequestto4
-                        OfferedRequestTo3 = "0",
-                        OfferedRequestTo4 = "1",
-                        OfferedRequestTo5 = "1",// status for  hrpersonapproval
+                        OfferedRequestTo = "4321031",// status in offerrequestto3
+                        OfferedRequestTo2 = "4411013",// status in offerrequestto4
+                        OfferedRequestTo3 = "4321038",
+                        OfferedRequestTo4 = "4411011",
+                        OfferedRequestTo5 = "123",// status for  hrpersonapproval
                         OfferedRequestTypeSatus = 0,
                         OfferedRequestNotes = "",
                         Offeredoption = "4321031"   // will srore hr person
 
                     };
                     _context.Add(OfferedDetailss);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                 }
                 else
                 {
@@ -504,7 +523,7 @@ namespace Hr.Controllers
 
                 };
                 _context.Add(OfferedRequestTypeIds);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
 
 

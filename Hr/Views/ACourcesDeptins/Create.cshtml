@@ -14,9 +14,19 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-               
-                <input asp-for="CourcesNameDeptin" class="form-control" />
+
+                <input asp-for="CourcesIdDeptin" class="form-control" placeholder="كود القسم" />
+                <span asp-validation-for="CourcesIdDeptin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input asp-for="CourcesNameDeptin" class="form-control" placeholder=" القسم" />
                 <span asp-validation-for="CourcesNameDeptin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input asp-for="newcode" class="form-control" placeholder="الكود الجديد " />
+                <span asp-validation-for="newcode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="حفظ" class="btn btn-success" />

@@ -1,0 +1,1240 @@
+﻿@model Hr.Models.ViewModelEvalwithother
+
+@{
+    ViewData["Title"] = "عرض   ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<a asp-action="cr4" class="btn btn-success">عودة </a>*@
+<h1> </h1>
+
+
+
+<h2> الطلب </h2>
+<table id="table" class="table table-bordered table-condensed table-striped table-hover sortable">
+    <thead>
+        <tr>
+            <th>
+                ادخال  درجة
+            </th>
+            <th>
+                السجل المدني
+            </th>
+            <th>
+                رقم القرار
+            </th>
+            <th>
+                رقم الموظف
+            </th>
+            <th>
+                الموظف
+            </th>
+            <th>
+                الدرجة
+            </th>
+            <th>
+                الرتبة
+            </th>
+            <th>
+                القسم
+            </th>
+            <th>
+                الادارة
+            </th>
+            @*<th>
+                    تاريخ التعيين
+            </th>
+            <th>
+                    تاريخ اخر ترقية
+            </th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.cemps)
+        {
+            <tr>
+                <td>
+
+                    @*<a asp-action="Create" class="btn btn-success">اضافة </a>*@
+                    <a  data-id="@item.EncryptedId" class="btn btn-primary btn-sm" href="#" id="btnEdit">ادخال درجة</a>
+                    @*<a asp-action="Details" asp-route-id="@item.CourcesIdType" class="btn btn-success">تفاصيل</a>*@
+                    @*<a asp-action="Delete" asp-route-id="@item.CourcesIdType">Delete</a>*@
+                </td>
+                <td>
+                    @item.CEMPPASSWRD
+                </td>
+                <td>
+                    @item.CEMPNO
+                </td>
+                <td>
+                    @item.Cempid
+                </td>
+                <td>
+                    @item.CEMPNAME
+                </td>
+                <td>
+                    @item.grade
+                </td>
+                <td>
+                    @item.CLSSNO
+                </td>
+                <td>
+                    @item.DEP_NAME
+                </td>
+                <td>
+                    @item.PARENTNAME
+                </td>
+                @*<td>
+                    @item.CEMPHIRINGDATEHIJRA
+                </td>
+                <td>
+                    @item.CEMPLASTUPGRADEHIJRA
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("body").on('click', '#btnEdit', function () {
+            $("#MyPopup").modal("hide");
+            var obj = {};
+            obj.EncryptedId = $(this).attr('data-id');
+
+            $.ajax({
+                url: 'EditCustomer',
+                data: JSON.stringify(obj),
+                type: 'POST',
+                dataType: 'html',
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    var id = JSON.parse(response).c0;
+                    var name = JSON.parse(response).c1;
+                    var country = JSON.parse(response).c2;
+                    var c3 = JSON.parse(response).c3;
+                    var c4 = JSON.parse(response).c4;
+                    var c5 = JSON.parse(response).c5;
+                    var c6 = JSON.parse(response).c6;
+                    var c7 = JSON.parse(response).c7;
+                    var c8 = JSON.parse(response).c8;
+                    $('#txtId').val(id);
+                    $('#txtName').val(name);
+                    $('#txtCountry').val(country);
+                    $('#txtId3').val(c3);
+                    $('#txtName3').val(c4);
+                    $('#txtCountry3').val(c5);
+                    $('#txtId4').val(c6);
+                    $('#txtName4').val(c7);
+                    $('#txtCountry4').val(c8);
+                    $("#MyPopup").modal("show");
+                }
+            });
+        });
+    });
+</script>
+
+<div id="MyPopup" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title">بيانات الموظف</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Update" asp-controller="ViewModelEvalwithother1" method="post">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    الرقم الوظيفي: <input id="txtId" asp-for="c1" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    الاسم: <input id="txtName" asp-for="c0" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    المسمي الوظيفي: <input id="txtCountry" asp-for="c2" class="form-control" readonly="readonly" />
+                                </div>
+                                
+                                
+
+                            </div>
+                            
+                          
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    الدرجة: <input id="txtId3" asp-for="c3" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    الرتبة : <input id="txtName3" asp-for="c4" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    القسم: <input id="txtCountry3" asp-for="c5" class="form-control" readonly="readonly" />
+                                </div>
+                                @*<div class="form-group">
+                <input type="submit" value="Update" class="btn btn-success btn-sm" />
+            </div>*@
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    الادارة: <input id="txtId4" asp-for="c6" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    تاريخ التعيين : <input id="txtName4" asp-for="c7" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    اخر ترقية: <input id="txtCountry4" asp-for="c8" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                   الدرجة من 100: <input id="txtCountry" asp-for="c9"  autofocus />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="حفظ" class="btn btn-success btn-sm" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </form>
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnClosePopup" value="أغلاق" data-dismiss="modal" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="post" asp-action="Editmmm" asp-controller="ViewModelEvalwithother1" enctype="multipart/form-data">
+    <div id="exampleModal5" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">اضافة الدرجات  </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>الموظف</label>
+                        <input type="text" name="c1" readonly autocomplete="off" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>الدرجة من 100:</label>
+                        <input type="number" name="mm" autocomplete="off" class="form-control" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">حفظ </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script>
+
+    $(document).ready(function () {
+        $('#table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table2').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table3').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table4').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table5').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table6').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table7').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+
+
+
+
+
+</script>
+
+<link href="~/DataTables (1)/datatables.css" rel="stylesheet" />
+
+<script src="~/DataTables (1)/datatables.js"></script>
+
+<script src="~/DataTables (1)/pdfmake-0.1.36/pdfmake.js"></script>
+
+<script src="~/DataTables (1)/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="~/DataTables (1)/JSZip-2.5.0/jszip.js"></script>
+
+
+<script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    completed = function (xhr) {
+        alert(`تمت الأضافة!`);
+        /*  alert(`Hi ${xhr.responseText}!`);*/
+    };
+</script>
+<script>
+    failed = function (xhr) {
+        alert(`حدث خطيء في مليء البيانات !`);
+        alert(`Status: {xhr.status}, Status Text: {xhr.statusText}`);
+    };
+</script>
+
+<script type="text/javascript">
+    function centerModal() {
+        $(this).css('display', 'block');
+        var $dialog = $(this).find(".modal-dialog");
+        var offset = ($(window).height() - $dialog.height()) / 2;
+        // Center modal vertically in window
+        $dialog.css("margin-top", offset);
+    }
+
+    $('.modal').on('show.bs.modal', centerModal);
+    $(window).on("resize", function () {
+        $('.modal:visible').each(centerModal);
+    });
+</script>

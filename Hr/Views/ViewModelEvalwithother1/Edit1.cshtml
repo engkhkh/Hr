@@ -9,14 +9,15 @@
 @*<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">*@
 <link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
-<div>
-    <a asp-action="search" class="btn btn-success">عودة  </a>
-</div>
+@*<div>
+    <a asp-action="IndexOffered3" class="btn btn-success">عودة  </a>
+</div>*@
 <h1> ميثاق الاداء </h1>
 <hr />
+<p style="color:red">@ViewBag.msg</p>
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Edit">
+        <form asp-action="Edit1">
             @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
             <input type="hidden" asp-for="AEvaluationEmpIdd" />
             <input type="hidden" asp-for="AEvaluationGoalCovenantId" />

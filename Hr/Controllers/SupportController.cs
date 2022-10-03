@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hr.Controllers
 {
@@ -143,7 +144,7 @@ namespace Hr.Controllers
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
             return View(aCourcesType);
         }
-
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
         // GET: ACourcesTypes/Create
         public IActionResult ticket()
         {
@@ -204,19 +205,21 @@ namespace Hr.Controllers
                     Daterequest=DateTime.Now,
                     Fromr= HttpContext.Session.GetString("username"),
                     Mestypereqidp=file1,
-                    Mestypetopic= supportProcess.Mestypetopic,
+                    Mestypetopic0 = supportProcess.Mestypetopic0,
+                    Mestypetopic = supportProcess.Mestypetopic,
                     Redesc= supportProcess.Redesc
                 };
 
                 _context.Add(supportProcess1);
                 await _context.SaveChangesAsync();
+             
                 SupportDetail supportDetail = new SupportDetail()
                 {
                     CourcesIdoffered= supportProcess1.Id,
                     OfferedRequestFrom= HttpContext.Session.GetString("username"),
-                    OfferedRequestTo="4281001",
-                    OfferedRequestTo2= "4281001",
-                    OfferedRequestTo3= "0",
+                    OfferedRequestTo= supportProcess.Mestypetopic0 == "0" ? "4321031" : supportProcess.Mestypetopic0 =="1" ? "4331021" : supportProcess.Mestypetopic0 == "2" ? "4321031" : "4321031",
+                    OfferedRequestTo2 = supportProcess.Mestypetopic0 == "0" ? "4321031" : supportProcess.Mestypetopic0 == "1" ? "4331021" : supportProcess.Mestypetopic0 == "2" ? "4321031" : "4321031",
+                    OfferedRequestTo3 = "0",
                     OfferedRequestTo4="1",
                     OfferedRequestTo5="1",
                     Offeredoption="4281001",
@@ -228,6 +231,7 @@ namespace Hr.Controllers
                 };
                 _context.Add(supportDetail);
                 await _context.SaveChangesAsync();
+               
 
                 SupportRequestTypeId supportRequestTypeId = new SupportRequestTypeId()
                 {
@@ -349,7 +353,7 @@ namespace Hr.Controllers
             List<SupportDetail> SupportDetails = _context.SupportDetails.ToList();
             List<SupportRequestTypeId> SupportRequestTypeIds = _context.SupportRequestTypeIds.ToList();
             List<ACourcesMaster> aCourcesMasters = _context.ACourcesMasters.ToList();
-
+            List<Supportcomment> supportcomments = _context.Supportcomments.ToList();
             //List<Evalcomment> evalcommentss = _context.EvalComments.ToList();
 
 
@@ -371,7 +375,8 @@ namespace Hr.Controllers
                           where h.OfferedRequestType == 1
                           where e.Fromr == HttpContext.Session.GetString("empid")
 
-
+                          join dd in supportcomments on f.OfferedDetailsSerial equals dd.Offerdetailsid into table11
+                          from dd in table11.ToList()
 
 
                           select new ViewModelTransferwithother
@@ -383,6 +388,7 @@ namespace Hr.Controllers
                               //AEvaluationCompetenciesD = j,
                               SupportsDetail = f,
                               SupportsRequestTypeId = h,
+                              Supportscomment = dd,
 
                           };
             return View(Records);
@@ -418,7 +424,7 @@ namespace Hr.Controllers
             List<SupportDetail> SupportDetails = _context.SupportDetails.ToList();
             List<SupportRequestTypeId> SupportRequestTypeIds = _context.SupportRequestTypeIds.ToList();
             List<ACourcesMaster> aCourcesMasters = _context.ACourcesMasters.ToList();
-
+            List<Supportcomment> supportcomments = _context.Supportcomments.ToList();
             //List<Evalcomment> evalcommentss = _context.EvalComments.ToList();
 
 
@@ -440,7 +446,8 @@ namespace Hr.Controllers
                           where h.OfferedRequestType == 2
                           where e.Fromr == HttpContext.Session.GetString("empid")
 
-
+                          join dd in supportcomments on f.OfferedDetailsSerial equals dd.Offerdetailsid into table11
+                          from dd in table11.ToList()
 
 
                           select new ViewModelTransferwithother
@@ -452,6 +459,7 @@ namespace Hr.Controllers
                               //AEvaluationCompetenciesD = j,
                               SupportsDetail = f,
                               SupportsRequestTypeId = h,
+                              Supportscomment = dd,
 
                           };
             return View(Records);
@@ -489,7 +497,7 @@ namespace Hr.Controllers
             List<SupportDetail> SupportDetails = _context.SupportDetails.ToList();
             List<SupportRequestTypeId> SupportRequestTypeIds = _context.SupportRequestTypeIds.ToList();
             List<ACourcesMaster> aCourcesMasters = _context.ACourcesMasters.ToList();
-
+            List<Supportcomment> supportcomments = _context.Supportcomments.ToList();
             //List<Evalcomment> evalcommentss = _context.EvalComments.ToList();
 
 
@@ -511,6 +519,9 @@ namespace Hr.Controllers
                           where h.OfferedRequestType == 1
                           //where e.Fromr == HttpContext.Session.GetString("empid")
 
+                          join dd in supportcomments on f.OfferedDetailsSerial equals dd.Offerdetailsid into table11
+                          from dd in table11.ToList()
+
 
 
 
@@ -523,6 +534,7 @@ namespace Hr.Controllers
                               //AEvaluationCompetenciesD = j,
                               SupportsDetail = f,
                               SupportsRequestTypeId = h,
+                              Supportscomment=dd,
 
                           };
             return View(Records);
@@ -558,7 +570,7 @@ namespace Hr.Controllers
             List<SupportDetail> SupportDetails = _context.SupportDetails.ToList();
             List<SupportRequestTypeId> SupportRequestTypeIds = _context.SupportRequestTypeIds.ToList();
             List<ACourcesMaster> aCourcesMasters = _context.ACourcesMasters.ToList();
-
+            List<Supportcomment> supportcomments = _context.Supportcomments.ToList();
             //List<Evalcomment> evalcommentss = _context.EvalComments.ToList();
 
 
@@ -581,7 +593,8 @@ namespace Hr.Controllers
                           where h.OfferedRequestType == 2
                           //where e.Fromr == HttpContext.Session.GetString("empid")
 
-
+                          join dd in supportcomments on f.OfferedDetailsSerial equals dd.Offerdetailsid into table11
+                          from dd in table11.ToList()
 
 
                           select new ViewModelTransferwithother
@@ -593,7 +606,7 @@ namespace Hr.Controllers
                               //AEvaluationCompetenciesD = j,
                               SupportsDetail = f,
                               SupportsRequestTypeId = h,
-
+                              Supportscomment = dd,
                           };
             return View(Records);
 
@@ -631,7 +644,7 @@ namespace Hr.Controllers
             List<SupportDetail> SupportDetails = _context.SupportDetails.ToList();
             List<SupportRequestTypeId> SupportRequestTypeIds = _context.SupportRequestTypeIds.ToList();
             //List<Evalcomment> evalcommentss = _context.EvalComments.ToList();
-
+           
 
             var Records = from e in SupportProcesss
                           join d in cemps on e.Fromr equals d.Cempid into table1

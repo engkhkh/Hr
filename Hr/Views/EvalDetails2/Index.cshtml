@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Hr.Models.OfferedDetails2>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.COURCES_IDOffered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferedRequestFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferedRequestTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferedRequestTo2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferedRequestTo3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferedRequestTo4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferedRequestTo5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferedRequestTypeSatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferedRequestNotes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Offeredoption)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.COURCES_IDOffered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferedRequestFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferedRequestTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferedRequestTo2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferedRequestTo3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferedRequestTo4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferedRequestTo5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferedRequestTypeSatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferedRequestNotes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Offeredoption)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OfferedDetailsSerial">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OfferedDetailsSerial">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OfferedDetailsSerial">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

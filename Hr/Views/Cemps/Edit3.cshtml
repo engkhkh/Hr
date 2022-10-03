@@ -12,25 +12,25 @@
 <h4></h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <form asp-action="Edit3" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CEMPNAME" />
             @*<div class="form-group">
-            <label asp-for="CEMPUSERNO" class="control-label"></label>
-            <input asp-for="CEMPUSERNO" class="form-control" />
-            <span asp-validation-for="CEMPUSERNO" class="text-danger"></span>
-        </div>*@
+                    <label asp-for="CEMPUSERNO" class="control-label"></label>
+                    <input asp-for="CEMPUSERNO" class="form-control" />
+                    <span asp-validation-for="CEMPUSERNO" class="text-danger"></span>
+                </div>*@
             @*<div class="form-group">
-            <label asp-for="CEMPPASSWRD" class="control-label"></label>
-            <input asp-for="CEMPPASSWRD" class="form-control" />
-            <span asp-validation-for="CEMPPASSWRD" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="CEMPNO" class="control-label"></label>
-            <input asp-for="CEMPNO" class="form-control" />
-            <span asp-validation-for="CEMPNO" class="text-danger"></span>
-        </div>*@
+                    <label asp-for="CEMPPASSWRD" class="control-label"></label>
+                    <input asp-for="CEMPPASSWRD" class="form-control" />
+                    <span asp-validation-for="CEMPPASSWRD" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CEMPNO" class="control-label"></label>
+                    <input asp-for="CEMPNO" class="form-control" />
+                    <span asp-validation-for="CEMPNO" class="text-danger"></span>
+                </div>*@
             <div class="form-group">
                 @*<label asp-for="CEMPNAME" class="control-label"></label>*@
                 الموظف
@@ -40,7 +40,7 @@
             <br /><br />
             <div class="form-group">
                 @*<label asp-for="CEMPNAME" class="control-label"></label>*@
-                القسم الحالي 
+                القسم الحالي
                 <input asp-for="DEP_NAME" readonly class="form-control" />
                 <span asp-validation-for="DEP_NAME" class="text-danger"></span>
             </div>
@@ -53,70 +53,96 @@
             </div>
             <br /><br />
             @*<div class="form-group">
-            تحميل الصورة
-            <input type="file" asp-for="Fileimagepath" class="form-control" />
-            <span asp-validation-for="imagepath" class="text-danger"></span>
-        </div>
-        <label style="color:red;">"يرجي رفع الصورة(jpeg,jpg,png,gif,jfif) !"</label>*@
+                    تحميل الصورة
+                    <input type="file" asp-for="Fileimagepath" class="form-control" />
+                    <span asp-validation-for="imagepath" class="text-danger"></span>
+                </div>
+                <label style="color:red;">"يرجي رفع الصورة(jpeg,jpg,png,gif,jfif) !"</label>*@
             <div class="form-group">
                 اختيار المدير الجديد
                 @*<input asp-for="CROLEID" class="form-control" />*@
-                <select asp-for="Cempid" class="chosen-select form-control" asp-items="ViewBag.Cempid">تحديد
+                <select asp-for="Cempid" class="chosen-select form-control" asp-items="ViewBag.Cempid">
+                    تحديد
                 </select>
                 <span asp-validation-for="Cempid" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                رقم القرار
+                @*<input asp-for="CROLEID" class="form-control" />*@
+                <input asp-for="grade" class="form-control" />
+                <span asp-validation-for="grade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">ارفاق القرار *   <label style="color:red;">"(jpeg,jpg,png,gif,jfif,pdf) !"</label>  </label>
+                <input type="file" asp-for="Fileimagepath" class="form-control" id="f1" />
+                <span asp-validation-for="Fileimagepath" class="text-danger"></span>
+                <p style="color:red">@ViewBag.ErrorMessage</p>
+            </div>
+            <div class="form-group">
+                تاريخ القرار
+                @*<input asp-for="CROLEID" class="form-control" />*@
+                <div class="input-group" style="float: left">
+                    <input type="text" class="form-control hijri-date-input" asp-for="CEMPHIRINGDATEHIJRA" />
+                </div>
+                <span asp-validation-for="CEMPHIRINGDATEHIJRA" class="text-danger"></span>
+            </div>
 
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+
+
+
+
+            @*<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />*@
             @*<div class="form-group">
-            <label asp-for="CEMPJOBNAME" class="control-label"></label>
-            <input asp-for="CEMPJOBNAME" class="form-control" />
-            <span asp-validation-for="CEMPJOBNAME" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="CEMPADPRTNO" class="control-label"></label>
-            <input asp-for="CEMPADPRTNO" class="form-control" />
-            <span asp-validation-for="CEMPADPRTNO" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="DEP_NAME" class="control-label"></label>
-            <input asp-for="DEP_NAME" class="form-control" />
-            <span asp-validation-for="DEP_NAME" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="CLSSNO" class="control-label"></label>
-            <input asp-for="CLSSNO" class="form-control" />
-            <span asp-validation-for="CLSSNO" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="MANAGERID" class="control-label"></label>
-            <input asp-for="MANAGERID" class="form-control" />
-            <span asp-validation-for="MANAGERID" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="MANAGERNAME" class="control-label"></label>
-            <input asp-for="MANAGERNAME" class="form-control" />
-            <span asp-validation-for="MANAGERNAME" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="PARENTID" class="control-label"></label>
-            <input asp-for="PARENTID" class="form-control" />
-            <span asp-validation-for="PARENTID" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Cemphiringdate" class="control-label"></label>
-            <input asp-for="Cemphiringdate" class="form-control" />
-            <span asp-validation-for="Cemphiringdate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Cemplastupgrade" class="control-label"></label>
-            <input asp-for="Cemplastupgrade" class="form-control" />
-            <span asp-validation-for="Cemplastupgrade" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="PARENTNAME" class="control-label"></label>
-            <input asp-for="PARENTNAME" class="form-control" />
-            <span asp-validation-for="PARENTNAME" class="text-danger"></span>
-        </div>*@
+                    <label asp-for="CEMPJOBNAME" class="control-label"></label>
+                    <input asp-for="CEMPJOBNAME" class="form-control" />
+                    <span asp-validation-for="CEMPJOBNAME" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CEMPADPRTNO" class="control-label"></label>
+                    <input asp-for="CEMPADPRTNO" class="form-control" />
+                    <span asp-validation-for="CEMPADPRTNO" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DEP_NAME" class="control-label"></label>
+                    <input asp-for="DEP_NAME" class="form-control" />
+                    <span asp-validation-for="DEP_NAME" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CLSSNO" class="control-label"></label>
+                    <input asp-for="CLSSNO" class="form-control" />
+                    <span asp-validation-for="CLSSNO" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MANAGERID" class="control-label"></label>
+                    <input asp-for="MANAGERID" class="form-control" />
+                    <span asp-validation-for="MANAGERID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MANAGERNAME" class="control-label"></label>
+                    <input asp-for="MANAGERNAME" class="form-control" />
+                    <span asp-validation-for="MANAGERNAME" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PARENTID" class="control-label"></label>
+                    <input asp-for="PARENTID" class="form-control" />
+                    <span asp-validation-for="PARENTID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cemphiringdate" class="control-label"></label>
+                    <input asp-for="Cemphiringdate" class="form-control" />
+                    <span asp-validation-for="Cemphiringdate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cemplastupgrade" class="control-label"></label>
+                    <input asp-for="Cemplastupgrade" class="form-control" />
+                    <span asp-validation-for="Cemplastupgrade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PARENTNAME" class="control-label"></label>
+                    <input asp-for="PARENTNAME" class="form-control" />
+                    <span asp-validation-for="PARENTNAME" class="text-danger"></span>
+                </div>*@
 
             <div class="form-group">
                 <input type="submit" value="حفظ وارسال للموافقة " class="btn btn-success" />
@@ -132,6 +158,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
 <link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
 <link href="~/js/chosen.css" rel="stylesheet" />
 <link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
@@ -140,30 +167,96 @@
 <script src="~/js/chosen.jquery.js"></script>
 <script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
 <script src="~/js/prism.js"></script>
+<script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
 
 <script type="text/javascript">
 
-        var config = {
-            '.chosen-select': {},
-            '.chosen-select-deselect': { allow_single_deselect: true },
-            '.chosen-select-no-single': { disable_search_threshold: 10 },
-            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
-            '.chosen-select-width': { width: "95%" }//,
-            //'.chosen-search': {disable_search: false}
-        }
-        for (var selector in config) {
-            $(selector).chosen(config[selector]);
-        }
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" }//,
+        //'.chosen-search': {disable_search: false}
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
 
 </script>
 <script language="javascript" type="text/javascript">
-        $(document).ready(function () {
-            try {
-                $("input[type='text']").each(function () {
-                    $(this).attr("autocomplete", "off");
-                });
-            }
-            catch (e) { }
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+        }
+        catch (e) { }
+    });
+
+</script>
+<script type="text/javascript">
+
+
+    $(function () {
+
+        initHijrDatePicker();
+
+        initHijrDatePickerDefault();
+
+        $('.disable-date').hijriDatePicker({
+
+            minDate: "2020-01-01",
+            maxDate: "2023-01-01",
+            viewMode: "years",
+            hijri: true,
+            debug: true,
+
+
         });
+
+    });
+
+
+    function initHijrDatePicker() {
+
+        $(".hijri-date-input").hijriDatePicker({
+            minDate: "2000-01-01",
+            /*      maxDate:"2021-10-06",*/
+            /*  maxDate: new Date(new Date().setDate(new Date().getDate())),*/
+            /*   endDate: new Date(new Date().setDate(new Date().getDate() + 5))*/
+            /*   minDate: new Date(new Date().setDate(new Date().getDate() + 1))*/
+            todayHighlight: true,
+            //disabledDates: [new Date()],
+            locale: "ar-sa",
+            format: "YYYY-MM-DD",
+            hijriFormat: "iYYYY-iMM-iDD",
+            dayViewHeaderFormat: "MMMM YYYY",
+            hijriDayViewHeaderFormat: "iMMMM iYYYY",
+            showSwitcher: false,
+            allowInputToggle: true,
+            language: "AR",
+            /* showTodayButton: false,*/
+            useCurrent: true,
+            isRTL: false,
+            viewMode: 'months',
+            keepOpen: false,
+            hijri: true,
+            debug: true,
+            showClear: true,
+            showTodayButton: true,
+            showClose: true,
+            /*     autoclose: true,*/
+
+
+
+
+        });
+    }
+
+    function initHijrDatePickerDefault() {
+
+        $(".hijri-date-default").hijriDatePicker();
+    }
 
 </script>

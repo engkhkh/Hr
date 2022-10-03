@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hr.Controllers
 {
@@ -21,6 +22,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesDeptins
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Index()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -44,6 +46,7 @@ namespace Hr.Controllers
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
             return View(await _context.ACourcesDeptins.ToListAsync());
         }
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> IndexWithout()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -69,6 +72,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesDeptins/Details/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -104,6 +108,7 @@ namespace Hr.Controllers
 
             return View(aCourcesDeptin);
         }
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> DetailsWithout(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -141,6 +146,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesDeptins/Create
+        [Authorize(Roles = "Admin,HR-Admin")]
         public IActionResult Create()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -170,7 +176,8 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CourcesIdDeptin,CourcesNameDeptin")] ACourcesDeptin aCourcesDeptin)
+        [Authorize(Roles = "Admin,HR-Admin")]
+        public async Task<IActionResult> Create([Bind("CourcesIdDeptin0,CourcesIdDeptin,CourcesNameDeptin,newcode")] ACourcesDeptin aCourcesDeptin)
         {
             if (ModelState.IsValid)
             {
@@ -182,6 +189,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesDeptins/Edit/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -208,7 +216,8 @@ namespace Hr.Controllers
                 return NotFound();
             }
 
-            var aCourcesDeptin = await _context.ACourcesDeptins.FindAsync(id);
+            var aCourcesDeptin = await _context.ACourcesDeptins
+                .FirstOrDefaultAsync(m => m.CourcesIdDeptin == id);
             if (aCourcesDeptin == null)
             {
                 return NotFound();
@@ -221,7 +230,8 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CourcesIdDeptin,CourcesNameDeptin")] ACourcesDeptin aCourcesDeptin)
+        [Authorize(Roles = "Admin,HR-Admin")]
+        public async Task<IActionResult> Edit(int id, [Bind("CourcesIdDeptin0,CourcesIdDeptin,CourcesNameDeptin")] ACourcesDeptin aCourcesDeptin)
         {
             if (id != aCourcesDeptin.CourcesIdDeptin)
             {
@@ -252,6 +262,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACourcesDeptins/Delete/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -291,6 +302,7 @@ namespace Hr.Controllers
         // POST: ACourcesDeptins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var aCourcesDeptin = await _context.ACourcesDeptins.FindAsync(id);

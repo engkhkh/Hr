@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -16,18 +17,20 @@ namespace Hr.Models
         public string CovenantGoalsName { get; set; }
         public string CovenantMeasurementCriteria { get; set; }
         public int? CovenantPercentageWeight { get; set; }
-        public int? CovenantTargetedOutput { get; set; }
+        public double? CovenantTargetedOutput { get; set; }
         public int? CovenantId { get; set; }
         public DateTime? CovenantDate { get; set; }
-        public int? EvaluationActualOutput { get; set; }
-        public int? EvaluationDifferenceOutputs { get; set; }
-        public int? EvaluationResult { get; set; }
-        public int? EvaluationEquilibrium { get; set; }
+        public double? EvaluationActualOutput { get; set; }
+        public double? EvaluationDifferenceOutputs { get; set; }
+        public double? EvaluationResult { get; set; }
+        public double? EvaluationEquilibrium { get; set; }
         public int? EvaluationId { get; set; }
         public DateTime? EvaluationDate { get; set; }
        
-        public int? EvaluationTotal { get; set; }
+        public double? EvaluationTotal { get; set; }
         public int? CovenantWeightSum { get; set; }
         public int? EmpIdEnter { get; set; }
+        //[NotMapped]
+        //public string EncryptedCovenantId { get; set; }
     }
 }

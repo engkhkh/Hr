@@ -15,6 +15,7 @@ namespace Hr.Models
 
         public AEvaluEmpType AEvaluEmpType { get; set; }
         public AEvaluationGoal AEvaluationGoal { get; set; }
+        public AEvaluationGoal1 AEvaluationGoal1 { get; set; }
         public AEvaluationEmpLog AEvaluationEmpLog { get; set; }
         public AEvaluationEmp AEvaluationEmp { get; set; }
         public AEvaluationCompetenciesM AEvaluationCompetenciesM { get; set; }
@@ -29,6 +30,25 @@ namespace Hr.Models
         public EvalRequestTypeId2 evalRequestTypeId2 { get; set; }
         public Evalcomment2 evalcomment2 { get; set; }
 
+        //
+        public Cemp cemp { get; set; }
 
+        // 
+        public commite commite { get; set; }
+        public IEnumerable<commite> commites { get; set; }
+        public IEnumerable<members> members { get; set; }
+        public IEnumerable<Cemp> cemps { get; set; }
+
+
+        public string c0 { get; set; }
+        public string c1 { get; set; }
+        public string c2 { get; set; }
+        public string c3 { get; set; }
+        public string c4 { get; set; }
+        public string c5 { get; set; }
+        public string c6 { get; set; }
+        public string? c7 { get; set; }
+        public string? c8 { get; set; }
+        public string c9 { get; set; }
     }
 }
