@@ -1,0 +1,704 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Hr.Models.ViewModelMasterwithother>
+
+@{
+    ViewData["Title"] = "  الاستعلام عن الدورات المعتمدة للموظفين  ";
+    //Layout = "~/Views/Shared/_Layout - Copy - Copy.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a  asp-action="CreateB2" asp-controller="ViewModelEvalwithother1" target="_blank" class="btn-success" >درجة كل موظف </a>
+
+<h1>  الدورات المعتمدة للموظفين   </h1>
+
+<br />
+<!--<table>
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                </p>
+            </td>
+            <td>
+            </td>
+        </tr>
+
+    </tbody>
+</table>-->
+@*<script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>*@
+
+
+@*<table>
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <p>
+                        @using (@Html.BeginForm())
+                        {
+                            <button type="submit" class="=btn btn-primary mb-lg-4">بحث</button>
+                            @Html.TextBox("search", "", new { placeholder = "بحث بالدورة ", @class = "" })
+
+                        }
+                    </p>
+                </td>
+                <td>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>*@
+
+@*<div id="sortMsg" style="text-align: center; color: Red;">
+    </div>*@
+@*<div class="row" style="float:right; width:100%">*@
+<table @*style="width: 100%;"*@ id="table" class="table table-responsive-lg table-bordered table-condensed table-striped table-hover  sortable">
+    <thead>
+        <tr>
+            @*<th>
+
+                </th>*@
+            @*<th>
+
+                </th>*@
+            <th>
+                رقم الموظف
+            </th>
+            <th>
+                الموظف
+            </th>
+            <th>
+                رقم الطلب
+            </th>
+            <th>
+                الدورة
+            </th>
+            <th>
+                نوع الدورة
+            </th>
+            <th>
+                طريقة الدورة
+            </th>
+            <th>
+                التقدير
+            </th>
+            <th>
+                شهادة الدورة
+            </th>
+            <th>
+                اعتماد الموارد
+            </th>
+            <th>
+                بداية الدورة
+
+            </th>
+            <th>
+                الحالة
+            </th>
+            <th>
+                عدد ايام  الدورة
+            </th>
+            @*<th>
+                    نسبة الانجاز %
+                </th>*@
+            <th>
+                جهة الدورة
+            </th>
+            <th>
+                جهة تنفيذ التدريب
+            </th>
+            <th>
+                قسم الموظف
+            </th>
+            <th>
+                الدرجة
+            </th>
+            @*<th>
+                    الدرجة الكلية
+                </th>*@
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <!--<td>-->
+                @*<a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">موافق</a> |
+                    <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
+                @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
+
+                <!--</td>-->
+                <!--<td>-->
+                @*<a asp-controller="ACourcesMasters" asp-action="Edit111" asp-route-id="@item.ACourcesMasters.EncryptedIdd" class="btn btn-warning">تعديل </a>*@
+                <!--</td>-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.Cempid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesIdmaster)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesTypes.CourcesTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesEstimates.CourcesNameEstimate)
+                </td>
+                <td>
+                    <a href="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" target="_blank" class="btn btn-link">@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="20" height="20" />*@تحميل</a>
+                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
+                </td>
+                <td>
+                    <a href="~/img/portfoliohr/@item.ACourcesMasters.CourcesIdImagehr" target="_blank" class="btn btn-link">@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="20" height="20" />*@تحميل</a>
+                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
+                    @*@Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDateh)*@
+                    @*@item.ACourcesMasters.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
+
+                </td>
+                <td>
+                    @if (item.MasterDetails.MasterRequestTypeSatus == 1)
+                    {
+                        <label style="background-color:limegreen">موافقة :</label>
+                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
+                    }
+                    else if (item.MasterDetails.MasterRequestTypeSatus == 2)
+                    {
+                        <label style="background-color:red">رفض  :</label>
+                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
+
+                    }
+                    else
+                    {
+                        <label style="background-color:yellow">انتظار :</label>
+                        @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
+
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.COURCES_EXCUTION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.gradetocourse)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ACourcesMasters.gradetocourset)
+
+
+                    </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*</div>*@
+
+@*<div id="pager" class="pager">
+        <br />
+        <img src="~/Content/first.png" />
+        <img src="~/Content/first.png" class="first" />
+        <img src="~/Content/prev.png" class="prev" />
+        <input type="text" class="pagedisplay" />
+        <img src="~/Content/next.png" class="next" />
+        <img src="~/Content/last.png" class="last" />
+        <select class="pagesize">
+            <option selected="selected" value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+        </select>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#empTable")
+                .tablesorter({ widthFixed: true })
+                .tablesorterPager({ container: $("#pager") });
+            $("#empTable").bind("sortStart", function () {
+                $("#sortMsg").html('Sorting');
+            }).bind("sortEnd", function () {
+                $("#sortMsg").html('');
+            });
+
+            //Hide/delete row on click.
+            $("#empTable img").click(function () { $(this).parent().parent().hide(); });
+        });
+    </script>*@
+<script type="text/javascript">
+
+    //$('#chosen-select16').append(new Option('اخري', 5));
+    ///* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
+    //$("#a").css('visibility', 'hidden');
+
+    //function m() {
+    //    if (document.getElementById("f1").files.length == 0) {
+    //        console.log("لم يتم ارفاق شهادة الدورة ");
+    //        alert("لم يتم ارفاق شهادة الدورة ");
+    //    }
+
+    //}
+
+    //var config = {
+    //    '.chosen-select': {},
+    //    '.chosen-select-deselect': { allow_single_deselect: true },
+    //    '.chosen-select-no-single': { disable_search_threshold: 10 },
+    //    '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+    //    '.chosen-select-width': { width: "95%" }//,
+    //    //'.chosen-search': {disable_search: false}
+    //}
+    //for (var selector in config) {
+    //    $(selector).chosen(config[selector]);
+    //}
+    //$("select.chosen11").change(function () {
+
+    //    var selectedCountry11 = $(this).children("option:selected").val();
+    //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+    //    if (selectedCountry11 == 2) {
+    //        alert("  يرجي اختيار التقدير  - ");
+    //        $("#a").css('visibility', 'visible');
+    //        var hiddenBox = $("#respond-2");
+    //        hiddenBox.show();
+
+
+
+    //    }
+    //    else {
+    //        $("#a").css('visibility', 'hidden');
+    //        var hiddenBox = $("#respond-2");
+    //        hiddenBox.hide();
+
+    //    }
+    //});
+
+    //$("select.chosen1").change(function () {
+    //    var selectedCountry = $(this).children("option:selected").val();
+    //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+    //    if (selectedCountry == 200) {
+    //        alert("  يرجي ادخال اسم الدورة الجديد باالاسفل - ");
+
+    //        var hiddenBox = $("#respond-1");
+    //        hiddenBox.show();
+
+
+
+    //    }
+    //    else {
+    //        var hiddenBox = $("#respond-1");
+    //        hiddenBox.hide();
+
+    //    }
+    //});
+    //$("select").change(function () {
+    //    var selected5 = $(this).children("option:selected").val();
+    //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+    //    if (selected5 == 0) {
+    //        alert("لايتم اختيار هذا العنصر  - ");
+
+    //    }
+    //});
+    //jQuery(document).ready(function () {
+    //    $("#chosen-select16").change(function () {
+    //        $.getJSON({
+    //            url: "ViewModelEvalwithother1/CreateB",
+    //            data: 'selectedtTime=' + $(this).val(), // Send value of the drop down change of option
+    //            dataType: 'json', // Choosing a JSON datatype
+    //            success: function (data) {
+    //                // Variable data contains the data you get from the action method
+    //                if (data.length > 0) {
+    //                    $("[id*=table] tbody").empty();
+    //                    var row;
+    //                    $.each(response, function (index, item) {
+    //                        row += "<tr><td>" + item.aEvaluationGoal.covenantGoalsName + "</td><td>" + item.aEvaluationGoal.covenantPercentageWeight + "</td></tr>"
+    //                    })
+    //                    $("[id*=table] tbody").append(row);
+    //                }
+    //                alert("Selected value: " + data);
+
+
+
+    //            }
+    //        });
+    //    });
+    //});
+    @*<!--$(function () {
+        $('#f1').submit(function () {
+
+        var select = $("#chosen-select16 option:selected").val();
+        var row1;
+
+        $.ajax({
+        url: '@Url.Action("ApprovelAllCourses1", "ACourcesMasters")' + "/" + select,
+        type: this.method,
+          data: { 'selectedtTime': select },
+          dataType: 'json',
+          success: function (response) {
+              // Variable data contains the data you get from the action method
+              var tb = document.getElementById('table1');
+              while (tb.rows.length > 1) {
+                  tb.deleteRow(1);
+              }
+              var data = response.surrey;
+              if (response.length > 0) {
+                  // your code within the success callback
+                  $("[id*=table1] tbody").empty();
+                  var row;
+                  $.each(response, function (index, item) {
+                      row += "<tr><td>" + item.aEvaluationGoal.covenantGoalsName + "</td><td>" + item.aEvaluationGoal.covenantPercentageWeight + "</td></tr>"
+                  })
+                  for (i = 0; i < data.length; i++) {
+
+                      row += "<tr><td>" + data.aEvaluationGoal.covenantGoalsName + "</td><td>" + data.aEvaluationGoal.covenantPercentageWeight + "</td></tr>"
+                  }
+
+                  $("[id*=table] tbody").append(row);
+              }
+              for (var i = 0; i < response.data.length; i++) {
+                 /* alert(response.data[i]);*/
+                  /*row1 += "<tr><td>" + response.data[i].aEvaluationGoal.covenantGoalsName + "</td><td>" + response.data[i].aEvaluationGoal.covenantPercentageWeight + "</td></tr>"*/
+                  row1 += "<tr><td>" + response.data[i].ACourcesMasters.CourcesIdmaster + "</td><td>" + response.data[i].ACourcesMasters.gradetocourse + "</td></tr>"
+              }
+              $("[id*=table1] tbody").append(row1);
+              //alert("Selected value: " + response.data[2].aEvaluationGoal.covenantGoalsName);
+              //alert("Selected value: " + response.data);
+              //alert("Selected value: " + response.length);
+              //alert("Selected value: " + data.aEvaluationGoal.covenantGoalsName);
+              var tBody = $("#example1 > TBODY")[0];
+              var row = tBody.insertRow(-1);
+
+              //Add ID cell.
+              var cell = $(row.insertCell(0));
+              cell.html(response.id);
+              //Add Nombre cell.
+              cell = $(row.insertCell(1));
+              cell.html(response.nombre);
+              //Add Precio cell.
+              cell = $(row.insertCell(2));
+              cell.html(response.precio);
+              /*  console.log(response.data);*/
+              var data = response.surrey;
+              var $data = $('#data');
+              data.forEach(function (item) {
+                  var $ul = $('<ul></ul>');
+                  for (var field in item) {
+                      $ul.append(`<li>${field}: ${item[field]}</li>`)
+                  }
+                  $data.append($ul);
+              });
+              data = response.surrey;
+              var html = '';
+              var i;
+              for (i = 0; i < data.length; i++) {
+                  alert("Selected value: " + data.length + data[i]);
+                  html += '<span>' + data[i] + '</span>';
+                  html += '<span>' + data[i].AEvaluationGoal.CovenantGoalsName + '</span>';
+                  //so on
+              }
+              $('#data').html(html);
+
+
+        }
+
+        });-->*@
+        @*$.ajax({
+           url: '@Url.Action("CreateB", "ViewModelEvalwithother1")' + "/" + select,
+        type: this.method,
+          data: { 'selectedtTime': select },
+          dataType: 'json',
+            success: function (response) {
+                alert("success response -----" + response.data[2].aEvaluationGoal.covenantGoalsName);//=> undefined
+                // Variable data contains the data you get from the action method
+                var data = response.surrey;
+                if (response.length > 0) {
+                    $("[id*=table] tbody").empty();
+                    var row;
+                    jQuery.each(response, function (index, item) {
+                        row += "<tr><td>" + item[index].aEvaluationGoal.covenantGoalsName + "</td><td>" + item[2].aEvaluationGoal.covenantPercentageWeight + "</td></tr>"
+                    })
+                    for (i = 0; i < data.length; i++) {
+
+                        row += "<tr><td>" + data[i].aEvaluationGoal.covenantGoalsName + "</td><td>" + data[i].aEvaluationGoal.covenantPercentageWeight + "</td></tr>"
+                    }
+                    $("[id*=table] tbody").append(row);
+                }
+
+
+            }, error: function (response) {
+                alert("error---" + response);
+
+            }
+        });*@
+      <!--return false;
+    });
+});-->
+    //function cardTypeId_OnChange() {
+    //    //Prompt for confirmation
+    //    if (confirm("هل تريد البحث بهذة المهنة  ؟")) {
+    //        //Your AJAX call that corresponds with the href attribute of your link
+    //        var selectedCountry1 = $("#chosen-select16 option:selected").val();
+    //        $.ajax({
+    //            url: '/ViewModelEvalwithother1/CreateB',
+    //            type:post,
+    //            data: {
+    //                i: selectedCountry1.val(),
+    //                I: $("#chosen-select16").val(),
+    //            },
+    //        }).done(function () {
+    //            //Item created!
+    //            $("#p1").show();
+    //            $("#cc1").hide();
+    //            $("#ii1").hide();
+    //            $("#ii0").hide();
+    //            $(".AddSection").hide();
+    //            alert("تم  !");
+    //        });
+    //        //This prevents the default behavior of the actual link (it will hit your controller action)
+    //        return false;
+    //    }
+    //    else {
+    //        alert(" تم الغاء التعديل !");
+    //        //Unconfirmed - cancel any further actions
+    //        return false;
+    //    }
+    //}
+    //$("select.chosen1").change(function () {
+    //    /*  var selected5 = $(this).children("option:selected").val();*/
+    //    var selectedCountry1 = $("#chosen-select16 option:selected").val();
+
+
+    //     alert("يجب ان يكون مجموع الوزن النسبي 100%  - ");
+
+
+    //});
+    //$("select.chosen2").change(function () {
+    //    /*var selected5 = $(this).children("option:selected").val();*/
+    //    /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+
+    //    /*alert("يجب ان يكون مجموع الوزن النسبي 100%  - ");*/
+
+
+    });
+
+
+</script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+        }
+        catch (e) { }
+    });
+
+</script>
+<script>
+
+    $(document).ready(function () {
+        $('#table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+
+</script>
+
+<link href="~/DataTables (1)/datatables.css" rel="stylesheet" />
+
+<script src="~/DataTables (1)/datatables.js"></script>
+
+<script src="~/DataTables (1)/pdfmake-0.1.36/pdfmake.js"></script>
+
+<script src="~/DataTables (1)/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="~/DataTables (1)/JSZip-2.5.0/jszip.js"></script>
+@*<link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+<link href="~/js/chosen.css" rel="stylesheet" />
+<link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+<link href="~/js/prism.css" rel="stylesheet" />
+<script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+<script src="~/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+<script src="~/js/prism.js"></script>
+<script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>*@
+
+
+

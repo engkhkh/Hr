@@ -92,6 +92,9 @@
 
                 </th>*@
             <th>
+
+            </th>
+            <th>
                 الموظف
             </th>
             <th>
@@ -148,6 +151,9 @@
 
                 <!--</td>-->
                 <td>
+                    <a asp-controller="ACourcesMasters" asp-action="Edit11" asp-route-id="@item.ACourcesMasters.EncryptedIdd" class="btn btn-warning">تعديل </a>
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
                 </td>
                 <td>
@@ -175,6 +181,7 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
+                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
                     @*@Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDateh)*@
                     @*@item.ACourcesMasters.CourcesStartDateh.AddDays(-1).ToShortDateString()*@
 

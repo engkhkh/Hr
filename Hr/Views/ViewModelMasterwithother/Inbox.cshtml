@@ -115,9 +115,39 @@
 
     </div>
 
-  
     <hr />
-    الخدمات الذاتية 
+    المهام
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">
+                    @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                    @TempData["OfferedRequestTypeId11"].ToString()
+                </label>
+                <a href="~/ViewModelTasks/IndexOffered3" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">أعتماد مهام الإدارة   </a>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <!--<div>
+                <label style="background-color: orangered; font-size: xx-large; font-family: Arial; font-stretch: inherit">-->
+                    @*@Model.Select(x => x.OfferedRequestTypeId.COURCES_IDOffered).ToList().Distinct().Count()*@
+                    <!--@TempData["OfferedRequestTypeId10"].ToString()
+                </label>
+                <a href="~/ViewModelEvalwithother1/IndexOffered4" style="font-size: xx-large; font-family: 'Times New Roman', Times, serif; font-stretch: inherit;">أعتماد مهام الموظف   </a>
+            </div>-->
+        </div>
+        <div class="col-md-4">
+
+        </div>
+
+
+    </div>
+
+
+    <hr />
+    الخدمات الذاتية
     <hr />
     <div class="row">
         <div class="col-md-4">
@@ -146,7 +176,7 @@
 
     </div>
     <hr />
-    الدعم الفني وألاقتراحات 
+    الدعم الفني وألاقتراحات
     <hr />
     <div class="row">
         <div class="col-md-4">

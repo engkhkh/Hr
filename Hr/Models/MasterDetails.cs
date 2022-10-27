@@ -12,7 +12,10 @@ namespace Hr.Models
         public string MasterRequestFrom { get; set; }
         public string MasterRequestTo { get; set; }
         public string MasterRequestTo2 { get; set; }
-        
+        public string MasterRequestTo3 { get; set; }
+        public string MasterRequestTo4 { get; set; }
+        public string MasterRequestTo5 { get; set; }
+
         public int MasterRequestTypeSatus { get; set; }
         public string MasterRequestNotes { get; set; }
     }

@@ -127,7 +127,6 @@ namespace Hr.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("OfferedDetailsSerial,COURCES_IDOffered,OfferedRequestFrom,OfferedRequestTo,OfferedRequestTo2,OfferedRequestTo3,OfferedRequestTo4,OfferedRequestTo5,OfferedRequestTypeSatus,OfferedRequestNotes,Offeredoption")] OfferedDetails3 OfferDetails)
         {
-          
             //if (OfferDetailssss == null)
             //{
             //    return NotFound();
@@ -143,6 +142,7 @@ namespace Hr.Controllers
                 {
                     OfferDetailssss.OfferedRequestTo3 = "1";
                     OfferDetailssss.OfferedRequestTo4 = "0";
+                    OfferDetailssss.OfferedRequestTypeSatus = 1;
                     OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
                     _context.Update(OfferDetailssss);
                     _context.SaveChangesAsync();
@@ -154,7 +154,13 @@ namespace Hr.Controllers
                     };
                    
                     _context.Add(offerComments);
+                    var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.OfferedRequestTypeId3.Where(b => b.COURCES_IDOffered == OfferDetails.COURCES_IDOffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+                    OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 1;
+                    OfferRequestTypeIdsMasterRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
+                    _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
                     _context.SaveChangesAsync();
+
+                  
                     return RedirectToAction("IndexOffered3", "ViewModelMasterwithother", new { area = "" });
 
 

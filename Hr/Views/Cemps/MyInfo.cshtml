@@ -9,251 +9,357 @@
 <p style="color:red">@ViewBag.ErrorMessage1</p>
 @if (TempData["total"] != null)
 {
-<label style="color:red">
-    لديك عدد @TempData["total"].ToString()معاملات   
+    <label style="color:red">
+        لديك عدد @TempData["total"].ToString()معاملات
 
 
-</label>
+    </label>
 }
+<hr />
+<div class="container">
+    <h1 style="font-family:Tahoma; font-display:initial;font:400">معلوماتي </h1>
     <hr />
-    <div class="container">
-        <h1 style="font-family:Tahoma; font-display:initial;font:400">معلوماتي </h1>
-        <hr />
-        <div class="row">
-            <div class="col-md-4">
-                <div>
-                    <label>
-                        رقم الموظف
-                    </label>
-                    @Html.DisplayFor(model => model.CEMPUSERNO)
-                </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <label>
+                    رقم الموظف
+                </label>
+                @Html.DisplayFor(model => model.CEMPUSERNO)
+            </div>
 
-                <div>
-                    <label>
-                        اسم الموظف
-                    </label>
-                    @Html.DisplayFor(model => model.CEMPNAME)
-                </div>
-                <div>
-                    <label>المسمي الوظيفي</label>
+            <div>
+                <label>
+                    اسم الموظف
+                </label>
+                @Html.DisplayFor(model => model.CEMPNAME)
+            </div>
+            <div>
+                <label>المسمي الوظيفي</label>
 
-                    @Html.DisplayFor(model => model.CEMPJOBNAME)
-
-                </div>
-                <div>
-                    <label>الرقم السري</label>
-
-                    @Html.DisplayFor(model => model.CEMPPASSWRD)
-                </div>
+                @Html.DisplayFor(model => model.CEMPJOBNAME)
 
             </div>
-            <div class="col-md-4">
+            <div>
+                <label>السجل</label>
 
-                <div>
-                    <label>كود القسم</label>
-
-                    @Html.DisplayFor(model => model.CEMPADPRTNO)
-                </div>
-                <div>
-                    <label>القسم</label>
-
-                    @Html.DisplayFor(model => model.DEP_NAME)
-                </div>
-                <div>
-                    <label>الرقم الوظيفي للمدير</label>
-
-                    @Html.DisplayFor(model => model.MANAGERID)
-                </div>
-                <div>
-                    <label>اسم المدير</label>
-
-                    @Html.DisplayFor(model => model.MANAGERNAME)
-
-                </div>
+                @Html.DisplayFor(model => model.CEMPPASSWRD)
             </div>
-            <div class="col-md-4">
 
+        </div>
+        <div class="col-md-4">
 
-                @*<div>
-                        تاريخ المباشرة
+            <div>
+                <label>كود القسم</label>
 
-                        @Html.DisplayFor(model => model.Cemphiringdate)
-                    </div>
-                    <div>
-                        اخر ترقية
+                @Html.DisplayFor(model => model.CEMPADPRTNO)
+            </div>
+            <div>
+                <label>القسم</label>
 
-                        @Html.DisplayFor(model => model.Cemplastupgrade)
-                    </div>*@
+                @Html.DisplayFor(model => model.DEP_NAME)
+            </div>
+            <div>
+                <label>الرقم الوظيفي للمدير</label>
 
-                <div>
-                    <label>الادارة</label>
-                    @Html.DisplayFor(model => model.PARENTNAME)
-                </div>
-                <div>
-                    <label>الصلاحية علي النظام</label>
-                    @if (Model.CROLEID == 1)
-                    {
-                        <label style="background-color:aqua;">مدير النظام</label>
-                    }
-                    else if (Model.CROLEID == 2)
-                    {
-                        <label style="background-color:aqua;">مدير </label>
-                    }
-                    else if (Model.CROLEID == 3)
-                    {
-                        <label style="background-color:aqua;">موظف</label>
-                    }
-                    else
-                    {
-                        <label style="background-color:aqua;">صلاحية جديدة رقم</label>
-                        @Html.DisplayFor(model => model.CROLEID)
+                @Html.DisplayFor(model => model.MANAGERID)
+            </div>
+            <div>
+                <label>المدير المباشر</label>
 
-                    }
-                    @*@Html.DisplayFor(model => model.CROLEID)*@
+                @Html.DisplayFor(model => model.MANAGERNAME)
 
-                </div>
             </div>
         </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-4">
+        <div class="col-md-4">
 
 
-                <div>
-                    @*<label>اول تعيين بالدولة -ميلادي</label>
+            <div>
+                أخر بصمة دخول
 
-                    @Html.DisplayFor(model => model.Cemphiringdate)*@
-                </div>
-
-                <div>
-                    <label>اول تعيين بالدولة -هجري</label>
-
-                    @Html.DisplayFor(model => model.CEMPHIRINGDATEHIJRA)
-                </div>
-                <div>
-                    @*<label> اخر ترقية -ميلادي </label>
-
-                    @Html.DisplayFor(model => model.Cemplastupgrade)*@
-                </div>
-                <div>
-                    <label> اخر ترقية -هجري </label>
-
-                    @Html.DisplayFor(model => model.CEMPLASTUPGRADEHIJRA)
-                </div>
-
-
+                @Html.DisplayFor(model => model.Cemphiringdate)
             </div>
-            <div class="col-md-4">
-               
+            <div>
+                أخر بصمة خروج
 
-            </div>
-            <div class="col-md-4">
-                <label>
-                    الموظفين بالقسم
-                </label>
-                
-                @Html.Partial("_emplist")
+                @Html.DisplayFor(model => model.Cemplastupgrade)
             </div>
 
+            <div>
+                <label>الادارة</label>
+                @Html.DisplayFor(model => model.PARENTNAME)
+            </div>
+            <div>
+                <label>المدير المعتمد</label>
+                @if (@Model.MANAGERID2 == "محمد بن مبارك عبدالله ال مجلي")
+                {
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.MANAGERID2)
+                }
+            </div>
+            <div>
+                <label>الصلاحية علي النظام</label>
+                @if (Model.CROLEID == 1)
+                {
+                    <label style="background-color:aqua;">مدير النظام</label>
+                }
+                else if (Model.CROLEID == 2)
+                {
+                    <label style="background-color:aqua;">مدير </label>
+                }
+                else if (Model.CROLEID == 3)
+                {
+                    <label style="background-color:aqua;">موظف</label>
+                }
+                else
+                {
+                    <label style="background-color:aqua;">صلاحية جديدة رقم</label>
+                    @Html.DisplayFor(model => model.CROLEID)
+
+                }
+                @*@Html.DisplayFor(model => model.CROLEID)*@
+
+            </div>
         </div>
     </div>
     <hr />
-    @*<dl class="row">
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.CEMPUSERNO)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.CEMPUSERNO)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.CEMPPASSWRD)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.CEMPPASSWRD)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.CEMPNO)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.CEMPNO)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.CEMPNAME)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.CEMPNAME)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.CEMPJOBNAME)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.CEMPJOBNAME)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.CEMPADPRTNO)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.CEMPADPRTNO)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.DEP_NAME)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.DEP_NAME)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.CLSSNO)
-            </dt>
-            <dd class = "col-sm-10">
+    <div class="row">
+        <div class="col-md-4">
+
+
+
+
+            <div>
+                <label>اول تعيين بالدولة -هجري</label>
+
+                @Html.DisplayFor(model => model.CEMPHIRINGDATEHIJRA)
+            </div>
+
+            <div>
+                <label> اخر ترقية -هجري </label>
+
+                @Html.DisplayFor(model => model.CEMPLASTUPGRADEHIJRA)
+            </div>
+            <div>
+                <label> الدرجة </label>
+
+                @Html.DisplayFor(model => model.grade)
+            </div>
+            <div>
+                <label>المرتبة </label>
+
                 @Html.DisplayFor(model => model.CLSSNO)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.MANAGERID)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.MANAGERID)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.MANAGERNAME)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.MANAGERNAME)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.PARENTID)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.PARENTID)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Cemphiringdate)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Cemphiringdate)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Cemplastupgrade)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Cemplastupgrade)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.PARENTNAME)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.PARENTNAME)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.CROLEID)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.CROLEID)
-            </dd>
-        </dl>*@
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div>
+                <label>رقم الهاتف</label>
+
+                @Html.DisplayFor(model => model.mobileno)
+            </div>
+            <div>
+                <label>الايميل </label>
+
+                @Html.DisplayFor(model => model.mail)
+            </div>
+            <div>
+                <label>تاريخ الميلاد </label>
+
+                @Html.DisplayFor(model => model.CEMPBIRTHDATEHIJRA)
+            </div>
+            <div>
+                <label>النوع </label>
+
+                @Html.DisplayFor(model => model.gender)
+                <span style="color:red"> </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>
+                @*الموظفين بالقسم*@
+            </label>
+
+            @Html.Partial("_emplist")
+        </div>
+
+    </div>
+</div>
+<hr />
+@*<dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPUSERNO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPUSERNO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPPASSWRD)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPPASSWRD)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPNO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPNO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPNAME)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPNAME)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPJOBNAME)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPJOBNAME)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CEMPADPRTNO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CEMPADPRTNO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DEP_NAME)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DEP_NAME)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CLSSNO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CLSSNO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MANAGERID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MANAGERID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MANAGERNAME)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MANAGERNAME)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PARENTID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PARENTID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cemphiringdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cemphiringdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cemplastupgrade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cemplastupgrade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PARENTNAME)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PARENTNAME)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CROLEID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CROLEID)
+        </dd>
+    </dl>*@
 
 <div>
-    <a asp-action="Edit1" asp-route-id="@Model.Cempid" disabled tabindex="-1"  class="btn btn-success">تغيير الرقم السري </a> -
-    <a asp-action="Edit2" asp-route-id="@Model.Cempid" class="btn btn-success">ارفاق صورة</a>
-    <a asp-action="Edit3" asp-route-id="@Model.CEMPNAME" disabled tabindex="-1" class="btn btn-success">تحديث بيانات المدير </a>
-    @*<a asp-action="Index">Back to List</a>*@
+    @*<a asp-action="Edit1" asp-route-id="@Model.Cempid" disabled tabindex="-1" class="btn btn-success">تغيير الرقم السري </a> -*@
+    <a asp-action="Edit2" class="btn btn-success">ارفاق صورة</a>
+    <a asp-action="Edit3" class="btn btn-success">تحديث بيانات المدير </a>
+    @*<a asp-action="Print" class="btn btn-success" target="_blank">طباعة  </a>*@
+    <a asp-action="Print1" class="btn btn-success" target="_blank">طباعة  </a>
+    @*<a disabled tabindex="-1" asp-action="Index">Back to List</a>*@
+    @*<a href="http://docuware/DocuWare/Platform/WebClient/Client/Result?fc=50459f62-6097-4be1-ab8d-d84d0bedb241&q=%5BID%5D%3D1028652160&displayOneDoc=False&orgId=1&_auth=4C853ABD8334EC8719FCEB9FE1AF8DD9FB3F25010CEFA7062DD4181DCD8DC83DF6CE68AA4607BBDE50D457EFBA6931A6C5DC9AF420F0DC4173F2A2F1E1A67EAF6D7B680C74977B18ECFFBA3144758D063E86F554A0CAA329E9C3283B91E5344DCCE86579C2BE2D119517E4A1D3F1152D420527E5AFBE8C147454E86D0CFDD39FEA633ECE6DCBBE69C26795A832C49A917207A5B6E204A04B4A9DF7AF6F4BDB759FDB9AE5BA00C4CE8EE4FDFA994E6EAB6FC6AACE44317FE222D91056C65769FF2672A7CBD5FF0E581308CE77F0B38049B9B183481403733ACC16C91EFC1B4819" target="_blank">طباعة من docuware</a>*@
+
+
+    @{
+
+        var url = "http://docuware/DocuWare/Platform/WebClient/1/Integration?lc=VXNlcj1ocl91cmxcblB3ZD0xMjM1&p=RLV&fc=50459f62-6097-4be1-ab8d-d84d0bedb241&q=" + @TempData["q"].ToString();
+        if (Model.Cempid == "4281001" || Model.Cempid == "4331021" )
+        {
+            <a href="@url" class="btn btn-success" target="_blank"> طباعة من docuware</a>
+        }
+    }
 </div>
+@*<div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">مهام الموظف </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>الموظف:</label>
+                    <input type="text" asp-for="CEMPNAME" name="Id" readonly autocomplete="off" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label> الموظف:</label>
+                    <input type="text" name="Id" autocomplete="off" class="form-control" />
+                    <select name="Id" asp-for="CEMPNO" class="chosen-select form-control" asp-items="ViewBag.Cempid">
+                        <option value="">-- الموظف -- </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>العام:</label>
+                    <select name="Year" class="form-control">
+                        <option value="">Please select</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="China">China</option>
+                        <option value="Australia">Australia</option>
+                        <option value="France">France</option>
+                        <option value="Unites States">Unites States</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Canada">Canada</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">طباعة</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">أغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+
+    $(function () {
+        $('#exampleModal').modal('show');
+    });
+</script>
+<script type="text/javascript">
+    $('#exampleModal').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+<link href="~/js/chosen.css" rel="stylesheet" />
+<link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+<link href="~/js/prism.css" rel="stylesheet" />
+<script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+<script src="~/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+<script src="~/js/prism.js"></script>*@

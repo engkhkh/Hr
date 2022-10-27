@@ -14,27 +14,32 @@
     <thead>
         <tr>
             <th style="width:40%;"></th>
-            <th style="width:60%;">
+            <th style="width:30%;">
                 @*@Html.DisplayNameFor(model => model.CourcesNameDeptin)*@
             </th>
-
+            <th style="width:30%;">
+                @*@Html.DisplayNameFor(model => model.CourcesNameDeptin)*@
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td style="width:40%;">
-                    @*<a asp-action="Create" class="btn btn-success">اضافة </a>*@
-                    @*<a asp-action="Edit" class="btn btn-success" asp-route-id="@item.CourcesIdDeptin"  >تعديل</a>*@ 
-                    <a asp-action="DetailsWithout" class="btn btn-success" asp-route-id="@item.CourcesIdDeptin">تفاصيل</a> 
-                    @*<a asp-action="Delete" asp-route-id="@item.CourcesIdDeptin">Delete</a>*@
-                </td>
-                <td style="width:60%;">
-                    @Html.DisplayFor(modelItem => item.CourcesNameDeptin)
-                </td>
+        <tr>
+            <td style="width:40%;">
+                @*<a asp-action="Create" class="btn btn-success">اضافة </a>*@
+                @*<a asp-action="Edit" class="btn btn-success" asp-route-id="@item.CourcesIdDeptin"  >تعديل</a>*@
+                <a asp-action="DetailsWithout" class="btn btn-success" asp-route-id="@item.CourcesIdDeptin">تفاصيل</a>
+                @*<a asp-action="Delete" asp-route-id="@item.CourcesIdDeptin">Delete</a>*@
+            </td>
+            <td style="width:30%;">
+                @Html.DisplayFor(modelItem => item.CourcesIdDeptin)
+            </td>
+            <td style="width:30%;">
+                @Html.DisplayFor(modelItem => item.CourcesNameDeptin)
+            </td>
 
-            </tr>
+        </tr>
         }
     </tbody>
 </table>

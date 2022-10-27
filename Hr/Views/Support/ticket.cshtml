@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>الأقتراحات والدعم الفني </h1>
+<h1>الأقتراحات والدعم  </h1>
 <div>
     <a asp-action="mytickets" class="btn btn-success">طلباتي</a>
 </div>
@@ -15,6 +15,17 @@
     <div class="col-md-6">
         <form asp-action="ticket" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                * نوع الطلب
+                @*<label asp-for="CourcesTypeName" class="control-label"></label>*@
+                <select id="chosen-select1111" asp-for="Mestypetopic0" class="chosen-select form-control">
+                    <option value="0">اختار.. </option>
+                    <option value="1">دعم تقني.. </option>
+                    <option value="2">دعم من الموارد البشرية .. </option>
+                </select>
+                <span asp-validation-for="Mestypetopic0" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 الموضوع
                 @*<label asp-for="CourcesTypeName" class="control-label"></label>*@
@@ -47,13 +58,115 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 <script language="javascript" type="text/javascript">
-        $(document).ready(function () {
-            try {
-                $("input[type='text']").each(function () {
-                    $(this).attr("autocomplete", "off");
-                });
-            }
-            catch (e) { }
-        });
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+        }
+        catch (e) { }
+    });
 
+</script>
+
+<link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+<link href="~/js/chosen.css" rel="stylesheet" />
+<link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+<link href="~/js/prism.css" rel="stylesheet" />
+<link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+<script src="~/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+<script src="~/js/prism.js"></script>
+
+<script type="text/javascript">
+
+
+    $('#chosen-select16').append(new Option('آخري', 5));
+    /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
+    $("#a").css('visibility', 'hidden');
+
+    //function m() {
+    //    if (document.getElementById("f1").files.length == 0) {
+    //        console.log("لم يتم ارفاق شهادة الدورة ");
+    //        alert("لم يتم ارفاق شهادة الدورة ");
+    //    }
+
+    //}
+
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" }//,
+        //'.chosen-search': {disable_search: false}
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+    $("select.chosen11").change(function () {
+
+        var selectedCountry11 = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+        if (selectedCountry11 == 2 || selectedCountry11 == 4) {
+            alert("  يرجي اختيار التقدير  - ");
+            $("#a").css('visibility', 'visible');
+            var hiddenBox = $("#respond-2");
+            hiddenBox.show();
+
+
+
+        }
+        else {
+            $("#a").css('visibility', 'hidden');
+            var hiddenBox = $("#respond-2");
+            hiddenBox.hide();
+
+        }
+        //if (selectedCountry11 == 1 || selectedCountry11 == 3) {
+
+        //    var select = document.getElementById('chosen-select44')
+        //    /*select.removeChild(select.options['جهة تدريب بالقطاع الخاص'])*/
+        //    select.removeChild(getOptionByValue(select, 'جهة تدريب بالقطاع الخاص'))
+
+        //    function getOptionByValue(select, value) {
+        //        var options = select.options;
+        //        for (var i = 0; i < options.length; i++) {
+        //            if (options[i].value === value) {
+        //                return options[i]
+        //            }
+        //        }
+        //        return null
+        //    }
+        //}
+
+    });
+
+    $("select.chosen1").change(function () {
+        var selectedCountry = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+        if (selectedCountry == 5) {
+            alert("  يرجي ادخال اسم الدورة الجديد باالاسفل - ");
+
+            var hiddenBox = $("#respond-1");
+            hiddenBox.show();
+
+
+
+        }
+        else {
+            var hiddenBox = $("#respond-1");
+            hiddenBox.hide();
+
+        }
+    });
+    $("select").change(function () {
+        var selected5 = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+        if (selected5 == 0) {
+            alert("لايتم اختيار هذا العنصر  - ");
+
+        }
+    });
 </script>

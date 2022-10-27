@@ -46,7 +46,7 @@ namespace Hr.Controllers
             return View(await _context.ACourcesOffered.ToListAsync());
         }
         [HttpGet]
-
+     //   [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
         // GET: ACourcesOffereds/Search
         public ActionResult Search()
         {
