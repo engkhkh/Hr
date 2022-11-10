@@ -14,7 +14,7 @@ $( document ).ready(function() {
             hideMethod: 'fadeOut',
             timeOut: 5000
         };
-        toastr.success('Checkout settings menu on left!', '<h3>مرحبا بكم مدير النظام!</h3>');
+        /*toastr.success('Checkout settings menu on left!', '<h3>مرحبا بكم مدير النظام!</h3>');*/
     }, 1800);
     
     var flot2 = function () {

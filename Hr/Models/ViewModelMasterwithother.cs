@@ -20,6 +20,23 @@ namespace Hr.Models
         public ACourcesTrainingMethod ACourcesTrainingMethods { get; set; }
         public ACourcesIdManagement ACourcesIdManagement { get; set; }
         public ACoursesLocation ACoursesLocation { get; set; }
+        public ACourcesPrograms ACourcesPrograms { get; set; }
+        public ACourcesPrograms ACourcesPrograms2 { get; set; }
+        public ACourcesPrograms ACourcesPrograms3 { get; set; }
+        public ACourcesPrograms ACourcesPrograms4 { get; set; }
+        public ACourcesPrograms ACourcesPrograms5 { get; set; }
+        public ACourcesPrograms ACourcesPrograms6 { get; set; }
+        public ACourcesPrograms ACourcesPrograms7 { get; set; }
+        public ACourcesPrograms ACourcesPrograms8 { get; set; }
+
+        public ACoursesLocation ACoursesLocation2 { get; set; }
+        public ACoursesLocation ACoursesLocation3 { get; set; }
+        public ACoursesLocation ACoursesLocation4 { get; set; }
+        public ACoursesLocation ACoursesLocation5 { get; set; }
+        public ACoursesLocation ACoursesLocation6 { get; set; }
+        public ACoursesLocation ACoursesLocation7 { get; set; }
+        public ACoursesLocation ACoursesLocation8 { get; set; }
+
         public ACourcesName ACourcesNames { get; set; }
         public ACourcesName ACourcesNames2 { get; set; }
         public ACourcesName ACourcesNames3 { get; set; }
@@ -28,8 +45,6 @@ namespace Hr.Models
         public ACourcesName ACourcesNames6 { get; set; }
         public ACourcesName ACourcesNames7 { get; set; }
         public ACourcesName ACourcesNames8 { get; set; }
-
-
 
 
         public ACourcesOffered ACourcesOffered { get; set; }
@@ -62,7 +77,7 @@ namespace Hr.Models
         public ACourcesNeeded ACourcesNeeded { get; set; }
         public NeededDetails NeededDetails { get; set; }
         public AJobsNames AJobsNames { get; set; }
-        public ACourcesPrograms ACourcesPrograms { get; set; }
+        //public ACourcesPrograms ACourcesPrograms { get; set; }
 
         public ACourcesNeeded1 ACourcesNeeded1 { get; set; }
         public Needed1RequestTypeId Needed1RequestTypeIds { get; set; }

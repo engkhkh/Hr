@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hr.Controllers
 {
@@ -19,7 +20,7 @@ namespace Hr.Controllers
         {
             _context = context;
         }
-
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
         // GET: DepartWithMnagements
         public async Task<IActionResult> Index()
         {
@@ -42,6 +43,7 @@ namespace Hr.Controllers
         }
 
         // GET: DepartWithMnagements/Details/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -60,6 +62,7 @@ namespace Hr.Controllers
         }
 
         // GET: DepartWithMnagements/Create
+        [Authorize(Roles = "Admin,HR-Admin")]
         public IActionResult Create()
         {
             return View();
@@ -70,6 +73,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Create([Bind("id,CEMPADPRTNO,DEP_NAME,MANAGERID,MANAGERNAME,PARENTID,PARENTNAME,PARENTMANAGERID,PARENTMANAGERNAME")] DepartWithMnagement departWithMnagement)
         {
             if (ModelState.IsValid)
@@ -82,6 +86,7 @@ namespace Hr.Controllers
         }
 
         // GET: DepartWithMnagements/Edit/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -102,6 +107,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("id,CEMPADPRTNO,DEP_NAME,MANAGERID,MANAGERNAME,PARENTID,PARENTNAME,PARENTMANAGERID,PARENTMANAGERNAME")] DepartWithMnagement departWithMnagement)
         {
             if (id != departWithMnagement.id)
@@ -133,6 +139,7 @@ namespace Hr.Controllers
         }
 
         // GET: DepartWithMnagements/Delete/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -153,6 +160,7 @@ namespace Hr.Controllers
         // POST: DepartWithMnagements/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var departWithMnagement = await _context.DepartWithMnagement.FindAsync(id);

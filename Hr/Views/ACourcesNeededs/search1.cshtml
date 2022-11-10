@@ -93,6 +93,9 @@
 
         </th>*@
                 <th>
+                    رقم الطلب 
+                </th>
+                <th>
                     الموظف
                 </th>
                 <th>
@@ -166,11 +169,14 @@
                 {
             <tr>
                 <!--<td>
-                <a asp-controller="NeededDetails" asp-action="Create" asp-route-id="@item.ACourcesNeeded.CourcesNeededId">موافق</a> |
-        <a asp-controller="NeededDetails" asp-action="Create2" asp-route-id="@item.ACourcesNeeded.CourcesNeededId">رفض</a>-->
+            <a asp-controller="NeededDetails" asp-action="Create" asp-route-id="@item.ACourcesNeeded.CourcesNeededId">موافق</a> |
+    <a asp-controller="NeededDetails" asp-action="Create2" asp-route-id="@item.ACourcesNeeded.CourcesNeededId">رفض</a>-->
                 @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
                 <!--</td>-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.ACourcesNeeded.CourcesNeededId)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
                 </td>

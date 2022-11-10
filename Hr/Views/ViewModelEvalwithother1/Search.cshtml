@@ -90,7 +90,7 @@
         <tr>
             <th>
 
-        </th>
+            </th>
             <th>
                 الموظف
             </th>
@@ -98,19 +98,25 @@
                 رقم الطلب
             </th>
             <th>
-                الوظيفة 
+                الوظيفة
             </th>
             <th>
-                الأدارة 
+                الأدارة
             </th>
             <th>
                 القسم
             </th>
             <th>
-                المدير 
+                المدير
             </th>
             <th>
-                تاريخ الطلب 
+                حالة الطلب - المدير المباشر
+            </th>
+            <th>
+                حالة الطلب - المدير المعتمد
+            </th>
+            <th>
+                تاريخ الطلب
             </th>
 
         </tr>
@@ -120,8 +126,9 @@
         {
         <tr>
             <td>
-                <a asp-controller="ViewModelEvalwithother1" asp-action="Detail1" asp-route-id="@item.AEvaluationEmp.Idd" class="btn btn-success">عرض  الطلب </a>|
-                @*<a asp-controller="ViewModelEvalwithother1" asp-action="Edit1" asp-route-id="@item.AEvaluationEmp.Idd" class="btn btn-success">تعديل الطلب </a>*@
+                <a asp-controller="ViewModelEvalwithother1" asp-action="Detail1111" class="btn btn-success" target="_blank">درجة  التقييم </a>|
+                @*<a asp-controller="ViewModelEvalwithother1" asp-action="Detail111" class="btn btn-success">عرض  الطلب </a>|*@
+                <a asp-controller="ViewModelEvalwithother1" asp-action="Edit11" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success" target="_blank">تعديل الطلب </a>
                 @*<a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
                 @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
@@ -143,6 +150,36 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AEvaluationEmp.ManagerName)
+            </td>
+            <td>
+                @if (item.evalDetail2.OfferedRequestTo3 == "1")
+                {
+                    <span style="background-color: forestgreen; font-display: auto; font-family: 'Times New Roman', Times, serif; font-size: larger; ">تم الموافقة- </span>
+                }
+                else
+                {
+                    <span style="background-color: red; font-display: auto; font-family: 'Times New Roman', Times, serif; font-size: larger;"> لم تتم الموافقة -  </span>
+                }
+                @Html.DisplayFor(modelItem => item.cemp.MANAGERNAME)
+
+            </td>
+            <td>
+                @if (item.evalDetail2.OfferedRequestTypeSatus == 1)
+                {
+                    <span style="background-color: forestgreen; font-display: auto; font-family: 'Times New Roman', Times, serif; font-size: larger; ">تم الموافقة- </span>
+                }
+                else
+                {
+                    <span style="background-color: red; font-display: auto; font-family: 'Times New Roman', Times, serif; font-size:larger;"> لم تتم الموافقة -  </span>
+                }
+                @if (item.cemp.MANAGERID2.Equals("محمد بن مبارك عبدالله ال مجلي"))
+                {
+
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.cemp.MANAGERID2)
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AEvaluationEmp.CovenantDate)

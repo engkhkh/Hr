@@ -12,6 +12,7 @@ namespace Hr.Models
         public int Id { get; set; }
         public string Fromr { get; set; }
         public string Mestypereqidp { get; set; }
+        public string Mestypetopic0 { get; set; }
         public string Mestypetopic { get; set; }
         public string Redesc { get; set; }
         public DateTime Daterequest { get; set; }
