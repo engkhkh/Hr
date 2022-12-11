@@ -606,7 +606,11 @@ HR. Operations Manager </Value>
                     <Value>=First(Fields!Parm8.Value, "dsEmployee")</Value>
                     <Style>
                       <Language>ar-SA</Language>
+<<<<<<< HEAD
                       <Calendar>Gregorian</Calendar>
+=======
+                      <Calendar>GregorianArabic</Calendar>
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                       <NumeralLanguage>ar-SA</NumeralLanguage>
                       <NumeralVariant>3</NumeralVariant>
                     </Style>
@@ -678,7 +682,11 @@ HR. Operations Manager </Value>
                       <FontStyle>Italic</FontStyle>
                       <FontSize>8pt</FontSize>
                       <Language>ar-SA</Language>
+<<<<<<< HEAD
                       <Calendar>Gregorian</Calendar>
+=======
+                      <Calendar>GregorianArabic</Calendar>
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                       <NumeralLanguage>ar-SA</NumeralLanguage>
                       <NumeralVariant>3</NumeralVariant>
                     </Style>

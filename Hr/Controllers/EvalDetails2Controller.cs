@@ -14,7 +14,11 @@ using MimeKit;
 using MailKit.Security;
 using System.Threading;
 using NLog;
+<<<<<<< HEAD
 using Oracle.ManagedDataAccess.Client;
+=======
+using Devart.Data.Oracle;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
 namespace Hr.Controllers
 {
@@ -261,7 +265,11 @@ namespace Hr.Controllers
                         WelcomeRequest request3 = new WelcomeRequest();
                         request3.UserName = emprequestor.CEMPNAME;
                         request3.header = "ألاداء الوظيفي وتقييم ألاداء ";
+<<<<<<< HEAD
                         request3.Details = "تم اعتماد تقييم الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة ل هذا العام ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+=======
+                        request3.Details = "تم اعتماد تقييم الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2021 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                         request3.ToEmail = emprequestor.mail;
                         try
                         {
@@ -284,6 +292,7 @@ namespace Hr.Controllers
                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
 
 
+<<<<<<< HEAD
                         //OracleConnection Con5 = new OracleConnection(TNS1);
                         //Con5.Open();
                         //OracleCommand cmd = new OracleCommand();
@@ -299,6 +308,23 @@ namespace Hr.Controllers
                         //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                         //}
                         //Con5.Close();
+=======
+                        OracleConnection Con5 = new OracleConnection(TNS1);
+                        Con5.Open();
+                        OracleCommand cmd = new OracleCommand();
+                        cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                        //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        cmd.Connection = Con5;
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                        }
+                        Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
                         //return View(Records);
                     }
@@ -314,6 +340,7 @@ namespace Hr.Controllers
                         ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
 
 
+<<<<<<< HEAD
                         //OracleConnection Con5 = new OracleConnection(TNS1);
                         //Con5.Open();
                         //OracleCommand cmd = new OracleCommand();
@@ -329,6 +356,23 @@ namespace Hr.Controllers
                         //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                         //}
                         //Con5.Close();
+=======
+                        OracleConnection Con5 = new OracleConnection(TNS1);
+                        Con5.Open();
+                        OracleCommand cmd = new OracleCommand();
+                        cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                        //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        cmd.Connection = Con5;
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                        }
+                        Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                         //return View(Records);
                     }
                     else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
@@ -343,6 +387,7 @@ namespace Hr.Controllers
                          ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                         //OracleConnection Con5 = new OracleConnection(TNS1);
                         //Con5.Open();
                         //OracleCommand cmd = new OracleCommand();
@@ -358,6 +403,23 @@ namespace Hr.Controllers
                         //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                         //}
                         //Con5.Close();
+=======
+                        OracleConnection Con5 = new OracleConnection(TNS1);
+                        Con5.Open();
+                        OracleCommand cmd = new OracleCommand();
+                        cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                        //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        cmd.Connection = Con5;
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                        }
+                        Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                         //return View(Records);
                     }
                     else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
@@ -372,6 +434,7 @@ namespace Hr.Controllers
                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                         //OracleConnection Con5 = new OracleConnection(TNS1);
                         //Con5.Open();
                         //OracleCommand cmd = new OracleCommand();
@@ -387,6 +450,23 @@ namespace Hr.Controllers
                         //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                         //}
                         //Con5.Close();
+=======
+                        OracleConnection Con5 = new OracleConnection(TNS1);
+                        Con5.Open();
+                        OracleCommand cmd = new OracleCommand();
+                        cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                        //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        cmd.Connection = Con5;
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                        }
+                        Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                         //return View(Records);
                     }
                     else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
@@ -401,6 +481,7 @@ namespace Hr.Controllers
                         ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                         //OracleConnection Con5 = new OracleConnection(TNS1);
                         //Con5.Open();
                         //OracleCommand cmd = new OracleCommand();
@@ -416,6 +497,23 @@ namespace Hr.Controllers
                         //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                         //}
                         //Con5.Close();
+=======
+                        OracleConnection Con5 = new OracleConnection(TNS1);
+                        Con5.Open();
+                        OracleCommand cmd = new OracleCommand();
+                        cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                        //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        cmd.Connection = Con5;
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                        }
+                        Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
                     }
                     else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 4)
@@ -430,6 +528,7 @@ namespace Hr.Controllers
                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                         //OracleConnection Con5 = new OracleConnection(TNS1);
                         //Con5.Open();
                         //OracleCommand cmd = new OracleCommand();
@@ -445,6 +544,23 @@ namespace Hr.Controllers
                         //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                         //}
                         //Con5.Close();
+=======
+                        OracleConnection Con5 = new OracleConnection(TNS1);
+                        Con5.Open();
+                        OracleCommand cmd = new OracleCommand();
+                        cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                        //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        cmd.Connection = Con5;
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                        }
+                        Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                         //return View(Records);
                     }
                     else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
@@ -459,6 +575,7 @@ namespace Hr.Controllers
                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                         //OracleConnection Con5 = new OracleConnection(TNS1);
                         //Con5.Open();
                         //OracleCommand cmd = new OracleCommand();
@@ -474,6 +591,23 @@ namespace Hr.Controllers
                         //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                         //}
                         //Con5.Close();
+=======
+                        OracleConnection Con5 = new OracleConnection(TNS1);
+                        Con5.Open();
+                        OracleCommand cmd = new OracleCommand();
+                        cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                        //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        cmd.Connection = Con5;
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                        }
+                        Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                         //return View(Records);
                     }
                     else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
@@ -488,6 +622,7 @@ namespace Hr.Controllers
                           ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                         //OracleConnection Con5 = new OracleConnection(TNS1);
                         //Con5.Open();
                         //OracleCommand cmd = new OracleCommand();
@@ -503,6 +638,23 @@ namespace Hr.Controllers
                         //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                         //}
                         //Con5.Close();
+=======
+                        OracleConnection Con5 = new OracleConnection(TNS1);
+                        Con5.Open();
+                        OracleCommand cmd = new OracleCommand();
+                        cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                        //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        cmd.Connection = Con5;
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                        }
+                        Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                         //return View(Records);
                     }
                     else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
@@ -517,6 +669,7 @@ namespace Hr.Controllers
                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                         //OracleConnection Con5 = new OracleConnection(TNS1);
                         //Con5.Open();
                         //OracleCommand cmd = new OracleCommand();
@@ -532,6 +685,23 @@ namespace Hr.Controllers
                         //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                         //}
                         //Con5.Close();
+=======
+                        OracleConnection Con5 = new OracleConnection(TNS1);
+                        Con5.Open();
+                        OracleCommand cmd = new OracleCommand();
+                        cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                        //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        cmd.Connection = Con5;
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                        }
+                        Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                         //return View(Records);
                     }
 
@@ -552,7 +722,11 @@ namespace Hr.Controllers
                         OfferDetailssss.OfferedRequestTo4 = "0";
                         OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
                         _context.Update(OfferDetailssss);
+<<<<<<< HEAD
                         _context.SaveChanges();
+=======
+                        _context.SaveChangesAsync();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                         Evalcomment2 offerComments = new Evalcomment2
                         {
                             Offerdetailsid = OfferDetails.OfferedDetailsSerial,
@@ -562,7 +736,11 @@ namespace Hr.Controllers
                         };
 
                         _context.Add(offerComments);
+<<<<<<< HEAD
                         _context.SaveChanges();
+=======
+                        _context.SaveChangesAsync();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
 
                         if (OfferDetailssss.OfferedRequestTo2 == "4419011" && OfferDetailssss.OfferedRequestTo4 == "0")
@@ -572,13 +750,21 @@ namespace Hr.Controllers
                             OfferDetailssss.OfferedRequestTypeSatus = 1;
                             OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
                             _context.Update(OfferDetailssss);
+<<<<<<< HEAD
                              _context.SaveChanges();
+=======
+                            await _context.SaveChangesAsync();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
                             var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.EvalRequestTypeIds2.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
                             OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 1;
                             OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                             _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
+<<<<<<< HEAD
                              _context.SaveChanges();
+=======
+                            await _context.SaveChangesAsync();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                             var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
                             var empapproval1 = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestTo).FirstOrDefault();
                             var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
@@ -587,7 +773,11 @@ namespace Hr.Controllers
                             WelcomeRequest request3 = new WelcomeRequest();
                             request3.UserName = emprequestor.CEMPNAME;
                             request3.header = "ألاداء الوظيفي وتقييم ألاداء ";
+<<<<<<< HEAD
                             request3.Details = "تم اعتماد تقييم الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة  ل هذا العام  ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+=======
+                            request3.Details = "تم اعتماد تقييم الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2021 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                             request3.ToEmail = emprequestor.mail;
                             try
                             {
@@ -610,6 +800,7 @@ namespace Hr.Controllers
                                ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
 
 
+<<<<<<< HEAD
                                 //OracleConnection Con5 = new OracleConnection(TNS1);
                                 //Con5.Open();
                                 //OracleCommand cmd = new OracleCommand();
@@ -625,6 +816,23 @@ namespace Hr.Controllers
                                 //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                                 //}
                                 //Con5.Close();
+=======
+                                OracleConnection Con5 = new OracleConnection(TNS1);
+                                Con5.Open();
+                                OracleCommand cmd = new OracleCommand();
+                                cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                                //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                                cmd.Connection = Con5;
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                                }
+                                Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
                                 //return View(Records);
                             }
@@ -640,6 +848,7 @@ namespace Hr.Controllers
                                 ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
 
 
+<<<<<<< HEAD
                                 //OracleConnection Con5 = new OracleConnection(TNS1);
                                 //Con5.Open();
                                 //OracleCommand cmd = new OracleCommand();
@@ -655,6 +864,23 @@ namespace Hr.Controllers
                                 //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                                 //}
                                 //Con5.Close();
+=======
+                                OracleConnection Con5 = new OracleConnection(TNS1);
+                                Con5.Open();
+                                OracleCommand cmd = new OracleCommand();
+                                cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                                //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                                cmd.Connection = Con5;
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                                }
+                                Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                                 //return View(Records);
                             }
                             else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
@@ -669,6 +895,7 @@ namespace Hr.Controllers
                                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                                 //OracleConnection Con5 = new OracleConnection(TNS1);
                                 //Con5.Open();
                                 //OracleCommand cmd = new OracleCommand();
@@ -684,6 +911,23 @@ namespace Hr.Controllers
                                 //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                                 //}
                                 //Con5.Close();
+=======
+                                OracleConnection Con5 = new OracleConnection(TNS1);
+                                Con5.Open();
+                                OracleCommand cmd = new OracleCommand();
+                                cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                                //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                                cmd.Connection = Con5;
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                                }
+                                Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                                 //return View(Records);
                             }
                             else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
@@ -698,6 +942,7 @@ namespace Hr.Controllers
                                ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                                 //OracleConnection Con5 = new OracleConnection(TNS1);
                                 //Con5.Open();
                                 //OracleCommand cmd = new OracleCommand();
@@ -713,6 +958,23 @@ namespace Hr.Controllers
                                 //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                                 //}
                                 //Con5.Close();
+=======
+                                OracleConnection Con5 = new OracleConnection(TNS1);
+                                Con5.Open();
+                                OracleCommand cmd = new OracleCommand();
+                                cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                                //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                                cmd.Connection = Con5;
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                                }
+                                Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                                 //return View(Records);
                             }
                             else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
@@ -727,6 +989,7 @@ namespace Hr.Controllers
                                 ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                                 //OracleConnection Con5 = new OracleConnection(TNS1);
                                 //Con5.Open();
                                 //OracleCommand cmd = new OracleCommand();
@@ -742,6 +1005,23 @@ namespace Hr.Controllers
                                 //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                                 //}
                                 //Con5.Close();
+=======
+                                OracleConnection Con5 = new OracleConnection(TNS1);
+                                Con5.Open();
+                                OracleCommand cmd = new OracleCommand();
+                                cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                                //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                                cmd.Connection = Con5;
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                                }
+                                Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
                             }
                             else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 4)
@@ -756,6 +1036,7 @@ namespace Hr.Controllers
                            ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                                 //OracleConnection Con5 = new OracleConnection(TNS1);
                                 //Con5.Open();
                                 //OracleCommand cmd = new OracleCommand();
@@ -771,6 +1052,23 @@ namespace Hr.Controllers
                                 //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                                 //}
                                 //Con5.Close();
+=======
+                                OracleConnection Con5 = new OracleConnection(TNS1);
+                                Con5.Open();
+                                OracleCommand cmd = new OracleCommand();
+                                cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                                //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                                cmd.Connection = Con5;
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                                }
+                                Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                                 //return View(Records);
                             }
                             else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
@@ -785,6 +1083,7 @@ namespace Hr.Controllers
                                 ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                                 //OracleConnection Con5 = new OracleConnection(TNS1);
                                 //Con5.Open();
                                 //OracleCommand cmd = new OracleCommand();
@@ -800,6 +1099,23 @@ namespace Hr.Controllers
                                 //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                                 //}
                                 //Con5.Close();
+=======
+                                OracleConnection Con5 = new OracleConnection(TNS1);
+                                Con5.Open();
+                                OracleCommand cmd = new OracleCommand();
+                                cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                                //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                                cmd.Connection = Con5;
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                                }
+                                Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                                 //return View(Records);
                             }
                             else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
@@ -814,6 +1130,7 @@ namespace Hr.Controllers
                                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                                 //OracleConnection Con5 = new OracleConnection(TNS1);
                                 //Con5.Open();
                                 //OracleCommand cmd = new OracleCommand();
@@ -829,6 +1146,23 @@ namespace Hr.Controllers
                                 //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                                 //}
                                 //Con5.Close();
+=======
+                                OracleConnection Con5 = new OracleConnection(TNS1);
+                                Con5.Open();
+                                OracleCommand cmd = new OracleCommand();
+                                cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                                //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                                cmd.Connection = Con5;
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                                }
+                                Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                                 //return View(Records);
                             }
                             else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
@@ -843,6 +1177,7 @@ namespace Hr.Controllers
                                ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                                 //OracleConnection Con5 = new OracleConnection(TNS1);
                                 //Con5.Open();
                                 //OracleCommand cmd = new OracleCommand();
@@ -858,6 +1193,23 @@ namespace Hr.Controllers
                                 //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                                 //}
                                 //Con5.Close();
+=======
+                                OracleConnection Con5 = new OracleConnection(TNS1);
+                                Con5.Open();
+                                OracleCommand cmd = new OracleCommand();
+                                cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                                //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                                cmd.Connection = Con5;
+                                try
+                                {
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                                }
+                                Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                                 //return View(Records);
                             }
 
@@ -927,7 +1279,11 @@ namespace Hr.Controllers
                         WelcomeRequest request3 = new WelcomeRequest();
                         request3.UserName = emprequestor.CEMPNAME;
                         request3.header = "ألاداء الوظيفي وتقييم ألاداء ";
+<<<<<<< HEAD
                         request3.Details = "تم اعتماد تقييم الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة  ل هذا العام ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+=======
+                        request3.Details = "تم اعتماد تقييم الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2021 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                         request3.ToEmail = emprequestor.mail;
                         try
                         {
@@ -949,6 +1305,7 @@ namespace Hr.Controllers
                            ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
 
 
+<<<<<<< HEAD
                             //OracleConnection Con5 = new OracleConnection(TNS1);
                             //Con5.Open();
                             //OracleCommand cmd = new OracleCommand();
@@ -964,6 +1321,23 @@ namespace Hr.Controllers
                             //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                             //}
                             //Con5.Close();
+=======
+                            OracleConnection Con5 = new OracleConnection(TNS1);
+                            Con5.Open();
+                            OracleCommand cmd = new OracleCommand();
+                            cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                            //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                            cmd.Connection = Con5;
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                            }
+                            Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
                             //return View(Records);
                         }
@@ -979,6 +1353,7 @@ namespace Hr.Controllers
                             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
 
 
+<<<<<<< HEAD
                             //OracleConnection Con5 = new OracleConnection(TNS1);
                             //Con5.Open();
                             //OracleCommand cmd = new OracleCommand();
@@ -994,6 +1369,23 @@ namespace Hr.Controllers
                             //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                             //}
                             //Con5.Close();
+=======
+                            OracleConnection Con5 = new OracleConnection(TNS1);
+                            Con5.Open();
+                            OracleCommand cmd = new OracleCommand();
+                            cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                            //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                            cmd.Connection = Con5;
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                            }
+                            Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                             //return View(Records);
                         }
                         else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
@@ -1008,6 +1400,7 @@ namespace Hr.Controllers
                              ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                             //OracleConnection Con5 = new OracleConnection(TNS1);
                             //Con5.Open();
                             //OracleCommand cmd = new OracleCommand();
@@ -1023,6 +1416,23 @@ namespace Hr.Controllers
                             //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                             //}
                             //Con5.Close();
+=======
+                            OracleConnection Con5 = new OracleConnection(TNS1);
+                            Con5.Open();
+                            OracleCommand cmd = new OracleCommand();
+                            cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                            //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                            cmd.Connection = Con5;
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                            }
+                            Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                             //return View(Records);
                         }
                         else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
@@ -1037,6 +1447,7 @@ namespace Hr.Controllers
                            ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                             //OracleConnection Con5 = new OracleConnection(TNS1);
                             //Con5.Open();
                             //OracleCommand cmd = new OracleCommand();
@@ -1052,6 +1463,23 @@ namespace Hr.Controllers
                             //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                             //}
                             //Con5.Close();
+=======
+                            OracleConnection Con5 = new OracleConnection(TNS1);
+                            Con5.Open();
+                            OracleCommand cmd = new OracleCommand();
+                            cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                            //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                            cmd.Connection = Con5;
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                            }
+                            Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                             //return View(Records);
                         }
                         else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
@@ -1066,6 +1494,7 @@ namespace Hr.Controllers
                             ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                             //OracleConnection Con5 = new OracleConnection(TNS1);
                             //Con5.Open();
                             //OracleCommand cmd = new OracleCommand();
@@ -1081,6 +1510,23 @@ namespace Hr.Controllers
                             //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                             //}
                             //Con5.Close();
+=======
+                            OracleConnection Con5 = new OracleConnection(TNS1);
+                            Con5.Open();
+                            OracleCommand cmd = new OracleCommand();
+                            cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                            //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                            cmd.Connection = Con5;
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                            }
+                            Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
                         }
                         else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 4)
@@ -1095,6 +1541,7 @@ namespace Hr.Controllers
                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                             //OracleConnection Con5 = new OracleConnection(TNS1);
                             //Con5.Open();
                             //OracleCommand cmd = new OracleCommand();
@@ -1110,6 +1557,23 @@ namespace Hr.Controllers
                             //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                             //}
                             //Con5.Close();
+=======
+                            OracleConnection Con5 = new OracleConnection(TNS1);
+                            Con5.Open();
+                            OracleCommand cmd = new OracleCommand();
+                            cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                            //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                            cmd.Connection = Con5;
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                            }
+                            Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                             //return View(Records);
                         }
                         else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
@@ -1124,6 +1588,7 @@ namespace Hr.Controllers
                             ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                             //OracleConnection Con5 = new OracleConnection(TNS1);
                             //Con5.Open();
                             //OracleCommand cmd = new OracleCommand();
@@ -1139,6 +1604,23 @@ namespace Hr.Controllers
                             //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                             //}
                             //Con5.Close();
+=======
+                            OracleConnection Con5 = new OracleConnection(TNS1);
+                            Con5.Open();
+                            OracleCommand cmd = new OracleCommand();
+                            cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                            //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                            cmd.Connection = Con5;
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                            }
+                            Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                             //return View(Records);
                         }
                         else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
@@ -1153,6 +1635,7 @@ namespace Hr.Controllers
                               ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                             //OracleConnection Con5 = new OracleConnection(TNS1);
                             //Con5.Open();
                             //OracleCommand cmd = new OracleCommand();
@@ -1168,6 +1651,23 @@ namespace Hr.Controllers
                             //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                             //}
                             //Con5.Close();
+=======
+                            OracleConnection Con5 = new OracleConnection(TNS1);
+                            Con5.Open();
+                            OracleCommand cmd = new OracleCommand();
+                            cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                            //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                            cmd.Connection = Con5;
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                            }
+                            Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                             //return View(Records);
                         }
                         else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
@@ -1182,6 +1682,7 @@ namespace Hr.Controllers
                            ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
 
 
+<<<<<<< HEAD
                             //OracleConnection Con5 = new OracleConnection(TNS1);
                             //Con5.Open();
                             //OracleCommand cmd = new OracleCommand();
@@ -1197,6 +1698,23 @@ namespace Hr.Controllers
                             //    loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
                             //}
                             //Con5.Close();
+=======
+                            OracleConnection Con5 = new OracleConnection(TNS1);
+                            Con5.Open();
+                            OracleCommand cmd = new OracleCommand();
+                            cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emprequestor.CEMPPASSWRD + "', '" + emprequestor.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + tot1 + "', " + Convert.ToInt32(tot4) + ") ";
+                            //cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                            cmd.Connection = Con5;
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                loggerx.Error("  لم يتم ارسال بيانات  للموظف ب خدمة التزام   " + emprequestor.Cempid + "ارسال بيانات الي التزام  " + ex.Message);
+                            }
+                            Con5.Close();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                             //return View(Records);
                         }
 
@@ -1327,7 +1845,11 @@ namespace Hr.Controllers
                     WelcomeRequest request3 = new WelcomeRequest();
                     request3.UserName = emprequestor.CEMPNAME;
                     request3.header = "ألاداء الوظيفي وتقييم ألاداء ";
+<<<<<<< HEAD
                     request3.Details = "تم  رفض اعتماد تقييم الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة  لهذا العام  ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+=======
+                    request3.Details = "تم  رفض اعتماد تقييم الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 1443 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     request3.ToEmail = emprequestor.mail;
                     try
                     {
@@ -1404,7 +1926,11 @@ namespace Hr.Controllers
                     WelcomeRequest request3 = new WelcomeRequest();
                     request3.UserName = emprequestor.CEMPNAME;
                     request3.header = "ألاداء الوظيفي وتقييم ألاداء ";
+<<<<<<< HEAD
                     request3.Details = $"تم رفض اعتماد تقييم الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة  ل هذا العام ,طلب رقم :{OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered} بواسطة  : {empapproval2.CEMPNAME}"; 
+=======
+                    request3.Details = "تم رفض اعتماد تقييم الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2021 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة  : " + empapproval2.CEMPNAME; 
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     request3.ToEmail = emprequestor.mail;
                     try
                     {

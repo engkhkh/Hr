@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿////using Devart.Data.Oracle;
+=======
+﻿//using Devart.Data.Oracle;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 using DNTCaptcha.Core;
 using Hr.Models;
 using Microsoft.AspNetCore.Authentication;

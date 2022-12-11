@@ -42,9 +42,14 @@ namespace Hr.Controllers
             _protector = provider.CreateProtector("Hr.ViewModelMasterwithotherController");
             this.mailService = mailService;
         }
+<<<<<<< HEAD
         [HttpGet]
         [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
         public ActionResult ApprovelAllCourses(/*string SearchString,*/ string b2)
+=======
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+        public ActionResult ApprovelAllCourses(string search)
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
         {
             if (HttpContext.Session.GetString("username") == null)
             {
@@ -76,15 +81,22 @@ namespace Hr.Controllers
                 List<ACourcesDeptout> ACourcesDeptouts = _context.ACourcesDeptouts.ToList();
                 List<ACourcesTrainingMethod> ACourcesTrainingMethods = _context.ACourcesTrainingMethods.ToList();
                 List<ACourcesName> ACourcesNames = _context.ACourcesNames.ToList();
+<<<<<<< HEAD
             if (b2 == null)
             {
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                 var Records = from e in ACourcesMasters
                               join d in ACourcesTypes on e.CourcesIdType equals d.CourcesIdType into table1
                               from d in table1.ToList()
                               join i in Cemps on e.Cempid equals i.Cempid into table2
                               from i in table2.ToList()
+<<<<<<< HEAD
                                   //where i.Cempid == HttpContext.Session.GetString("empid")
                               //where i.Cempid == e.Cempid && e.CourcesEndDate >= i.CEMPLASTUPGRADEHIJRA && (e.CourcesEndDate <= Convert.ToDateTime(b2)) && (i.Cempid == SearchString || i.CEMPPASSWRD == SearchString)
+=======
+                              //where i.Cempid == HttpContext.Session.GetString("empid")
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                               join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                               from j in table3.ToList()
                               join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
@@ -98,7 +110,11 @@ namespace Hr.Controllers
                               where x.MasterRequestType == 1
                               join y in MasterDetailss on e.CourcesIdmaster equals y.COURCES_IDMASTER into table8
                               from y in table8.ToList()
+<<<<<<< HEAD
                               where y.MasterRequestTypeSatus == 1
+=======
+                              where y.MasterRequestTypeSatus == 1 
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                               join z in ACourcesNames on e.CourcesId equals z.CourcesId into table9
                               from z in table9.ToList()
 
@@ -120,6 +136,7 @@ namespace Hr.Controllers
                 {
                     var stringId = course.ACourcesMasters.CourcesIdmaster.ToString();
                     course.ACourcesMasters.EncryptedIdd = _protector.Protect(stringId);
+<<<<<<< HEAD
                     //emp.AEvaluationGoal.EncryptedCovenantId= _protector.Protect(stringId);
                     //emp.AEvaluationCompetenciesM.EncryptedCovenantId= _protector.Protect(stringId);
                     //emp.AEvaluationCompetenciesD.EncryptedCovenantId= _protector.Protect(stringId);
@@ -282,6 +299,67 @@ namespace Hr.Controllers
                 }
                 return View(Records);
             }
+=======
+                //emp.AEvaluationGoal.EncryptedCovenantId= _protector.Protect(stringId);
+                //emp.AEvaluationCompetenciesM.EncryptedCovenantId= _protector.Protect(stringId);
+                //emp.AEvaluationCompetenciesD.EncryptedCovenantId= _protector.Protect(stringId);
+
+                ////Previous code removed for the example clarity
+                //var timeLimitedProtector = _protector.ToTimeLimitedDataProtector();
+                //var timeLimitedData = timeLimitedProtector.Protect("Test timed protector", lifetime: TimeSpan.FromSeconds(2));
+                ////just to test that this action works as long as life-time hasn't expired
+                //var timedUnprotectedData = timeLimitedProtector.Unprotect(timeLimitedData);
+                //Thread.Sleep(3000);
+                //var anotherTimedUnprotectTry = timeLimitedProtector.Unprotect(timeLimitedData);
+                if (course.ACourcesMasters.CourcesIdType == 1)
+                {
+                    if (course.ACourcesMasters.CourcesIdType == 1 && course.ACourcesMasters.COURCES_EXCUTION.Equals("جهة تدريب دولية"))
+                    {
+                        course.ACourcesMasters.gradetocourse = 40.0;
+                    }
+                    else if (course.ACourcesMasters.CourcesIdType == 1 && course.ACourcesMasters.COURCES_EXCUTION.Equals("جهة تدريب حكومية"))
+                    {
+                        course.ACourcesMasters.gradetocourse = 30.0;
+                    }
+                }
+                else if (course.ACourcesMasters.CourcesIdType == 2)
+                {
+                    if (course.ACourcesMasters.CourcesIdType == 2 && course.ACourcesMasters.COURCES_EXCUTION.Equals("جهة تدريب دولية"))
+                    {
+                        course.ACourcesMasters.gradetocourse = 80.0;
+                    }
+                    else if (course.ACourcesMasters.CourcesIdType == 2 && course.ACourcesMasters.COURCES_EXCUTION.Equals("جهة تدريب حكومية"))
+                    {
+                        course.ACourcesMasters.gradetocourse = 60.0;
+                    }
+                    else if (course.ACourcesMasters.CourcesIdType == 2 && course.ACourcesMasters.COURCES_EXCUTION.Equals("جهة تدريب بالقطاع الخاص"))
+                    {
+                        course.ACourcesMasters.gradetocourse = 40.0;
+                    }
+                }
+                else if (course.ACourcesMasters.CourcesIdType == 3)
+                {
+                    if (course.ACourcesMasters.CourcesIdType == 3 && course.ACourcesMasters.COURCES_EXCUTION.Equals("جهة تدريب حكومية"))
+                    {
+                        course.ACourcesMasters.gradetocourse = 1.0;
+                    }
+                }
+                else if (course.ACourcesMasters.CourcesIdType == 4 && course.ACourcesMasters.COURCES_EXCUTION.Equals("جهة تدريب حكومية"))
+                {
+
+                    if (course.ACourcesMasters.CourcesIdType == 4 && course.ACourcesMasters.COURCES_EXCUTION.Equals("جهة تدريب حكومية") && course.ACourcesMasters.CourcesIdEstimate == 1)
+                    {
+                        course.ACourcesMasters.gradetocourse = 50.0;
+                    }
+                    else if (course.ACourcesMasters.CourcesIdType == 4 && course.ACourcesMasters.COURCES_EXCUTION.Equals("جهة تدريب حكومية") && course.ACourcesMasters.CourcesIdEstimate == 2)
+                    {
+                        course.ACourcesMasters.gradetocourse = 25.0;
+                    }
+                }
+            }
+                return View(Records);
+            
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
 
            

@@ -41,7 +41,11 @@ namespace Hr
         public Startup(IConfiguration configuration)
         {
             //The Schedular Class
+<<<<<<< HEAD
             //SchedulerTask.StartAsync().GetAwaiter().GetResult();
+=======
+            SchedulerTask.StartAsync().GetAwaiter().GetResult();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             Configuration = configuration;
         }
 
@@ -51,6 +55,7 @@ namespace Hr
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+<<<<<<< HEAD
              services.AddHostedService<UpDbIHostService>();
              services.AddTransient<IHostedService, UpDbBackgroundService>();
 
@@ -70,6 +75,24 @@ namespace Hr
                 mc.AddProfile(new MappingProfile());
             });
 
+=======
+            //unit if work 
+            services.AddScoped(typeof(IunitOfWork<>), typeof(UnitOfWork<>));
+            //
+            services.AddScoped<IAGoalLogsRepository, AGoalLogsRepository>();
+            services.AddScoped<ITasksEmployeeRepository, TasksEmployeeRepository>();
+            services.AddScoped<ITasksEmployeeGoalsRepository, TasksEmployeeGoalsRepository>();
+            services.AddScoped<ITasksEmployeeTasksRepository, TasksEmployeeTaskssRepository>();
+            services.AddScoped<ITasksManagementRepository, TasksManagementRepository>();
+            services.AddScoped<ITasksManagementGoalsRepository, TasksManagementGoalsRepository>();
+            services.AddScoped<ITasksMnagementTaskssRepository, TasksManagementTaskssRepository>();
+            // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
             // Set Application scope Temp Path

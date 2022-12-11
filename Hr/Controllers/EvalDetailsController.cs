@@ -179,7 +179,11 @@ namespace Hr.Controllers
                     WelcomeRequest request3 = new WelcomeRequest();
                     request3.UserName = emprequestor.CEMPNAME;
                     request3.header = "ألاداء الوظيفي وميثاق ألاداء ";
+<<<<<<< HEAD
                     request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة   ل هذا العام ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+=======
+                    request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2022 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     request3.ToEmail = emprequestor.mail;
                     try
                     {
@@ -243,7 +247,11 @@ namespace Hr.Controllers
                             WelcomeRequest request3 = new WelcomeRequest();
                             request3.UserName = emprequestor.CEMPNAME;
                             request3.header = "ألاداء الوظيفي ميثاق ألاداء ";
+<<<<<<< HEAD
                             request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة   ل هذا العام ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+=======
+                            request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2021 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                             request3.ToEmail = emprequestor.mail;
                             try
                             {
@@ -321,7 +329,11 @@ namespace Hr.Controllers
                         WelcomeRequest request3 = new WelcomeRequest();
                         request3.UserName = emprequestor.CEMPNAME;
                         request3.header = "ألاداء الوظيفي ميثاق ألاداء ";
+<<<<<<< HEAD
                         request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة   ل هذا العام ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+=======
+                        request3.Details = "تم اعتماد ميثاق الأداء الوظيفي الخاص بك حسب دورة الأداء بالأمانة لعام 2021 ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                         request3.ToEmail = emprequestor.mail;
                         try
                         {

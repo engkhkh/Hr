@@ -6,6 +6,7 @@
 @model IEnumerable<Hr.Models.ViewModelEvalwithother>
 
 @{
+<<<<<<< HEAD
     ViewData["Title"] = "  ميثاق الاداء-كل الموظفين";
     //Layout = "~/Views/Shared/_Layout - Copy - Copy.cshtml";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,6 +21,13 @@
 <span id="spinner" style="display: none; font-size: 48px; color: yellowgreen;"><i class="fa fa-spinner fa-spin"></i></span>
 <div id="panel">
 </div>
+=======
+    ViewData["Title"] = " 2022 ميثاق الاداء-كل الموظفين";
+    //Layout = "~/Views/Shared/_Layout - Copy - Copy.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a target="_blank" class="btn-success" asp-action="pendinguser1111" asp-controller="ViewModelEvalwithother1">الطلبات المعلقة </a>
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 <table>
     <thead>
         <tr>
@@ -156,7 +164,10 @@
             <td>
                 <a asp-controller="ViewModelEvalwithother1" asp-action="Details" target="_blank" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">عرض  </a>
                 <a asp-controller="ViewModelEvalwithother1" asp-action="Detailsp" target="_blank" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success">طباعة  </a>
+<<<<<<< HEAD
                     <a asp-controller="ViewModelEvalwithother1" asp-action="Detail111111p00" target="_blank" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-primary">أزالة ألاعتماد  </a>
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.cemp.CEMPNO)
@@ -195,7 +206,11 @@
             </td>*@
             <td>
                 @*@Html.DisplayFor(modelItem => item.evalcomment2.dtapproved.Value.Year)*@
+<<<<<<< HEAD
                     @Html.DisplayFor(modelItem => item.AEvaluationEmp.year)
+=======
+                @TempData["GRADE1"].ToString()
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             </td>
         </tr>
         }
@@ -401,4 +416,7 @@
     <script src="~/DataTables/datatables.js"></script>*@
 
 
+<<<<<<< HEAD
 <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b

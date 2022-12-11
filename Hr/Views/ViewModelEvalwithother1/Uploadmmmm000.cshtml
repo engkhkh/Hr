@@ -1,14 +1,23 @@
 ﻿@model IEnumerable<Hr.Models.ViewModelEvalwithother>
 
 @{
+<<<<<<< HEAD
     ViewData["Title"] = "مراجعة الدرجات    ";
+=======
+    ViewData["Title"] = "عرض   ";
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @*<a asp-action="cr4" class="btn btn-success">عودة </a>*@
 <h1> </h1>
 
+<<<<<<< HEAD
 @*<a asp-action="Uploadmmmm01" class="btn btn-success">اعتماد المحضر</a>*@
 <form asp-action="Uploadmmmm000" asp-controller="ViewModelEvalwithother1" method="post">
+=======
+<a asp-action="Uploadmmmm01" class="btn btn-success">اعتماد المحضر</a>
+<form asp-action="Uploadmmmm0" asp-controller="ViewModelEvalwithother1" method="post">
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -47,6 +56,7 @@
             </div>
         </div>
         <!--<div class="row">
+<<<<<<< HEAD
         <div class="col-md-4">
 
             <div class="form-group">
@@ -84,6 +94,45 @@
                 </div>
             </div>
         </div>-->
+=======
+    <div class="col-md-4">
+
+        <div class="form-group">
+            الدرجة: <input id="txtId3" asp-for="c3" class="form-control" readonly="readonly" />
+        </div>
+        <div class="form-group">
+            الرتبة : <input id="txtName3" asp-for="c4" class="form-control" readonly="readonly" />
+        </div>
+        <div class="form-group">
+            القسم: <input id="txtCountry3" asp-for="c5" class="form-control" readonly="readonly" />
+        </div>-->
+        @*<div class="form-group">
+            <input type="submit" value="Update" class="btn btn-success btn-sm" />
+        </div>*@
+
+        <!--</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="form-group">
+                الادارة: <input id="txtId4" asp-for="c6" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                تاريخ التعيين : <input id="txtName4" asp-for="c7" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                اخر ترقية: <input id="txtCountry4" asp-for="c8" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                الدرجة من 100: <input id="txtCountry" asp-for="c9" type="number" min="0" max="100" autocomplete="off" required autofocus />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-success btn-sm" />
+            </div>
+        </div>
+    </div>-->
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
     </div>
 </form>
 <h2> الطلب </h2>
@@ -98,10 +147,17 @@
             </th>
             @*<th>
             رقم القرار
+<<<<<<< HEAD
             </th>
             <th>
             رقم الأعلان
             </th>*@
+=======
+        </th>
+        <th>
+            رقم الأعلان
+        </th>*@
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             <th>
                 رقم الموظف
             </th>
@@ -113,7 +169,11 @@
             </th>
             @*<th>
             الدرجة
+<<<<<<< HEAD
             </th>*@
+=======
+        </th>*@
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             <th>
                 المرتبة
             </th>
@@ -122,7 +182,11 @@
             </th>
             @*<th>
             الادارة
+<<<<<<< HEAD
             </th>*@
+=======
+        </th>*@
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             <th>
                 تاريخ الميلاد
             </th>
@@ -134,10 +198,17 @@
             </th>
             @* <th>
             الدورات
+<<<<<<< HEAD
             </th>
             <th>
             التقييم
             </th>*@
+=======
+        </th>
+        <th>
+            التقييم
+        </th>*@
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             <th>
                 درجة التطوير والتدريب
             </th>
@@ -145,16 +216,21 @@
                 درجة تقييم الأداء
             </th>
             <th>
+<<<<<<< HEAD
                   درجة المقابلة السابقة
             </th>
             <th>
                 ...
+=======
+                ادخال درجة المقابلة
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
+<<<<<<< HEAD
             <tr>
                 <td>
 
@@ -234,6 +310,76 @@
                 </td>
 
             </tr>
+=======
+        <tr>
+            <td>
+
+                @item.cemp.mobileno
+            </td>
+            <td>
+                @item.cemp.CEMPPASSWRD
+            </td>
+            @*<td>
+        @item.commite.commitedescession
+         </td>
+         <td>
+        @item.member.announce
+            </td>*@
+            <td>
+                @item.cemp.Cempid
+            </td>
+            <td>
+                @item.cemp.CEMPNAME
+            </td>
+            <td>
+                @item.cemp.CEMPJOBNAME
+            </td>
+            @*<td>
+            @item.cemp.grade
+        </td>*@
+            <td>
+                @item.cemp.CLSSNO
+            </td>
+            <td>
+                @item.cemp.DEP_NAME
+            </td>
+            @*<td>
+            @item.cemp.PARENTNAME
+        </td>*@
+        <td>
+            @item.cemp.CEMPBIRTHDATEHIJRA.Value.ToShortDateString()
+        </td>
+            <td>
+                @item.cemp.CEMPHIRINGDATEHIJRA.Value.ToShortDateString()
+            </td>
+            <td>
+                @item.cemp.CEMPLASTUPGRADEHIJRA.Value.ToShortDateString()
+            </td>
+            @*<td>
+           <p> <a asp-action="CreateB2" asp-controller="ViewModelEvalwithother1" target="_blank" class="btn-outline-success">أستعلام</a></p>
+
+        </td>
+        <td>
+            <p> <a asp-action="approveduser111" asp-controller="ViewModelEvalwithother1" target="_blank" class="btn-outline-success">أستعلام</a></p>
+        </td>*@
+        <td>
+            @*@item.gradetocourse0
+
+            <span style="color: #ff0000">@TempData["sumgrade"].ToString()</span>*@
+            @item.cemp.cbrowser
+        </td>
+            <td>
+                @item.AEvaluationEmp.tot3
+            </td>
+            <td>
+                @*<a asp-action="Create" class="btn btn-success">اضافة </a>*@
+                <a data-id="@item.cemp.EncryptedId" data-commit="@item.commite.commitedescession" data-announce="@item.member.announce" class="btn btn-primary btn-sm" href="#" id="btnEdit">ادخال درجة</a>
+                @*<a asp-action="Details" asp-route-id="@item.CourcesIdType" class="btn btn-success">تفاصيل</a>*@
+                @*<a asp-action="Delete" asp-route-id="@item.CourcesIdType">Delete</a>*@
+            </td>
+
+        </tr>
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
         }
     </tbody>
 </table>
@@ -249,7 +395,11 @@
             obj.CEMPPASSWRD1 = $(this).attr('data-announce');
 
             $.ajax({
+<<<<<<< HEAD
                 url: 'EditCustomer19',
+=======
+                url: 'EditCustomer1',
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                 data: JSON.stringify(obj),
                 type: 'POST',
                 dataType: 'html',
@@ -268,10 +418,13 @@
                     var c11 = JSON.parse(response).c11;
                     var c12 = JSON.parse(response).c12;
                     var c13 = JSON.parse(response).c13;
+<<<<<<< HEAD
                     var c100 = JSON.parse(response).c10;
                     var c110 = JSON.parse(response).c11;
                     var c120 = JSON.parse(response).c12;
                     var c130 = JSON.parse(response).c13;
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     $('#txtId').val(id);
                     $('#txtName').val(name);
                     $('#txtCountry').val(country);
@@ -285,10 +438,13 @@
                     $('#c11').val(c11);
                     $('#c12').val(c12);
                     $('#c13').val(c13);
+<<<<<<< HEAD
                     $('#c100').val(c100);
                     $('#c110').val(c110);
                     $('#c120').val(c120);
                     $('#c130').val(c130);
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     $("#MyPopup").modal("show");
                 }
             });
@@ -306,6 +462,7 @@
                 <h4 class="modal-title">بيانات الموظف</h4>
             </div>
             <div class="modal-body">
+<<<<<<< HEAD
                 <form asp-action="Updatez9" asp-controller="ViewModelEvalwithother1" method="post">
                     <div class="container">
                         <div class="row">
@@ -313,6 +470,15 @@
                             <input id="c11" name="c11" hidden />
                             <input id="c12" name="c12" hidden />
                             <input id="c13" name="c13" hidden />
+=======
+                <form asp-action="Updatez" asp-controller="ViewModelEvalwithother1" method="post">
+                    <div class="container">
+                        <div class="row">
+                            <input id="c10"  name="c10" hidden />
+                            <input id="c11"  name="c11" hidden />
+                            <input id="c12"  name="c12" hidden />
+                            <input id="c13"  name="c13" hidden />
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                             <div class="col-md-4">
 
                                 <div class="form-group">
@@ -322,6 +488,7 @@
                                     الاسم: <input id="txtName" name="txtName" class="form-control" readonly="readonly" />
                                 </div>
                                 <div class="form-group">
+<<<<<<< HEAD
                                     المسمي الوظيفي: <input id="txtCountry" class="form-control" readonly="readonly" />
                                 </div>
                                  <div class="form-group">
@@ -332,6 +499,12 @@
                                 </div>
                                 <div class="form-group">
                                      رقم الاعلان الجديد : <input id="txtCountry0" name="txtCountry0" type="number"  required autofocus />
+=======
+                                    المسمي الوظيفي: <input id="txtCountry"  class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    الدرجة من 100: <input id="txtCountry0" name="txtCountry0" type="number" max="100" step=".001"  required autofocus />
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                                 </div>
 
 
@@ -340,11 +513,19 @@
 
 
                         </div>
+<<<<<<< HEAD
 
                         <div class="row">
                             <div class="col-md-4">
 
 
+=======
+                       
+                        <div class="row">
+                            <div class="col-md-4">
+
+                               
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                                 <div class="form-group">
                                     <input type="submit" value="حفظ" class="btn btn-success btn-sm" />
                                 </div>
@@ -481,7 +662,11 @@
         $('#table').DataTable({
             dom: 'Bfrtip',
             buttons: [
+<<<<<<< HEAD
                     /*'copy', 'csv', 'excel', 'pdf'*/, 'print', 'excel'
+=======
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",
@@ -616,7 +801,11 @@
         $('#table2').DataTable({
             dom: 'Bfrtip',
             buttons: [
+<<<<<<< HEAD
                     /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+=======
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",
@@ -751,7 +940,11 @@
         $('#table3').DataTable({
             dom: 'Bfrtip',
             buttons: [
+<<<<<<< HEAD
                     /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+=======
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",
@@ -886,7 +1079,11 @@
         $('#table4').DataTable({
             dom: 'Bfrtip',
             buttons: [
+<<<<<<< HEAD
                     /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+=======
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",
@@ -1021,7 +1218,11 @@
         $('#table5').DataTable({
             dom: 'Bfrtip',
             buttons: [
+<<<<<<< HEAD
                     /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+=======
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",
@@ -1156,7 +1357,11 @@
         $('#table6').DataTable({
             dom: 'Bfrtip',
             buttons: [
+<<<<<<< HEAD
                     /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+=======
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",
@@ -1291,7 +1496,11 @@
         $('#table7').DataTable({
             dom: 'Bfrtip',
             buttons: [
+<<<<<<< HEAD
                     /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+=======
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",

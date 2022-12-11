@@ -125,7 +125,13 @@
             <th>
                 التقييم
             </th>
+<<<<<<< HEAD
           
+=======
+            <th>
+                تاريخ ألاعتماد 
+            </th>
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             <th>
                 سنة 
             </th>
@@ -170,6 +176,7 @@
                 @Html.DisplayFor(modelItem => item.cemp.MANAGERNAME)
             </td>
             <td>
+<<<<<<< HEAD
                     @Html.DisplayFor(modelItem => item.AEvaluationEmp.tot1)
 
             </td>
@@ -180,6 +187,21 @@
         <td>
             @*@Html.DisplayFor(modelItem => item.evalcomment2.dtapproved.Value.Year)*@
                     @Html.DisplayFor(modelItem => item.AEvaluationEmp.year)
+=======
+                     @TempData["GRADE"].ToString()
+
+            </td>
+            <td>
+                    @TempData["GRADEN"].ToString()
+                </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.evalcomment2.dtapproved)*@
+                @TempData["GRADEN1"].ToString()
+            </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.evalcomment2.dtapproved.Value.Year)*@
+            @TempData["GRADE1"].ToString()
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
         </td>
         </tr>
         }

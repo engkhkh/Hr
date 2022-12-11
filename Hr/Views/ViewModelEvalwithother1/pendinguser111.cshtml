@@ -6,7 +6,11 @@
 @model IEnumerable<Hr.Models.ViewModelEvalwithother>
 
 @{
+<<<<<<< HEAD
     ViewData["Title"] = "تقييم الاداء-كل الموظفين   طلبات معلقة ";
+=======
+    ViewData["Title"] = "تقييم الاداء-كل الموظفين 2021  طلبات معلقة ";
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
     //Layout = "~/Views/Shared/_Layout - Copy - Copy.cshtml";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -150,10 +154,14 @@
 
             <!--</td>-->
             <td>
+<<<<<<< HEAD
                 <a asp-controller="ViewModelEvalwithother1" asp-action="Detail111111" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" target="_blank" class="btn btn-success">عرض الطلب</a>|
                     <a data-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-primary" href="#" id="btnEdit">تحديث المدير المباشر</a>|
                     <a data-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success" href="##" id="btnEdit0">تحديث المدير المعتمد</a>
                 
+=======
+                <a asp-controller="ViewModelEvalwithother1" asp-action="Detail111111" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" target="_blank" class="btn btn-success">عرض  </a>
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.cemp.CEMPNO)
@@ -192,8 +200,12 @@
             </td>
             <td>
                 @*@Html.DisplayFor(modelItem => item.evalcomment2.dtapproved.Value.Year)*@
+<<<<<<< HEAD
             @*    @TempData["GRADE1"].ToString()*@
                     @Html.DisplayFor(modelItem => item.AEvaluationEmp.year)
+=======
+                @TempData["GRADE1"].ToString()
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             </td>
             <td>
                 @if (item.evalDetail2.OfferedRequestTo3 == "0")
@@ -214,6 +226,7 @@
     </tbody>
 </table>
 
+<<<<<<< HEAD
 
 
 
@@ -461,6 +474,41 @@
 </div>
 
 
+=======
+@*</div>*@
+
+@*<div id="pager" class="pager">
+        <br />
+        <img src="~/Content/first.png" />
+        <img src="~/Content/first.png" class="first" />
+        <img src="~/Content/prev.png" class="prev" />
+        <input type="text" class="pagedisplay" />
+        <img src="~/Content/next.png" class="next" />
+        <img src="~/Content/last.png" class="last" />
+        <select class="pagesize">
+            <option selected="selected" value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+        </select>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#empTable")
+                .tablesorter({ widthFixed: true })
+                .tablesorterPager({ container: $("#pager") });
+            $("#empTable").bind("sortStart", function () {
+                $("#sortMsg").html('Sorting');
+            }).bind("sortEnd", function () {
+                $("#sortMsg").html('');
+            });
+
+            //Hide/delete row on click.
+            $("#empTable img").click(function () { $(this).parent().parent().hide(); });
+        });
+    </script>*@
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
         try {
@@ -620,6 +668,7 @@
 
 <script src="~/DataTables (1)/pdfmake-0.1.36/vfs_fonts.js"></script>
 <script src="~/DataTables (1)/JSZip-2.5.0/jszip.js"></script>
+<<<<<<< HEAD
 <link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
 <link href="~/js/chosen.css" rel="stylesheet" />
 <link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
@@ -633,6 +682,8 @@
 <script src="~/lib/globalize/globalize-runtime.js"></script>
 <script src="~/lib/globalize/date.js"></script>
 <link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 @*<script src="~/js/jquery-1.4.1.min.js"></script>
     <script src="~/js/jquery.tablesorter.min.js"></script>
     <script src="~/js/jquery.tablesorter.pager.js"></script>*@
@@ -640,6 +691,7 @@
     <script src="~/DataTables/datatables.js"></script>*@
 
 
+<<<<<<< HEAD
 <script type="text/javascript">
     $('#MyPopup').on('shown.bs.modal', function () {
         $('.chosen-select', this).chosen();
@@ -664,3 +716,5 @@
         $('.modal:visible').each(centerModal);
     });
 </script>
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b

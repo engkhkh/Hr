@@ -64,11 +64,14 @@ namespace Hr.Controllers
             _AEvaluationGoals1 = AEvaluationGoals1;
             _hosting = hosting;
         }
+<<<<<<< HEAD
 
         //public ViewModelEvalwithother1Controller()
         //{
         //}
 
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
         [HttpGet]
        [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
         public IActionResult Eval()
@@ -2590,7 +2593,11 @@ namespace Hr.Controllers
                 row["Parm6"] = dr[0]["SUM_SALARY"].ToString();
                 row["Parm7"] = dr[0]["JOBNAME"].ToString();
                 row["Parm8"] = _context.Payrollrs.Max(u => u.Id);
+<<<<<<< HEAD
                 row["Parm9"] = x;
+=======
+                row["Parm9"] = x; ;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
 
                 dt.Rows.Add(row);
@@ -6633,8 +6640,11 @@ namespace Hr.Controllers
             //List<memberszz> memberszz = _context.Memberszz.Where(x => x.userid == HttpContext.Session.GetString("username") && x.announce == announce).ToList();
             List<members> members = _context.Members.Where(X =>X.userid != "" && X.username != "" && X.announce == announce0).ToList();
             List<commite> commites = _context.commite.Where(z => z.userid == HttpContext.Session.GetString("username") && z.status == 0 && z.commitedescession == commit&&z.postion!= "سكرتير اللجنة ").ToList();
+<<<<<<< HEAD
             //var ann = _context.Members.Where(x => x.announce == announce0).FirstOrDefault();
             //List<PersnolEmpGrade> persnolEmpGrades = _context.PersnolEmpGrade.Where(z => z.empdate == ann.dateexcute1).ToList();
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             List<Cemp> cemps = _context.Cemps.ToList();
             List<AEvaluationEmp> AEvaluationEmps = _context.AEvaluationEmps.ToList();
             List<AEvaluationGoal> AEvaluationGoals = _context.AEvaluationGoals.ToList();
@@ -6671,7 +6681,11 @@ namespace Hr.Controllers
                               //from j in table3.ToList()
                           join ff in EvalDetails2 on e0.Idd equals ff.CourcesIdoffered into table4f
                           from ff in table4f.ToList()
+<<<<<<< HEAD
                           where ff.OfferedRequestTypeSatus == 1 && e0.CovenantYear==2022
+=======
+                          where ff.OfferedRequestTypeSatus == 1
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                           //where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join hf in EvalRequestTypeIds2 on e0.Idd equals hf.CourcesIdoffered into table5f
                           from hf in table5f.ToList()
@@ -6689,10 +6703,15 @@ namespace Hr.Controllers
                           join yy in commites on f.commitedescession equals yy.commitedescession into table555
                           from yy in table555.Distinct().ToList()
                           where yy.status == 0 && yy.commitedescession == commit &&(f.status==0&&yy.postion== "رئيس اللجنة")||(f.status2==0&&yy.postion== "نائب رئيس اللجنة ")||(f.status3==0&&yy.postion== "عضو اللجنة1") || (f.status4 == 0 && yy.postion == "عضو اللجنة2") || (f.status5 == 0 && yy.postion == "عضو اللجنة3")
+<<<<<<< HEAD
                           //join yyx in persnolEmpGrades on 0 equals 0 into table500
                           //from yyx in table500.Distinct().ToList()
                           //where yyx.empnational != gg.CEMPPASSWRD
                           // from e in ACourcesMasters
+=======
+
+                         // from e in ACourcesMasters
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                           //join i in ACourcesMasters on gg.Cempid equals i.Cempid into table2
                           //from i in table2.ToList()
                           //    // where i.Cempid == HttpContext.Session.GetString("empid")
@@ -6718,12 +6737,21 @@ namespace Hr.Controllers
                           //join z in ACourcesNames on i.CourcesId equals z.CourcesId into table9
                           //from z in table9.ToList()
 
+<<<<<<< HEAD
                           //join h in membersz on e.Cempid equals h.userid into table5
                           //from h in table5.ToList()
                           //where h.status == 0
                           //join y in memberszz on f.announce equals y.announce into table55
                           //from y in table55.Distinct().ToList()
                           //where y.status == 0 && e.Cempid != y.announcetxt && f.commitedescession == y.commitedescession
+=======
+                              //join h in membersz on e.Cempid equals h.userid into table5
+                              //from h in table5.ToList()
+                              //where h.status == 0
+                              //join y in memberszz on f.announce equals y.announce into table55
+                              //from y in table55.Distinct().ToList()
+                              //where y.status == 0 && e.Cempid != y.announcetxt && f.commitedescession == y.commitedescession
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
 
 
@@ -6863,6 +6891,7 @@ namespace Hr.Controllers
                     // TempData["sumgrade"] = sumgrade;
                     emp.cemp.cbrowser = sumgrade.ToString();
                 }
+<<<<<<< HEAD
                 // emp.gradetocourse0 = sumgrade;
                 // emp.cemp.cbrowser = sumgrade.ToString();
                 //emp.ACourcesMasters.gradetocourse0 = sumgrade;
@@ -7568,6 +7597,343 @@ namespace Hr.Controllers
 
             return View("test0");
         }
+=======
+               // emp.gradetocourse0 = sumgrade;
+               // emp.cemp.cbrowser = sumgrade.ToString();
+                //emp.ACourcesMasters.gradetocourse0 = sumgrade;
+                List<AEvaluationGoal> vAEvaluationGoals = _context.AEvaluationGoals.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantGoalsSeq).ToList();
+                    av1 = vAEvaluationGoals[0];
+                    av2 = vAEvaluationGoals[1];
+                    av3 = vAEvaluationGoals[2];
+                    av4 = vAEvaluationGoals[3];
+                    if (vAEvaluationGoals.Count > 4)
+                    {
+                        av5 = vAEvaluationGoals[4];
+
+                    }
+                    if (vAEvaluationGoals.Count > 5)
+                    {
+                        av6 = vAEvaluationGoals[5];
+                    }
+                    List<AEvaluationCompetenciesM> vAEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantCompetenciesSeq).ToList();
+                    am1 = vAEvaluationCompetenciesMs[0];
+                    am2 = vAEvaluationCompetenciesMs[1];
+                    am3 = vAEvaluationCompetenciesMs[2];
+                    am4 = vAEvaluationCompetenciesMs[3];
+                    am5 = vAEvaluationCompetenciesMs[4];
+                    am6 = vAEvaluationCompetenciesMs[5];
+                    if (vAEvaluationCompetenciesMs.Count > 6)
+                    {
+
+                        am7 = vAEvaluationCompetenciesMs[6];
+                    }
+
+                    List<AEvaluationCompetenciesD> vAEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantCompetenciesDSeq).ThenBy(d => d.CovenantCompetenciesDSeqD).ToList();
+                    ad1 = vAEvaluationCompetenciesDs[0];
+                    ad2 = vAEvaluationCompetenciesDs[1];
+                    ad3 = vAEvaluationCompetenciesDs[2];
+                    ad4 = vAEvaluationCompetenciesDs[3];
+                    ad5 = vAEvaluationCompetenciesDs[4];
+                    ad6 = vAEvaluationCompetenciesDs[5];
+                    ad7 = vAEvaluationCompetenciesDs[6];
+                    ad8 = vAEvaluationCompetenciesDs[7];
+                    ad9 = vAEvaluationCompetenciesDs[8];
+                    ad10 = vAEvaluationCompetenciesDs[9];
+                    ad11 = vAEvaluationCompetenciesDs[10];
+                    ad12 = vAEvaluationCompetenciesDs[11];
+                    ad13 = vAEvaluationCompetenciesDs[12];
+                    ad14 = vAEvaluationCompetenciesDs[13];
+                    ad15 = vAEvaluationCompetenciesDs[14];
+                    ad16 = vAEvaluationCompetenciesDs[15];
+                    ad17 = vAEvaluationCompetenciesDs[16];
+                    ad18 = vAEvaluationCompetenciesDs[17];
+                    if (vAEvaluationCompetenciesDs.Count > 18)
+                    {
+
+                        ad19 = vAEvaluationCompetenciesDs[18];
+                        ad20 = vAEvaluationCompetenciesDs[19];
+                        ad21 = vAEvaluationCompetenciesDs[20];
+                        ad22 = vAEvaluationCompetenciesDs[21];
+                        ad23 = vAEvaluationCompetenciesDs[22];
+                    }
+                    if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 5)
+                    {
+                        // calculation 
+
+                        emp.AEvaluationEmp.tot1 = Convert.ToString(((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30));
+                        emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                        emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+                       ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 75 " :
+                       ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+                       ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "0";
+                        emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+                       ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 3 " :
+                       ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+                       ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
+
+
+                        //OracleConnection Con5 = new OracleConnection(TNS1);
+                        //Con5.Open();
+                        //OracleCommand cmd = new OracleCommand();
+                        //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('"+emp.cemp.CEMPPASSWRD+"', '"+emp.cemp.CEMPNO+"','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '"+ emp.AEvaluationEmp.tot1 + "', "+Convert.ToInt32(emp.AEvaluationEmp.tot4)+") ";
+                        ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        //cmd.Connection = Con5;
+                        //cmd.ExecuteNonQuery();
+                        //Con5.Close();
+
+                        //return View(Records);
+                    }
+                    else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 6)
+                    {
+                        // calculation 
+
+                        emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
+                        emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                        emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "75 " :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "0";
+
+                        emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "3 " :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
+
+
+                        //OracleConnection Con5 = new OracleConnection(TNS1);
+                        //Con5.Open();
+                        //OracleCommand cmd = new OracleCommand();
+                        //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                        ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        //cmd.Connection = Con5;
+                        //cmd.ExecuteNonQuery();
+                        //Con5.Close();
+                        //return View(Records);
+                    }
+                    else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
+                    {
+                        // calculation 
+
+                        emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                        emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                        emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                        emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                         ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                         ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                         ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                        //OracleConnection Con5 = new OracleConnection(TNS1);
+                        //Con5.Open();
+                        //OracleCommand cmd = new OracleCommand();
+                        //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                        ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        //cmd.Connection = Con5;
+                        //cmd.ExecuteNonQuery();
+                        //Con5.Close();
+                        //return View(Records);
+                    }
+                    else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
+                    {
+                        // calculation 
+
+                        emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                        emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                        emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                        emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                        //OracleConnection Con5 = new OracleConnection(TNS1);
+                        //Con5.Open();
+                        //OracleCommand cmd = new OracleCommand();
+                        //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                        ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        //cmd.Connection = Con5;
+                        //cmd.ExecuteNonQuery();
+                        //Con5.Close();
+                        //return View(Records);
+                    }
+                    else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
+                    {
+                        // calculation 
+
+                        emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                        emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                        emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                        emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                        //OracleConnection Con5 = new OracleConnection(TNS1);
+                        //Con5.Open();
+                        //OracleCommand cmd = new OracleCommand();
+                        //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                        ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        //cmd.Connection = Con5;
+                        //cmd.ExecuteNonQuery();
+                        //Con5.Close();
+
+                    }
+                    else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 4)
+                    {
+                        // calculation 
+
+                        emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
+                        emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                        ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                        emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+                 ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 75 " :
+                 ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+                 ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 0";
+
+                        emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+                  ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 3 " :
+                  ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+                  ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 9";
+
+
+                        //OracleConnection Con5 = new OracleConnection(TNS1);
+                        //Con5.Open();
+                        //OracleCommand cmd = new OracleCommand();
+                        //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                        ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        //cmd.Connection = Con5;
+                        //cmd.ExecuteNonQuery();
+                        //Con5.Close();
+                        //return View(Records);
+                    }
+                    else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
+                    {
+                        // calculation 
+
+                        emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                        emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                        emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                        emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                        //OracleConnection Con5 = new OracleConnection(TNS1);
+                        //Con5.Open();
+                        //OracleCommand cmd = new OracleCommand();
+                        //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                        ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        //cmd.Connection = Con5;
+                        //cmd.ExecuteNonQuery();
+                        //Con5.Close();
+                        //return View(Records);
+                    }
+                    else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
+                    {
+                        // calculation 
+
+                        emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                        emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                        emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                        emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                          ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                          ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                          ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                        //OracleConnection Con5 = new OracleConnection(TNS1);
+                        //Con5.Open();
+                        //OracleCommand cmd = new OracleCommand();
+                        //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                        ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        //cmd.Connection = Con5;
+                        //cmd.ExecuteNonQuery();
+                        //Con5.Close();
+                        //return View(Records);
+                    }
+                    else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
+                    {
+                        // calculation 
+
+                        emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                        emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                        emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                        ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                        emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                       ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                        //OracleConnection Con5 = new OracleConnection(TNS1);
+                        //Con5.Open();
+                        //OracleCommand cmd = new OracleCommand();
+                        //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                        ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                        //cmd.Connection = Con5;
+                        //cmd.ExecuteNonQuery();
+                        //Con5.Close();
+                        //return View(Records);
+
+
+                    }
+                }
+            
+                return View(Records);
+        }
+
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
         [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
         public IActionResult Uploadmmmm000(string announce)
         {
@@ -7605,9 +7971,13 @@ namespace Hr.Controllers
             //List<membersz> membersz = _context.Membersz.Where(x => x.userid == HttpContext.Session.GetString("username") && x.announce == announce).ToList();
             //List<memberszz> memberszz = _context.Memberszz.Where(x => x.userid == HttpContext.Session.GetString("username") && x.announce == announce).ToList();
             List<members> members = _context.Members.Where(X => X.userid != "" && X.username != "" && X.announce == announce0).ToList();
+<<<<<<< HEAD
             List<commite> commites = _context.commite.Where(z => z.userid == HttpContext.Session.GetString("username") && z.status == 0 && z.commitedescession == commit /*&& z.postion != "سكرتير اللجنة "*/).ToList();
             //var ann = _context.Members.Where(x => x.announce == announce0).FirstOrDefault();
             //List<PersnolEmpGrade> persnolEmpGrades = _context.PersnolEmpGrade.Where(z => z.empdate == ann.dateexcute1).ToList();
+=======
+            List<commite> commites = _context.commite.Where(z => z.userid == HttpContext.Session.GetString("username") && z.status == 0 && z.commitedescession == commit && z.postion != "سكرتير اللجنة ").ToList();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             List<Cemp> cemps = _context.Cemps.ToList();
             List<AEvaluationEmp> AEvaluationEmps = _context.AEvaluationEmps.ToList();
             List<AEvaluationGoal> AEvaluationGoals = _context.AEvaluationGoals.ToList();
@@ -7644,7 +8014,11 @@ namespace Hr.Controllers
                               //from j in table3.ToList()
                           join ff in EvalDetails2 on e0.Idd equals ff.CourcesIdoffered into table4f
                           from ff in table4f.ToList()
+<<<<<<< HEAD
                           where ff.OfferedRequestTypeSatus == 1 && e0.CovenantYear == 2022
+=======
+                          where ff.OfferedRequestTypeSatus == 1
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                           //where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join hf in EvalRequestTypeIds2 on e0.Idd equals hf.CourcesIdoffered into table5f
                           from hf in table5f.ToList()
@@ -7661,10 +8035,15 @@ namespace Hr.Controllers
                               //where (f.OfferedRequestTo == HttpContext.Session.GetString("empid") && f.OfferedRequestTo3 == "0") || (f.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && f.OfferedRequestTo4 == "0") || (f.Offeredoption == HttpContext.Session.GetString("empid") && f.OfferedRequestTo5 == "0")
                           join yy in commites on f.commitedescession equals yy.commitedescession into table555
                           from yy in table555.Distinct().ToList()
+<<<<<<< HEAD
                           where yy.status == 0 && yy.commitedescession == commit && /*(f.status == 0 && yy.postion == "رئيس اللجنة") || (f.status2 == 0 && yy.postion == "نائب رئيس اللجنة ") || (f.status3 == 0 && yy.postion == "عضو اللجنة1") || (f.status4 == 0 && yy.postion == "عضو اللجنة2") || (f.status5 == 0 && yy.postion == "عضو اللجنة3") ||*/ ( yy.postion == "سكرتير اللجنة ")
                           //join yyx in persnolEmpGrades on 0 equals 0 into table500
                           //from yyx in table500.Distinct().ToList()
                           //where yyx.empnational!=gg.CEMPPASSWRD
+=======
+                          where yy.status == 0 && yy.commitedescession == commit && (f.status == 0 && yy.postion == "رئيس اللجنة") || (f.status2 == 0 && yy.postion == "نائب رئيس اللجنة ") || (f.status3 == 0 && yy.postion == "عضو اللجنة1") || (f.status4 == 0 && yy.postion == "عضو اللجنة2") || (f.status5 == 0 && yy.postion == "عضو اللجنة3")
+
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                           // from e in ACourcesMasters
                           //join i in ACourcesMasters on gg.Cempid equals i.Cempid into table2
                           //from i in table2.ToList()
@@ -7758,6 +8137,7 @@ namespace Hr.Controllers
             {
                 var stringId = emp.cemp.Cempid.ToString();
                 emp.cemp.EncryptedId = _protector.Protect(stringId);
+<<<<<<< HEAD
                 if(_context.PersnolEmpGrade.Where(zx => zx.empnational == emp.cemp.CEMPPASSWRD).OrderBy(z => z.seriad).LastOrDefault() != null)
                 {
                     emp.cemp.tot6 = Convert.ToDecimal(_context.PersnolEmpGrade.Where(zx => zx.empnational == emp.cemp.CEMPPASSWRD).OrderBy(z=>z.seriad).LastOrDefault().empgrade);
@@ -7765,6 +8145,10 @@ namespace Hr.Controllers
                 }
                 sumgrade = 0.0;
                 ACourcesMasters = _context.ACourcesMasters.Where(e => e.CourcesEndDate.Date >= Convert.ToDateTime(emp.cemp.CEMPLASTUPGRADEHIJRA).Date && e.CourcesEndDate.Date <= (_context.Members.Where(x => x.announce == announce).FirstOrDefault().dateexcute1.Value.Date) && e.Cempid == emp.cemp.Cempid).ToList();
+=======
+                sumgrade = 0.0;
+                ACourcesMasters = _context.ACourcesMasters.Where(e => e.CourcesEndDate.Date >= Convert.ToDateTime(emp.cemp.CEMPLASTUPGRADEHIJRA).Date && e.Cempid == emp.cemp.Cempid).ToList();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                 foreach (var emp0 in ACourcesMasters.ToList())
                 {
                     if (_context.MasterRequestTypeIds.Where(z => z.COURCES_IDMASTER == emp0.CourcesIdmaster && z.MasterRequestType == 1).FirstOrDefault() != null)
@@ -7833,7 +8217,11 @@ namespace Hr.Controllers
                 if (sumgrade >= 100.00)
                 {
                     //TempData["sumgrade"] = "100.00";
+<<<<<<< HEAD
                     emp.cemp.cbrowser = "100";
+=======
+                    emp.cemp.cbrowser = "100.00";
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
                 }
                 else
@@ -7844,6 +8232,7 @@ namespace Hr.Controllers
                 // emp.gradetocourse0 = sumgrade;
                 // emp.cemp.cbrowser = sumgrade.ToString();
                 //emp.ACourcesMasters.gradetocourse0 = sumgrade;
+<<<<<<< HEAD
                 var emp01 = _context.AEvaluationEmps.Where(x => x.Empno == emp.AEvaluationEmp.Empno) /*&&(x.year=="2021")*/.OrderBy(x => x.Idd).LastOrDefault();
                 if (emp01 != null)
                 {
@@ -8536,6 +8925,335 @@ namespace Hr.Controllers
                     ViewBag.mesg = "لايوجد طلبات تقييم للاداء مرفوعة علي النظام    .";
                 }
 
+=======
+                List<AEvaluationGoal> vAEvaluationGoals = _context.AEvaluationGoals.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantGoalsSeq).ToList();
+                av1 = vAEvaluationGoals[0];
+                av2 = vAEvaluationGoals[1];
+                av3 = vAEvaluationGoals[2];
+                av4 = vAEvaluationGoals[3];
+                if (vAEvaluationGoals.Count > 4)
+                {
+                    av5 = vAEvaluationGoals[4];
+
+                }
+                if (vAEvaluationGoals.Count > 5)
+                {
+                    av6 = vAEvaluationGoals[5];
+                }
+                List<AEvaluationCompetenciesM> vAEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantCompetenciesSeq).ToList();
+                am1 = vAEvaluationCompetenciesMs[0];
+                am2 = vAEvaluationCompetenciesMs[1];
+                am3 = vAEvaluationCompetenciesMs[2];
+                am4 = vAEvaluationCompetenciesMs[3];
+                am5 = vAEvaluationCompetenciesMs[4];
+                am6 = vAEvaluationCompetenciesMs[5];
+                if (vAEvaluationCompetenciesMs.Count > 6)
+                {
+
+                    am7 = vAEvaluationCompetenciesMs[6];
+                }
+
+                List<AEvaluationCompetenciesD> vAEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantCompetenciesDSeq).ThenBy(d => d.CovenantCompetenciesDSeqD).ToList();
+                ad1 = vAEvaluationCompetenciesDs[0];
+                ad2 = vAEvaluationCompetenciesDs[1];
+                ad3 = vAEvaluationCompetenciesDs[2];
+                ad4 = vAEvaluationCompetenciesDs[3];
+                ad5 = vAEvaluationCompetenciesDs[4];
+                ad6 = vAEvaluationCompetenciesDs[5];
+                ad7 = vAEvaluationCompetenciesDs[6];
+                ad8 = vAEvaluationCompetenciesDs[7];
+                ad9 = vAEvaluationCompetenciesDs[8];
+                ad10 = vAEvaluationCompetenciesDs[9];
+                ad11 = vAEvaluationCompetenciesDs[10];
+                ad12 = vAEvaluationCompetenciesDs[11];
+                ad13 = vAEvaluationCompetenciesDs[12];
+                ad14 = vAEvaluationCompetenciesDs[13];
+                ad15 = vAEvaluationCompetenciesDs[14];
+                ad16 = vAEvaluationCompetenciesDs[15];
+                ad17 = vAEvaluationCompetenciesDs[16];
+                ad18 = vAEvaluationCompetenciesDs[17];
+                if (vAEvaluationCompetenciesDs.Count > 18)
+                {
+
+                    ad19 = vAEvaluationCompetenciesDs[18];
+                    ad20 = vAEvaluationCompetenciesDs[19];
+                    ad21 = vAEvaluationCompetenciesDs[20];
+                    ad22 = vAEvaluationCompetenciesDs[21];
+                    ad23 = vAEvaluationCompetenciesDs[22];
+                }
+                if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString(((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "0";
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('"+emp.cemp.CEMPPASSWRD+"', '"+emp.cemp.CEMPNO+"','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '"+ emp.AEvaluationEmp.tot1 + "', "+Convert.ToInt32(emp.AEvaluationEmp.tot4)+") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "75 " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "3 " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 75 " :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 3 " :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+
+
+                }
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             }
 
             return View(Records);
@@ -8639,7 +9357,11 @@ namespace Hr.Controllers
                               //from j in table3.ToList()
                           join ff in EvalDetails2 on e0.Idd equals ff.CourcesIdoffered into table4f
                           from ff in table4f.ToList()
+<<<<<<< HEAD
                           where ff.OfferedRequestTypeSatus == 1 && e0.CovenantYear==2022
+=======
+                          where ff.OfferedRequestTypeSatus == 1
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                           //where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join hf in EvalRequestTypeIds2 on e0.Idd equals hf.CourcesIdoffered into table5f
                           from hf in table5f.ToList()
@@ -8910,6 +9632,7 @@ namespace Hr.Controllers
                     // TempData["sumgrade"] = sumgrade;
                     emp.cemp.cbrowser = sumgrade.ToString();
                 }
+<<<<<<< HEAD
                 var emp01 = _context.AEvaluationEmps.Where(x => x.Empno == emp.AEvaluationEmp.Empno) /*&&(x.year=="2021")*/.OrderBy(x => x.Idd).LastOrDefault();
                 if (emp01 != null)
                 {
@@ -9606,6 +10329,340 @@ namespace Hr.Controllers
                     ViewBag.mesg = "لايوجد طلبات تقييم للاداء مرفوعة علي النظام    .";
                 }
 
+=======
+                // emp.gradetocourse0 = sumgrade;
+                // emp.cemp.cbrowser = sumgrade.ToString();
+                //emp.ACourcesMasters.gradetocourse0 = sumgrade;
+                List<AEvaluationGoal> vAEvaluationGoals = _context.AEvaluationGoals.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantGoalsSeq).ToList();
+                av1 = vAEvaluationGoals[0];
+                av2 = vAEvaluationGoals[1];
+                av3 = vAEvaluationGoals[2];
+                av4 = vAEvaluationGoals[3];
+                if (vAEvaluationGoals.Count > 4)
+                {
+                    av5 = vAEvaluationGoals[4];
+
+                }
+                if (vAEvaluationGoals.Count > 5)
+                {
+                    av6 = vAEvaluationGoals[5];
+                }
+                List<AEvaluationCompetenciesM> vAEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantCompetenciesSeq).ToList();
+                am1 = vAEvaluationCompetenciesMs[0];
+                am2 = vAEvaluationCompetenciesMs[1];
+                am3 = vAEvaluationCompetenciesMs[2];
+                am4 = vAEvaluationCompetenciesMs[3];
+                am5 = vAEvaluationCompetenciesMs[4];
+                am6 = vAEvaluationCompetenciesMs[5];
+                if (vAEvaluationCompetenciesMs.Count > 6)
+                {
+
+                    am7 = vAEvaluationCompetenciesMs[6];
+                }
+
+                List<AEvaluationCompetenciesD> vAEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantCompetenciesDSeq).ThenBy(d => d.CovenantCompetenciesDSeqD).ToList();
+                ad1 = vAEvaluationCompetenciesDs[0];
+                ad2 = vAEvaluationCompetenciesDs[1];
+                ad3 = vAEvaluationCompetenciesDs[2];
+                ad4 = vAEvaluationCompetenciesDs[3];
+                ad5 = vAEvaluationCompetenciesDs[4];
+                ad6 = vAEvaluationCompetenciesDs[5];
+                ad7 = vAEvaluationCompetenciesDs[6];
+                ad8 = vAEvaluationCompetenciesDs[7];
+                ad9 = vAEvaluationCompetenciesDs[8];
+                ad10 = vAEvaluationCompetenciesDs[9];
+                ad11 = vAEvaluationCompetenciesDs[10];
+                ad12 = vAEvaluationCompetenciesDs[11];
+                ad13 = vAEvaluationCompetenciesDs[12];
+                ad14 = vAEvaluationCompetenciesDs[13];
+                ad15 = vAEvaluationCompetenciesDs[14];
+                ad16 = vAEvaluationCompetenciesDs[15];
+                ad17 = vAEvaluationCompetenciesDs[16];
+                ad18 = vAEvaluationCompetenciesDs[17];
+                if (vAEvaluationCompetenciesDs.Count > 18)
+                {
+
+                    ad19 = vAEvaluationCompetenciesDs[18];
+                    ad20 = vAEvaluationCompetenciesDs[19];
+                    ad21 = vAEvaluationCompetenciesDs[20];
+                    ad22 = vAEvaluationCompetenciesDs[21];
+                    ad23 = vAEvaluationCompetenciesDs[22];
+                }
+                if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString(((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "0";
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('"+emp.cemp.CEMPPASSWRD+"', '"+emp.cemp.CEMPNO+"','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '"+ emp.AEvaluationEmp.tot1 + "', "+Convert.ToInt32(emp.AEvaluationEmp.tot4)+") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "75 " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "3 " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 75 " :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 3 " :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+
+
+                }
+
+                emp.cemp.tot7 = Convert.ToDecimal(emp.AEvaluationEmp.tot3) * 30 / 100 + Convert.ToDecimal(emp.cemp.cbrowser) * 30 / 100 + Convert.ToDecimal(emp.cemp.tot6) * 40 / 100;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             }
 
             return View(Records);
@@ -9697,7 +10754,11 @@ namespace Hr.Controllers
                               //from j in table3.ToList()
                           join ff in EvalDetails2 on e0.Idd equals ff.CourcesIdoffered into table4f
                           from ff in table4f.ToList()
+<<<<<<< HEAD
                           where ff.OfferedRequestTypeSatus == 1 && e0.CovenantYear==2022
+=======
+                          where ff.OfferedRequestTypeSatus == 1
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                           //where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join hf in EvalRequestTypeIds2 on e0.Idd equals hf.CourcesIdoffered into table5f
                           from hf in table5f.ToList()
@@ -9972,6 +11033,7 @@ namespace Hr.Controllers
                 // emp.gradetocourse0 = sumgrade;
                 // emp.cemp.cbrowser = sumgrade.ToString();
                 //emp.ACourcesMasters.gradetocourse0 = sumgrade;
+<<<<<<< HEAD
                 var emp01 = _context.AEvaluationEmps.Where(x => x.Empno == emp.AEvaluationEmp.Empno) /*&&(x.year=="2021")*/.OrderBy(x => x.Idd).LastOrDefault();
                 if (emp01 != null)
                 {
@@ -10668,6 +11730,337 @@ namespace Hr.Controllers
                     ViewBag.mesg = "لايوجد طلبات تقييم للاداء مرفوعة علي النظام    .";
                 }
 
+=======
+                List<AEvaluationGoal> vAEvaluationGoals = _context.AEvaluationGoals.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantGoalsSeq).ToList();
+                av1 = vAEvaluationGoals[0];
+                av2 = vAEvaluationGoals[1];
+                av3 = vAEvaluationGoals[2];
+                av4 = vAEvaluationGoals[3];
+                if (vAEvaluationGoals.Count > 4)
+                {
+                    av5 = vAEvaluationGoals[4];
+
+                }
+                if (vAEvaluationGoals.Count > 5)
+                {
+                    av6 = vAEvaluationGoals[5];
+                }
+                List<AEvaluationCompetenciesM> vAEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantCompetenciesSeq).ToList();
+                am1 = vAEvaluationCompetenciesMs[0];
+                am2 = vAEvaluationCompetenciesMs[1];
+                am3 = vAEvaluationCompetenciesMs[2];
+                am4 = vAEvaluationCompetenciesMs[3];
+                am5 = vAEvaluationCompetenciesMs[4];
+                am6 = vAEvaluationCompetenciesMs[5];
+                if (vAEvaluationCompetenciesMs.Count > 6)
+                {
+
+                    am7 = vAEvaluationCompetenciesMs[6];
+                }
+
+                List<AEvaluationCompetenciesD> vAEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantCompetenciesDSeq).ThenBy(d => d.CovenantCompetenciesDSeqD).ToList();
+                ad1 = vAEvaluationCompetenciesDs[0];
+                ad2 = vAEvaluationCompetenciesDs[1];
+                ad3 = vAEvaluationCompetenciesDs[2];
+                ad4 = vAEvaluationCompetenciesDs[3];
+                ad5 = vAEvaluationCompetenciesDs[4];
+                ad6 = vAEvaluationCompetenciesDs[5];
+                ad7 = vAEvaluationCompetenciesDs[6];
+                ad8 = vAEvaluationCompetenciesDs[7];
+                ad9 = vAEvaluationCompetenciesDs[8];
+                ad10 = vAEvaluationCompetenciesDs[9];
+                ad11 = vAEvaluationCompetenciesDs[10];
+                ad12 = vAEvaluationCompetenciesDs[11];
+                ad13 = vAEvaluationCompetenciesDs[12];
+                ad14 = vAEvaluationCompetenciesDs[13];
+                ad15 = vAEvaluationCompetenciesDs[14];
+                ad16 = vAEvaluationCompetenciesDs[15];
+                ad17 = vAEvaluationCompetenciesDs[16];
+                ad18 = vAEvaluationCompetenciesDs[17];
+                if (vAEvaluationCompetenciesDs.Count > 18)
+                {
+
+                    ad19 = vAEvaluationCompetenciesDs[18];
+                    ad20 = vAEvaluationCompetenciesDs[19];
+                    ad21 = vAEvaluationCompetenciesDs[20];
+                    ad22 = vAEvaluationCompetenciesDs[21];
+                    ad23 = vAEvaluationCompetenciesDs[22];
+                }
+                if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString(((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "0";
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('"+emp.cemp.CEMPPASSWRD+"', '"+emp.cemp.CEMPNO+"','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '"+ emp.AEvaluationEmp.tot1 + "', "+Convert.ToInt32(emp.AEvaluationEmp.tot4)+") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "75 " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "3 " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 75 " :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 3 " :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+
+
+                }
+
+                emp.cemp.tot7 = Convert.ToDecimal(emp.AEvaluationEmp.tot3) * 30 / 100 + Convert.ToDecimal(emp.cemp.cbrowser) * 30 / 100 + Convert.ToDecimal(emp.cemp.tot6) * 40 / 100;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             }
 
             return View(Records);
@@ -10761,7 +12154,11 @@ namespace Hr.Controllers
                               //from j in table3.ToList()
                           join ff in EvalDetails2 on e0.Idd equals ff.CourcesIdoffered into table4f
                           from ff in table4f.ToList()
+<<<<<<< HEAD
                           where ff.OfferedRequestTypeSatus == 1 && e0.CovenantYear==2022
+=======
+                          where ff.OfferedRequestTypeSatus == 1
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                           //where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join hf in EvalRequestTypeIds2 on e0.Idd equals hf.CourcesIdoffered into table5f
                           from hf in table5f.ToList()
@@ -11037,6 +12434,7 @@ namespace Hr.Controllers
                 // emp.gradetocourse0 = sumgrade;
                 // emp.cemp.cbrowser = sumgrade.ToString();
                 //emp.ACourcesMasters.gradetocourse0 = sumgrade;
+<<<<<<< HEAD
                 var emp01 = _context.AEvaluationEmps.Where(x => x.Empno == emp.AEvaluationEmp.Empno) /*&&(x.year=="2021")*/.OrderBy(x => x.Idd).LastOrDefault();
                 if (emp01 != null)
                 {
@@ -11733,6 +13131,337 @@ namespace Hr.Controllers
                     ViewBag.mesg = "لايوجد طلبات تقييم للاداء مرفوعة علي النظام    .";
                 }
 
+=======
+                List<AEvaluationGoal> vAEvaluationGoals = _context.AEvaluationGoals.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantGoalsSeq).ToList();
+                av1 = vAEvaluationGoals[0];
+                av2 = vAEvaluationGoals[1];
+                av3 = vAEvaluationGoals[2];
+                av4 = vAEvaluationGoals[3];
+                if (vAEvaluationGoals.Count > 4)
+                {
+                    av5 = vAEvaluationGoals[4];
+
+                }
+                if (vAEvaluationGoals.Count > 5)
+                {
+                    av6 = vAEvaluationGoals[5];
+                }
+                List<AEvaluationCompetenciesM> vAEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantCompetenciesSeq).ToList();
+                am1 = vAEvaluationCompetenciesMs[0];
+                am2 = vAEvaluationCompetenciesMs[1];
+                am3 = vAEvaluationCompetenciesMs[2];
+                am4 = vAEvaluationCompetenciesMs[3];
+                am5 = vAEvaluationCompetenciesMs[4];
+                am6 = vAEvaluationCompetenciesMs[5];
+                if (vAEvaluationCompetenciesMs.Count > 6)
+                {
+
+                    am7 = vAEvaluationCompetenciesMs[6];
+                }
+
+                List<AEvaluationCompetenciesD> vAEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.Where(d => d.CovenantId == emp.AEvaluationEmp.Idd).OrderBy(d => d.CovenantCompetenciesDSeq).ThenBy(d => d.CovenantCompetenciesDSeqD).ToList();
+                ad1 = vAEvaluationCompetenciesDs[0];
+                ad2 = vAEvaluationCompetenciesDs[1];
+                ad3 = vAEvaluationCompetenciesDs[2];
+                ad4 = vAEvaluationCompetenciesDs[3];
+                ad5 = vAEvaluationCompetenciesDs[4];
+                ad6 = vAEvaluationCompetenciesDs[5];
+                ad7 = vAEvaluationCompetenciesDs[6];
+                ad8 = vAEvaluationCompetenciesDs[7];
+                ad9 = vAEvaluationCompetenciesDs[8];
+                ad10 = vAEvaluationCompetenciesDs[9];
+                ad11 = vAEvaluationCompetenciesDs[10];
+                ad12 = vAEvaluationCompetenciesDs[11];
+                ad13 = vAEvaluationCompetenciesDs[12];
+                ad14 = vAEvaluationCompetenciesDs[13];
+                ad15 = vAEvaluationCompetenciesDs[14];
+                ad16 = vAEvaluationCompetenciesDs[15];
+                ad17 = vAEvaluationCompetenciesDs[16];
+                ad18 = vAEvaluationCompetenciesDs[17];
+                if (vAEvaluationCompetenciesDs.Count > 18)
+                {
+
+                    ad19 = vAEvaluationCompetenciesDs[18];
+                    ad20 = vAEvaluationCompetenciesDs[19];
+                    ad21 = vAEvaluationCompetenciesDs[20];
+                    ad22 = vAEvaluationCompetenciesDs[21];
+                    ad23 = vAEvaluationCompetenciesDs[22];
+                }
+                if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString(((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "0";
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('"+emp.cemp.CEMPPASSWRD+"', '"+emp.cemp.CEMPNO+"','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '"+ emp.AEvaluationEmp.tot1 + "', "+Convert.ToInt32(emp.AEvaluationEmp.tot4)+") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "75 " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "3 " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : "9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                  ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 23 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "100" :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 75 " :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "60" :
+             ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "4" :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? " 3 " :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "2" :
+              ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 4)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 5)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                      ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+                }
+                else if (vAEvaluationCompetenciesMs.Count == 6 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
+                {
+                    // calculation 
+
+                    emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
+                    emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
+                    emp.AEvaluationEmp.tot3 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "100" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 75 " :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "60" :
+                    ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 0";
+
+                    emp.AEvaluationEmp.tot4 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "4" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? " 3 " :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "2" :
+                   ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "1 " : " 9";
+
+
+                    //OracleConnection Con5 = new OracleConnection(TNS1);
+                    //Con5.Open();
+                    //OracleCommand cmd = new OracleCommand();
+                    //cmd.CommandText = "INSERT INTO MCS_ELTEZAM.EMPLOYEEAPPRAISALINFO (NATIONALID,EMPLOYEEID,APPRAISALID,STARTDATE,ENDDATE,APPRAISALTYPECODE,TRANSACTIONTYPE,RESULT,RATINGCODE) VALUES  ('" + emp.cemp.CEMPPASSWRD + "', '" + emp.cemp.CEMPNO + "','30' ,'17-05-1442','27-05-1443', 'AnnualPerformanceEvaluation', 'Add', '" + emp.AEvaluationEmp.tot1 + "', " + Convert.ToInt32(emp.AEvaluationEmp.tot4) + ") ";
+                    ////cmd.CommandText = "Insert into Student(Id, Name, Email)Values(" + student.Id + ",'" + student.Name + "','" + student.Email + "'')";
+                    //cmd.Connection = Con5;
+                    //cmd.ExecuteNonQuery();
+                    //Con5.Close();
+                    //return View(Records);
+
+
+                }
+
+                emp.cemp.tot7 = Convert.ToDecimal(emp.AEvaluationEmp.tot3) * 30 / 100 + Convert.ToDecimal(emp.cemp.cbrowser) * 30 / 100 + Convert.ToDecimal(emp.cemp.tot6) * 40 / 100;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             }
 
             return View(Records);
@@ -11863,6 +13592,7 @@ namespace Hr.Controllers
 
         }
         [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+<<<<<<< HEAD
         public IActionResult OnGetPartial9(string a1,string a2,string a3,string a4,string a5)
         {
             Thread.Sleep(5000);
@@ -11879,6 +13609,8 @@ namespace Hr.Controllers
 
         }
         [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
         public IActionResult OnGetPartial0(string announce)
         {
             Thread.Sleep(5000);
@@ -12603,6 +14335,7 @@ namespace Hr.Controllers
 
         }
         [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+<<<<<<< HEAD
         public IActionResult OnGetPartial00(string announce)
         {
             Thread.Sleep(5000);
@@ -12733,6 +14466,8 @@ namespace Hr.Controllers
         }
 
         [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
         public IActionResult Uploadmmm0()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -13235,7 +14970,11 @@ namespace Hr.Controllers
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+<<<<<<< HEAD
             List<AEvaluationEmp> AEvaluationEmps = _context.AEvaluationEmps.Where(x => x.CovenantYear >= 2022).ToList();
+=======
+            List<AEvaluationEmp> AEvaluationEmps = _context.AEvaluationEmps.ToList();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             List<AEvaluationGoal> AEvaluationGoals = _context.AEvaluationGoals.ToList();
             List<AEvaluationCompetenciesM> AEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.ToList();
             List<AEvaluationCompetenciesD> AEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.ToList();
@@ -13250,7 +14989,11 @@ namespace Hr.Controllers
                               //from j in table3.ToList()
                           join f in EvalDetails on e.Idd equals f.CourcesIdoffered into table4
                           from f in table4.ToList()
+<<<<<<< HEAD
                           where f.OfferedRequestTypeSatus == 0 /*&& e.year == "2022"*/
+=======
+                          where f.OfferedRequestTypeSatus == 0 && e.year == "2022"
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                           //where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join h in EvalRequestTypeIds on e.Idd equals h.CourcesIdoffered into table5
                           from h in table5.ToList()
@@ -13521,7 +15264,11 @@ namespace Hr.Controllers
                               //from j in table3.ToList()
                           join f in EvalDetails2 on e.Idd equals f.CourcesIdoffered into table4
                           from f in table4.ToList()
+<<<<<<< HEAD
                           where f.OfferedRequestTypeSatus == 0 /*&& e.year=="2021"*/
+=======
+                          where f.OfferedRequestTypeSatus == 0 && e.year=="2021"
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                           //where f.OfferedRequestFrom == HttpContext.Session.GetString("username")
                           join h in EvalRequestTypeIds2 on e.Idd equals h.CourcesIdoffered into table5
                           from h in table5.ToList()
@@ -13531,7 +15278,11 @@ namespace Hr.Controllers
                           //where mm.Offerdetailsid == f.OfferedDetailsSerial
                           join gg in cemps on e.Empno equals Convert.ToInt32(gg.Cempid) into table99
                           from gg in table99.ToList()
+<<<<<<< HEAD
                           where gg.CEMPPASSWRD.Length==10 &&gg.status!="1"
+=======
+                          where gg.CEMPPASSWRD.Length==10
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
 
 
@@ -13750,8 +15501,11 @@ namespace Hr.Controllers
                 }
 
             }
+<<<<<<< HEAD
             ViewData["Cempid"] = new SelectList(_context.Cemps.Where(z=>z.status!="1"), "Cempid", "CEMPNAME");
             //ViewData["Cempid"] = new SelectList(_context.Memberst, "userid", "username");
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             return View(Records);
 
             //return View(await _context.ViewModelEvalwithother.ToListAsync());
@@ -14185,7 +15939,11 @@ namespace Hr.Controllers
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+<<<<<<< HEAD
             List<AEvaluationEmp> AEvaluationEmps = _context.AEvaluationEmps.Where(x => x.CovenantYear >= 2022).ToList();
+=======
+            List<AEvaluationEmp> AEvaluationEmps = _context.AEvaluationEmps.Where(x=>x.year=="2022").ToList();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             List<AEvaluationGoal> AEvaluationGoals = _context.AEvaluationGoals.ToList();
             List<AEvaluationCompetenciesM> AEvaluationCompetenciesMs = _context.AEvaluationCompetenciesMs.ToList();
             List<AEvaluationCompetenciesD> AEvaluationCompetenciesDs = _context.AEvaluationCompetenciesDs.ToList();
@@ -14568,8 +16326,13 @@ namespace Hr.Controllers
                 {
                     // calculation 
 
+<<<<<<< HEAD
                     emp.AEvaluationEmp.tot1 = Convert.ToString(((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30));
                     emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+=======
+                    TempData["GRADE"] = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30);
+                    TempData["GRADEN"] = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
                     ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
                     ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
@@ -14579,20 +16342,33 @@ namespace Hr.Controllers
                 {
                     // calculation 
 
+<<<<<<< HEAD
                     emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
                     emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
                     ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
                     ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
                     ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
 
+=======
+                    TempData["GRADE"] = (double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2);
+                    TempData["GRADEN"] = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
+                    ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     //return View(Records);
                 }
                 else if (vAEvaluationCompetenciesMs.Count == 7 && vAEvaluationCompetenciesDs.Count == 18 && vAEvaluationGoals.Count == 6)
                 {
                     // calculation 
 
+<<<<<<< HEAD
                     emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
                     emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+=======
+                    TempData["GRADE"] = (double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2);
+                    TempData["GRADEN"] = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
@@ -14602,8 +16378,13 @@ namespace Hr.Controllers
                 {
                     // calculation 
 
+<<<<<<< HEAD
                     emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
                     emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+=======
+                    TempData["GRADE"] = (double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2);
+                    TempData["GRADEN"] = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
@@ -14613,8 +16394,13 @@ namespace Hr.Controllers
                 {
                     // calculation 
 
+<<<<<<< HEAD
                     emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
                     emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+=======
+                    TempData["GRADE"] = (double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2);
+                    TempData["GRADEN"] = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
@@ -14624,8 +16410,13 @@ namespace Hr.Controllers
                 {
                     // calculation 
 
+<<<<<<< HEAD
                     emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2));
                     emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+=======
+                    TempData["GRADE"] = (double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .70 + (ad23.EvaluationTotal / 100) * .30), 2);
+                    TempData["GRADEN"] = ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 4.5 ? "ممتاز" :
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 3.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 4.5 ? "جيد جدا " :
                     ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 2.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 3.5 ? "جيد" :
                     ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) >= 1.5 && ((av1.EvaluationTotal / 100) * .70) + ((ad23.EvaluationTotal / 100) * .30) < 2.5 ? "مرضي " : "غير مرضي";
@@ -14635,8 +16426,13 @@ namespace Hr.Controllers
                 {
                     // calculation 
 
+<<<<<<< HEAD
                     emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
                     emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+=======
+                    TempData["GRADE"] = (double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2);
+                    TempData["GRADEN"] = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 1.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
@@ -14646,8 +16442,13 @@ namespace Hr.Controllers
                 {
                     // calculation 
 
+<<<<<<< HEAD
                     emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
                     emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+=======
+                    TempData["GRADE"] = (double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2);
+                    TempData["GRADEN"] = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
@@ -14657,8 +16458,13 @@ namespace Hr.Controllers
                 {
                     // calculation 
 
+<<<<<<< HEAD
                     emp.AEvaluationEmp.tot1 = Convert.ToString((double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2));
                     emp.AEvaluationEmp.tot2 = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+=======
+                    TempData["GRADE"] = (double?)Math.Round(Convert.ToDecimal((av1.EvaluationTotal / 100) * .50 + (ad18.EvaluationTotal / 100) * .50), 2);
+                    TempData["GRADEN"] = ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 4.5 ? "ممتاز" :
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 3.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 4.5 ? "جيد جدا " :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 2.5 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 3.5 ? "جيد" :
                     ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) >= 0 && ((av1.EvaluationTotal / 100) * .50) + ((ad18.EvaluationTotal / 100) * .50) < 2.5 ? "مرضي " : "غير مرضي";
@@ -14711,8 +16517,13 @@ namespace Hr.Controllers
                 TempData["mygrade"] = persempgrade0.empgrade;
                 TempData["mygradedate"] =Convert.ToDateTime( persempgrade0.empdate).ToString("dd/MM/yyyy");
             }
+<<<<<<< HEAD
             // aeval last calc 
             var emp = _context.AEvaluationEmps.Where(x => x.Empno == Convert.ToInt32(HttpContext.Session.GetString("empid")) /*&&(x.year=="2021")*/).OrderBy(x=>x.Idd).LastOrDefault();
+=======
+            // aeval 2021 calc 
+            var emp = _context.AEvaluationEmps.Where(x => x.Empno == Convert.ToInt32(HttpContext.Session.GetString("empid")) &&(x.year=="2021")).FirstOrDefault();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             if (emp != null)
             {
                 var approval = _context.EvalDetailss2.Where(x => x.CourcesIdoffered == emp.Idd && x.OfferedRequestTypeSatus == 1).FirstOrDefault();
@@ -14941,6 +16752,7 @@ namespace Hr.Controllers
                 }
                 else
                 {
+<<<<<<< HEAD
                     // aeval 2021 calc 
                     var emp0 = _context.AEvaluationEmps.Where(x => x.Empno == Convert.ToInt32(HttpContext.Session.GetString("empid")) && (x.year == "2021")).FirstOrDefault();
                     if (emp0 != null)
@@ -15180,11 +16992,18 @@ namespace Hr.Controllers
 
                         ViewBag.mesg = "ليس لديك طلب تقييم معتمد للعام  2021  .";
                     }
+=======
+                    ViewBag.mesg = "لايوجد طلبات تقييم للاداء معتمدة للعام المالي 2021.";
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                 }
             }
             else
             {
+<<<<<<< HEAD
                 ViewBag.mesg = "لايوجد طلبات تقييم للاداء مرفوعة علي النظام    .";
+=======
+                ViewBag.mesg = "لايوجد طلبات تقييم للاداء مرفوعة علي النظام للعام المالي 2021.";
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             }
             // grade cources calculation 
 
@@ -16298,7 +18117,11 @@ namespace Hr.Controllers
         }
          [HttpGet]
        [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+<<<<<<< HEAD
         public IActionResult CreateB2(string SearchString,string b2)
+=======
+        public IActionResult CreateB2(string SearchString)
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
         {
             if (HttpContext.Session.GetString("username") == null)
             {
@@ -16474,7 +18297,11 @@ namespace Hr.Controllers
                               from d in table1.ToList()
                               join i in Cemps on e.Cempid equals i.Cempid into table2
                               from i in table2.ToList()
+<<<<<<< HEAD
                               where i.Cempid == e.Cempid && e.CourcesEndDate >= i.CEMPLASTUPGRADEHIJRA &&(e.CourcesEndDate <=Convert.ToDateTime(b2)) && (i.Cempid == SearchString||i.CEMPPASSWRD==SearchString)
+=======
+                              where i.Cempid == e.Cempid && e.CourcesEndDate >= i.CEMPLASTUPGRADEHIJRA && (i.Cempid == SearchString||i.CEMPPASSWRD==SearchString)
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                               join j in ACourcesEstimates on e.CourcesIdEstimate equals j.CourcesIdEstimate into table3
                               from j in table3.ToList()
                               join f in ACourcesDeptins on e.CourcesIdDeptin equals f.CourcesIdDeptin into table4
@@ -16869,14 +18696,22 @@ namespace Hr.Controllers
                 ViewData["Cempid"] = new SelectList(_context.Cemps.ToList(), "Cempid", "CEMPNAME");
 
             }
+<<<<<<< HEAD
             AEvaluationEmp AEvaluationEmpemp = _context.AEvaluationEmps.Where(x => x.Empno == Convert.ToInt32(HttpContext.Session.GetString("username")) && x.year == Convert.ToString(DateTime.Now.Year)).FirstOrDefault();
+=======
+            AEvaluationEmp AEvaluationEmpemp = _context.AEvaluationEmps.Where(x => x.Empno == Convert.ToInt32(HttpContext.Session.GetString("username")) && x.year == "2022").FirstOrDefault();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             if(AEvaluationEmpemp==null)
             {
                 return View();
             }
             else
             {
+<<<<<<< HEAD
                 ViewBag.msg = "لديك طلب ميثاق ل هذا العام   رقم  "+ AEvaluationEmpemp.Idd;
+=======
+                ViewBag.msg = "لديك طلب ميثاق للعام 2022  رقم  "+ AEvaluationEmpemp.Idd;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                 //ViewBag.msg = "يتم رفع طلب مثاق الاداء للعام 2022 من هنا ويرجي ضبط الوزن النسبي ولايتجاوز 100% وذلك حتي يتم حفظ الطلب ";
             }
             return View();
@@ -16904,10 +18739,17 @@ namespace Hr.Controllers
             }).ToList(); //Get the Menu details from entity and bind it in MenuModels list. 
             //ViewBag.MenuMaster = _menus;
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
+<<<<<<< HEAD
             AEvaluationEmp AEvaluationEmpemp = _context.AEvaluationEmps.Where(x => x.Empno == Convert.ToInt32(ViewModelEvalwithother1.AEvaluationEmpEmpno) && x.year == Convert.ToString(DateTime.Now.Year)).FirstOrDefault();
             if (AEvaluationEmpemp != null)
             {
                 ViewBag.msg = "لديك طلب ميثاق ل هذا العام    رقم  " + AEvaluationEmpemp.Idd;
+=======
+            AEvaluationEmp AEvaluationEmpemp = _context.AEvaluationEmps.Where(x => x.Empno == Convert.ToInt32(ViewModelEvalwithother1.AEvaluationEmpEmpno) && x.year == "2022").FirstOrDefault();
+            if (AEvaluationEmpemp != null)
+            {
+                ViewBag.msg = "لديك طلب ميثاق للعام 2022  رقم  " + AEvaluationEmpemp.Idd;
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
               //  ViewBag.msg = "يتم رفع طلب مثاق الاداء للعام 2022 من هنا ويرجي ضبط الوزن النسبي ولايتجاوز 100% وذلك حتي يتم حفظ الطلب ";
                 return View();
             }
@@ -16997,7 +18839,11 @@ namespace Hr.Controllers
                     EvaEmpnoNameOut1=null,
                     Notes= "تم المراجعة",
                     TypeNo=5,
+<<<<<<< HEAD
                     year= Convert.ToString(DateTime.Now.Year)
+=======
+                    year="2022"
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
                 };
                 _context.Add(aEvaluationEmp);
@@ -23642,7 +25488,11 @@ namespace Hr.Controllers
             //{
             //    return NotFound();
             //}
+<<<<<<< HEAD
             AEvaluationEmp AEvaluationEmpemp = _context.AEvaluationEmps.Where(x => x.Idd == Convert.ToInt32(cid) /*&& x.year == "2022"*/).FirstOrDefault();
+=======
+            AEvaluationEmp AEvaluationEmpemp = _context.AEvaluationEmps.Where(x => x.Idd == Convert.ToInt32(cid) && x.year == "2022").FirstOrDefault();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             //HttpContext.Session.SetString("AEvaluationEmpidd", Convert.ToString(AEvaluationEmpemp.Idd));
 
             //if (id == null)
@@ -27097,7 +28947,11 @@ namespace Hr.Controllers
             //{
             //    return NotFound();
             //}
+<<<<<<< HEAD
             AEvaluationEmp AEvaluationEmpemp = _context.AEvaluationEmps.Where(x => x.Idd == Convert.ToInt32(cid)/* && x.year == "2021"*/).FirstOrDefault();
+=======
+            AEvaluationEmp AEvaluationEmpemp = _context.AEvaluationEmps.Where(x => x.Idd == Convert.ToInt32(cid) && x.year == "2021").FirstOrDefault();
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             //HttpContext.Session.SetString("AEvaluationEmpidd", Convert.ToString(AEvaluationEmpemp.Idd));
 
             //if (id == null)
@@ -30541,6 +32395,7 @@ namespace Hr.Controllers
             return View();
             //return View(ViewModelEvalwithother1);
         }
+<<<<<<< HEAD
         [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
         public ActionResult Detail111111p0(string id)
         {
@@ -30639,6 +32494,9 @@ namespace Hr.Controllers
         }
 
         [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+=======
+       [Authorize(Roles = "Admin,Manager,User,HR-Admin,HR-Operation")]
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -31611,7 +33469,10 @@ namespace Hr.Controllers
         {
 
             var comm = _context.commite.Where(x => x.userid == HttpContext.Session.GetString("username")&&x.commitedescession== ViewModelEvalwithother.c10).FirstOrDefault();
+<<<<<<< HEAD
             var memdate = _context.Members.Where(x => x.announce == ViewModelEvalwithother.c11).FirstOrDefault();
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
             string conString = this.Configuration.GetConnectionString("hr");
             using (SqlConnection con = new SqlConnection(conString))
             {
@@ -31722,7 +33583,11 @@ namespace Hr.Controllers
                     cmd.CommandText = "INSERT INTO [dbo].[commitez] ([userid],[username],[dateexcute],[commitedescession],[userentry],[timeentry],[CourcesIdImagecert],[status],[status0]) VALUES (@UserId,@UserName,@DateExcute,@CommiteDe,@UserEntry,@TimeEntry,@Announce,@Status,@Status0)";
                     cmd.Parameters.AddWithValue("@UserId", txtId);
                     cmd.Parameters.AddWithValue("@UserName", txtName);
+<<<<<<< HEAD
                     cmd.Parameters.AddWithValue("@DateExcute", memdate.dateexcute1);
+=======
+                    cmd.Parameters.AddWithValue("@DateExcute", ViewModelEvalwithother.c12);
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
                     cmd.Parameters.AddWithValue("@CommiteDe", c10);
                     cmd.Parameters.AddWithValue("@UserEntry", HttpContext.Session.GetString("username"));
                     cmd.Parameters.AddWithValue("@TimeEntry", DateTime.Now);
@@ -31736,6 +33601,7 @@ namespace Hr.Controllers
             }
             return RedirectToAction("Uploadmmmm0", new { announce = c11 });
         }
+<<<<<<< HEAD
         public IActionResult Updatez9(ViewModelEvalwithother ViewModelEvalwithother, string c10, string c11, string txtId, string txtName, string txtCountry0)
         {
 
@@ -31952,6 +33818,8 @@ namespace Hr.Controllers
             }
             return RedirectToAction("pendinguser111", new { /*announce = c11*/ });
         }
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
         public IActionResult Update0(ViewModelEvalwithother ViewModelEvalwithother,string c10)
         {
             string conString = this.Configuration.GetConnectionString("hr");
@@ -32521,6 +34389,7 @@ namespace Hr.Controllers
             //customer.Customers = GetCustomers(null);
             return Json(viewModelEvalwithother);
         }
+<<<<<<< HEAD
         public JsonResult EditCustomer19([FromBody] Cemp cust, [FromBody] ViewModelEvalwithother ViewModelEvalwithother, string EncryptedId, string Id, string Cempid)
         {
 
@@ -32552,6 +34421,8 @@ namespace Hr.Controllers
             //customer.Customers = GetCustomers(null);
             return Json(viewModelEvalwithother);
         }
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
         public JsonResult EditCustomer10([FromBody] Cemp cust, string Id, string Cempid)
         {
 
@@ -32583,6 +34454,7 @@ namespace Hr.Controllers
             //customer.Customers = GetCustomers(null);
             return Json(viewModelEvalwithother);
         }
+<<<<<<< HEAD
         public JsonResult EditCustomer1v([FromBody] Cemp cust, [FromBody] ViewModelEvalwithother ViewModelEvalwithother, string EncryptedId, string Id, string Cempid)
         {
 
@@ -32647,6 +34519,8 @@ namespace Hr.Controllers
             //customer.Customers = GetCustomers(null);
             return Json(viewModelEvalwithother);
         }
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ViewModelEvalwithother1 ViewModelEvalwithother1)

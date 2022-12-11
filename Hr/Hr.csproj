@@ -17,6 +17,10 @@
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Coming.ActiveDirectoryHelper" Version="1.0.8.5" />
+<<<<<<< HEAD
+=======
+    <PackageReference Include="Devart.Data.Oracle.EFCore" Version="9.14.1234" />
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
     <PackageReference Include="DNTCaptcha.Core" Version="4.3.3" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="jQuery.Ajax.Unobtrusive" Version="2.0.20710" />
@@ -52,7 +56,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+<<<<<<< HEAD
     <PackageReference Include="Microsoft.VisualStudio.UnitTesting" Version="11.0.50727.1" />
+=======
+>>>>>>> 5e413685df04d775df33e2d553756a01df850c9b
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.0" />
     <PackageReference Include="MimeKit" Version="2.15.1" />
     <PackageReference Include="Nancy" Version="2.0.0" />
