@@ -8,16 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Hr.Services;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MailKit.Security;
+using NLog;
 
 namespace Hr.Controllers
 {
     public class TransferDetailsController : Controller
     {
         private readonly hrContext _context;
+        private readonly IMailService mailService;
+        NLog.Logger loggerx = LogManager.GetCurrentClassLogger();
 
-        public TransferDetailsController(hrContext context)
+        public TransferDetailsController(hrContext context, IMailService mailService)
         {
             _context = context;
+            this.mailService = mailService;
         }
 
         // GET: MasterDetails
@@ -214,6 +222,25 @@ namespace Hr.Controllers
 
                     _context.Add(offerComments1);
                     _context.SaveChangesAsync();
+
+                    var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+                    var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+
+                    WelcomeRequest request3 = new WelcomeRequest();
+                    request3.UserName = emprequestor.CEMPNAME;
+                    request3.header = "النقل الوظيفي وتحديث المدير المباشر  ";
+                    request3.Details = "تم اعتماد تحديث المدير المباشر ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME;
+                    request3.ToEmail = emprequestor.mail;
+                    try
+                    {
+                        //await mailService.SendEmailAsync(m);
+                        await mailService.SendWelcomeEmailAsync(request3);
+                    }
+                    catch (Exception ex)
+                    {
+                        loggerx.Error("لم يتم ارسال الايميل للموظف بسبب  "+ex.Message);
+                    }
+
                     return RedirectToAction("IndexOffered3", "Cemps", new { area = "" });
 
                 }

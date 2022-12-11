@@ -8,16 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Hr.Services;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MailKit.Security;
+using System.Threading;
+using NLog;
 
 namespace Hr.Controllers
 {
     public class SupportDetailsController : Controller
     {
         private readonly hrContext _context;
+        private readonly IMailService mailService;
+        NLog.Logger loggerx = LogManager.GetCurrentClassLogger();
 
-        public SupportDetailsController(hrContext context)
+        public SupportDetailsController(hrContext context, IMailService mailService)
         {
             _context = context;
+            this.mailService = mailService;
         }
 
         // GET: MasterDetails
@@ -146,7 +155,7 @@ namespace Hr.Controllers
                     OfferDetailssss.OfferedRequestTypeSatus = 1;
                     OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
                     _context.Update(OfferDetailssss);
-                    _context.SaveChangesAsync();
+                     await  _context.SaveChangesAsync();
                     Supportcomment offerComments = new Supportcomment
                     {
                         Offerdetailsid = OfferDetails.OfferedDetailsSerial,
@@ -155,13 +164,33 @@ namespace Hr.Controllers
                     };
                    
                     _context.Add(offerComments);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.SupportRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 1;
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
+
+                    var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                    var empapproval1 = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestTo).FirstOrDefault();
+                    var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+
+                   
+                    WelcomeRequest request3 = new WelcomeRequest();
+                    request3.UserName = emprequestor.CEMPNAME;
+                    request3.header = "الدعم الفني والاقتراحات  ";
+                    request3.Details = "تم الرد علي  ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME +"   .....  "+ offerComments.Offerdetailscomment;
+                    request3.ToEmail = emprequestor.mail;
+                    try
+                    {
+                        //await mailService.SendEmailAsync(m);
+                        await mailService.SendWelcomeEmailAsync(request3);
+                    }
+                    catch (Exception ex)
+                    {
+                        loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة الدعم الفني والاقتراحات    " + emprequestor.Cempid + "الدعم الفني والاقتراحات  " + ex.Message);
+                    }
 
                     return RedirectToAction("IndexOffered3","Support", new { area = "" });
 
@@ -176,7 +205,7 @@ namespace Hr.Controllers
                     OfferDetailssss.OfferedRequestNotes = OfferDetails.OfferedRequestNotes;
                     OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
                     _context.Update(OfferDetailssss);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     Transfercomment offerComments = new Transfercomment
                     {
@@ -186,18 +215,18 @@ namespace Hr.Controllers
                     };
 
                     _context.Add(offerComments);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
 
                     var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.TransferRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 1;
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
 
                     //
 
-                    
+
                     var emp21 = _context.TransferProcesss.Where(b => b.fromr == OfferDetails.OfferedRequestFrom&&b.Id== OfferDetails.CourcesIdoffered).FirstOrDefault();
                     var emp2 = _context.Cemps.Where(b => b.Cempid == OfferDetails.OfferedRequestFrom&&b.CEMPADPRTNO==Convert.ToString(emp21.Olddepid)&&b.DEP_NAME==emp21.Olddepname&&b.MANAGERID== Convert.ToString(emp21.Manageolddepid)&&b.MANAGERNAME==emp21.Manageroldname).FirstOrDefault();
                     var newdeps = _context.DepartWithMnagement.Where(b => b.CEMPADPRTNO ==Convert.ToString(emp21.Newdepid) && b.depcode != null).FirstOrDefault();
@@ -221,7 +250,7 @@ namespace Hr.Controllers
                     };
 
                     _context.Add(offerComments1);
-                    _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
                     return RedirectToAction("IndexOffered3", "Cemps", new { area = "" });
 
                 }
@@ -395,7 +424,7 @@ namespace Hr.Controllers
                         OfferDetailssss.OfferedRequestTypeSatus = 2;
                         OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
                     _context.Update(OfferDetailssss);
-                    _context.SaveChanges();
+                   await _context.SaveChangesAsync();
                     Supportcomment offerComments = new Supportcomment
                     {
                         Offerdetailsid = OfferDetails.OfferedDetailsSerial,
@@ -404,14 +433,34 @@ namespace Hr.Controllers
                     };
 
                     _context.Add(offerComments);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
 
                     var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.SupportRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
-                    _context.SaveChanges();
-                        return RedirectToAction("IndexOffered3", "Support", new { area = "" });
+                    await _context.SaveChangesAsync();
+
+                    var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                    var empapproval1 = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestTo).FirstOrDefault();
+                    var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
+
+
+                    WelcomeRequest request3 = new WelcomeRequest();
+                    request3.UserName = emprequestor.CEMPNAME;
+                    request3.header = "الدعم الفني والاقتراحات  ";
+                    request3.Details = "تم الرد علي  ,طلب رقم :" + OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered + " بواسطة   : " + empapproval2.CEMPNAME + "   .....  " + offerComments.Offerdetailscomment;
+                    request3.ToEmail = emprequestor.mail;
+                    try
+                    {
+                        //await mailService.SendEmailAsync(m);
+                        await mailService.SendWelcomeEmailAsync(request3);
+                    }
+                    catch (Exception ex)
+                    {
+                        loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة الدعم الفني والاقتراحات    " + emprequestor.Cempid + "الدعم الفني والاقتراحات  " + ex.Message);
+                    }
+                    return RedirectToAction("IndexOffered3", "Support", new { area = "" });
 
 
                     }
@@ -423,7 +472,7 @@ namespace Hr.Controllers
                         OfferDetailssss.OfferedRequestTypeSatus = 2;
                         OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
                     _context.Update(OfferDetailssss);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
 
                     Transfercomment offerComments = new Transfercomment
                     {
@@ -432,16 +481,16 @@ namespace Hr.Controllers
                         Offerdetailscomment = OfferDetails.OfferedRequestNotes
                     };
                     _context.Add(offerComments);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
 
                     var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.TransferRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
-                    
-                   
-                    _context.SaveChanges();
-                        return RedirectToAction("IndexOffered3", "Cemps", new { area = "" });
+
+
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("IndexOffered3", "Cemps", new { area = "" });
 
                     }
                     else if (OfferDetailssss.Offeredoption == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo5 == "0")
@@ -452,7 +501,7 @@ namespace Hr.Controllers
                         OfferDetailssss.OfferedRequestNotes = OfferDetails.OfferedRequestNotes;
                         OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
                     _context.Update(OfferDetailssss);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
 
 
                     Evalcomment offerComments = new Evalcomment
@@ -462,17 +511,17 @@ namespace Hr.Controllers
                         Offerdetailscomment = OfferDetails.OfferedRequestNotes
                     };
                     _context.Add(offerComments);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
 
 
                     var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.EvalRequestTypeIds.Where(b => b.CourcesIdoffered == OfferDetails.CourcesIdoffered && b.Offercoursefrom== OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
                         OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
                         OfferRequestTypeIdsMasterRequestTypeIdserial2.CourcesIdoffered = OfferDetails.CourcesIdoffered;
                         _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
-                    
-                    
-                    _context.SaveChanges();
-                        return RedirectToAction("IndexOffered3", "Cemps", new { area = "" });
+
+
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("IndexOffered3", "Cemps", new { area = "" });
 
                     }
                     //if (OfferDetails.OfferedRequestTo4 ==Convert.ToString(0))

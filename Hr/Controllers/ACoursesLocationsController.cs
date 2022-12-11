@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hr.Controllers
 {
@@ -21,6 +22,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACoursesLocations
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Index()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -44,6 +46,7 @@ namespace Hr.Controllers
             TempData["MenuMaster"] = JsonConvert.SerializeObject(_menus);
             return View(await _context.ACoursesLocation.ToListAsync());
         }
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> IndexWithout()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -69,6 +72,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACoursesLocations/Details/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -104,6 +108,7 @@ namespace Hr.Controllers
 
             return View(aCoursesLocation);
         }
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> DetailsWithout(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -140,6 +145,7 @@ namespace Hr.Controllers
             return View(aCoursesLocation);
         }
         // GET: ACoursesLocations/Create
+        [Authorize(Roles = "Admin,HR-Admin")]
         public IActionResult Create()
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -169,8 +175,10 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Create([Bind("id,name")] ACoursesLocation aCoursesLocation)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(aCoursesLocation);
@@ -181,6 +189,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACoursesLocations/Edit/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -220,6 +229,7 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("id,name")] ACoursesLocation aCoursesLocation)
         {
             if (id != aCoursesLocation.id)
@@ -251,6 +261,7 @@ namespace Hr.Controllers
         }
 
         // GET: ACoursesLocations/Delete/5
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (HttpContext.Session.GetString("username") == null)
@@ -290,6 +301,7 @@ namespace Hr.Controllers
         // POST: ACoursesLocations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,HR-Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var aCoursesLocation = await _context.ACoursesLocation.FindAsync(id);

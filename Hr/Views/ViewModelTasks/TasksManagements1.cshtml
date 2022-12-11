@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "PartialView";
+}
+    <h2>@ViewBag.Message</h2>
+    <div>
+        @{
+//Html.RenderPartial("RenderGetTasksManagement");
+//Html.RenderPartial("RenderGetTasksManagementGoals");
+                           @*@Html.Partial("_MenuePerPartial")*@
+
+                          Html.Partial("RenderGetTasksManagement");
+                          Html.Partial("RenderGetTasksManagementGoals");
+        }
+
+
+       
+    </div>

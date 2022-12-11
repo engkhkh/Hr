@@ -11,6 +11,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<table>
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <h4> سياسات وضوابط الأداء الوظيفي:</h4>
+- دورة الأداء: هي السنة الخاضعة لتقويم الأداء ويكون انتهائها متزامناً مع نهاية السنة المالية للدولة.
+<br />
+و تقسم دورة الأداء إلى عدة مراحل أساسية:
+<br />
+أ-مرحلة تخطيط الأداء (ميثاق الأداء): أول شهرين (يناير، فبراير) من بداية دورة الأداء وتتضمن خطة أداء الموظف مع المدير ويتم توثيق ما تم الاتفاق عليه في ميثاق الأداء.
+<br />
+ب-مرحلة التقييم السنوي للأداء (تقييم الأداء): خلال الشهر الحادي عشر والثاني عشر (نوفمبر، ديسمبر) من دورة الأداء ويتم فيها تقييم الأداء السنوي للموظف حسب ما هو محدد في ميثاق الأداء الذي تم إعداده بداية دورة الأداء.
+<br />
+-الناتج الفعلي: هو التحديد الكمي للأداء الفعلي الذي تم تحقيقه.
+<br />
+-التقدير العام لأداء الموظف: هو قيمة كمية تعبر عن المستوى الإجمالي لأداء الموظف المرتبط بالأهداف والجدارات في نهاية فترة زمنية محددة من دورة الأداء.​
+<br />
+نقاط القوة والنقاط التي تحتاج إلى تطوير: تحدد لكل موظف نقاط القوة التي يتميز بها وجوانب الضعف التي تحتاج إلى تطوير وتدريب.
+<br />
+<img src="~/img/pastedImage.png" alt="شرح للسياسات " width="750" height="225" />
+<br />
+<h4 style="color:red">الضوابط النظامية (أطر العمل التنظيمية للائحة التنفيذية للموارد البشرية):</h4>
+<br />
+-الموظف في حال التدريب أو الدراسة أو الإعارة التي تزيد عن 6 شهور: يرجى ابلاغ إدارة تطوير الموارد البشرية. م5
+- الموظف في حال الإجازات الطويلة التي تزيد عن 6 شهور: يعد تقييم أدائه من ضوء عمله خلال المدة السابقة للإجازة. م6
+<br />
+-نماذج تقييم الأداء: تشمل موظفي السلم العام من المرتبة 14-1، والسعوديين على بند الأجور، أو المستخدمين. م7،8
+<br />
+-الرئيس المباشر: يحدد للموظف الأهداف والوزن النسبي والناتج المستهدف لكل هدف بالتنسيق مع الموظف وفق ميثاق الأداء. يجوز تعديل ميثاق الأداء بعد انتهاء النصف الأول من دورة الأداء. كذلك يعد الرئيس المباشر ميثاق الأداء ويتم إطلاع الموظف عليه ويعتمد من رئيس الوحدة التنظيمية، ويتم تزويد إدارة الموارد البشرية بالنسخة المعتمدة. م9
+<br />
+يجب على الرئيس المباشر عند إعداد تقويم الأداء الوظيفي للموظف الرجوع إلى ميثاق الأداء وسجل تدوين الملاحظات وتقرير الإنجاز وسجل متابعة الأداء وأي مصادر أخرى تساعد على تحقيق الدقة والموضوعية. م11
+<br />
+من صلاحيات الرئيس المباشر تقييم الموظف بغض النظر عن مرتبته. الاستفسارات
+<br />
+- تعديل تقويم الأداء: لا يجوز تعديل تقويم الأداء الوظيفي بعد اعتماده إلا بموافقة الأمين بناءً على توصية مبررة من إدارة الموارد البشرية بعد تنسيقها مع الرئيس المباشر للموظف. م122 اللائحة التنفيذية
+<br />         
+            </td>
+            <td>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
 <table>
     <thead>
         <tr>
@@ -90,7 +144,7 @@
         <tr>
             <th>
 
-        </th>
+            </th>
             <th>
                 الموظف
             </th>
@@ -98,19 +152,25 @@
                 رقم الطلب
             </th>
             <th>
-                الوظيفة 
+                الوظيفة
             </th>
             <th>
-                الأدارة 
+                الأدارة
             </th>
             <th>
                 القسم
             </th>
             <th>
-                المدير 
+                المدير
             </th>
             <th>
-                تاريخ الطلب 
+                حالة الطلب - المدير المباشر
+            </th>
+            <th>
+                حالة الطلب - المدير المعتمد
+            </th>
+            <th>
+                تاريخ الطلب
             </th>
 
         </tr>
@@ -120,8 +180,9 @@
         {
         <tr>
             <td>
-                <a asp-controller="ViewModelEvalwithother1" asp-action="Detail1" asp-route-id="@item.AEvaluationEmp.Idd" class="btn btn-success">عرض  الطلب </a>|
-                @*<a asp-controller="ViewModelEvalwithother1" asp-action="Edit1" asp-route-id="@item.AEvaluationEmp.Idd" class="btn btn-success">تعديل الطلب </a>*@
+                <a asp-controller="ViewModelEvalwithother1" asp-action="Detail1111" class="btn btn-success" target="_blank">درجة  التقييم </a>|
+                @*<a asp-controller="ViewModelEvalwithother1" asp-action="Detail111" class="btn btn-success">عرض  الطلب </a>|*@
+                <a asp-controller="ViewModelEvalwithother1" asp-action="Edit11" asp-route-id="@item.AEvaluationEmp.EncryptedIdd" class="btn btn-success" target="_blank">تعديل الطلب </a>
                 @*<a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER">رفض</a>*@
                 @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
@@ -143,6 +204,36 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AEvaluationEmp.ManagerName)
+            </td>
+            <td>
+                @if (item.evalDetail2.OfferedRequestTo3 == "1")
+                {
+                    <span style="background-color: forestgreen; font-display: auto; font-family: 'Times New Roman', Times, serif; font-size: larger; ">تم الموافقة- </span>
+                }
+                else
+                {
+                    <span style="background-color: red; font-display: auto; font-family: 'Times New Roman', Times, serif; font-size: larger;"> لم تتم الموافقة -  </span>
+                }
+                @Html.DisplayFor(modelItem => item.cemp.MANAGERNAME)
+
+            </td>
+            <td>
+                @if (item.evalDetail2.OfferedRequestTypeSatus == 1)
+                {
+                    <span style="background-color: forestgreen; font-display: auto; font-family: 'Times New Roman', Times, serif; font-size: larger; ">تم الموافقة- </span>
+                }
+                else
+                {
+                    <span style="background-color: red; font-display: auto; font-family: 'Times New Roman', Times, serif; font-size:larger;"> لم تتم الموافقة -  </span>
+                }
+                @if (item.cemp.MANAGERID2.Equals("محمد بن مبارك عبدالله ال مجلي"))
+                {
+
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.cemp.MANAGERID2)
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AEvaluationEmp.CovenantDate)

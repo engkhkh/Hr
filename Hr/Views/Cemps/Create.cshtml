@@ -5,25 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>تفعيل حساب </h1>
 
-<h4>Cemp</h4>
+<h4>للموظف</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Cempid" class="control-label"></label>
+                الرقم الوظيفي 
                 <input asp-for="Cempid" class="form-control" />
                 <span asp-validation-for="Cempid" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CEMPUSERNO" class="control-label"></label>
+                الرقم الوظيفي-مكرر
                 <input asp-for="CEMPUSERNO" class="form-control" />
                 <span asp-validation-for="CEMPUSERNO" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="CEMPPASSWRD" class="control-label"></label>
                 <input asp-for="CEMPPASSWRD" class="form-control" />
                 <span asp-validation-for="CEMPPASSWRD" class="text-danger"></span>
@@ -92,16 +92,16 @@
                 <label asp-for="CROLEID" class="control-label"></label>
                 <input asp-for="CROLEID" class="form-control" />
                 <span asp-validation-for="CROLEID" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="تفعيل" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary">عودة</a>
 </div>
 
 @section Scripts {

@@ -13,6 +13,8 @@ namespace Hr.Models
         public DateTime? dtimelogout { get; set; }
         public String ? ip { get; set; }
 
+        public String? comment { get; set; }
+
 
     }
 }

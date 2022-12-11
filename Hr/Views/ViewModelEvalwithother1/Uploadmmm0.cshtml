@@ -1,0 +1,1826 @@
+﻿@model Hr.Models.ViewModelEvalwithother
+
+@{
+    ViewData["Title"] = "عرض   ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<a asp-action="cr4" class="btn btn-success">عودة </a>*@
+<h1> </h1>
+<link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<p><a asp-action="Uploadmmx" asp-controller="ViewModelEvalwithother1" class="btn btn-success">عودة  </a></p>
+<h2> الاعضاء </h2>
+<table id="table" class="table table-bordered table-condensed table-striped table-hover sortable">
+    <thead>
+        <tr>
+            <th>
+                @*ادخال  درجة*@
+            </th>
+            <th>
+                السجل المدني
+            </th>
+            <th>
+                رقم القرار
+            </th>
+            @*<th>
+                    رقم الأعلان
+                </th>*@
+            <th>
+                رقم العضو
+            </th>
+            <th>
+                أسم العضو
+            </th>
+            <th>
+                المهمة
+            </th>
+            <th>
+                الدرجة
+            </th>
+            <th>
+                الرتبة
+            </th>
+            <th>
+                القسم
+            </th>
+            <th>
+                الادارة
+            </th>
+            <th>
+                تاريخ التعيين
+            </th>
+            <th>
+                تاريخ اخر ترقية
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.cemps)
+        {
+            <tr>
+                <td>
+
+                    @*<a asp-action="Create" class="btn btn-success">اضافة </a>*@
+                    <a data-id="@item.EncryptedId" data-name="@item.CEMPNO" class="btn btn-primary btn-sm" href="#" id="btnEdit"> تبديل العضو</a>|
+                    <a data-id="@item.EncryptedId" data-name="@item.CEMPNO" class="btn btn-danger btn-sm" href="##" id="btnEdit0"> تبديل المهمة</a>|
+                    @*<a data-id="@item.EncryptedId" data-name="@item.CEMPNO" class="btn btn-secondary btn-sm" href="###" id="btnEdit00"> اخفاء العضو </a>|
+                    <a data-id="@item.EncryptedId" data-name="@item.CEMPNO" class="btn btn-secondary btn-sm" href="####" id="btnEdit000"> اظهار العضو </a>*@
+                    @*<a asp-action="Details" asp-route-id="@item.CourcesIdType" class="btn btn-success">تفاصيل</a>*@
+                    @*<a asp-action="Delete" asp-route-id="@item.CourcesIdType">Delete</a>*@
+                </td>
+                <td>
+                    @item.CEMPPASSWRD
+                </td>
+                <td>
+                    @item.CEMPNO
+                </td>
+                @*<td>
+                        @item.CEMPPASSWRD1
+                    </td>*@
+                <td>
+                    @item.Cempid
+                </td>
+                <td>
+                    @item.CEMPNAME
+                </td>
+                <td>
+                    @item.cip
+                </td>
+                <td>
+                    @item.grade
+                </td>
+                <td>
+                    @item.CLSSNO
+                </td>
+                <td>
+                    @item.DEP_NAME
+                </td>
+                <td>
+                    @item.PARENTNAME
+                </td>
+                <td>
+                    @item.CEMPHIRINGDATEHIJRA.Value.ToShortDateString()
+                </td>
+                <td>
+                    @item.CEMPLASTUPGRADEHIJRA.Value.ToShortDateString()
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("body").on('click', '#btnEdit', function () {
+            $("#MyPopup").modal("hide");
+            var obj = {};
+            obj.EncryptedId = $(this).attr('data-id');
+            obj.CEMPNO = $(this).attr('data-name');
+
+            $.ajax({
+                url: 'EditCustomer0',
+                data: JSON.stringify(obj),
+                type: 'POST',
+                dataType: 'html',
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    var id = JSON.parse(response).c0;
+                    var name = JSON.parse(response).c1;
+                    var country = JSON.parse(response).c2;
+                    var c3 = JSON.parse(response).c3;
+                    var c4 = JSON.parse(response).c4;
+                    var c5 = JSON.parse(response).c5;
+                    var c6 = JSON.parse(response).c6;
+                    var c7 = JSON.parse(response).c7;
+                    var c8 = JSON.parse(response).c8;
+                    var c10 = JSON.parse(response).c10;
+                    $('#txtId').val(id);
+                    $('#txtName').val(name);
+                    $('#txtCountry').val(country);
+                    $('#txtId3').val(c3);
+                    $('#txtName3').val(c4);
+                    $('#txtCountry3').val(c5);
+                    $('#txtId4').val(c6);
+                    $('#txtName4').val(c7);
+                    $('#txtCountry4').val(c8);
+                    $('#c10').val(c10);
+                    $("#MyPopup").modal("show");
+                }
+            });
+        });
+    });
+</script>
+
+<div id="MyPopup" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title">بيانات الموظف</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Update0" asp-controller="ViewModelEvalwithother1" method="post">
+                    <div class="container">
+                        <div class="row">
+                            <input id="c10" name="c10" asp-for="c10" hidden />
+                            <input id="c11" asp-for="c11" hidden />
+                            <input id="c12" asp-for="c12" hidden />
+                            <input id="c13" asp-for="c13" hidden />
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    الرقم الوظيفي: <input id="txtId" asp-for="c1" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    الاسم: <input id="txtName" asp-for="c0" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    اختيار العضو الجديد
+                                    <select class="chosen-select form-control" asp-for="c2" asp-items="ViewBag.Cempid">
+                                        <option value="55">تحديد</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+                        </div>
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="submit" value="حفظ" class="btn btn-success btn-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="row">
+    <div class="col-md-4">
+
+        <div class="form-group">
+            الدرجة: <input id="txtId3" asp-for="c3" class="form-control" readonly="readonly" />
+        </div>
+        <div class="form-group">
+            الرتبة : <input id="txtName3" asp-for="c4" class="form-control" readonly="readonly" />
+        </div>
+        <div class="form-group">
+            القسم: <input id="txtCountry3" asp-for="c5" class="form-control" readonly="readonly" />
+        </div>-->
+                        @*<div class="form-group">
+            <input type="submit" value="Update" class="btn btn-success btn-sm" />
+        </div>*@
+
+                        <!--</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="form-group">
+                الادارة: <input id="txtId4" asp-for="c6" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                تاريخ التعيين : <input id="txtName4" asp-for="c7" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                اخر ترقية: <input id="txtCountry4" asp-for="c8" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                الدرجة من 100: <input id="txtCountry" asp-for="c9" type="number" min="0" max="100" autocomplete="off" required autofocus />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-success btn-sm" />
+            </div>
+        </div>
+    </div>-->
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnClosePopup" value="أغلاق" data-dismiss="modal" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("body").on('click', '#btnEdit0', function () {
+            $("#MyPopup1").modal("hide");
+            var obj = {};
+            obj.EncryptedId = $(this).attr('data-id');
+            obj.CEMPNO = $(this).attr('data-name');
+
+            $.ajax({
+                url: 'EditCustomer00',
+                data: JSON.stringify(obj),
+                type: 'POST',
+                dataType: 'html',
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    var id = JSON.parse(response).c0;
+                    var name = JSON.parse(response).c1;
+                    var country = JSON.parse(response).c2;
+                    var c3 = JSON.parse(response).c3;
+                    var c4 = JSON.parse(response).c4;
+                    var c5 = JSON.parse(response).c5;
+                    var c6 = JSON.parse(response).c6;
+                    var c7 = JSON.parse(response).c7;
+                    var c8 = JSON.parse(response).c8;
+                    var c100 = JSON.parse(response).c10;
+                    $('#txtId00').val(id);
+                    $('#txtName00').val(name);
+                    $('#txtCountry').val(country);
+                    $('#txtId3').val(c3);
+                    $('#txtName3').val(c4);
+                    $('#txtCountry3').val(c5);
+                    $('#txtId4').val(c6);
+                    $('#txtName4').val(c7);
+                    $('#txtCountry4').val(c8);
+                    $('#c100').val(c100);
+                    $("#MyPopup1").modal("show");
+                }
+            });
+        });
+    });
+</script>
+
+<div id="MyPopup1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title">بيانات الموظف</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Update00" asp-controller="ViewModelEvalwithother1" method="post">
+                    <div class="container">
+                        <div class="row">
+                            <input id="c100" name="c100" asp-for="c10" hidden />
+                            <input id="c11" asp-for="c11" hidden />
+                            <input id="c12" asp-for="c12" hidden />
+                            <input id="c13" asp-for="c13" hidden />
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    الرقم الوظيفي: <input id="txtId00" asp-for="c1" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    الاسم: <input id="txtName00" asp-for="c0" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    اختيار  المهمة
+                                    <select class="chosen-select form-control" asp-for="c2">
+                                        <option value="55">تحديد</option>
+                                        <option value="رئيس اللجنة">رئيس اللجنة</option>
+                                        <option value="نائب رئيس اللجنة ">نائب رئيس اللجنة </option>
+                                        <option value="عضو اللجنة1">1عضو اللجنة</option>
+                                        <option value="عضو اللجنة2">عضو اللجنة2</option>
+                                        <option value="عضو اللجنة3">عضو اللجنة3</option>
+                                        <option value="سكرتير اللجنة">سكرتير اللجنة </option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+
+                        </div>
+                        <br />
+                        <br />
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="submit" value="حفظ" class="btn btn-success btn-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="row">
+    <div class="col-md-4">
+
+        <div class="form-group">
+            الدرجة: <input id="txtId3" asp-for="c3" class="form-control" readonly="readonly" />
+        </div>
+        <div class="form-group">
+            الرتبة : <input id="txtName3" asp-for="c4" class="form-control" readonly="readonly" />
+        </div>
+        <div class="form-group">
+            القسم: <input id="txtCountry3" asp-for="c5" class="form-control" readonly="readonly" />
+        </div>-->
+                        @*<div class="form-group">
+            <input type="submit" value="Update" class="btn btn-success btn-sm" />
+        </div>*@
+
+                        <!--</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="form-group">
+                الادارة: <input id="txtId4" asp-for="c6" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                تاريخ التعيين : <input id="txtName4" asp-for="c7" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                اخر ترقية: <input id="txtCountry4" asp-for="c8" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                الدرجة من 100: <input id="txtCountry" asp-for="c9" type="number" min="0" max="100" autocomplete="off" required autofocus />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="حفظ" class="btn btn-success btn-sm" />
+            </div>
+        </div>
+    </div>-->
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnClosePopup" value="أغلاق" data-dismiss="modal" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("body").on('click', '#btnEdit00', function () {
+            $("#MyPopup2").modal("hide");
+            var obj = {};
+            obj.EncryptedId = $(this).attr('data-id');
+            obj.CEMPNO = $(this).attr('data-name');
+
+            $.ajax({
+                url: 'EditCustomer000',
+                data: JSON.stringify(obj),
+                type: 'POST',
+                dataType: 'html',
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    var id = JSON.parse(response).c0;
+                    var name = JSON.parse(response).c1;
+                    var country = JSON.parse(response).c2;
+                    var c3 = JSON.parse(response).c3;
+                    var c4 = JSON.parse(response).c4;
+                    var c5 = JSON.parse(response).c5;
+                    var c6 = JSON.parse(response).c6;
+                    var c7 = JSON.parse(response).c7;
+                    var c8 = JSON.parse(response).c8;
+                    var c1000 = JSON.parse(response).c10;
+                    $('#txtId000').val(id);
+                    $('#txtName000').val(name);
+                    $('#txtCountry').val(country);
+                    $('#txtId3').val(c3);
+                    $('#txtName3').val(c4);
+                    $('#txtCountry3').val(c5);
+                    $('#txtId4').val(c6);
+                    $('#txtName4').val(c7);
+                    $('#txtCountry4').val(c8);
+                    $('#c1000').val(c1000);
+                    $("#MyPopup2").modal("show");
+                }
+            });
+        });
+    });
+</script>
+
+<div id="MyPopup2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title">بيانات الموظف</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Update000" asp-controller="ViewModelEvalwithother1" method="post">
+                    <div class="container">
+                        <div class="row">
+                            <input id="c1000" name="c1000" asp-for="c10" hidden />
+                            <input id="c11" asp-for="c11" hidden />
+                            <input id="c12" asp-for="c12" hidden />
+                            <input id="c13" asp-for="c13" hidden />
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    الرقم الوظيفي: <input id="txtId000" asp-for="c1" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    الاسم: <input id="txtName000" asp-for="c0" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    اخفاء من الاعلانات التالية
+                                    <select name="DynamicTextBox1" multiple class="chosen-select form-control" asp-items="ViewBag.Cempid2" required asp-for="c2">
+                                        <option value="55">تحديد</option>
+                                        @*<option value="رئيس اللجنة">رئيس اللجنة</option>
+                                            <option value="نائب رئيس اللجنة ">نائب رئيس اللجنة </option>
+                                            <option value="عضو اللجنة">عضو اللجنة</option>
+                                            <option value="عضو اللجنة">سكرتير اللجنة </option>*@
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+
+                        </div>
+                        <br />
+
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="submit" value="حفظ" class="btn btn-success btn-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="row">
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                الدرجة: <input id="txtId3" asp-for="c3" class="form-control" readonly="readonly" />
+                            </div>
+                            <div class="form-group">
+                                الرتبة : <input id="txtName3" asp-for="c4" class="form-control" readonly="readonly" />
+                            </div>
+                            <div class="form-group">
+                                القسم: <input id="txtCountry3" asp-for="c5" class="form-control" readonly="readonly" />
+                            </div>-->
+                        @*<div class="form-group">
+                                <input type="submit" value="Update" class="btn btn-success btn-sm" />
+                            </div>*@
+
+                        <!--</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    الادارة: <input id="txtId4" asp-for="c6" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    تاريخ التعيين : <input id="txtName4" asp-for="c7" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    اخر ترقية: <input id="txtCountry4" asp-for="c8" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    الدرجة من 100: <input id="txtCountry" asp-for="c9" type="number" min="0" max="100" autocomplete="off" required autofocus />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="حفظ" class="btn btn-success btn-sm" />
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnClosePopup" value="أغلاق" data-dismiss="modal" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("body").on('click', '#btnEdit000', function () {
+            $("#MyPopup3").modal("hide");
+            var obj = {};
+            obj.EncryptedId = $(this).attr('data-id');
+            obj.CEMPNO = $(this).attr('data-name');
+
+            $.ajax({
+                url: 'EditCustomer0000',
+                data: JSON.stringify(obj),
+                type: 'POST',
+                dataType: 'html',
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    var id = JSON.parse(response).c0;
+                    var name = JSON.parse(response).c1;
+                    var country = JSON.parse(response).c2;
+                    var c3 = JSON.parse(response).c3;
+                    var c4 = JSON.parse(response).c4;
+                    var c5 = JSON.parse(response).c5;
+                    var c6 = JSON.parse(response).c6;
+                    var c7 = JSON.parse(response).c7;
+                    var c8 = JSON.parse(response).c8;
+                    var c10000 = JSON.parse(response).c10;
+                    $('#txtId0000').val(id);
+                    $('#txtName0000').val(name);
+                    $('#txtCountry').val(country);
+                    $('#txtId3').val(c3);
+                    $('#txtName3').val(c4);
+                    $('#txtCountry3').val(c5);
+                    $('#txtId4').val(c6);
+                    $('#txtName4').val(c7);
+                    $('#txtCountry4').val(c8);
+                    $('#c10000').val(c10000);
+                    $("#MyPopup3").modal("show");
+                }
+            });
+        });
+    });
+</script>
+
+<div id="MyPopup3" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title">بيانات الموظف</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Update0000" asp-controller="ViewModelEvalwithother1" method="post">
+                    <div class="container">
+                        <div class="row">
+                            <input id="c10000" name="c10000" asp-for="c10" hidden />
+                            <input id="c11" asp-for="c11" hidden />
+                            <input id="c12" asp-for="c12" hidden />
+                            <input id="c13" asp-for="c13" hidden />
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    الرقم الوظيفي: <input id="txtId0000" asp-for="c1" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    الاسم: <input id="txtName0000" asp-for="c0" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    أعادة اظهار  الاعلانات التالية
+                                    <select name="DynamicTextBox1" multiple class="chosen-select form-control" asp-items="ViewBag.Cempid2" required asp-for="c2">
+                                        <option value="55">تحديد</option>
+                                        @*<option value="رئيس اللجنة">رئيس اللجنة</option>
+                                            <option value="نائب رئيس اللجنة ">نائب رئيس اللجنة </option>
+                                            <option value="عضو اللجنة">عضو اللجنة</option>
+                                            <option value="عضو اللجنة">سكرتير اللجنة </option>*@
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+
+                        </div>
+                        <br />
+
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="submit" value="حفظ" class="btn btn-success btn-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="row">
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                الدرجة: <input id="txtId3" asp-for="c3" class="form-control" readonly="readonly" />
+                            </div>
+                            <div class="form-group">
+                                الرتبة : <input id="txtName3" asp-for="c4" class="form-control" readonly="readonly" />
+                            </div>
+                            <div class="form-group">
+                                القسم: <input id="txtCountry3" asp-for="c5" class="form-control" readonly="readonly" />
+                            </div>-->
+                        @*<div class="form-group">
+                                <input type="submit" value="Update" class="btn btn-success btn-sm" />
+                            </div>*@
+
+                        <!--</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    الادارة: <input id="txtId4" asp-for="c6" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    تاريخ التعيين : <input id="txtName4" asp-for="c7" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    اخر ترقية: <input id="txtCountry4" asp-for="c8" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    الدرجة من 100: <input id="txtCountry" asp-for="c9" type="number" min="0" max="100" autocomplete="off" required autofocus />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="حفظ" class="btn btn-success btn-sm" />
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input type="button" id="btnClosePopup" value="أغلاق" data-dismiss="modal" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<form method="post" asp-action="Editmmm" asp-controller="ViewModelEvalwithother1" enctype="multipart/form-data">
+    <div id="exampleModal5" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">اضافة الدرجات  </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>الموظف</label>
+                        <input type="text" name="c1" readonly autocomplete="off" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>الدرجة من 100:</label>
+                        <input type="number" name="mm" autocomplete="off" class="form-control" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">حفظ </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script>
+
+    $(document).ready(function () {
+        $('#table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table2').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table3').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table4').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table5').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table6').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#table7').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /*'copy', 'csv', 'excel', 'pdf',*/ 'print', 'excel'
+            ],
+            "language": {
+                "emptyTable": "ليست هناك بيانات متاحة في الجدول",
+                "loadingRecords": "جارٍ التحميل...",
+                "processing": "جارٍ التحميل...",
+                "lengthMenu": "أظهر _MENU_ مدخلات",
+                "zeroRecords": "لم يعثر على أية سجلات",
+                "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                "infoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "infoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "search": "ابحث:",
+                "paginate": {
+                    "first": "الأول",
+                    "previous": "السابق",
+                    "next": "التالي",
+                    "last": "الأخير"
+                },
+                "aria": {
+                    "sortAscending": ": تفعيل لترتيب العمود تصاعدياً",
+                    "sortDescending": ": تفعيل لترتيب العمود تنازلياً"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d قيمة محددة",
+                        "0": "",
+                        "1": "1 قيمة محددة"
+                    },
+                    "1": "%d سطر محدد",
+                    "_": "%d أسطر محددة",
+                    "cells": {
+                        "1": "1 خلية محددة",
+                        "_": "%d خلايا محددة"
+                    },
+                    "columns": {
+                        "1": "1 عمود محدد",
+                        "_": "%d أعمدة محددة"
+                    }
+                },
+                "buttons": {
+                    "print": "طباعة",
+                    "copyKeys": "زر <i>ctrl<\/i> أو <i>⌘<\/i> + <i>C<\/i> من الجدول<br>ليتم نسخها إلى الحافظة<br><br>للإلغاء اضغط على الرسالة أو اضغط على زر الخروج.",
+                    "copySuccess": {
+                        "_": "%d قيمة نسخت",
+                        "1": "1 قيمة نسخت"
+                    },
+                    "pageLength": {
+                        "-1": "اظهار الكل",
+                        "_": "إظهار %d أسطر"
+                    },
+                    "collection": "مجموعة",
+                    "copy": "نسخ",
+                    "copyTitle": "نسخ إلى الحافظة",
+                    "csv": "CSV",
+                    "excel": "Excel",
+                    "pdf": "PDF",
+                    "colvis": "إظهار الأعمدة",
+                    "colvisRestore": "إستعادة العرض"
+                },
+                "autoFill": {
+                    "cancel": "إلغاء",
+                    "info": "مثال عن الملئ التلقائي",
+                    "fill": "املأ جميع الحقول بـ <i>%d&lt;\\\/i&gt;<\/i>",
+                    "fillHorizontal": "تعبئة الحقول أفقيًا",
+                    "fillVertical": "تعبئة الحقول عموديا"
+                },
+                "searchBuilder": {
+                    "add": "اضافة شرط",
+                    "clearAll": "ازالة الكل",
+                    "condition": "الشرط",
+                    "data": "المعلومة",
+                    "logicAnd": "و",
+                    "logicOr": "أو",
+                    "title": [
+                        "منشئ البحث"
+                    ],
+                    "value": "القيمة",
+                    "conditions": {
+                        "date": {
+                            "after": "بعد",
+                            "before": "قبل",
+                            "between": "بين",
+                            "empty": "فارغ",
+                            "equals": "تساوي",
+                            "not": "ليس",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "number": {
+                            "between": "بين",
+                            "empty": "فارغة",
+                            "equals": "تساوي",
+                            "gt": "أكبر من",
+                            "gte": "أكبر وتساوي",
+                            "lt": "أقل من",
+                            "lte": "أقل وتساوي",
+                            "not": "ليست",
+                            "notBetween": "ليست بين",
+                            "notEmpty": "ليست فارغة"
+                        },
+                        "string": {
+                            "contains": "يحتوي",
+                            "empty": "فاغ",
+                            "endsWith": "ينتهي ب",
+                            "equals": "يساوي",
+                            "not": "ليست",
+                            "notEmpty": "ليست فارغة",
+                            "startsWith": " تبدأ بـ "
+                        }
+                    },
+                    "button": {
+                        "0": "فلاتر البحث",
+                        "_": "فلاتر البحث (%d)"
+                    },
+                    "deleteTitle": "حذف فلاتر"
+                },
+                "searchPanes": {
+                    "clearMessage": "ازالة الكل",
+                    "collapse": {
+                        "0": "بحث",
+                        "_": "بحث (%d)"
+                    },
+                    "count": "عدد",
+                    "countFiltered": "عدد المفلتر",
+                    "loadMessage": "جارِ التحميل ...",
+                    "title": "الفلاتر النشطة"
+                },
+                "searchPlaceholder": "ابحث ..."
+            }
+        });
+    });
+
+
+
+
+
+</script>
+
+<link href="~/DataTables (1)/datatables.css" rel="stylesheet" />
+
+<script src="~/DataTables (1)/datatables.js"></script>
+
+<script src="~/DataTables (1)/pdfmake-0.1.36/pdfmake.js"></script>
+
+<script src="~/DataTables (1)/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="~/DataTables (1)/JSZip-2.5.0/jszip.js"></script>
+
+
+<script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+<link href="~/select2-4/dist/css/select2.css" rel="stylesheet" />
+<script src="~/select2-4/dist/js/select2.js"></script>
+
+<link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+<link href="~/js/chosen.css" rel="stylesheet" />
+<link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+<link href="~/js/prism.css" rel="stylesheet" />
+<script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+<script src="~/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+<script src="~/js/prism.js"></script>
+<script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
+<script src="~/lib/globalize/globalize.js"></script>
+<script src="~/lib/globalize/globalize-runtime.js"></script>
+<script src="~/lib/globalize/date.js"></script>
+<link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script>
+    completed = function (xhr) {
+        alert(`تمت الأضافة!`);
+        /*  alert(`Hi ${xhr.responseText}!`);*/
+    };
+</script>
+<script>
+    failed = function (xhr) {
+        alert(`حدث خطيء في مليء البيانات !`);
+        alert(`Status: {xhr.status}, Status Text: {xhr.statusText}`);
+    };
+</script>
+
+<script type="text/javascript">
+    function centerModal() {
+        $(this).css('display', 'block');
+        var $dialog = $(this).find(".modal-dialog");
+        var offset = ($(window).height() - $dialog.height()) / 2;
+        // Center modal vertically in window
+        $dialog.css("margin-top", offset);
+    }
+
+    $('.modal').on('show.bs.modal', centerModal);
+    $(window).on("resize", function () {
+        $('.modal:visible').each(centerModal);
+    });
+</script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+        }
+        catch (e) { }
+    });
+
+</script>
+
+<script type="text/javascript">
+    $('#MyPopup').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    $('#MyPopup1').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    $('#MyPopup2').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    $('#MyPopup3').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    function centerModal() {
+        $(this).css('display', 'block');
+        var $dialog = $(this).find(".modal-dialog");
+        var offset = ($(window).height() - $dialog.height()) / 2;
+        // Center modal vertically in window
+        $dialog.css("margin-top", offset);
+    }
+
+    $('.modal').on('show.bs.modal', centerModal);
+    $(window).on("resize", function () {
+        $('.modal:visible').each(centerModal);
+    });
+</script>
+
+
+@*<script type="text/javascript">
+        $('#MyPopup').on('shown.bs.modal', function () {
+            $('.chosen-select', this).chosen();
+        });
+    </script>
+    <script type="text/javascript">
+
+
+
+
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" }//,
+            //'.chosen-search': {disable_search: false}
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+
+    </script>*@

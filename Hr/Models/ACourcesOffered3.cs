@@ -26,6 +26,19 @@ namespace Hr.Models
         public int ? CourcesId7 { get; set; }
         public int ? CourcesId8 { get; set; }
 
+
+        //[Required]
+        public int? CourcesId01 { get; set; }
+
+        public int? CourcesId02 { get; set; }
+
+        public int? CourcesId03 { get; set; }
+        public int? CourcesId04 { get; set; }
+        public int? CourcesId05 { get; set; }
+        public int? CourcesId06 { get; set; }
+        public int? CourcesId07 { get; set; }
+        public int? CourcesId08 { get; set; }
+
         [Required]
         public int CourcesIdDeptout { get; set; }
 
@@ -74,7 +87,15 @@ namespace Hr.Models
         //public int CourcesIdTraining { get; set; }
 
         public string ? Cempid { get; set; }
-
+        
+        public string CourcesPassRate1 { get; set; }
+        public string CourcesPassRate2 { get; set; }
+        public string CourcesPassRate3 { get; set; }
+        public string CourcesPassRate4 { get; set; }
+        public string CourcesPassRate5 { get; set; }
+        public string CourcesPassRate6 { get; set; }
+        public string CourcesPassRate7 { get; set; }
+        public string CourcesPassRate8 { get; set; }
         //public int ? Option { get; set; }
 
 

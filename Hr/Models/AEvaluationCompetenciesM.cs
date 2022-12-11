@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -14,5 +15,7 @@ namespace Hr.Models
         public int? EmpId { get; set; }
         public int? CovenantWeightSum { get; set; }
         public int? CovenantId { get; set; }
+        //[NotMapped]
+        //public string EncryptedCovenantId { get; set; }
     }
 }
