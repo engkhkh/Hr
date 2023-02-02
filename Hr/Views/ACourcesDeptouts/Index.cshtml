@@ -13,8 +13,11 @@
 <table id="table" class="table table-bordered table-condensed table-striped table-hover sortable">
     <thead>
         <tr>
-            <th style="width:40%;"></th>
-            <th style="width:60%;">
+            <th style="width:30%;"></th>
+            <th style="width:30%;">
+                @*@Html.DisplayNameFor(model => model.CourcesNameDeptout)*@
+            </th>
+            <th style="width:40%;">
                 @*@Html.DisplayNameFor(model => model.CourcesNameDeptout)*@
             </th>
 
@@ -24,14 +27,17 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td style="width:40%;">
+                <td style="width:30%;">
                     @*<a asp-action="Create" class="btn btn-success">اضافة </a>*@
                     <a asp-action="Edit" asp-route-id="@item.CourcesIdDeptout" class="btn btn-success" >تعديل</a> 
                     <a asp-action="Details" asp-route-id="@item.CourcesIdDeptout" class="btn btn-success">تفاصيل</a> 
                     @*<a asp-action="Delete" asp-route-id="@item.CourcesIdDeptout">Delete</a>*@
                 </td>
-                <td style="width:60%;">
+                <td style="width:30%;">
                     @Html.DisplayFor(modelItem => item.CourcesNameDeptout)
+                </td>
+                <td style="width:40%;">
+                    @Html.DisplayFor(modelItem => item.Ttype)
                 </td>
 
             </tr>

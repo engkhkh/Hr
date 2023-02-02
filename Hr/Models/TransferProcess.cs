@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -18,5 +19,11 @@ namespace Hr.Models
         public int? Managernewid { get; set; }
         public string Managernewname { get; set; }
         public DateTime Daterequest { get; set; }
+        public string decisionid { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "ادخل تاريخ القرار   ")]
+        public DateTime? decisiondate { get; set; }
+        public string decisionpath { get; set; }
+
     }
 }

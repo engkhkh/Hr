@@ -1,0 +1,941 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+@model Hr.Models.ViewModelTasks
+
+@{
+    ViewData["Title"] = "خدمة مهام الإدارة  ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+@*<h1>Create</h1>
+
+    <h4>Cemp</h4>*@
+<a asp-action="TasksManagements0" class="btn btn-success">عرض البيانات </a>
+<hr />
+<div class=" container">
+    <div class="row">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"> أضافة أهداف الإدارة</button>
+            <form method="post" asp-action="Index2" asp-controller="ViewModelTasks" data-ajax="true"  data-ajax-method="post" data-ajax-failure="failed" data-ajax-complete="completed">
+                <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">مهام الإدارة </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @*<div class="form-group">
+                                        <label>الموظف:</label>
+                                        <input type="text" asp-for="CEMPNAME" name="Id" readonly autocomplete="off" class="form-control" />
+                                    </div>*@
+                                <!--<div class="form-group">
+                                <label> الموظف:</label>-->
+                                @*<input type="text" name="Id" autocomplete="off" class="form-control" />*@
+                                <!--<select name="Id" asp-for="CEMPNO" class="chosen-select form-control" asp-items="ViewBag.Cempid">
+                                        <option value="">-- الموظف -- </option>
+                                    </select>
+                                </div>-->
+                                <div class="form-group">
+                                    <input id="btnAdd" type="button" value="اضافة هدف " onclick="AddTextBox1()" />
+                                    <br />
+                                    <br />
+                                    <div id="TextBoxContainer1">
+                                        <!--Textboxes will be added here -->
+                                    </div>
+                                    <br />
+                                    @*<input type="submit" value="Submit" />*@
+                                </div>
+                                <!--<div class="form-group">
+                                <label>العام:</label>
+                                <select name="Year" class="form-control">
+                                    <option value="">Please select</option>
+                                    <option value="2021">2021</option>-->
+                                @*<option value="2022">2022</option>*@
+                                @*<option value="China">China</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="France">France</option>
+                                    <option value="Unites States">Unites States</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Canada">Canada</option>*@
+                                <!--</select>
+                                </div>-->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">تسجيل وحفظ الاهداف</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2"> أضافة وصف الإدارة</button>
+            <form method="post" asp-action="Index3" asp-controller="ViewModelTasks" data-ajax="true"  data-ajax-method="post" data-ajax-failure="failed" data-ajax-complete="completed">
+                <div id="exampleModal2" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">مهام الإدارة </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @*<div class="form-group">
+                                        <label>الموظف:</label>
+                                        <input type="text" asp-for="CEMPNAME" name="Id" readonly autocomplete="off" class="form-control" />
+                                    </div>*@
+                                <div class="form-group">
+                                    <label> وصف الادارة :</label>
+                                    <textarea name="Desc" autocomplete="off" class="form-control" rows="10" cols="60"></textarea>
+                                    @*<select name="Id" asp-for="CEMPNO" class="chosen-select form-control" asp-items="ViewBag.Cempid">
+                                            <option value="">-- الموظف -- </option>
+                                        </select>*@
+                                </div>
+                                <!--<div class="form-group">
+                                <label>العام:</label>
+                                <select name="Year" class="form-control">
+                                    <option value="">Please select</option>
+                                    <option value="2021">2021</option>-->
+                                @*<option value="2022">2022</option>*@
+                                @*<option value="China">China</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="France">France</option>
+                                    <option value="Unites States">Unites States</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Canada">Canada</option>*@
+                                <!--</select>
+                                </div>-->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">حفظ الوصف</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal3"> أضافة مهام الإدارة</button>
+            <form method="post" asp-action="Index4" asp-controller="ViewModelTasks" data-ajax="true"  data-ajax-method="post" data-ajax-failure="failed" data-ajax-complete="completed">
+                <div id="exampleModal3" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">مهام الإدارة </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @*<div class="form-group">
+                                        <label>الموظف:</label>
+                                        <input type="text" asp-for="CEMPNAME" name="Id" readonly autocomplete="off" class="form-control" />
+                                    </div>*@
+                                <!--<div class="form-group">
+                                <label> الموظف:</label>-->
+                                @*<input type="text" name="Id" autocomplete="off" class="form-control" />*@
+                                <!--<select name="Id" asp-for="CEMPNO" class="chosen-select form-control" asp-items="ViewBag.Cempid">
+                                        <option value="">-- الموظف -- </option>
+                                    </select>
+                                </div>-->
+                                <div class="form-group">
+                                    <input id="btnAdd" type="button" value="اضافة مهام الادارة " onclick="AddTextBox2()" />
+                                    <br />
+                                    <br />
+                                    <div id="TextBoxContainer2">
+                                        <!--Textboxes will be added here -->
+                                    </div>
+                                    <br />
+                                    @*<input type="submit" value="Submit" />*@
+                                </div>
+                                <!--<div class="form-group">
+                                <label>العام:</label>
+                                <select name="Year" class="form-control">
+                                    <option value="">Please select</option>
+                                    <option value="2021">2021</option>-->
+                                @*<option value="2022">2022</option>*@
+                                @*<option value="China">China</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="France">France</option>
+                                    <option value="Unites States">Unites States</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Canada">Canada</option>*@
+                                <!--</select>
+                                </div>-->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">تسجيل وحفظ المهام</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal4"> الارتباط التنظيمي</button>
+            <form method="post" asp-controller="ViewModelTasks">
+                <div id="exampleModal4" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">مهام الإدارة </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @*<div class="form-group">
+                                        <label>الموظف:</label>
+                                        <input type="text" asp-for="CEMPNAME" name="Id" readonly autocomplete="off" class="form-control" />
+                                    </div>*@
+                                <div class="form-group">
+                                    <label> اسم المدير :</label>
+                                    <input type="text" name="CEMPManager" asp-for="CEMPManager" class="form-control" readonly />
+                                    @*<select name="Id" asp-for="CEMPNO" class="chosen-select form-control" readonly asp-items="ViewBag.Cempid">
+                                            <option value="">-- الموظف -- </option>
+                                        </select>*@
+                                </div>
+                                <div class="form-group">
+                                    <label> المسمي الوظيفي  :</label>
+                                    <input type="text" name="CEMPManager" asp-for="CEMPManager0" class="form-control" readonly />
+                                    @*<select name="Id" asp-for="CEMPNO" class="chosen-select form-control" readonly asp-items="ViewBag.Cempid">
+                                            <option value="">-- الموظف -- </option>
+                                        </select>*@
+                                </div>
+                                <!--<div class="form-group">
+                                <label>العام:</label>
+                                <select name="Year" class="form-control">
+                                    <option value="">Please select</option>
+                                    <option value="2021">2021</option>-->
+                                @*<option value="2022">2022</option>*@
+                                @*<option value="China">China</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="France">France</option>
+                                    <option value="Unites States">Unites States</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Canada">Canada</option>*@
+                                <!--</select>
+                                </div>-->
+                                <div class="modal-footer">
+                                    @*<button type="submit" class="btn btn-success">طباعة</button>*@
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">أغلاق</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal5"> صلاحيات مدير الإدارة</button>
+            <form method="post" asp-action="index5" asp-controller="ViewModelTasks" enctype="multipart/form-data" data-ajax="true"  data-ajax-method="post" data-ajax-failure="failed">
+                <div id="exampleModal5" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">مهام الإدارة </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @*<div class="form-group">
+                                        <label>الموظف:</label>
+                                        <input type="text" asp-for="CEMPNAME" name="Id" readonly autocomplete="off" class="form-control" />
+                                    </div>*@
+                                <div class="form-group">
+                                    <label> رقم القرار :</label>
+                                    <input type="text" name="Iddecision" autocomplete="off" class="form-control" />
+                                    @*<select name="Id" asp-for="CEMPNO" class="chosen-select form-control" asp-items="ViewBag.Cempid">
+                                            <option value="">-- الموظف -- </option>
+                                        </select>*@
+                                </div>
+                                <div class="form-group">
+                                    <label> تاريخ القرار :</label>
+                                    <input type="text" name="CourcesStartDate" autocomplete="off" class="form-control hijri-date-input" />
+                                    @*<select name="Id" asp-for="CEMPNO" class="chosen-select form-control" asp-items="ViewBag.Cempid">
+                                            <option value="">-- الموظف -- </option>
+                                        </select>*@
+                                </div>
+                                <div class="form-group">
+                                    <label> الصلاحيات :</label>
+                                    <textarea id="pri" name="privilegedecision" rows="5" cols="70"></textarea>
+                                    @*<select name="Id" asp-for="CEMPNO" class="chosen-select form-control" asp-items="ViewBag.Cempid">
+                                            <option value="">-- الموظف -- </option>
+                                        </select>*@
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">ارفاق القرار*   <label style="color:red;">"(jpeg,jpg,png,gif,jfif,pdf) !"</label> <label style="color:red;">"الحد الاقصي لحجم الملف 4 ميجا!"</label> </label>
+                                    <input type="file" asp-for="Filecer" class="form-control" id="f1" asp-items="ViewBag.CourcesIdImagecert" />
+                                    <span asp-validation-for="CourcesIdImagecert" class="text-danger"></span>
+                                    <p style="color:red">@ViewBag.ErrorMessage</p>
+                                </div>
+                                <!--<div class="form-group">
+                                <label>العام:</label>
+                                <select name="Year" class="form-control">
+                                    <option value="">Please select</option>
+                                    <option value="2021">2021</option>-->
+                                @*<option value="2022">2022</option>*@
+                                @*<option value="China">China</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="France">France</option>
+                                    <option value="Unites States">Unites States</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Canada">Canada</option>*@
+                                <!--</select>
+                                </div>-->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">حفظ وتسجيل القرار</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">أغلاق</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal6"> مخرجات الإدارة</button>
+            <form method="post" asp-action="Index6" asp-controller="ViewModelTasks" data-ajax="true"  data-ajax-method="post" data-ajax-failure="failed" data-ajax-complete="completed">
+                <div id="exampleModal6" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">مهام الإدارة </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @*<div class="form-group">
+                                        <label>الموظف:</label>
+                                        <input type="text" asp-for="CEMPNAME" name="Id" readonly autocomplete="off" class="form-control" />
+                                    </div>*@
+                                <div class="form-group">
+                                    <label> مخرجات إلادارة(المنتجات او الخدمات) :</label>
+                                    <textarea name="Desc" autocomplete="off" class="form-control" rows="10" cols="60"></textarea>
+                                    @*<select name="Id" asp-for="CEMPNO" class="chosen-select form-control" asp-items="ViewBag.Cempid">
+                                            <option value="">-- الموظف -- </option>
+                                        </select>*@
+                                </div>
+                                <!--<div class="form-group">
+                                <label>العام:</label>
+                                <select name="Year" class="form-control">
+                                    <option value="">Please select</option>
+                                    <option value="2021">2021</option>-->
+                                @*<option value="2022">2022</option>*@
+                                @*<option value="China">China</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="France">France</option>
+                                    <option value="Unites States">Unites States</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Canada">Canada</option>*@
+                                <!--</select>
+                                </div>-->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">حفظ وتسجيل</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal7"> إحصائيات إنجازات الإدارة</button>
+            <form method="post" asp-action="Index7" asp-controller="ViewModelTasks" data-ajax="true"  data-ajax-method="post" data-ajax-failure="failed" data-ajax-complete="completed">
+                <div id="exampleModal7" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">مهام الإدارة </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @*<div class="form-group">
+                                        <label>الموظف:</label>
+                                        <input type="text" asp-for="CEMPNAME" name="Id" readonly autocomplete="off" class="form-control" />
+                                    </div>*@
+                                <!--<div class="form-group">
+                                <label> الموظف:</label>-->
+                                @*<input type="text" name="Id" autocomplete="off" class="form-control" />*@
+                                <!--<select name="Id" asp-for="CEMPNO" class="chosen-select form-control" asp-items="ViewBag.Cempid">
+                                        <option value="">-- الموظف -- </option>
+                                    </select>
+                                </div>-->
+                                <div class="form-group">
+                                    <input id="btnAdd" type="button" value="اضافة إنجاز " onclick="AddTextBox7()" />
+                                    <br />
+                                    <br />
+                                    <div id="TextBoxContainer7">
+                                        <!--Textboxes will be added here -->
+
+                                    </div>
+                                    <br />
+                                    @*<input type="submit" value="Submit" />*@
+                                </div>
+                                <!--<div class="form-group">
+                                <label>العام:</label>
+                                <select name="Year" class="form-control">
+                                    <option value="">Please select</option>
+                                    <option value="2021">2021</option>-->
+                                @*<option value="2022">2022</option>*@
+                                @*<option value="China">China</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="France">France</option>
+                                    <option value="Unites States">Unites States</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Canada">Canada</option>*@
+                                <!--</select>
+                                </div>-->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">تسجيل وحفظ الانجازات</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal8"> الاشراف الإداري</button>
+            <form method="post" asp-controller="ViewModelTasks">
+                <div id="exampleModal8" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">مهام الإدارة </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @if (TempData["Cemps"] != null)
+                                {
+
+                                    var MenuMaster2 = JsonConvert.DeserializeObject<List<Hr.Models.Cemp>>(TempData["Cemps"].ToString());
+                                    //var groupByMenu = MenuMaster.GroupBy(x => x.SubMenuNamear).ToList();
+                                    var groupByMenu02 = MenuMaster2.Where(y => y.Cempid != null && y.CEMPNAME != null).OrderBy(y => y.Cempid).FirstOrDefault();
+                                    @if (groupByMenu02 != null)
+                                    {
+                                        @*<ul id="menu" class="menu accordion-menu">
+                                            <li class="droplink">
+
+                                                <a href="Default.aspx" class="waves-effect waves-button">
+                                                    <span class="  menu-icon   menu-icon glyphicon glyphicon-user"></span>
+                                                    <p><asp:Label ID="LoginLink" runat="server" CssClass="LoginLink" Height="30px">ادارة النظام</asp:Label></p>
+                                                    <span class="arrow"></span><p style="font:status-bar; font-family:'Times New Roman', Times, serif; font-size:larger; color:white;" class="waves-effect waves-button"></p>
+                                                </a>*@
+                                        <ul class="sub-menu" @*style="display: none;"*@>
+                                            @if (TempData["Cemps"] != null)
+                                            {
+
+                                                var MenuMaster = JsonConvert.DeserializeObject<List<Hr.Models.Cemp>>(TempData["Cemps"].ToString());
+                                                //var groupByMenu = MenuMaster.GroupBy(x => x.SubMenuNamear).ToList();
+                                                var groupByMenu0 = MenuMaster.First().Cempid.Contains("1");
+                                                @if (groupByMenu0 == true)
+                                                {
+
+                                                }
+
+                                                var groupByMenu1 = MenuMaster
+                                                .Where(y => y.Cempid != null && y.CEMPNAME != null)
+                                                .OrderBy(y => y.Cempid)
+                                                .ToList();
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>@*الرقم الوظيفي*@ </th>
+                                                            <th> @*<a asp-action="Print" class="btn btn-success" target="_blank">طباعة  </a>*@</th>
+                                                            <th>@*حاضر*@ </th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var SubMenuList in groupByMenu1)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @*<p> @SubMenuList.Cempid </p>*@
+                                                                </td>
+                                                                <td>
+                                                                    @*<li class="">*@
+                                                                    <!--<a href="~/@SubMenuList.CEMPNAME/@SubMenuList.Cempid" class="waves-effect waves-button">-->
+                                                                    @*<p> @SubMenuList.CEMPNAME </p> <span class=""></span>*@
+                                                                    <!--</a>-->
+
+
+                                                                    <p> @SubMenuList.CEMPNAME </p>
+                                                                    @*<span class="">حاضر</span>*@
+                                                                    @*</li>*@
+                                                                    @*<li><a href="#">@SubMenuList.SubMenuNamear</a></li>*@
+                                                                </td>
+                                                                <td>
+
+                                                                    @*@if (SubMenuList.Cemphiringdate >= DateTime.Now.Date)
+                                                                        {
+                                                                            <p>نعم</p>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <p>لا</p>
+                                                                        }*@
+                                                                </td>
+                                                                <td>
+                                                                    <p> @SubMenuList.CEMPJOBNAME </p>
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                                @*foreach (var MenuList in groupByMenu)
+                                                    {
+
+
+                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">@MenuList.Key<span class="caret"></span>hello</a>
+
+                                                        @foreach (var SubMenuList in MenuList)
+                                                        {
+
+                                                            <li class="">
+                                                                <a href="~/@SubMenuList.ControllerName/@SubMenuList.ActionName" class="waves-effect waves-button">
+                                                                    <p> @SubMenuList.SubMenuNamear </p> <span class=""></span>
+                                                                </a>
+                                                            </li>
+                                                            <li><a href="#">@SubMenuList.SubMenuNamear</a></li>
+                                                        }
+
+
+
+                                                    }*@
+                                            }
+                                            else
+                                            {
+                                                <li class="">
+                                                    <a href="/Home/error" class="waves-effect waves-button">
+                                                        <p>لايوجد موظفين بالقسم   </p><span class=""></span>
+                                                    </a>
+                                                </li>
+                                            }
+
+                                        </ul>
+
+                                        @*</li>
+                                            </ul>*@
+                                    }
+
+
+
+
+
+
+
+                                }
+
+                                <div class="modal-footer">
+                                    @*<button type="submit" class="btn btn-success">طباعة</button>*@
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">أغلاق</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.Raw(@ViewBag.Alert)
+            </div>
+        </div>
+    </div>
+
+</div>
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        completed = function (xhr) {
+            alert(`تمت الأضافة!`);
+          /*  alert(`Hi ${xhr.responseText}!`);*/
+        };
+    </script>
+    <script>
+        failed = function (xhr) {
+            alert(`حدث خطيء في مليء البيانات !`);
+            alert(`Status: {xhr.status}, Status Text: {xhr.statusText}`);
+        };
+    </script>
+}
+<link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+<link href="~/js/chosen.css" rel="stylesheet" />
+<link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+<link href="~/js/prism.css" rel="stylesheet" />
+<script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+<script src="~/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+<script src="~/js/prism.js"></script>
+<script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
+<script src="~/lib/globalize/globalize.js"></script>
+<script src="~/lib/globalize/globalize-runtime.js"></script>
+<script src="~/lib/globalize/date.js"></script>
+<script type="text/javascript">
+    $('#exampleModal').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    $('#exampleModal2').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    $('#exampleModal3').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    $('#exampleModal4').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    $('#exampleModal5').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    $('#exampleModal6').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    $('#exampleModal7').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    $('#exampleModal8').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+<script type="text/javascript">
+    $('#exampleModal88').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen();
+    });
+</script>
+
+
+
+
+<script type="text/javascript">
+    function centerModal() {
+        $(this).css('display', 'block');
+        var $dialog = $(this).find(".modal-dialog");
+        var offset = ($(window).height() - $dialog.height()) / 2;
+        // Center modal vertically in window
+        $dialog.css("margin-top", offset);
+    }
+
+    $('.modal').on('show.bs.modal', centerModal);
+    $(window).on("resize", function () {
+        $('.modal:visible').each(centerModal);
+    });
+</script>
+
+
+
+
+
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>*@
+<script type="text/javascript">
+            function GetDynamicTextBox1(value) {
+                var div = $("<div />");
+
+                var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox").attr("placeholder", "الهدف").attr("autocomplete", "off");
+                textBox.val(value);
+                div.append(textBox);
+                var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox1").attr("placeholder", "-اختياري -معيار القياس ").attr("autocomplete", "off");
+                textBox.val(value);
+                div.append(textBox);
+                var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox2").attr("placeholder", "مجموع الوزن النسبي لا يتجاوز 100% -اختياري ").attr("autocomplete", "off");
+                textBox.val(value);
+                div.append(textBox);
+                var button = $("<input />").attr("type", "button").attr("value", "حذف");
+                button.attr("onclick", "RemoveTextBox(this)");
+                div.append(button);
+
+                return div;
+            }
+            function AddTextBox1() {
+                var div = GetDynamicTextBox1("");
+                $("#TextBoxContainer1").append(div);
+            }
+
+            function RemoveTextBox(button) {
+                $(button).parent().remove();
+            }
+
+            $(function () {
+                var values = eval('@Html.Raw(ViewBag.Values)');
+                if (values != null) {
+                    $("#TextBoxContainer1").html("");
+                    $(values).each(function () {
+                        $("#TextBoxContainer1").append(GetDynamicTextBox1(this));
+                    });
+                }
+            });
+</script>
+<script type="text/javascript">
+            function GetDynamicTextBox2(value) {
+                var div = $("<div />");
+
+                var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox").attr("placeholder", "اسم المهمة ").attr("autocomplete", "off");
+                textBox.val(value);
+                div.append(textBox);
+                var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox1").attr("placeholder", "الوحدة الزمنية (ثانية .دقيقة.ساعة.يوم.اسبوع.شهر.سنة)  اختياري").attr("autocomplete", "off");
+                textBox.val(value);
+                div.append(textBox);
+                var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox2").attr("placeholder", " -اختياري  العدد").attr("autocomplete", "off");
+                textBox.val(value);
+                div.append(textBox);
+                var button = $("<input />").attr("type", "button").attr("value", "حذف");
+                button.attr("onclick", "RemoveTextBox(this)");
+                div.append(button);
+
+                return div;
+            }
+            function AddTextBox2() {
+                var div = GetDynamicTextBox2("");
+                $("#TextBoxContainer2").append(div);
+            }
+
+            function RemoveTextBox(button) {
+                $(button).parent().remove();
+            }
+
+            $(function () {
+                var values = eval('@Html.Raw(ViewBag.Values)');
+                if (values != null) {
+                    $("#TextBoxContainer2").html("");
+                    $(values).each(function () {
+                        $("#TextBoxContainer2").append(GetDynamicTextBox2(this));
+                    });
+                }
+            });
+</script>
+<script type="text/javascript">
+            function GetDynamicTextBox7(value) {
+                var div = $("<div />");
+
+                var textBox = $("<input />").attr("type", "date").attr("name", "DynamicTextBox").attr("autocomplete", "off").attr("id", "tt1").prop("class", "form-control hijri-date-default hijri-date-input");
+                textBox.val(value);
+                div.append(textBox);
+                var textBox = $("<textarea />").attr("type", "textbox").attr("name", "DynamicTextBox1").attr("placeholder", " اضافة انجاز").attr("autocomplete", "off").attr("rows", "5").attr("cols", "70");
+                textBox.val(value);
+                div.append(textBox);
+
+                var button = $("<input />").attr("type", "button").attr("value", "حذف");
+                button.attr("onclick", "RemoveTextBox(this)");
+                div.append(button);
+
+                return div;
+            }
+            function AddTextBox7() {
+                var div = GetDynamicTextBox7("");
+                $("#TextBoxContainer7").append(div);
+            }
+
+
+
+            function RemoveTextBox(button) {
+                $(button).parent().remove();
+            }
+
+
+            $(function () {
+                var values = eval('@Html.Raw(ViewBag.Values)');
+                if (values != null) {
+                    $("#TextBoxContainer7").html("");
+                    $(values).each(function () {
+                        $("#TextBoxContainer7").append(GetDynamicTextBox7(this));
+                    });
+                }
+            });
+
+
+
+</script>
+
+
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+<script type="text/javascript">
+        $(function () {
+            var msg = '@ViewData["result"]';
+            if (msg == '1') {
+                alert("ok");
+                window.location.href = "@Url.Action("Cr4", "ViewModelTasks")";
+            }
+        });
+</script>
+
+@{
+    if (ViewBag.SuccessMessage != null)
+    {
+        <div>
+            @ViewBag.SuccessMessage
+        </div>
+    }
+}
+
+
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+        }
+        catch (e) { }
+    });
+
+</script>
+
+
+
+
+@*@if (Model != null)
+    {
+        <script type="text/javascript">
+                $(function () {
+                    alert("Inserted Customer ID: " + @Model.CEMPNO);
+                });
+        </script>
+    }*@
+<script type="text/javascript">
+
+
+    $(function () {
+
+        initHijrDatePicker();
+
+        initHijrDatePickerDefault();
+
+        $('.disable-date').hijriDatePicker({
+
+            minDate: "2020-01-01",
+            maxDate: "2023-01-01",
+            viewMode: "years",
+            hijri: true,
+            debug: true,
+
+
+        });
+
+    });
+
+
+    function initHijrDatePicker() {
+
+        $(".hijri-date-input").hijriDatePicker({
+            minDate: "2000-01-01",
+            /*      maxDate:"2021-10-06",*/
+            maxDate: new Date(new Date().setDate(new Date().getDate())),
+            /*   endDate: new Date(new Date().setDate(new Date().getDate() + 5))*/
+            /*   minDate: new Date(new Date().setDate(new Date().getDate() + 1))*/
+            todayHighlight: true,
+            //disabledDates: [new Date()],
+            locale: "ar-sa",
+            format: "YYYY-MM-DD",
+            hijriFormat: "iYYYY-iMM-iDD",
+            dayViewHeaderFormat: "MMMM YYYY",
+            hijriDayViewHeaderFormat: "iMMMM iYYYY",
+            showSwitcher: false,
+            allowInputToggle: true,
+            language: "AR",
+            /* showTodayButton: false,*/
+            useCurrent: true,
+            isRTL: false,
+            viewMode: 'months',
+            keepOpen: false,
+            hijri: true,
+            debug: true,
+            showClear: true,
+            showTodayButton: true,
+            showClose: true,
+            /*     autoclose: true,*/
+
+
+
+
+        });
+    }
+
+    function initHijrDatePickerDefault() {
+
+        $(".hijri-date-default").hijriDatePicker();
+    }
+
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>

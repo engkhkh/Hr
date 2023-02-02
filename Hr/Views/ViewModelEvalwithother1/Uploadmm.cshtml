@@ -1,0 +1,293 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*@model IEnumerable<Hr.Models.ViewModelEvalwithother>*@
+@model Hr.Models.Cemp
+@{
+    ViewData["Title"] = " درجة المقابلات الشخصية ";
+    //Layout = "~/Views/Shared/_Layout - Copy - Copy.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">*@
+    <link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <p><a asp-action="Uploadmmx" asp-controller="ViewModelEvalwithother1" class="btn btn-success" target="_blank">تسجيل اللجنة والاعضاء   </a></p>
+    <p><a asp-action="Uploadmm0" asp-controller="ViewModelEvalwithother1" class="btn btn-primary" target="_blank"> تسجيل المرشحين للترقية   </a></p>
+    @*<p><a asp-action="Uploadmm00" asp-controller="ViewModelEvalwithother1" class="btn btn-secondary" target="_blank"> تسجيل  اللجان والاعضاء   </a></p>*@
+<!--<form id="studenteForm0" asp-controller="ViewModelTasks" asp-action="Index777" method="post" enctype="multipart/form-data">
+
+    <hr />
+    <div class="form-group">
+            تشكيل لجنة الترقيات
+            <select class="js-example-basic-multiple form-control" name="DynamicTextBox" multiple="multiple" asp-items="ViewBag.Cempid">
+                <option value="55">تحديد</option>
+            </select>
+        </div>
+   
+
+
+    <hr />-->
+
+
+    @*<div class="form-group">
+        <label class="control-label"> تحديد اسم الموظف  </label>
+        <select asp-for="Cempid" id="chosen-select16" class="chosen-select form-control chosen1" asp-items="ViewBag.Cempid" required>
+            <option value="55">تحديد</option>
+
+
+
+        </select>
+
+        </div>*@
+
+    @*<br />
+        <br /> <br />*@
+    <!--<hr />
+    <div class="form-group">
+        <label class="control-label">تاريخ القرار    </label>
+        <div class="input-group" style="float: left">
+            <input type="text" class="form-control hijri-date-input" name="t1" required />
+        </div>-->
+        @*<span asp-validation-for="CourcesStartDate" class="text-danger"></span>*@
+        <!--<p style="color:red">@ViewBag.ErrorMessage1</p>
+        <p style="color:red">@ViewBag.ErrorMessage2</p>
+    </div>
+
+
+
+
+
+
+    <hr />-->
+
+
+    @*<br /> <br /> <br /> <br />
+        <br /> <br /><br /> <br />*@
+    <!--<div class="form-group">
+        رقم القرار
+        <input--> @*asp-for="DEP_NAME"*@ <!--type="text" name="t0" placeholder="رقم القرار" id="id" required />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">ارفاق القرار*   <label style="color:red;">"(jpeg,jpg,png,gif,jfif,pdf) !"</label> <label style="color:red;">"الحد الاقصي لحجم الملف 4 ميجا!"</label> </label>
+        <input type="file" name="Filecer" class="form-control" id="f1" asp-items="ViewBag.CourcesIdImagecert" />-->
+        @*<span asp-validation-for="CourcesIdImagecert" class="text-danger"></span>*@
+        <!--<p style="color:red">@ViewBag.ErrorMessage</p>
+    </div>
+    <hr />-->
+    @*<div class="form-group">
+            <label class="control-label"> تحديد المرشحين للترقية   </label>
+            <select name="DynamicTextBox1" multiple class="chosen-select form-control" asp-items="ViewBag.Cempid1" required>
+                <option value="55">تحديد</option>
+            </select>
+
+        </div>*@
+    <!--<hr />
+    <br /> <br />
+    <input type="submit" class="btn btn-primary" value=" حفظ " />
+    <p style="color:red">@ViewBag.Message2</p>-->
+    @*<button type="button" class="btn btn-primary" onclick="submitStudent()">حفظ</button>*@
+
+
+<!--</form>-->
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+
+
+
+
+    <link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+    <link href="~/js/chosen.css" rel="stylesheet" />
+    <link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+    <link href="~/js/prism.css" rel="stylesheet" />
+    <script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+    <script src="~/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+    <script src="~/js/prism.js"></script>
+    <script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
+    <script src="~/lib/globalize/globalize.js"></script>
+    <script src="~/lib/globalize/globalize-runtime.js"></script>
+    <script src="~/lib/globalize/date.js"></script>
+    <link href="~/select2-4/dist/css/select2.css" rel="stylesheet" />
+    <script src="~/select2-4/dist/js/select2.js"></script>
+
+
+
+
+    @*<script type="text/javascript">
+            $(document).on("click", ":submit", function (e) {
+
+                if (!$('#f1').val()) {
+                    e.preventDefault();
+                    alert('يرجي ارفاق شهادة الدورة ');
+                }
+
+            }
+
+        </script>*@
+
+    <script type="text/javascript">
+
+
+
+
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" }//,
+            //'.chosen-search': {disable_search: false}
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+
+    </script>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            try {
+                $("input[type='text']").each(function () {
+                    $(this).attr("autocomplete", "off");
+                });
+            }
+            catch (e) { }
+        });
+
+    </script>
+
+
+
+    <script type="text/javascript">
+
+
+        $(function () {
+
+            initHijrDatePicker();
+
+            initHijrDatePickerDefault();
+
+            $('.disable-date').hijriDatePicker({
+
+                minDate: "2020-01-01",
+                maxDate: "2023-01-01",
+                viewMode: "years",
+                hijri: true,
+                debug: true,
+
+
+            });
+
+        });
+
+
+        function initHijrDatePicker() {
+
+            $(".hijri-date-input").hijriDatePicker({
+                //minDate: "2000-01-01",
+                ///*      maxDate:"2021-10-06",*/
+                //maxDate: new Date(new Date().setDate(new Date().getDate())),
+                ///*   endDate: new Date(new Date().setDate(new Date().getDate() + 5))*/
+                ///*   minDate: new Date(new Date().setDate(new Date().getDate() + 1))*/
+                todayHighlight: true,
+                //disabledDates: [new Date()],
+                locale: "ar-sa",
+                format: "YYYY-MM-DD",
+                hijriFormat: "iYYYY-iMM-iDD",
+                dayViewHeaderFormat: "MMMM YYYY",
+                hijriDayViewHeaderFormat: "iMMMM iYYYY",
+                showSwitcher: false,
+                allowInputToggle: true,
+                language: "AR",
+                /* showTodayButton: false,*/
+                useCurrent: true,
+                isRTL: false,
+                viewMode: 'months',
+                keepOpen: false,
+                hijri: true,
+                debug: true,
+                showClear: true,
+                showTodayButton: true,
+                showClose: true,
+                /*     autoclose: true,*/
+
+
+
+
+            });
+        }
+
+        function initHijrDatePickerDefault() {
+
+            $(".hijri-date-default").hijriDatePicker();
+        }
+
+    </script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+    <script>
+        try {
+            fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function (response) {
+                return true;
+            }).catch(function (e) {
+                var carbonScript = document.createElement("script");
+                carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+                carbonScript.id = "_carbonads_js";
+                document.getElementById("carbon-block").appendChild(carbonScript);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    </script>
+
+
+
+
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        completed = function (xhr) {
+            alert(`تمت الأضافة!`);
+            /*  alert(`Hi ${xhr.responseText}!`);*/
+        };
+    </script>
+    <script>
+        failed = function (xhr) {
+            alert(`حدث خطيء في مليء البيانات !`);
+            alert(`Status: {xhr.status}, Status Text: {xhr.statusText}`);
+        };
+    </script>
+</body>
+</html>
+
+
+
+
+

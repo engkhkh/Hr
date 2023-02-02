@@ -92,7 +92,9 @@
             <th>
                 قسم الموظف
             </th>
-
+            <th>
+                المعتمد
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -149,7 +151,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
                 </td>
-
+                <td>
+                    @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestTo)
+                </td>
             </tr>
         }
     </tbody>

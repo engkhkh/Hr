@@ -49,7 +49,7 @@
         <tr>
             @*<th>
 
-                </th>*@
+        </th>*@
             <th>
                 الموظف
             </th>
@@ -77,80 +77,84 @@
             <th>
                 بداية الدورة
             </th>
-            @*<th>
-                    نهاية الدورة
-                </th>*@
+            <th>
+                نهاية الدورة
+            </th>
             <th>
                 عدد ايام  الدورة
             </th>
             @*<th>
-                نسبة الانجاز %
-            </th>*@
+            نسبة الانجاز %
+        </th>*@
             <th>
                 جهة الدورة
             </th>
             <th>
                 قسم الموظف
             </th>
-
+            <th>
+               السبب 
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <!--<td>
-                    <a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-success">موافق</a>
-                    <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-danger">رفض</a>-->
-                @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
+        <tr>
+            <!--<td>
+        <a asp-controller="MasterDetails" asp-action="Create" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-success">موافق</a>
+        <a asp-controller="MasterDetails" asp-action="Create2" asp-route-id="@item.MasterDetails.COURCES_IDMASTER" class="btn btn-danger">رفض</a>-->
+            @*<a asp-controller="MasterDetails" asp-action="Delete" asp-route-id="@item.MasterDetails.MasterDetailsSerial">انتظار </a>*@
 
-                <!--</td>-->
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesIdmaster)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesTypes.CourcesTypeName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesEstimates.CourcesNameEstimate)
-                </td>
-                <td>
-                    <a href="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="btn btn-link">تحميل </a> @*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="50" height="50" />*@
-                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
-                </td>
-                <td>
-                    <a href="~/img/portfoliohr/@item.ACourcesMasters.CourcesIdImagehr" class="btn btn-link">تحميل</a>@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="50" height="50" />*@
-                    @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
-                </td>
-
-            </tr>
+            <!--</td>-->
+            <td>
+                @Html.DisplayFor(modelItem => item.Cemps.CEMPNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesIdmaster)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesNames.CourcesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesTypes.CourcesTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesTrainingMethods.CourcesNameTraining)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesEstimates.CourcesNameEstimate)
+            </td>
+            <td>
+                <a href="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="btn btn-link">تحميل </a> @*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagecert" class="img-thumbnail" width="50" height="50" />*@
+                @*@Html.DisplayFor(modelItem => item.CourcesIdImagecert)*@
+            </td>
+            <td>
+                <a href="~/img/portfoliohr/@item.ACourcesMasters.CourcesIdImagehr" class="btn btn-link">تحميل</a>@*<img src="~/img/portfolio/@item.ACourcesMasters.CourcesIdImagehr" class="img-thumbnail" width="50" height="50" />*@
+                @*@Html.DisplayFor(modelItem => item.CourcesIdImagehr)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesNumberofdays)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.ACourcesMasters.CourcesPassRate)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesDeptouts.CourcesNameDeptout)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACourcesDeptins.CourcesNameDeptin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MasterDetails.MasterRequestNotes)
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -9,5 +9,6 @@ namespace Hr.Models
     {
         public int CourcesIdDeptout { get; set; }
         public string CourcesNameDeptout { get; set; }
+        public string Ttype { get; set; }
     }
 }

@@ -8,7 +8,10 @@
 <h1></h1>
 
 <p>
-    @*<a asp-action="Create" class="=btn btn-success">انشاء حساب</a>*@
+    <a asp-action="Create" class="btn btn-success" >تفعيل حساب</a>
+</p>
+<p>
+    <a asp-action="Create0" class="btn btn-success">تحديث </a>
 </p>
 <table id="table" class="table table-responsive-lg table-bordered table-condensed table-striped table-hover  sortable">
     <thead>
@@ -31,6 +34,9 @@
             <th>
                 الوظيفة
                 @*@Html.DisplayNameFor(model => model.CEMPJOBNAME)*@
+            </th>
+            <th>
+                السجل
             </th>
             <th>
                 الرقم السري
@@ -66,7 +72,7 @@
                 الادارة
             </th>
             <th>
-                هل نشط علي النظام
+                هل يستطيع الدخول علي النظام
             </th>
             <th>
                 صلاحية الموظف علي الشاشات
@@ -103,6 +109,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CEMPPASSWRD)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEMPPASSWRD1)
+            </td>
             @*<td>
             @Html.DisplayFor(modelItem => item.CEMPADPRTNO)
         </td>*@
@@ -131,14 +140,15 @@
                 @Html.DisplayFor(modelItem => item.PARENTNAME)
             </td>
             <td>
-                @if (item.login == '1')
+                @if (item.status == "1")
                 {
-                    <p>Yes</p>
+                    <p>No</p>
+                        <a asp-action="Editt" asp-route-id="@item.Cempid">تحديث  </a>
 
                 }
                 else
                 {
-                    <p>No </p>
+                    <p>Yes </p>
                 }
 
             </td>
@@ -184,7 +194,7 @@
         $('#table').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                /*'copy', 'csv', 'excel', 'pdf',*/ 'print'
+                'copy', 'csv', 'excel', 'pdf', 'print'
             ],
             "language": {
                 "emptyTable": "ليست هناك بيانات متاحة في الجدول",

@@ -20,6 +20,17 @@
                 <span asp-validation-for="CourcesNameDeptout" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label class="control-label">جهة تنفيذ التدريب </label>
+                <select asp-for="Ttype" id="chosen-select44" class="chosen-select form-control" data-placeholder="اختيار جهة تنفيذ التدريب  ">
+                    <option value="">تحديد</option>
+                    <option value="جهة تدريب دولية">جهة تدريب دولية</option>
+                    <option value="جهة تدريب حكومية">جهة تدريب حكومية</option>
+                    <option value="جهة تدريب بالقطاع الخاص">جهة تدريب بالقطاع الخاص</option>
+                </select>
+                <span asp-validation-for="Ttype" class="text-danger"></span>
+            </div>
+            <br />  <br />  <br />  <br />  <br />
+            <div class="form-group">
                 <input type="submit" value="حفظ" class="btn btn-success" />
             </div>
         </form>
@@ -33,3 +44,120 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+@*<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">*@
+<link href="~/datepicker/dist/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="/PulseBeta/css/chosen.css" rel="stylesheet" type="text/css">
+    <link href="~/js/chosen.css" rel="stylesheet" />
+    <link href="/PulseBeta/css/prism.css" rel="stylesheet" type="text/css">
+    <link href="~/js/prism.css" rel="stylesheet" />
+    <script type="text/javascript" src="/PulseBeta/js/chosen.jquery.js"></script>
+    <script src="~/js/chosen.jquery.js"></script>
+    <script type="text/javascript" src="/PulseBeta/js/prism.js"></script>
+    <script src="~/js/prism.js"></script>
+    <script src="~/datepicker/dist/js/bootstrap-hijri-datetimepicker.js"></script>
+    <script src="~/lib/globalize/globalize.js"></script>
+    <script src="~/lib/globalize/globalize-runtime.js"></script>
+    <script src="~/lib/globalize/date.js"></script>
+<script type="text/javascript">
+
+
+    $('#chosen-select16').append(new Option('آخري', 5));
+    /* $('#chosen-select5').append(new Option('ممتاز +90 جيد جدا+80 جيد +70 مقبول +60', 0));*/
+    $("#a").css('visibility', 'hidden');
+
+    //function m() {
+    //    if (document.getElementById("f1").files.length == 0) {
+    //        console.log("لم يتم ارفاق شهادة الدورة ");
+    //        alert("لم يتم ارفاق شهادة الدورة ");
+    //    }
+
+    //}
+
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" }//,
+        //'.chosen-search': {disable_search: false}
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+    $("select.chosen11").change(function () {
+
+        var selectedCountry11 = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+        if (selectedCountry11 == 2 || selectedCountry11 == 4) {
+            alert("  يرجي اختيار التقدير  - ");
+            $("#a").css('visibility', 'visible');
+            var hiddenBox = $("#respond-2");
+            hiddenBox.show();
+
+
+
+        }
+        else {
+            $("#a").css('visibility', 'hidden');
+            var hiddenBox = $("#respond-2");
+            hiddenBox.hide();
+
+        }
+        //if (selectedCountry11 == 1 || selectedCountry11 == 3) {
+
+        //    var select = document.getElementById('chosen-select44')
+        //    /*select.removeChild(select.options['جهة تدريب بالقطاع الخاص'])*/
+        //    select.removeChild(getOptionByValue(select, 'جهة تدريب بالقطاع الخاص'))
+
+        //    function getOptionByValue(select, value) {
+        //        var options = select.options;
+        //        for (var i = 0; i < options.length; i++) {
+        //            if (options[i].value === value) {
+        //                return options[i]
+        //            }
+        //        }
+        //        return null
+        //    }
+        //}
+
+    });
+
+    $("select.chosen1").change(function () {
+        var selectedCountry = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+        if (selectedCountry == 5) {
+            alert("  يرجي ادخال اسم الدورة الجديد باالاسفل - ");
+
+            var hiddenBox = $("#respond-1");
+            hiddenBox.show();
+
+
+
+        }
+        else {
+            var hiddenBox = $("#respond-1");
+            hiddenBox.hide();
+
+        }
+    });
+    $("select").change(function () {
+        var selected5 = $(this).children("option:selected").val();
+        /*      var selectedCountry1=$("#chosen-select16 option:selected").val();*/
+        if (selected5 == 0) {
+            alert("لايتم اختيار هذا العنصر  - ");
+
+        }
+    });
+</script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        try {
+            $("input[type='text']").each(function () {
+                $(this).attr("autocomplete", "off");
+            });
+        }
+        catch (e) { }
+    });
+
+</script>

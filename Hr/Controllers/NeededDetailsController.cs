@@ -8,16 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using Hr.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Hr.Services;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MailKit.Security;
+using System.Threading;
+using NLog;
 
 namespace Hr.Controllers
 {
     public class NeededDetailsController : Controller
     {
         private readonly hrContext _context;
+        private readonly IMailService mailService;
+        NLog.Logger loggerx = LogManager.GetCurrentClassLogger();
 
-        public NeededDetailsController(hrContext context)
+        public NeededDetailsController(hrContext context, IMailService mailService)
         {
             _context = context;
+            this.mailService = mailService;
         }
 
         // GET: MasterDetails
@@ -125,70 +134,22 @@ namespace Hr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("OfferedDetailsSerial,COURCES_IDOffered,OfferedRequestFrom,OfferedRequestTo,OfferedRequestTo2,OfferedRequestTo3,OfferedRequestTo4,OfferedRequestTo5,OfferedRequestTypeSatus,OfferedRequestNotes,Offeredoption")] NeededDetails OfferDetails)
+        public async Task<IActionResult> Create([Bind("OfferedDetailsSerial,COURCES_IDOffered,OfferedRequestFrom,OfferedRequestTo,OfferedRequestTo2,OfferedRequestTo3,OfferedRequestTo4,OfferedRequestTo5,OfferedRequestTypeSatus,OfferedRequestNotes,Offeredoption")] NeededDetails OfferDetails)
         {
           
-            //if (OfferDetailssss == null)
-            //{
-            //    return NotFound();
-            //}
+           
             if (ModelState.IsValid)
             {
                 var OfferDetailssss = _context.NeededDetails
            .Where(e => e.COURCES_IDOffered == OfferDetails.COURCES_IDOffered && e.OfferedDetailsSerial== OfferDetails.OfferedDetailsSerial)
            .SingleOrDefault();
 
-
-                if (OfferDetailssss.OfferedRequestTo == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo3 == "0")
-                {
-                    OfferDetailssss.OfferedRequestTo3 = "1";
-                    OfferDetailssss.OfferedRequestTo4 = "0";
-                    OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
-                    _context.Update(OfferDetailssss);
-                    _context.SaveChangesAsync();
-                    NeededComments offerComments = new NeededComments
-                    {
-                        id = OfferDetails.OfferedDetailsSerial,
-                        offerapproval = HttpContext.Session.GetString("empid"),
-                        comments = OfferDetails.OfferedRequestNotes
-                    };
-                   
-                    _context.Add(offerComments);
-                    _context.SaveChangesAsync();
-                    return RedirectToAction("IndexOffered4", "ViewModelMasterwithother", new { area = "" });
-
-
-                }
-               else if (OfferDetailssss.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo4 == "0")
-                {
-                    //OfferDetailssss.OfferedRequestTo3 = "1";
-                    OfferDetailssss.OfferedRequestTo4 = "1";
-                    OfferDetailssss.OfferedRequestTo5 = "0";
-                    OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
-                    _context.Update(OfferDetailssss);
-                    _context.SaveChangesAsync();
-
-                    NeededComments offerComments = new NeededComments
-                    {
-                        id = OfferDetails.OfferedDetailsSerial,
-                        offerapproval = HttpContext.Session.GetString("empid"),
-                        comments = OfferDetails.OfferedRequestNotes
-                    };
-                    
-                    _context.Add(offerComments);
-                    _context.SaveChangesAsync();
-                    return RedirectToAction("IndexOffered4", "ViewModelMasterwithother", new { area = "" });
-
-                }
-                else if (OfferDetailssss.Offeredoption == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo5 == "0")
-                {
-                    OfferDetailssss.OfferedRequestTo4 = "1";
-                    OfferDetailssss.OfferedRequestTo5 = "1";
                     OfferDetailssss.OfferedRequestTypeSatus = 1;
                     OfferDetailssss.OfferedRequestNotes = OfferDetails.OfferedRequestNotes;
                     OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
+                    OfferDetailssss.Offeredoption = HttpContext.Session.GetString("empid");
                     _context.Update(OfferDetailssss);
-                    _context.SaveChangesAsync();
+                   await _context.SaveChangesAsync();
 
                     NeededComments offerComments = new NeededComments
                     {
@@ -197,90 +158,39 @@ namespace Hr.Controllers
                         comments = OfferDetails.OfferedRequestNotes
                     };
                     _context.Add(offerComments);
-                    _context.SaveChangesAsync();
+                   await _context.SaveChangesAsync();
 
                     var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.NeededRequestTypeId.Where(b => b.COURCES_IDOffered == OfferDetails.COURCES_IDOffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 1;
                     OfferRequestTypeIdsMasterRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
                     _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
-                    _context.SaveChangesAsync();
-                    return RedirectToAction("IndexOffered4", "ViewModelMasterwithother", new { area = "" });
+                   await _context.SaveChangesAsync();
 
+                var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetails.OfferedRequestFrom).FirstOrDefault();
+                var empapproval1 = _context.Cemps.Where(h => h.Cempid == emprequestor.MANAGERID).FirstOrDefault();
+
+               
+                WelcomeRequest request3 = new WelcomeRequest();
+                request3.UserName = emprequestor.CEMPNAME;
+                request3.header = "خدمة مسح ألاحتياج التدريبي للموظفين  ";
+                request3.Details = "تم اعتماد  ,طلب رقم :" + OfferDetails.COURCES_IDOffered + " بواسطة : " + empapproval2.CEMPNAME;
+                request3.ToEmail = emprequestor.mail;
+                try
+                {
+                    //await mailService.SendEmailAsync(m);
+                    await mailService.SendWelcomeEmailAsync(request3);
                 }
-                //if (OfferDetails.OfferedRequestTo4 ==Convert.ToString(0))
-                //{
-                //    var off = new OfferedDetails
-                //    {
-                //        OfferedRequestFrom = OfferDetails.OfferedRequestFrom,
-                //        OfferedRequestTo= HttpContext.Session.GetString("empid"),
-                //        OfferedRequestTo2=OfferDetails.OfferedRequestTo2,
-                //        OfferedRequestTo3=null,
-                //        OfferedRequestTo4="1",
-                //        OfferedRequestTo5="0",
-                //        COURCES_IDOffered=OfferDetails.COURCES_IDOffered,
-                //        Offeredoption=OfferDetails.Offeredoption,
-                //        OfferedRequestTypeSatus=0,
-                //        OfferedRequestNotes=OfferDetails.OfferedRequestNotes
+                catch (Exception ex)
+                {
+                    loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة مسح الاحتياج التدريبي للموظفين    " + emprequestor.Cempid + "اعتماد خدمة ألاحتياج التدريبي للموظفين   " + ex.Message);
+                }
+                //return RedirectToAction(nameof(Index));
 
+                return RedirectToAction("IndexOffered4", "ViewModelMasterwithother", new { area = "" });
 
-                //        //OfferedRequestFrom = OfferDetails.MasterRequestFrom,
-                //        //MasterRequestTo = HttpContext.Session.GetString("empid"),
-                //        //MasterRequestTo2 = HttpContext.Session.GetString("empid"),
-                //        //MasterRequestTypeSatus = 1,
-                //        //COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER,
-                //        //MasterRequestNotes = MasterDetails.MasterRequestNotes
-                //    };
-                //    var OfferRequestTypeIdsOfferRequestTypeIdserial2 = _context.OfferedRequestTypeId.Where(b => b.OfferedRequestTypeIdsOfferedRequestTypeIdserial == OfferDetails.OfferedDetailsSerial).FirstOrDefault();
-
-                //    //MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
-
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestType = 0;
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestTypeIdsOfferedRequestTypeIdserial = OfferDetails.OfferedDetailsSerial;
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
-                //    _context.Add(off);
-                //    _context.Update(OfferRequestTypeIdsOfferRequestTypeIdserial2);
-                //    await _context.SaveChangesAsync();
-                //    //return RedirectToAction(nameof(Index));
-                //    return RedirectToAction("IndexOffered", "ViewModelMasterwithother", new { area = "" });
-
-
-
-                //}
-                //else if(OfferDetails.OfferedRequestTo5 == Convert.ToString(1))
-                //{
-                //    var off = new OfferedDetails
-                //    {
-                //        OfferedRequestFrom = OfferDetails.OfferedRequestFrom,
-                //        OfferedRequestTo = OfferDetails.OfferedRequestTo2,
-                //        OfferedRequestTo2 = HttpContext.Session.GetString("empid"),
-                //        OfferedRequestTo3 = null,
-                //        OfferedRequestTo4 = "1",
-                //        OfferedRequestTo5 = "1",
-                //        COURCES_IDOffered = OfferDetails.COURCES_IDOffered,
-                //        Offeredoption = OfferDetails.Offeredoption,
-                //        OfferedRequestTypeSatus = 1,
-                //        OfferedRequestNotes = OfferDetails.OfferedRequestNotes
-
-                //        //OfferedRequestFrom = OfferDetails.MasterRequestFrom,
-                //        //MasterRequestTo = HttpContext.Session.GetString("empid"),
-                //        //MasterRequestTo2 = HttpContext.Session.GetString("empid"),
-                //        //MasterRequestTypeSatus = 1,
-                //        //COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER,
-                //        //MasterRequestNotes = MasterDetails.MasterRequestNotes
-                //    };
-                //    var OfferRequestTypeIdsOfferRequestTypeIdserial2 = _context.OfferedRequestTypeId.Where(b => b.OfferedRequestTypeIdsOfferedRequestTypeIdserial == OfferDetails.OfferedDetailsSerial).FirstOrDefault();
-
-                //    //MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
-
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestType = 1;
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestTypeIdsOfferedRequestTypeIdserial = OfferDetails.OfferedDetailsSerial;
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
-                //    _context.Add(off);
-                //    _context.Update(OfferRequestTypeIdsOfferRequestTypeIdserial2);
-                //    await _context.SaveChangesAsync();
-                //    //return RedirectToAction(nameof(Index));
-                //    return RedirectToAction("IndexOffered", "ViewModelMasterwithother", new { area = "" });
-                //}
+               
+                
             }
             return View(OfferDetails);
             //return RedirectToAction("IndexOffered", "ViewModelMasterwithother", new { area = "" });
@@ -341,73 +251,12 @@ namespace Hr.Controllers
                     var OfferDetailssss = _context.NeededDetails
                .Where(e => e.COURCES_IDOffered == OfferDetails.COURCES_IDOffered && e.OfferedDetailsSerial == OfferDetails.OfferedDetailsSerial)
                .SingleOrDefault();
-
-
-                    if (OfferDetailssss.OfferedRequestTo == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo3 == "0")
-                    {
-                        OfferDetailssss.OfferedRequestTo3 = "2";
-                        //OfferDetailssss.OfferedRequestTo4 = "2";
-                        OfferDetailssss.OfferedRequestTypeSatus = 2;
-                        OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
-                    _context.Update(OfferDetailssss);
-                    _context.SaveChanges();
-                    NeededComments offerComments = new NeededComments
-                    {
-                            id = OfferDetails.OfferedDetailsSerial,
-                            offerapproval = HttpContext.Session.GetString("empid"),
-                            comments = OfferDetails.OfferedRequestNotes
-                        };
-
-                    _context.Add(offerComments);
-                    _context.SaveChanges();
-
-                    var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.NeededRequestTypeId.Where(b => b.COURCES_IDOffered == OfferDetails.COURCES_IDOffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
-                    OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
-                    OfferRequestTypeIdsMasterRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
-                    _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
-                    _context.SaveChanges();
-                        return RedirectToAction("IndexOffered4", "ViewModelMasterwithother", new { area = "" });
-
-
-                    }
-                    else if (OfferDetailssss.OfferedRequestTo2 == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo4 == "0")
-                    {
-                        //OfferDetailssss.OfferedRequestTo3 = "1";
-                        OfferDetailssss.OfferedRequestTo4 = "2";
-                        //OfferDetailssss.OfferedRequestTo5 = "2";
-                        OfferDetailssss.OfferedRequestTypeSatus = 2;
-                        OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
-                    _context.Update(OfferDetailssss);
-                    _context.SaveChanges();
-
-                    NeededComments offerComments = new NeededComments
-                    {
-                            id = OfferDetails.OfferedDetailsSerial,
-                            offerapproval = HttpContext.Session.GetString("empid"),
-                            comments = OfferDetails.OfferedRequestNotes
-                        };
-                    _context.Add(offerComments);
-                    _context.SaveChanges();
-
-                    var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.NeededRequestTypeId.Where(b => b.COURCES_IDOffered == OfferDetails.COURCES_IDOffered && b.Offercoursefrom == OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
-                    OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
-                    OfferRequestTypeIdsMasterRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
-                    _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
-                    
-                   
-                    _context.SaveChanges();
-                        return RedirectToAction("IndexOffered4", "ViewModelMasterwithother", new { area = "" });
-
-                    }
-                    else if (OfferDetailssss.Offeredoption == HttpContext.Session.GetString("empid") && OfferDetailssss.OfferedRequestTo5 == "0")
-                    {
-                        //OfferDetailssss.OfferedRequestTo4 = "2";
-                        OfferDetailssss.OfferedRequestTo5 = "2";
                         OfferDetailssss.OfferedRequestTypeSatus = 2;
                         OfferDetailssss.OfferedRequestNotes = OfferDetails.OfferedRequestNotes;
                         OfferDetailssss.OfferedDetailsSerial = OfferDetails.OfferedDetailsSerial;
-                    _context.Update(OfferDetailssss);
-                    _context.SaveChanges();
+                OfferDetailssss.Offeredoption = HttpContext.Session.GetString("empid");
+                _context.Update(OfferDetailssss);
+                   await _context.SaveChangesAsync();
 
 
                     NeededComments offerComments = new NeededComments
@@ -417,203 +266,38 @@ namespace Hr.Controllers
                             comments = OfferDetails.OfferedRequestNotes
                         };
                     _context.Add(offerComments);
-                    _context.SaveChanges();
+                   await _context.SaveChangesAsync();
 
 
                     var OfferRequestTypeIdsMasterRequestTypeIdserial2 = _context.NeededRequestTypeId.Where(b => b.COURCES_IDOffered == OfferDetails.COURCES_IDOffered && b.Offercoursefrom== OfferDetailssss.OfferedRequestFrom).FirstOrDefault();
                         OfferRequestTypeIdsMasterRequestTypeIdserial2.OfferedRequestType = 2;
                         OfferRequestTypeIdsMasterRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
                         _context.Update(OfferRequestTypeIdsMasterRequestTypeIdserial2);
+                   await   _context.SaveChangesAsync();
+
+                var empapproval2 = _context.Cemps.Where(h => h.Cempid == HttpContext.Session.GetString("username")).FirstOrDefault();
+                var emprequestor = _context.Cemps.Where(h => h.Cempid == OfferDetails.OfferedRequestFrom).FirstOrDefault();
+                var empapproval1 = _context.Cemps.Where(h => h.Cempid == emprequestor.MANAGERID).FirstOrDefault();
+
+
+                WelcomeRequest request3 = new WelcomeRequest();
+                request3.UserName = emprequestor.CEMPNAME;
+                request3.header = "خدمة مسح ألاحتياج التدريبي للموظفين  ";
+                request3.Details = "تم  رفض اعتماد  ,طلب رقم :" + OfferDetails.COURCES_IDOffered + " بواسطة : " + empapproval2.CEMPNAME;
+                request3.ToEmail = emprequestor.mail;
+                try
+                {
+                    //await mailService.SendEmailAsync(m);
+                    await mailService.SendWelcomeEmailAsync(request3);
+                }
+                catch (Exception ex)
+                {
+                    loggerx.Error("  لم يتم ارسال الايميل للموظف ب خدمة مسح الاحتياج التدريبي للموظفين    " + emprequestor.Cempid + "رفض اعتماد  خدمة ألاحتياج التدريبي للموظفين   " + ex.Message);
+                }
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("IndexOffered4", "ViewModelMasterwithother", new { area = "" });
+
                     
-                    
-                    _context.SaveChanges();
-                        return RedirectToAction("IndexOffered4", "ViewModelMasterwithother", new { area = "" });
-
-                    }
-                    //if (OfferDetails.OfferedRequestTo4 ==Convert.ToString(0))
-                    //{
-                    //    var off = new OfferedDetails
-                    //    {
-                    //        OfferedRequestFrom = OfferDetails.OfferedRequestFrom,
-                    //        OfferedRequestTo= HttpContext.Session.GetString("empid"),
-                    //        OfferedRequestTo2=OfferDetails.OfferedRequestTo2,
-                    //        OfferedRequestTo3=null,
-                    //        OfferedRequestTo4="1",
-                    //        OfferedRequestTo5="0",
-                    //        COURCES_IDOffered=OfferDetails.COURCES_IDOffered,
-                    //        Offeredoption=OfferDetails.Offeredoption,
-                    //        OfferedRequestTypeSatus=0,
-                    //        OfferedRequestNotes=OfferDetails.OfferedRequestNotes
-
-
-                    //        //OfferedRequestFrom = OfferDetails.MasterRequestFrom,
-                    //        //MasterRequestTo = HttpContext.Session.GetString("empid"),
-                    //        //MasterRequestTo2 = HttpContext.Session.GetString("empid"),
-                    //        //MasterRequestTypeSatus = 1,
-                    //        //COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER,
-                    //        //MasterRequestNotes = MasterDetails.MasterRequestNotes
-                    //    };
-                    //    var OfferRequestTypeIdsOfferRequestTypeIdserial2 = _context.OfferedRequestTypeId.Where(b => b.OfferedRequestTypeIdsOfferedRequestTypeIdserial == OfferDetails.OfferedDetailsSerial).FirstOrDefault();
-
-                    //    //MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
-
-                    //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestType = 0;
-                    //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestTypeIdsOfferedRequestTypeIdserial = OfferDetails.OfferedDetailsSerial;
-                    //    OfferRequestTypeIdsOfferRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
-                    //    _context.Add(off);
-                    //    _context.Update(OfferRequestTypeIdsOfferRequestTypeIdserial2);
-                    //    await _context.SaveChangesAsync();
-                    //    //return RedirectToAction(nameof(Index));
-                    //    return RedirectToAction("IndexOffered", "ViewModelMasterwithother", new { area = "" });
-
-
-
-                    //}
-                    //else if(OfferDetails.OfferedRequestTo5 == Convert.ToString(1))
-                    //{
-                    //    var off = new OfferedDetails
-                    //    {
-                    //        OfferedRequestFrom = OfferDetails.OfferedRequestFrom,
-                    //        OfferedRequestTo = OfferDetails.OfferedRequestTo2,
-                    //        OfferedRequestTo2 = HttpContext.Session.GetString("empid"),
-                    //        OfferedRequestTo3 = null,
-                    //        OfferedRequestTo4 = "1",
-                    //        OfferedRequestTo5 = "1",
-                    //        COURCES_IDOffered = OfferDetails.COURCES_IDOffered,
-                    //        Offeredoption = OfferDetails.Offeredoption,
-                    //        OfferedRequestTypeSatus = 1,
-                    //        OfferedRequestNotes = OfferDetails.OfferedRequestNotes
-
-                    //        //OfferedRequestFrom = OfferDetails.MasterRequestFrom,
-                    //        //MasterRequestTo = HttpContext.Session.GetString("empid"),
-                    //        //MasterRequestTo2 = HttpContext.Session.GetString("empid"),
-                    //        //MasterRequestTypeSatus = 1,
-                    //        //COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER,
-                    //        //MasterRequestNotes = MasterDetails.MasterRequestNotes
-                    //    };
-                    //    var OfferRequestTypeIdsOfferRequestTypeIdserial2 = _context.OfferedRequestTypeId.Where(b => b.OfferedRequestTypeIdsOfferedRequestTypeIdserial == OfferDetails.OfferedDetailsSerial).FirstOrDefault();
-
-                    //    //MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
-
-                    //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestType = 1;
-                    //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestTypeIdsOfferedRequestTypeIdserial = OfferDetails.OfferedDetailsSerial;
-                    //    OfferRequestTypeIdsOfferRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
-                    //    _context.Add(off);
-                    //    _context.Update(OfferRequestTypeIdsOfferRequestTypeIdserial2);
-                    //    await _context.SaveChangesAsync();
-                    //    //return RedirectToAction(nameof(Index));
-                    //    return RedirectToAction("IndexOffered", "ViewModelMasterwithother", new { area = "" });
-                    //}
-                
-
-
-                //var off = new OfferedDetails
-                //{
-                //    OfferedRequestFrom = OfferDetails.OfferedRequestFrom,
-                //    OfferedRequestTo = HttpContext.Session.GetString("empid"),
-                //    OfferedRequestTo2 = OfferDetails.OfferedRequestTo2,
-                //    OfferedRequestTo3 = null,
-                //    OfferedRequestTo4 = "1",
-                //    OfferedRequestTo5 = "0",
-                //    COURCES_IDOffered = OfferDetails.COURCES_IDOffered,
-                //    Offeredoption = OfferDetails.Offeredoption,
-                //    OfferedRequestTypeSatus = 0,
-                //    OfferedRequestNotes = OfferDetails.OfferedRequestNotes
-
-
-                //    //OfferedRequestFrom = OfferDetails.MasterRequestFrom,
-                //    //MasterRequestTo = HttpContext.Session.GetString("empid"),
-                //    //MasterRequestTo2 = HttpContext.Session.GetString("empid"),
-                //    //MasterRequestTypeSatus = 1,
-                //    //COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER,
-                //    //MasterRequestNotes = MasterDetails.MasterRequestNotes
-                //};
-                //var OfferRequestTypeIdsOfferRequestTypeIdserial2 = _context.OfferedRequestTypeId.Where(b => b.OfferedRequestTypeIdsOfferedRequestTypeIdserial == OfferDetails.OfferedDetailsSerial).FirstOrDefault();
-
-                ////MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
-
-                //OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestType = 0;
-                //OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestTypeIdsOfferedRequestTypeIdserial = OfferDetails.OfferedDetailsSerial;
-                //OfferRequestTypeIdsOfferRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
-                //_context.Add(off);
-                //_context.Update(OfferRequestTypeIdsOfferRequestTypeIdserial2);
-                //await _context.SaveChangesAsync();
-                ////return RedirectToAction(nameof(Index));
-                //return RedirectToAction("IndexOffered", "ViewModelMasterwithother", new { area = "" });
-                //if (OfferDetails.OfferedRequestTo4 == Convert.ToString(0))
-                //{
-                //    var off = new OfferedDetails
-                //    {
-                //        OfferedRequestFrom = OfferDetails.OfferedRequestFrom,
-                //        OfferedRequestTo = HttpContext.Session.GetString("empid"),
-                //        OfferedRequestTo2 = OfferDetails.OfferedRequestTo2,
-                //        OfferedRequestTo3 = null,
-                //        OfferedRequestTo4 = "1",
-                //        OfferedRequestTo5 = "0",
-                //        COURCES_IDOffered = OfferDetails.COURCES_IDOffered,
-                //        Offeredoption = OfferDetails.Offeredoption,
-                //        OfferedRequestTypeSatus = 0,
-                //        OfferedRequestNotes = OfferDetails.OfferedRequestNotes
-
-
-                //        //OfferedRequestFrom = OfferDetails.MasterRequestFrom,
-                //        //MasterRequestTo = HttpContext.Session.GetString("empid"),
-                //        //MasterRequestTo2 = HttpContext.Session.GetString("empid"),
-                //        //MasterRequestTypeSatus = 1,
-                //        //COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER,
-                //        //MasterRequestNotes = MasterDetails.MasterRequestNotes
-                //    };
-                //    var OfferRequestTypeIdsOfferRequestTypeIdserial2 = _context.OfferedRequestTypeId.Where(b => b.OfferedRequestTypeIdsOfferedRequestTypeIdserial == OfferDetails.OfferedDetailsSerial).FirstOrDefault();
-
-                //    //MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
-
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestType = 0;
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestTypeIdsOfferedRequestTypeIdserial = OfferDetails.OfferedDetailsSerial;
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
-                //    _context.Add(off);
-                //    _context.Update(OfferRequestTypeIdsOfferRequestTypeIdserial2);
-                //    await _context.SaveChangesAsync();
-                //    //return RedirectToAction(nameof(Index));
-                //    return RedirectToAction("IndexOffered", "ViewModelMasterwithother", new { area = "" });
-
-
-
-                //}
-                //else if (OfferDetails.OfferedRequestTo5 == Convert.ToString(1))
-                //{
-                //    var off = new OfferedDetails
-                //    {
-                //        OfferedRequestFrom = OfferDetails.OfferedRequestFrom,
-                //        OfferedRequestTo = OfferDetails.OfferedRequestTo2,
-                //        OfferedRequestTo2 = HttpContext.Session.GetString("empid"),
-                //        OfferedRequestTo3 = null,
-                //        OfferedRequestTo4 = "1",
-                //        OfferedRequestTo5 = "1",
-                //        COURCES_IDOffered = OfferDetails.COURCES_IDOffered,
-                //        Offeredoption = OfferDetails.Offeredoption,
-                //        OfferedRequestTypeSatus = 2,
-                //        OfferedRequestNotes = OfferDetails.OfferedRequestNotes
-
-                //        //OfferedRequestFrom = OfferDetails.MasterRequestFrom,
-                //        //MasterRequestTo = HttpContext.Session.GetString("empid"),
-                //        //MasterRequestTo2 = HttpContext.Session.GetString("empid"),
-                //        //MasterRequestTypeSatus = 1,
-                //        //COURCES_IDMASTER = MasterDetails.COURCES_IDMASTER,
-                //        //MasterRequestNotes = MasterDetails.MasterRequestNotes
-                //    };
-                //    var OfferRequestTypeIdsOfferRequestTypeIdserial2 = _context.OfferedRequestTypeId.Where(b => b.OfferedRequestTypeIdsOfferedRequestTypeIdserial == OfferDetails.OfferedDetailsSerial).FirstOrDefault();
-
-                //    //MasterRequestTypeIdsMasterRequestTypeIdserial = MasterRequestTypeIdsMasterRequestTypeIdserial2.MasterRequestTypeIdsMasterRequestTypeIdserial,
-
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestType = 2;
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.OfferedRequestTypeIdsOfferedRequestTypeIdserial = OfferDetails.OfferedDetailsSerial;
-                //    OfferRequestTypeIdsOfferRequestTypeIdserial2.COURCES_IDOffered = OfferDetails.COURCES_IDOffered;
-                //    _context.Add(off);
-                //    _context.Update(OfferRequestTypeIdsOfferRequestTypeIdserial2);
-                //    await _context.SaveChangesAsync();
-                //    //return RedirectToAction(nameof(Index));
-                //    return RedirectToAction("IndexOffered", "ViewModelMasterwithother", new { area = "" });
-                //}
             }
             return View(OfferDetails);
         }
